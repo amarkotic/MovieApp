@@ -8,8 +8,15 @@ class MainViewController: UIViewController {
     var movieTableView : UITableView!
     var movieArray = [Movie]()
     
+    private var router : AppRouter!
+    convenience init(router: AppRouter){
+        self.init()
+        self.router = router
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainViewPresenter.setMainViewDelegate(mainViewDelegate: self)
         movieArray = mainViewPresenter.fetchMovies()
         buildViews()
     }

@@ -9,6 +9,10 @@ class MainViewPresenter {
         self.dataService = dataService
     }
     
+    func setMainViewDelegate(mainViewDelegate: MainViewController?){
+        self.mainViewDelegate = mainViewDelegate
+    }
+    
     //Fetches movies array from data service
     func fetchMovies() -> [Movie]{
         return dataService.fetchMovies()
