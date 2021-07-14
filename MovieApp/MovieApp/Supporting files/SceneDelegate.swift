@@ -3,14 +3,17 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         
         window = UIWindow(windowScene: windowScene)
-        let initialVc = ViewController()
-        window?.rootViewController = initialVc
+        let initialVc = MainViewController()
+        let navigationVc = UINavigationController()
+        navigationVc.pushViewController(initialVc, animated: true)
+        
+        window?.rootViewController =  navigationVc
         window?.makeKeyAndVisible()
     }
 
