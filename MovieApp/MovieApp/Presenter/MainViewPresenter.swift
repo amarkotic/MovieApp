@@ -2,15 +2,14 @@ import UIKit
 
 class MainViewPresenter {
     
-    private let dataService : MovieDataService
-    weak private var mainViewDelegate : MainViewController?
+    private let dataService: MovieDataServiceProtocol
     
-    init(dataService : MovieDataService){
+    init(dataService: MovieDataServiceProtocol){
         self.dataService = dataService
     }
     
-    //Fetches movies array from data service
-    func fetchMovies() -> [Movie]{
-        return dataService.fetchMovies()
+    var movies: [Movie] {
+        dataService.fetchMovies()
     }
+    
 }

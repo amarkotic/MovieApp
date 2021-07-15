@@ -1,14 +1,7 @@
 import UIKit
 
-
-struct Color {
-    let customGray = UIColor(rgb: 0x828282)
-    let customBlack = UIColor(rgb: 0x000000)
-    let customBlue = UIColor(rgb: 0x0B253F)
-}
-
-//Enables hexadecimal color input
 extension UIColor {
+    
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")
@@ -24,4 +17,15 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+    
+    static var appGray: UIColor {
+        UIColor(rgb: 0x828282)
+    }
+    static var appBlack: UIColor {
+        UIColor(rgb: 0x000000)
+    }
+    static var appBlue: UIColor {
+        UIColor(rgb: 0x0B253F)
+    }
+    
 }

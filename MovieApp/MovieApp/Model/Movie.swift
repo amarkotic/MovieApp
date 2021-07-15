@@ -1,7 +1,9 @@
 import UIKit
 
 struct Movie {
-    var image : UIImage!
-    var title : String!
-    var description : String!
+    
+    let image: String
+    let title: String
+    let description: String
+    
 }
