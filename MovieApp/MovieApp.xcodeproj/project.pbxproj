@@ -265,6 +265,7 @@
 				523C2ECB269EE89B00F2EDD6 /* Color.swift in Sources */,
 				526B517C269DA8610095F3E2 /* MainViewController+Design.swift in Sources */,
 				526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */,
+				523C2ED326A0559D00F2EDD6 /* UILabel+Extensions.swift in Sources */,
 				526B516F269D6D370095F3E2 /* MovieApp.xcdatamodeld in Sources */,
 				523C2EB4269EBF0700F2EDD6 /* Movie.swift in Sources */,
 				523C2EDB26A174C600F2EDD6 /* NetworkService.swift in Sources */,

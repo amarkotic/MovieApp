@@ -16,11 +16,6 @@ class MainViewPresenter {
         self.mainViewDelegate = mainViewDelegate
     }
     
-    //Fetches movies array from data service
-    func fetchMovies() -> [Movie] {
-        return dataService.fetchMovies()
-    }
-    
     func fetchMoviesWithAlamofire() {
         networkService.fetchMovies { (movies, error) in
             if let error = error {
