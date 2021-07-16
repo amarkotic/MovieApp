@@ -9,8 +9,8 @@ class AppRouter {
     }
     
     func setStartScreen(in window: UIWindow?) {
-        let initialVc = MainViewController()
-        navigationController.pushViewController(initialVc, animated: true)
+        let initialVc = MoviesViewController(presenter: MainViewPresenter(dataService: MovieDataService(), networkService: NetworkService()))
+        navigationController.setViewControllers([initialVc], animated: true)
         
         window?.rootViewController =  navigationController
         window?.makeKeyAndVisible()

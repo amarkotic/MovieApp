@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class MovieCell: UITableViewCell {
 
@@ -22,7 +23,8 @@ class MovieCell: UITableViewCell {
     }
 
     func populateCell(with movie: Movie) {
-        movieImageView.image = UIImage(named: movie.image)
+        guard let URL = URL(string: "https://image.tmdb.org/t/p/original/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg") else { return }
+        movieImageView.kf.setImage(with: URL)
         titleLabel.text = movie.title
         descriptionLabel.text = movie.description
     }

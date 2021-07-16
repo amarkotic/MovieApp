@@ -48,7 +48,7 @@ extension MovieCell: DesignProtocol {
             $0.leading.equalTo(movieImageView.snp.trailing).offset(defaultInset * 3)
             $0.trailing.equalToSuperview().inset(defaultInset * 3)
             $0.top.equalTo(titleLabel.snp.bottom).offset(defaultInset)
-            $0.bottom.equalToSuperview().inset(defaultInset * 3).priority(.low)
+            $0.bottom.lessThanOrEqualToSuperview().inset(defaultInset * 3)
         }
     }
     

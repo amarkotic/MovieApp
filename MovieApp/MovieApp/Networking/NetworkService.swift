@@ -3,10 +3,8 @@ import Alamofire
 
 class NetworkService {
     
-    
     let URL = "https://api.themoviedb.org/3/movie/popular?api_key=e24dd8d2f3822e3917d10c6570d7f574&language=en-US"
     typealias AlamofireResponse = ([Movie]?, Error?) -> Void
-    
     
     func fetchMovies(completion: @escaping AlamofireResponse) {
         let request = AF.request(URL)
@@ -21,9 +19,6 @@ class NetworkService {
                 print("Error decoding == \(error)")
             }
         }
-        
     }
-    
-    
     
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716426A1C37800DE4AC7 /* NetworkService.swift */; };
+		5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716626A1C49D00DE4AC7 /* AppRouter.swift */; };
 		523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */; };
 		523C2EAC269DAAD500F2EDD6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2EAB269DAAD500F2EDD6 /* SnapKit */; };
 		523C2EAE269DB1B500F2EDD6 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EAD269DB1B500F2EDD6 /* MovieCell.swift */; };
@@ -15,16 +17,14 @@
 		523C2EB9269ED28B00F2EDD6 /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 523C2EB6269ED28B00F2EDD6 /* ProximaNova-Semibold.otf */; };
 		523C2EBA269ED28B00F2EDD6 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 523C2EB7269ED28B00F2EDD6 /* ProximaNova-Bold.otf */; };
 		523C2EBB269ED28B00F2EDD6 /* ProximaNova-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 523C2EB8269ED28B00F2EDD6 /* ProximaNova-Medium.otf */; };
-		523C2ECF269F1C3A00F2EDD6 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2ECE269F1C3A00F2EDD6 /* AppRouter.swift */; };
-		523C2ED926A1655C00F2EDD6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2ED826A1655C00F2EDD6 /* Alamofire */; };
-		523C2EDB26A174C600F2EDD6 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EDA26A174C600F2EDD6 /* NetworkService.swift */; };
-		523C2EDF26A1B4B300F2EDD6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2EDE26A1B4B300F2EDD6 /* Kingfisher */; };
 		523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EBC269ED2B300F2EDD6 /* Font+Extensions.swift */; };
 		523C2EBF269EDC7A00F2EDD6 /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EBE269EDC7A00F2EDD6 /* MainViewPresenter.swift */; };
 		523C2EC9269EDE0D00F2EDD6 /* MovieDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EC8269EDE0D00F2EDD6 /* MovieDataService.swift */; };
 		523C2ECB269EE89B00F2EDD6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2ECA269EE89B00F2EDD6 /* Color.swift */; };
-		523C2ED126A0177700F2EDD6 /* MovieDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2ED026A0177700F2EDD6 /* MovieDataServiceProtocol.swift */; };
 		523C2ED326A0559D00F2EDD6 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2ED226A0559D00F2EDD6 /* UILabel+Extensions.swift */; };
+		523C2ED926A1655C00F2EDD6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2ED826A1655C00F2EDD6 /* Alamofire */; };
+		523C2EDB26A174C600F2EDD6 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		523C2EDF26A1B4B300F2EDD6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2EDE26A1B4B300F2EDD6 /* Kingfisher */; };
 		526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5164269D6D370095F3E2 /* AppDelegate.swift */; };
 		526B5167269D6D370095F3E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5166269D6D370095F3E2 /* SceneDelegate.swift */; };
 		526B5169269D6D370095F3E2 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5168269D6D370095F3E2 /* MoviesViewController.swift */; };
@@ -34,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5203716426A1C37800DE4AC7 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		5203716626A1C49D00DE4AC7 /* AppRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignProtocol.swift; sourceTree = "<group>"; };
 		523C2EAD269DB1B500F2EDD6 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		523C2EAF269DB2C800F2EDD6 /* MovieCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieCell+Design.swift"; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5203716326A1C33900DE4AC7 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				523C2ED026A0177700F2EDD6 /* MovieDataServiceProtocol.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		523C2EB5269ED23D00F2EDD6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,22 +131,6 @@
 			path = "Supporting files";
 			sourceTree = "<group>";
 		};
-		523C2ECD269F1C2000F2EDD6 /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				523C2ECE269F1C3A00F2EDD6 /* AppRouter.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		523C2EDC26A174CF00F2EDD6 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				523C2EDA26A174C600F2EDD6 /* NetworkService.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
 		523C2EC6269EDDAC00F2EDD6 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,11 +142,28 @@
 			path = MainView;
 			sourceTree = "<group>";
 		};
+		523C2ECD269F1C2000F2EDD6 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				5203716626A1C49D00DE4AC7 /* AppRouter.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		523C2EDC26A174CF00F2EDD6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				5203716426A1C37800DE4AC7 /* NetworkService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		526B5158269D6D370095F3E2 = {
 			isa = PBXGroup;
 			children = (
 				526B5163269D6D370095F3E2 /* MovieApp */,
 				526B5162269D6D370095F3E2 /* Products */,
+				5203716326A1C33900DE4AC7 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -260,11 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				523C2ED126A0177700F2EDD6 /* MovieDataServiceProtocol.swift in Sources */,
 				523C2EC9269EDE0D00F2EDD6 /* MovieDataService.swift in Sources */,
 				523C2EAE269DB1B500F2EDD6 /* MovieCell.swift in Sources */,
 				523C2EBF269EDC7A00F2EDD6 /* MainViewPresenter.swift in Sources */,
 				526B5169269D6D370095F3E2 /* MoviesViewController.swift in Sources */,
+				5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */,
 				523C2ECB269EE89B00F2EDD6 /* Color.swift in Sources */,
 				526B517C269DA8610095F3E2 /* MoviesViewController+Design.swift in Sources */,
 				526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */,
@@ -273,8 +284,9 @@
 				523C2EB4269EBF0700F2EDD6 /* Movie.swift in Sources */,
 				526B5167269D6D370095F3E2 /* SceneDelegate.swift in Sources */,
 				523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */,
-				523C2EDB26A174C600F2EDD6 /* NetworkService.swift in Sources */,
+				523C2EDB26A174C600F2EDD6 /* (null) in Sources */,
 				523C2EB0269DB2C800F2EDD6 /* MovieCell+Design.swift in Sources */,
+				5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */,
 				523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

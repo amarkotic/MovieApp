@@ -5,32 +5,30 @@ class MainViewPresenter {
     
     private let dataService: MovieDataService
     private let networkService: NetworkService
-    weak private var mainViewDelegate: MainViewController?
+    
+    weak private var mainViewDelegate: MoviesViewController?
+    
+    var movies: [Movie] {
+        dataService.movies
+    }
     
     init(dataService: MovieDataService, networkService: NetworkService){
         self.dataService = dataService
         self.networkService = networkService
     }
     
-    func setMainViewDelegate(mainViewDelegate: MainViewController?){
+    func setMainViewDelegate(mainViewDelegate: MoviesViewController?){
         self.mainViewDelegate = mainViewDelegate
     }
-    
-    //Fetches movies array from data service
-    func fetchMovies() -> [Movie] {
-        return dataService.fetchMovies()
-    }
-    
+
     func fetchMoviesWithAlamofire() {
         networkService.fetchMovies { (movies, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let movies = movies {
-                
-                self.mainViewDelegate?.fetchSuccesfull(movies: movies)
+                self.mainViewDelegate?.fetchSuccesful(movies: movies)
             }
         }
-       
     }
     
 }

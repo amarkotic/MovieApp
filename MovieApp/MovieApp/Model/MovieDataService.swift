@@ -1,6 +1,6 @@
 import UIKit
 
-class MovieDataService: MovieDataServiceProtocol {
+class MovieDataService {
     
     var movies: [Movie] {
         [

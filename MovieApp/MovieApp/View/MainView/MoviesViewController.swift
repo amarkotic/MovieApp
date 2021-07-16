@@ -12,16 +12,22 @@ class MoviesViewController: UIViewController {
     
     convenience init(presenter: MainViewPresenter) {
         self.init()
-
+        
         self.presenter = presenter
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.setMainViewDelegate(mainViewDelegate: self)
         
-        movies = presenter.movies
+        presenter.fetchMoviesWithAlamofire()
         buildViews()
         buildNavigationBar()
+    }
+    
+    func fetchSuccesful(movies: [Movie]) {
+        self.movies = movies
+        tableView.reloadData()
     }
     
 }
