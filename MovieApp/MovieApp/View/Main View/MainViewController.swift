@@ -2,7 +2,7 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    private let mainViewPresenter = MainViewPresenter(dataService: MovieDataService())
+    private let mainViewPresenter = MainViewPresenter(dataService: MovieDataService(), networkService: NetworkService())
     
     var logoImageView : UIImageView!
     var movieTableView : UITableView!
@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         mainViewPresenter.setMainViewDelegate(mainViewDelegate: self)
         movieArray = mainViewPresenter.fetchMovies()
+        mainViewPresenter.fetchMoviesWithAlamofire()
         buildViews()
     }
 }

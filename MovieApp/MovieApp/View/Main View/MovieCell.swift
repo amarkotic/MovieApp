@@ -18,7 +18,7 @@ class MovieCell : UITableViewCell {
     }
 
     func populateCell(with movie : Movie){
-        self.movieImageView.image = movie.image
+        self.movieImageView.image = UIImage(named: movie.image)
         self.titleLabel.text = movie.title
         self.descriptionLabel.text = movie.description
     }

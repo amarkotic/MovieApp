@@ -1,12 +1,15 @@
 import UIKit
+import Alamofire
 
 class MainViewPresenter {
     
-    private let dataService : MovieDataService
-    weak private var mainViewDelegate : MainViewController?
+    private let dataService: MovieDataService
+    private let networkService: NetworkService
+    weak private var mainViewDelegate: MainViewController?
     
-    init(dataService : MovieDataService){
+    init(dataService: MovieDataService, networkService: NetworkService){
         self.dataService = dataService
+        self.networkService = networkService
     }
     
     func setMainViewDelegate(mainViewDelegate: MainViewController?){
@@ -14,7 +17,20 @@ class MainViewPresenter {
     }
     
     //Fetches movies array from data service
-    func fetchMovies() -> [Movie]{
+    func fetchMovies() -> [Movie] {
         return dataService.fetchMovies()
     }
+    
+    func fetchMoviesWithAlamofire() {
+        networkService.fetchMovies { (movies, error) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let movies = movies {
+                print(movies)
+            }
+        }
+       
+    }
+    
 }
