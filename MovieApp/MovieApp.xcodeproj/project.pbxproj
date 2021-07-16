@@ -15,12 +15,12 @@
 		523C2EB9269ED28B00F2EDD6 /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 523C2EB6269ED28B00F2EDD6 /* ProximaNova-Semibold.otf */; };
 		523C2EBA269ED28B00F2EDD6 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 523C2EB7269ED28B00F2EDD6 /* ProximaNova-Bold.otf */; };
 		523C2EBB269ED28B00F2EDD6 /* ProximaNova-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 523C2EB8269ED28B00F2EDD6 /* ProximaNova-Medium.otf */; };
-		523C2EBD269ED2B300F2EDD6 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EBC269ED2B300F2EDD6 /* Font.swift */; };
+		523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EBC269ED2B300F2EDD6 /* Font+Extensions.swift */; };
 		523C2EBF269EDC7A00F2EDD6 /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EBE269EDC7A00F2EDD6 /* MainViewPresenter.swift */; };
 		523C2EC9269EDE0D00F2EDD6 /* MovieDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EC8269EDE0D00F2EDD6 /* MovieDataService.swift */; };
 		523C2ECB269EE89B00F2EDD6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2ECA269EE89B00F2EDD6 /* Color.swift */; };
 		523C2ED126A0177700F2EDD6 /* MovieDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2ED026A0177700F2EDD6 /* MovieDataServiceProtocol.swift */; };
-		523C2ED326A0559D00F2EDD6 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2ED226A0559D00F2EDD6 /* Label.swift */; };
+		523C2ED326A0559D00F2EDD6 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2ED226A0559D00F2EDD6 /* UILabel+Extensions.swift */; };
 		526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5164269D6D370095F3E2 /* AppDelegate.swift */; };
 		526B5167269D6D370095F3E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5166269D6D370095F3E2 /* SceneDelegate.swift */; };
 		526B5169269D6D370095F3E2 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5168269D6D370095F3E2 /* MoviesViewController.swift */; };
@@ -37,12 +37,12 @@
 		523C2EB6269ED28B00F2EDD6 /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
 		523C2EB7269ED28B00F2EDD6 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		523C2EB8269ED28B00F2EDD6 /* ProximaNova-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Medium.otf"; sourceTree = "<group>"; };
-		523C2EBC269ED2B300F2EDD6 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		523C2EBC269ED2B300F2EDD6 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		523C2EBE269EDC7A00F2EDD6 /* MainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenter.swift; sourceTree = "<group>"; };
 		523C2EC8269EDE0D00F2EDD6 /* MovieDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataService.swift; sourceTree = "<group>"; };
 		523C2ECA269EE89B00F2EDD6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		523C2ED026A0177700F2EDD6 /* MovieDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataServiceProtocol.swift; sourceTree = "<group>"; };
-		523C2ED226A0559D00F2EDD6 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		523C2ED226A0559D00F2EDD6 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		526B5161269D6D370095F3E2 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526B5164269D6D370095F3E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		526B5166269D6D370095F3E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 				526B5164269D6D370095F3E2 /* AppDelegate.swift */,
 				526B5166269D6D370095F3E2 /* SceneDelegate.swift */,
 				523C2EB5269ED23D00F2EDD6 /* Fonts */,
-				523C2EBC269ED2B300F2EDD6 /* Font.swift */,
-				523C2ED226A0559D00F2EDD6 /* Label.swift */,
+				523C2EBC269ED2B300F2EDD6 /* Font+Extensions.swift */,
+				523C2ED226A0559D00F2EDD6 /* UILabel+Extensions.swift */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -241,11 +241,11 @@
 				523C2ECB269EE89B00F2EDD6 /* Color.swift in Sources */,
 				526B517C269DA8610095F3E2 /* MoviesViewController+Design.swift in Sources */,
 				526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */,
-				523C2ED326A0559D00F2EDD6 /* Label.swift in Sources */,
+				523C2ED326A0559D00F2EDD6 /* UILabel+Extensions.swift in Sources */,
 				526B516F269D6D370095F3E2 /* MovieApp.xcdatamodeld in Sources */,
 				523C2EB4269EBF0700F2EDD6 /* Movie.swift in Sources */,
 				526B5167269D6D370095F3E2 /* SceneDelegate.swift in Sources */,
-				523C2EBD269ED2B300F2EDD6 /* Font.swift in Sources */,
+				523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */,
 				523C2EB0269DB2C800F2EDD6 /* MovieCell+Design.swift in Sources */,
 				523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */,
 			);

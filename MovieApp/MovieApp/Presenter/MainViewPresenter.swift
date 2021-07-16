@@ -9,7 +9,7 @@ class MainViewPresenter {
     }
     
     var movies: [Movie] {
-        dataService.fetchMovies()
+        dataService.movies
     }
     
 }

@@ -9,8 +9,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         
         window = UIWindow(windowScene: windowScene)
-
-        let initialVc = MoviesViewController()
+        
+        let mainViewPresenter = MainViewPresenter(dataService: MovieDataService())
+        let initialVc = MoviesViewController(presenter: mainViewPresenter)
         navigationController.setViewControllers([initialVc], animated: true)
         
         if let window = window {

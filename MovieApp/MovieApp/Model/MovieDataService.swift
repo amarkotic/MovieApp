@@ -2,7 +2,7 @@ import UIKit
 
 class MovieDataService: MovieDataServiceProtocol {
     
-    func fetchMovies() -> [Movie] {
+    var movies: [Movie] {
         [
             Movie(
                 image: "ironman1",

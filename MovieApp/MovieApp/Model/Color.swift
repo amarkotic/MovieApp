@@ -1,6 +1,18 @@
 import UIKit
 
 extension UIColor {
+
+    static var appGray: UIColor {
+        UIColor(rgb: 0x828282)
+    }
+
+    static var appBlack: UIColor {
+        UIColor(rgb: 0x000000)
+    }
+
+    static var appBlue: UIColor {
+        UIColor(rgb: 0x0B253F)
+    }
     
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
@@ -16,16 +28,6 @@ extension UIColor {
             green: (rgb >> 8) & 0xFF,
             blue: rgb & 0xFF
         )
-    }
-    
-    static var appGray: UIColor {
-        UIColor(rgb: 0x828282)
-    }
-    static var appBlack: UIColor {
-        UIColor(rgb: 0x000000)
-    }
-    static var appBlue: UIColor {
-        UIColor(rgb: 0x0B253F)
     }
     
 }

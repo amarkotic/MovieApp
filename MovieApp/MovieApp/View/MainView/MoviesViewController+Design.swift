@@ -3,7 +3,7 @@ import SnapKit
 
 extension MoviesViewController: DesignProtocol {
     
-    func buildViews(){
+    func buildViews() {
         createViews()
         styleViews()
         defineLayoutForViews()

@@ -3,10 +3,10 @@ import UIKit
 class MovieCell: UITableViewCell {
 
     static let reuseIdentifier = String(describing: MovieCell.self)
+
     let defaultInset: CGFloat = 5
     let movieImageViewWidth = 100
     
-    var mainView: UIView!
     var movieImageView: UIImageView!
     var titleLabel: UILabel!
     var descriptionLabel: UILabel!
@@ -21,7 +21,7 @@ class MovieCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func populateCell(with movie: Movie){
+    func populateCell(with movie: Movie) {
         movieImageView.image = UIImage(named: movie.image)
         titleLabel.text = movie.title
         descriptionLabel.text = movie.description

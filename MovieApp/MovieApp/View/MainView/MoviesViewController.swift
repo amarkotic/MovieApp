@@ -2,17 +2,24 @@ import UIKit
 
 class MoviesViewController: UIViewController {
     
-    private let mainViewPresenter = MainViewPresenter(dataService: MovieDataService())
     let rowHeight: CGFloat = 142
     
     var logoImageView: UIImageView!
     var tableView: UITableView!
     var movies = [Movie]()
     
+    private var presenter: MainViewPresenter!
+    
+    convenience init(presenter: MainViewPresenter) {
+        self.init()
+
+        self.presenter = presenter
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movies = mainViewPresenter.movies
+        movies = presenter.movies
         buildViews()
         buildNavigationBar()
     }
@@ -38,9 +45,12 @@ extension MoviesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier) as? MovieCell else {
-            fatalError()
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier) as? MovieCell
+        else {
+            return UITableViewCell()
         }
+        
         cell.populateCell(with: movies[indexPath.row])
         return cell
     }

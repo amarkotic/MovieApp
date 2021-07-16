@@ -1,5 +1,5 @@
 protocol MovieDataServiceProtocol {
     
-    func fetchMovies() -> [Movie]
+    var movies: [Movie] { get }
     
 }
