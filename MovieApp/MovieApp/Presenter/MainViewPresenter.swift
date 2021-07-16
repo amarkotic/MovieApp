@@ -23,11 +23,11 @@ class MainViewPresenter {
     
     func fetchMoviesWithAlamofire() {
         networkService.fetchMovies { (movies, error) in
-            
             if let error = error {
                 print(error.localizedDescription)
             } else if let movies = movies {
-                print(movies)
+                
+                self.mainViewDelegate?.fetchSuccesfull(movies: movies)
             }
         }
        

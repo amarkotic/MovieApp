@@ -6,8 +6,6 @@ struct Movies: Codable {
     
 }
 
-
-
 struct Movie: Codable {
     var image : String
     var title : String

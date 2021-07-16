@@ -1,12 +1,13 @@
 import UIKit
 
+
 class MainViewController: UIViewController {
 
     private let mainViewPresenter = MainViewPresenter(dataService: MovieDataService(), networkService: NetworkService())
     
-    var logoImageView : UIImageView!
-    var movieTableView : UITableView!
-    var movieArray = [Movie]()
+    var logoImageView: UIImageView!
+    var movieTableView: UITableView!
+    var movies = [Movie]()
     
     private var router : AppRouter!
     convenience init(router: AppRouter){
@@ -17,9 +18,13 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainViewPresenter.setMainViewDelegate(mainViewDelegate: self)
-        movieArray = mainViewPresenter.fetchMovies()
         mainViewPresenter.fetchMoviesWithAlamofire()
         buildViews()
+    }
+    
+    func fetchSuccesfull(movies: [Movie]) {
+        self.movies = movies
+        movieTableView.reloadData()
     }
 }
 
@@ -40,12 +45,12 @@ extension MainViewController : UITableViewDelegate {
 //Table View Data Source Methods
 extension MainViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieArray.count
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.cellIdentifier) as! MovieCell
-        cell.populateCell(with: movieArray[indexPath.row])
+        cell.populateCell(with: movies[indexPath.row])
         //Enables custom action for cell tap
         cell.selectionStyle = .none
         return cell
