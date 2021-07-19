@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716426A1C37800DE4AC7 /* NetworkService.swift */; };
 		5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716626A1C49D00DE4AC7 /* AppRouter.swift */; };
+		5203716926A5672B00DE4AC7 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716826A5672B00DE4AC7 /* ApiError.swift */; };
 		523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */; };
 		523C2EAC269DAAD500F2EDD6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2EAB269DAAD500F2EDD6 /* SnapKit */; };
 		523C2EAE269DB1B500F2EDD6 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EAD269DB1B500F2EDD6 /* MovieCell.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		5203716426A1C37800DE4AC7 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5203716626A1C49D00DE4AC7 /* AppRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		5203716826A5672B00DE4AC7 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignProtocol.swift; sourceTree = "<group>"; };
 		523C2EAD269DB1B500F2EDD6 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		523C2EAF269DB2C800F2EDD6 /* MovieCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieCell+Design.swift"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				523C2EC8269EDE0D00F2EDD6 /* MovieDataService.swift */,
 				523C2EB3269EBF0700F2EDD6 /* Movie.swift */,
 				523C2ECA269EE89B00F2EDD6 /* Color.swift */,
+				5203716826A5672B00DE4AC7 /* ApiError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				523C2EBF269EDC7A00F2EDD6 /* MainViewPresenter.swift in Sources */,
 				526B5169269D6D370095F3E2 /* MoviesViewController.swift in Sources */,
 				5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */,
+				5203716926A5672B00DE4AC7 /* ApiError.swift in Sources */,
 				523C2ECB269EE89B00F2EDD6 /* Color.swift in Sources */,
 				526B517C269DA8610095F3E2 /* MoviesViewController+Design.swift in Sources */,
 				526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */,
