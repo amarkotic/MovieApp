@@ -1,28 +1,28 @@
 import UIKit
 
 class MoviesViewController: UIViewController {
-    
+
     let rowHeight: CGFloat = 142
-    
+
     var logoImageView: UIImageView!
     var tableView: UITableView!
     var movies = [Movie]()
-    
-    private var presenter: MainViewPresenter!
-    
-    convenience init(presenter: MainViewPresenter) {
+
+    private var presenter: MoviesViewPresenter!
+
+    convenience init(presenter: MoviesViewPresenter) {
         self.init()
         
         self.presenter = presenter
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.setMainViewDelegate(mainViewDelegate: self)
         
-        presenter.fetchMoviesWithAlamofire()
+        presenter.setMoviesViewDelegate(moviesViewDelegate: self)
+        presenter.fetchMovies()
+        
         buildViews()
-        buildNavigationBar()
     }
     
     func fetchSuccesful(movies: [Movie]) {

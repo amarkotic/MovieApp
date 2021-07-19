@@ -23,8 +23,8 @@ class MovieCell: UITableViewCell {
     }
 
     func populateCell(with movie: Movie) {
-        
         let movieUrl = movie.imageURL
+        
         guard let URL = URL(string: "https://image.tmdb.org/t/p/original\(movieUrl)") else { return }
         
         movieImageView.kf.setImage(with: URL)

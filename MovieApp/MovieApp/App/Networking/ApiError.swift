@@ -1,4 +1,4 @@
-enum ApiError: Error {
+public enum ApiError: Error {
     case general
     case clientError
     case serverError
