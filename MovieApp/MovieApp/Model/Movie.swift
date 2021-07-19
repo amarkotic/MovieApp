@@ -5,12 +5,12 @@ struct Movies: Codable {
 }
 
 struct Movie: Codable {
-    var image : String
+    var imageURL : String
     var title : String
     var description : String
     
     enum CodingKeys: String, CodingKey {
-        case image = "poster_path"
+        case imageURL = "poster_path"
         case title = "original_title"
         case description = "overview"
     }

@@ -95,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				523C2EC6269EDDAC00F2EDD6 /* MainView */,
+				523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				523C2EC0269EDD0F00F2EDD6 /* View */,
-				523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */,
 				523C2EC4269EDD5700F2EDD6 /* Presenter */,
 				523C2EC1269EDD1600F2EDD6 /* Model */,
 				523C2EDC26A174CF00F2EDD6 /* Networking */,
