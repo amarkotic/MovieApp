@@ -7,7 +7,6 @@ extension MoviesViewController: DesignProtocol {
         createViews()
         styleViews()
         defineLayoutForViews()
-        buildNavigationBar()
     }
     
     func createViews() {

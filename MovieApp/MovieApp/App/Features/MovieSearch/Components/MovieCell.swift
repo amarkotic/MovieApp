@@ -22,12 +22,8 @@ class MovieCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func populateCell(with movie: Movie) {
-        let movieUrl = movie.imageURL
-        
-        guard let URL = URL(string: "https://image.tmdb.org/t/p/original\(movieUrl)") else { return }
-        
-        movieImageView.kf.setImage(with: URL)
+    func populateCell(with movie: MovieViewModel) {
+        movieImageView.kf.setImage(with: URL(string: movie.imageUrl))
         titleLabel.text = movie.title
         descriptionLabel.text = movie.description
     }

@@ -1,11 +1,12 @@
 import UIKit
 import Alamofire
 
-class NetworkService {
+class NetworkService: NetworkServiceProtocol {
     
     private let URL = "https://api.themoviedb.org/3/movie/popular?api_key=e24dd8d2f3822e3917d10c6570d7f574&language=en-US"
     
-    func fetchMovies<T: Codable>(completion: @escaping (Result<T, ApiError>) -> Void) {
+    
+    func get<T: Codable>(completion: @escaping (NetworkResult<T, NetworkError>) -> Void) {
         let request = AF.request(URL)
         request.responseJSON { [weak self] (data) in
             
@@ -25,8 +26,8 @@ class NetworkService {
             }
             
             do {
-                let movies = try JSONDecoder().decode(T.self, from: data)
-                completion(.success(movies))
+                let result = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(result))
             } catch {
                 completion(.failure(.dataDecodingError))
             }
@@ -37,7 +38,7 @@ class NetworkService {
 
 extension NetworkService {
     
-    private func mapError(error: AFError) -> ApiError {
+    private func mapError(error: AFError) -> NetworkError {
         switch error {
         case .createURLRequestFailed(error: _), .invalidURL(url: _), .urlRequestValidationFailed(reason: _):
             return .clientError

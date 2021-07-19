@@ -3,27 +3,26 @@ import Alamofire
 
 class MoviesViewPresenter {
 
-    private let networkService: NetworkService
+    private let networkService: NetworkServiceProtocol
     weak private var moviesViewDelegate: MoviesViewController?
     
-    init(networkService: NetworkService){
+    init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }
     
-    func setMoviesViewDelegate(moviesViewDelegate: MoviesViewController?){
+    func setMoviesViewDelegate(moviesViewDelegate: MoviesViewController?) {
         self.moviesViewDelegate = moviesViewDelegate
     }
 
     func fetchMovies() {
-        networkService.fetchMovies { [weak self] (result: Result<Movies, ApiError>) in
-            
+        networkService.get { [weak self] (result: NetworkResult<MoviesNetworkModel, NetworkError>) in
             switch result {
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             case .success(let value):
-                self?.moviesViewDelegate?.fetchSuccesful(movies: value.results)
+                let viewModels = value.results.map { MovieViewModel(with: $0) }
+                self?.moviesViewDelegate?.fetchSuccesful(movies: viewModels)
             }
-            
         }
     }
     

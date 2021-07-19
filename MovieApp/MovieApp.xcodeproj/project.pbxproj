@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716426A1C37800DE4AC7 /* NetworkService.swift */; };
 		5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716626A1C49D00DE4AC7 /* AppRouter.swift */; };
-		5203716926A5672B00DE4AC7 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716826A5672B00DE4AC7 /* ApiError.swift */; };
-		5203716B26A576B700DE4AC7 /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716A26A576B700DE4AC7 /* ApiResult.swift */; };
+		5203716926A5672B00DE4AC7 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716826A5672B00DE4AC7 /* NetworkError.swift */; };
+		5203716B26A576B700DE4AC7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716A26A576B700DE4AC7 /* NetworkResult.swift */; };
+		5203717926A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */; };
+		5203717B26A5B3DB00DE4AC7 /* MovieNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */; };
 		523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */; };
 		523C2EAC269DAAD500F2EDD6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2EAB269DAAD500F2EDD6 /* SnapKit */; };
 		523C2EAE269DB1B500F2EDD6 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EAD269DB1B500F2EDD6 /* MovieCell.swift */; };
 		523C2EB0269DB2C800F2EDD6 /* MovieCell+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EAF269DB2C800F2EDD6 /* MovieCell+Design.swift */; };
-		523C2EB4269EBF0700F2EDD6 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EB3269EBF0700F2EDD6 /* Movie.swift */; };
+		523C2EB4269EBF0700F2EDD6 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EB3269EBF0700F2EDD6 /* MovieViewModel.swift */; };
 		523C2EB9269ED28B00F2EDD6 /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 523C2EB6269ED28B00F2EDD6 /* ProximaNova-Semibold.otf */; };
 		523C2EBA269ED28B00F2EDD6 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 523C2EB7269ED28B00F2EDD6 /* ProximaNova-Bold.otf */; };
 		523C2EBB269ED28B00F2EDD6 /* ProximaNova-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 523C2EB8269ED28B00F2EDD6 /* ProximaNova-Medium.otf */; };
@@ -36,12 +38,14 @@
 /* Begin PBXFileReference section */
 		5203716426A1C37800DE4AC7 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5203716626A1C49D00DE4AC7 /* AppRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
-		5203716826A5672B00DE4AC7 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
-		5203716A26A576B700DE4AC7 /* ApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
+		5203716826A5672B00DE4AC7 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		5203716A26A576B700DE4AC7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetworkModel.swift; sourceTree = "<group>"; };
 		523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignProtocol.swift; sourceTree = "<group>"; };
 		523C2EAD269DB1B500F2EDD6 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		523C2EAF269DB2C800F2EDD6 /* MovieCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieCell+Design.swift"; sourceTree = "<group>"; };
-		523C2EB3269EBF0700F2EDD6 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		523C2EB3269EBF0700F2EDD6 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		523C2EB6269ED28B00F2EDD6 /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
 		523C2EB7269ED28B00F2EDD6 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		523C2EB8269ED28B00F2EDD6 /* ProximaNova-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Medium.otf"; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 		5203717126A57DDD00DE4AC7 /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
+				5203717E26A5B8C000DE4AC7 /* NetworkClients */,
 				5203717426A57E8900DE4AC7 /* MoviesViewController */,
 				5203717226A57E5D00DE4AC7 /* Components */,
 			);
@@ -162,9 +167,25 @@
 		5203717526A57EC100DE4AC7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				523C2EB3269EBF0700F2EDD6 /* Movie.swift */,
+				523C2EB3269EBF0700F2EDD6 /* MovieViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5203717E26A5B8C000DE4AC7 /* NetworkClients */ = {
+			isa = PBXGroup;
+			children = (
+				5203717F26A5B8CA00DE4AC7 /* Models */,
+			);
+			path = NetworkClients;
+			sourceTree = "<group>";
+		};
+		5203717F26A5B8CA00DE4AC7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		523C2EB5269ED23D00F2EDD6 /* Fonts */ = {
@@ -189,8 +210,9 @@
 			isa = PBXGroup;
 			children = (
 				5203716426A1C37800DE4AC7 /* NetworkService.swift */,
-				5203716826A5672B00DE4AC7 /* ApiError.swift */,
-				5203716A26A576B700DE4AC7 /* ApiResult.swift */,
+				5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */,
+				5203716826A5672B00DE4AC7 /* NetworkError.swift */,
+				5203716A26A576B700DE4AC7 /* NetworkResult.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -306,17 +328,19 @@
 				523C2EAE269DB1B500F2EDD6 /* MovieCell.swift in Sources */,
 				523C2EBF269EDC7A00F2EDD6 /* MoviesViewPresenter.swift in Sources */,
 				526B5169269D6D370095F3E2 /* MoviesViewController.swift in Sources */,
-				5203716B26A576B700DE4AC7 /* ApiResult.swift in Sources */,
+				5203716B26A576B700DE4AC7 /* NetworkResult.swift in Sources */,
 				5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */,
-				5203716926A5672B00DE4AC7 /* ApiError.swift in Sources */,
+				5203716926A5672B00DE4AC7 /* NetworkError.swift in Sources */,
 				523C2ECB269EE89B00F2EDD6 /* UIColor+Extensions.swift in Sources */,
 				526B517C269DA8610095F3E2 /* MoviesViewController+Design.swift in Sources */,
 				526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */,
 				523C2ED326A0559D00F2EDD6 /* UILabel+Extensions.swift in Sources */,
-				523C2EB4269EBF0700F2EDD6 /* Movie.swift in Sources */,
+				523C2EB4269EBF0700F2EDD6 /* MovieViewModel.swift in Sources */,
 				526B5167269D6D370095F3E2 /* SceneDelegate.swift in Sources */,
+				5203717B26A5B3DB00DE4AC7 /* MovieNetworkModel.swift in Sources */,
 				523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */,
 				523C2EDB26A174C600F2EDD6 /* (null) in Sources */,
+				5203717926A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift in Sources */,
 				523C2EB0269DB2C800F2EDD6 /* MovieCell+Design.swift in Sources */,
 				5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */,
 				523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */,

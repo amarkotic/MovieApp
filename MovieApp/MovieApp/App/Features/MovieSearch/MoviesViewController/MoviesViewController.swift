@@ -6,7 +6,7 @@ class MoviesViewController: UIViewController {
 
     var logoImageView: UIImageView!
     var tableView: UITableView!
-    var movies = [Movie]()
+    var movies = [MovieViewModel]()
 
     private var presenter: MoviesViewPresenter!
 
@@ -21,11 +21,11 @@ class MoviesViewController: UIViewController {
         
         presenter.setMoviesViewDelegate(moviesViewDelegate: self)
         presenter.fetchMovies()
-        
         buildViews()
+        buildNavigationBar()
     }
     
-    func fetchSuccesful(movies: [Movie]) {
+    func fetchSuccesful(movies: [MovieViewModel]) {
         self.movies = movies
         tableView.reloadData()
     }
