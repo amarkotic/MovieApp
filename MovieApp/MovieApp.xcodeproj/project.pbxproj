@@ -254,6 +254,8 @@
 				522EE8EA26A6C29E00A456E2 /* NetworkDataSource */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
 		522EE8F226A6C5F200A456E2 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
