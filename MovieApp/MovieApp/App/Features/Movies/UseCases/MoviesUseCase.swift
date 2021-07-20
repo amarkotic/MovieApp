@@ -1,8 +1,8 @@
 class MoviesUseCase: MoviesUseCaseProtocol {
     
-    private let repository: RepositoryProtocol
+    private let repository: MoviesRepositoryProtocol
     
-    init(repository: RepositoryProtocol) {
+    init(repository: MoviesRepositoryProtocol) {
         self.repository = repository
     }
     

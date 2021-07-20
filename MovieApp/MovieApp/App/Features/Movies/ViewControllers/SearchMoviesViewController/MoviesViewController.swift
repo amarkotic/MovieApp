@@ -8,9 +8,9 @@ class MoviesViewController: UIViewController {
     var tableView: UITableView!
     var movies = [MovieViewModel]()
 
-    private var presenter: MoviesViewPresenter!
+    private var presenter: MoviesPresenter!
 
-    convenience init(presenter: MoviesViewPresenter) {
+    convenience init(presenter: MoviesPresenter) {
         self.init()
         
         self.presenter = presenter

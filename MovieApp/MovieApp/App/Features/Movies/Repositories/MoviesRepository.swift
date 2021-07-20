@@ -1,14 +1,13 @@
-class Repository: RepositoryProtocol {
+class MoviesRepository: MoviesRepositoryProtocol {
     
-    private let networkDataSource: NetworkDataSourceProtocol
+    private let networkDataSource: MoviesNetworkDataSourceProtocol
     
-    init(networkDataSource: NetworkDataSourceProtocol) {
+    init(networkDataSource: MoviesNetworkDataSourceProtocol) {
         self.networkDataSource = networkDataSource
     }
     
     func fetchMovies(completion: @escaping (NetworkResult<MoviesNetworkModel, NetworkError>) -> Void) {
         networkDataSource.fetchMovies(completion: completion)
     }
-    
     
 }

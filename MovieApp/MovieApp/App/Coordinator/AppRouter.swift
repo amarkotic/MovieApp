@@ -2,34 +2,16 @@ import UIKit
 
 class AppRouter {
     
-    lazy var networkService: NetworkServiceProtocol = {
-        NetworkService()
-    }()
-    
-    lazy var moviesNetworkClient: MoviesNetworkClientProtocol = {
-        MoviesNetworkClient(networkService: networkService)
-    }()
-    
-    lazy var networkDataSource: NetworkDataSourceProtocol = {
-        NetworkDataSource(moviesNetworkClient: moviesNetworkClient)
-    }()
-    
-    lazy var repository: RepositoryProtocol = {
-        Repository(networkDataSource: networkDataSource)
-    }()
-    
-    lazy var moviesUseCase: MoviesUseCaseProtocol = {
-        MoviesUseCase(repository: repository)
-    }()
-    
     private let navigationController: UINavigationController
+    private let appDependencies: AppDependencies
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.appDependencies = AppDependencies()
     }
     
     func setStartScreen(in window: UIWindow?) {
-        let initialVC = MoviesViewController(presenter: MoviesViewPresenter(moviesUseCase: moviesUseCase))
+        let initialVC = MoviesViewController(presenter: MoviesPresenter(moviesUseCase: appDependencies.moviesUseCase))
         navigationController.setViewControllers([initialVC], animated: true)
         
         window?.rootViewController = navigationController

@@ -1,7 +1,7 @@
 import UIKit
 import Alamofire
 
-class MoviesViewPresenter {
+class MoviesPresenter {
 
     private let moviesUseCase: MoviesUseCaseProtocol
     weak private var moviesViewDelegate: MoviesViewController?
