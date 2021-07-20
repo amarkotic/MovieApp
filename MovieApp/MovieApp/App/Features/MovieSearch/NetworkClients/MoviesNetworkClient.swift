@@ -1,6 +1,6 @@
 import Foundation
 
-class MoviesNetworkClient {
+class MoviesNetworkClient: MoviesNetworkClientProtocol {
     
     private let networkService: NetworkServiceProtocol
     
