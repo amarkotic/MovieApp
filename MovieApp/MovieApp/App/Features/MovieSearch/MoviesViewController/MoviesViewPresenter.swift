@@ -3,11 +3,11 @@ import Alamofire
 
 class MoviesViewPresenter {
 
-    private let moviesNetworkService: MoviesNetworkClient
+    private let moviesUseCase: MoviesUseCaseProtocol
     weak private var moviesViewDelegate: MoviesViewController?
     
-    init(moviesNetworkService: MoviesNetworkClient) {
-        self.moviesNetworkService = moviesNetworkService
+    init(moviesUseCase: MoviesUseCaseProtocol) {
+        self.moviesUseCase = moviesUseCase
     }
     
     func setMoviesViewDelegate(moviesViewDelegate: MoviesViewController?) {
@@ -15,7 +15,7 @@ class MoviesViewPresenter {
     }
 
     func fetchMovies() {
-        moviesNetworkService.getMovies { [weak self] (result: NetworkResult<MoviesNetworkModel, NetworkError>) in
+        moviesUseCase.fetchMovies { [weak self] (result: NetworkResult<MoviesNetworkModel, NetworkError>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)

@@ -6,8 +6,20 @@ class AppRouter {
         NetworkService()
     }()
     
-    lazy var moviesNetworkService: MoviesNetworkClient = {
+    lazy var moviesNetworkService: MoviesNetworkClientProtocol = {
         MoviesNetworkClient(networkService: networkService)
+    }()
+    
+    lazy var networkDataSource: NetworkDataSourceProtocol = {
+        NetworkDataSource(moviesNetworkService: moviesNetworkService)
+    }()
+    
+    lazy var repository: RepositoryProtocol = {
+        Repository(networkDataSource: networkDataSource)
+    }()
+    
+    lazy var moviesUseCase: MoviesUseCaseProtocol = {
+        MoviesUseCase(repository: repository)
     }()
     
     private let navigationController: UINavigationController
@@ -17,7 +29,7 @@ class AppRouter {
     }
     
     func setStartScreen(in window: UIWindow?) {
-        let initialVC = MoviesViewController(presenter: MoviesViewPresenter(moviesNetworkService: moviesNetworkService))
+        let initialVC = MoviesViewController(presenter: MoviesViewPresenter(moviesUseCase: moviesUseCase))
         navigationController.setViewControllers([initialVC], animated: true)
         
         window?.rootViewController = navigationController

@@ -1,6 +1,6 @@
 import Foundation
 
-class MoviesNetworkClient {
+class MoviesNetworkClient: MoviesNetworkClientProtocol {
     
     private let popularMoviesUrl = "https://api.themoviedb.org/3/movie/popular?api_key=e24dd8d2f3822e3917d10c6570d7f574&language=en-US"
     let networkService: NetworkServiceProtocol
