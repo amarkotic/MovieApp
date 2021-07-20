@@ -9,7 +9,7 @@ struct Endpoint {
 
 extension Endpoint {
     
-    static var endpoint: Endpoint {
+    static var popularMoviesEndpoint: Endpoint {
         return Endpoint(path: "/3/movie/popular",
                         queryItems: [
                             URLQueryItem(name: "api_key", value: NetworkConstants.apiKey),

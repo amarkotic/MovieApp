@@ -35,9 +35,25 @@ extension MoviesViewController: DesignProtocol {
     func buildNavigationBar(){
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = .appBlue
-        let logo = UIImage(named: "TMDBLogo")
+        let logo = UIImage(with: .defaultStrings().imageUrl)
         let logoImageView = UIImageView(image: logo)
         navigationItem.titleView = logoImageView
+    }
+    
+}
+
+extension String {
+    
+    struct defaultStrings {
+        let imageUrl = "TMDBLogo"
+    }
+    
+}
+
+extension UIImage {
+    
+    convenience init(with imageName: String) {
+        self.init(named: imageName)!
     }
     
 }
