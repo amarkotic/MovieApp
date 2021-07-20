@@ -4,20 +4,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     let navigationController = UINavigationController()
     var window: UIWindow?
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         
         window = UIWindow(windowScene: windowScene)
+        let navigationController = UINavigationController()
         
-        let mainViewPresenter = MainViewPresenter(dataService: MovieDataService())
-        let initialVc = MoviesViewController(presenter: mainViewPresenter)
-        navigationController.setViewControllers([initialVc], animated: true)
-        
-        if let window = window {
-            window.rootViewController =  navigationController
-            window.makeKeyAndVisible()
-        }
+        let appRouter = AppRouter(navigationController: navigationController)
+        appRouter.setStartScreen(in: window)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

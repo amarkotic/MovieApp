@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class MovieCell: UITableViewCell {
 
@@ -21,8 +22,8 @@ class MovieCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func populateCell(with movie: Movie) {
-        movieImageView.image = UIImage(named: movie.image)
+    func populateCell(with movie: MovieViewModel) {
+        movieImageView.kf.setImage(with: URL(string: movie.imageUrl))
         titleLabel.text = movie.title
         descriptionLabel.text = movie.description
     }

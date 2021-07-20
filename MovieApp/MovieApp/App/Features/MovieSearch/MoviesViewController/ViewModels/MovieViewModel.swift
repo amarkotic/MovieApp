@@ -1,8 +1,8 @@
 import UIKit
 
-struct Movie {
+struct MovieViewModel {
     
-    let image: String
+    let imageUrl: String
     let title: String
     let description: String
     
