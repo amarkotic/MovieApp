@@ -8,7 +8,8 @@ struct Endpoint {
 }
 
 extension Endpoint {
-    static func getPopularMovies() -> Endpoint {
+    
+    static var endpoint: Endpoint {
         return Endpoint(path: "/3/movie/popular",
                         queryItems: [
                             URLQueryItem(name: "api_key", value: NetworkConstants.apiKey),

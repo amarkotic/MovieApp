@@ -2,7 +2,7 @@ import Foundation
 
 class MoviesNetworkClient {
     
-    let parameters = Endpoint.getPopularMovies()
+    let parameters = Endpoint.endpoint
     private let networkService: NetworkServiceProtocol
     
     init(networkService: NetworkServiceProtocol) {
