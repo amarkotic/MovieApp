@@ -3,11 +3,8 @@ import Alamofire
 
 class NetworkService: NetworkServiceProtocol {
     
-    private let URL = "https://api.themoviedb.org/3/movie/popular?api_key=e24dd8d2f3822e3917d10c6570d7f574&language=en-US"
-    
-    
-    func get<T: Codable>(completion: @escaping (NetworkResult<T, NetworkError>) -> Void) {
-        let request = AF.request(URL)
+    func get<T: Codable>(url: String, completion: @escaping (NetworkResult<T, NetworkError>) -> Void) {
+        let request = AF.request(url)
         request.responseJSON { [weak self] (data) in
             
             guard let self = self else {
