@@ -20,7 +20,13 @@ class MoviesViewPresenter {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let viewModels = value.results.map { MovieViewModel(with: $0) }
+                let viewModels = value.results.map { model -> MovieViewModel in
+                    let imageUrl = NetworkConstants.imagePath + model.imageUrl
+                    return MovieViewModel(
+                        imageUrl: imageUrl,
+                        title: model.title,
+                        description: model.description)
+                }
                 self?.moviesViewDelegate?.fetchSuccesful(movies: viewModels)
             }
         }

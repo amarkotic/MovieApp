@@ -22,6 +22,10 @@
 		522EE8E926A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EE8E826A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift */; };
 		522EE8EC26A6C2B100A456E2 /* NetworkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EE8EB26A6C2B100A456E2 /* NetworkDataSource.swift */; };
 		522EE8EE26A6C35200A456E2 /* NetworkDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EE8ED26A6C35200A456E2 /* NetworkDataSourceProtocol.swift */; };
+		522EE8F126A6C5C000A456E2 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EE8F026A6C5C000A456E2 /* NetworkConstants.swift */; };
+		522EE8F626A6CE7E00A456E2 /* EndpointConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EE8F526A6CE7E00A456E2 /* EndpointConstant.swift */; };
+		522EE8F826A6F54900A456E2 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EE8F726A6F54900A456E2 /* UIImage+Extensions.swift */; };
+		522EE8FA26A6F56F00A456E2 /* BundleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EE8F926A6F56F00A456E2 /* BundleImage.swift */; };
 		523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */; };
 		523C2EAC269DAAD500F2EDD6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2EAB269DAAD500F2EDD6 /* SnapKit */; };
 		523C2EAE269DB1B500F2EDD6 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2EAD269DB1B500F2EDD6 /* MovieCell.swift */; };
@@ -60,6 +64,10 @@
 		522EE8E826A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNetworkClientProtocol.swift; sourceTree = "<group>"; };
 		522EE8EB26A6C2B100A456E2 /* NetworkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataSource.swift; sourceTree = "<group>"; };
 		522EE8ED26A6C35200A456E2 /* NetworkDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataSourceProtocol.swift; sourceTree = "<group>"; };
+		522EE8F026A6C5C000A456E2 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		522EE8F526A6CE7E00A456E2 /* EndpointConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointConstant.swift; sourceTree = "<group>"; };
+		522EE8F726A6F54900A456E2 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		522EE8F926A6F56F00A456E2 /* BundleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleImage.swift; sourceTree = "<group>"; };
 		523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignProtocol.swift; sourceTree = "<group>"; };
 		523C2EAD269DB1B500F2EDD6 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		523C2EAF269DB2C800F2EDD6 /* MovieCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieCell+Design.swift"; sourceTree = "<group>"; };
@@ -134,6 +142,7 @@
 				523C2EBC269ED2B300F2EDD6 /* Font+Extensions.swift */,
 				523C2ECA269EE89B00F2EDD6 /* UIColor+Extensions.swift */,
 				523C2ED226A0559D00F2EDD6 /* UILabel+Extensions.swift */,
+				522EE8F726A6F54900A456E2 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -142,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */,
+				522EE8F926A6F56F00A456E2 /* BundleImage.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -244,6 +254,13 @@
 				522EE8EA26A6C29E00A456E2 /* NetworkDataSource */,
 			);
 			path = DataSource;
+		522EE8F226A6C5F200A456E2 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				522EE8F026A6C5C000A456E2 /* NetworkConstants.swift */,
+				522EE8F526A6CE7E00A456E2 /* EndpointConstant.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		523C2EB5269ED23D00F2EDD6 /* Fonts */ = {
@@ -260,7 +277,6 @@
 			isa = PBXGroup;
 			children = (
 				5203716626A1C49D00DE4AC7 /* AppRouter.swift */,
-				522EE8D526A6B3BB00A456E2 /* AppRouterProtocol.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -268,6 +284,7 @@
 		523C2EDC26A174CF00F2EDD6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				522EE8F226A6C5F200A456E2 /* Constants */,
 				5203716826A5672B00DE4AC7 /* NetworkError.swift */,
 				5203716A26A576B700DE4AC7 /* NetworkResult.swift */,
 				5203716426A1C37800DE4AC7 /* NetworkService.swift */,
@@ -396,6 +413,7 @@
 				5203716926A5672B00DE4AC7 /* NetworkError.swift in Sources */,
 				523C2ECB269EE89B00F2EDD6 /* UIColor+Extensions.swift in Sources */,
 				526B517C269DA8610095F3E2 /* MoviesViewController+Design.swift in Sources */,
+				522EE8FA26A6F56F00A456E2 /* BundleImage.swift in Sources */,
 				526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */,
 				523C2ED326A0559D00F2EDD6 /* UILabel+Extensions.swift in Sources */,
 				522EE8E426A6C00300A456E2 /* Repository.swift in Sources */,
