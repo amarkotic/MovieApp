@@ -1,16 +1,16 @@
 import Foundation
 
-struct Endpoint {
+struct EndpointConstant {
     
     let path: String
     let queryItems: [URLQueryItem]
     
 }
 
-extension Endpoint {
+extension EndpointConstant {
     
-    static var popularMoviesEndpoint: Endpoint {
-        return Endpoint(path: "/3/movie/popular",
+    static var popularMovies: EndpointConstant {
+        EndpointConstant(path: "/3/movie/popular",
                         queryItems: [
                             URLQueryItem(name: "api_key", value: NetworkConstants.apiKey),
                             URLQueryItem(name: "language", value: NetworkConstants.language)
@@ -20,7 +20,7 @@ extension Endpoint {
     
 }
 
-extension Endpoint {
+extension EndpointConstant {
     
     var url: URL? {
         var components = URLComponents()

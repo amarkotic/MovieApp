@@ -2,7 +2,6 @@ import Foundation
 
 class MoviesNetworkClient {
     
-    
     private let networkService: NetworkServiceProtocol
     
     init(networkService: NetworkServiceProtocol) {
@@ -10,7 +9,7 @@ class MoviesNetworkClient {
     }
     
     func getMovies(completion: @escaping (NetworkResult<MoviesNetworkModel, NetworkError>) -> Void) {
-        guard let url = Endpoint.popularMoviesEndpoint.url else { return }
+        guard let url = EndpointConstant.popularMovies.url else { return }
         
         networkService.get(url: url, completion: completion)
     }
