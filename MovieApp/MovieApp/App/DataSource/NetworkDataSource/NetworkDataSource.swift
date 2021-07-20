@@ -1,13 +1,13 @@
 class NetworkDataSource: NetworkDataSourceProtocol {
 
-    private let moviesNetworkService: MoviesNetworkClientProtocol
+    private let moviesNetworkClient: MoviesNetworkClientProtocol
     
-    init(moviesNetworkService: MoviesNetworkClientProtocol) {
-        self.moviesNetworkService = moviesNetworkService
+    init(moviesNetworkClient: MoviesNetworkClientProtocol) {
+        self.moviesNetworkClient = moviesNetworkClient
     }
     
     func fetchMovies(completion: @escaping (NetworkResult<MoviesNetworkModel, NetworkError>) -> Void) {
-        moviesNetworkService.getMovies(completion: completion)
+        moviesNetworkClient.getMovies(completion: completion)
     }
     
 }

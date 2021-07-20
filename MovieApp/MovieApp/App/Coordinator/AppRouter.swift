@@ -6,12 +6,12 @@ class AppRouter {
         NetworkService()
     }()
     
-    lazy var moviesNetworkService: MoviesNetworkClientProtocol = {
+    lazy var moviesNetworkClient: MoviesNetworkClientProtocol = {
         MoviesNetworkClient(networkService: networkService)
     }()
     
     lazy var networkDataSource: NetworkDataSourceProtocol = {
-        NetworkDataSource(moviesNetworkService: moviesNetworkService)
+        NetworkDataSource(moviesNetworkClient: moviesNetworkClient)
     }()
     
     lazy var repository: RepositoryProtocol = {
