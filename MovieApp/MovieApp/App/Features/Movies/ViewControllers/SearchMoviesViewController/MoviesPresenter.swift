@@ -15,7 +15,7 @@ class MoviesPresenter {
     }
     
     func fetchMovies() {
-        moviesUseCase.fetchMovies { [weak self] (result: NetworkResult<[MovieModel], NetworkError>) in
+        moviesUseCase.fetchMovies { [weak self] (result: Result<[MovieModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)

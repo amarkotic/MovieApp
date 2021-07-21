@@ -10,7 +10,6 @@
 		5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716426A1C37800DE4AC7 /* NetworkService.swift */; };
 		5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716626A1C49D00DE4AC7 /* AppRouter.swift */; };
 		5203716926A5672B00DE4AC7 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716826A5672B00DE4AC7 /* NetworkError.swift */; };
-		5203716B26A576B700DE4AC7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203716A26A576B700DE4AC7 /* NetworkResult.swift */; };
 		5203717926A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */; };
 		5203717B26A5B3DB00DE4AC7 /* MovieNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */; };
 		5203718426A6AB3500DE4AC7 /* MoviesNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203718326A6AB3500DE4AC7 /* MoviesNetworkClient.swift */; };
@@ -55,7 +54,6 @@
 		5203716426A1C37800DE4AC7 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5203716626A1C49D00DE4AC7 /* AppRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		5203716826A5672B00DE4AC7 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		5203716A26A576B700DE4AC7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetworkModel.swift; sourceTree = "<group>"; };
 		5203718326A6AB3500DE4AC7 /* MoviesNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNetworkClient.swift; sourceTree = "<group>"; };
@@ -240,7 +238,7 @@
 			children = (
 				522EE8E326A6C00300A456E2 /* MoviesRepository.swift */,
 				522EE8E526A6C04100A456E2 /* MoviesRepositoryProtocol.swift */,
-				52F11AB426A80367007DBE0A /* RepositoryModels */,
+				52F11AB426A80367007DBE0A /* Models */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -250,7 +248,7 @@
 			children = (
 				522EE8EB26A6C2B100A456E2 /* MoviesNetworkDataSource.swift */,
 				522EE8ED26A6C35200A456E2 /* MoviesNetworkDataSourceProtocol.swift */,
-				52F11AAE26A7FF44007DBE0A /* DataSourceModels */,
+				52F11AAE26A7FF44007DBE0A /* Models */,
 			);
 			path = NetworkDataSources;
 			sourceTree = "<group>";
@@ -295,7 +293,6 @@
 			children = (
 				522EE8F226A6C5F200A456E2 /* Constants */,
 				5203716826A5672B00DE4AC7 /* NetworkError.swift */,
-				5203716A26A576B700DE4AC7 /* NetworkResult.swift */,
 				5203716426A1C37800DE4AC7 /* NetworkService.swift */,
 				5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */,
 			);
@@ -340,12 +337,12 @@
 			path = SearchMoviesViewController;
 			sourceTree = "<group>";
 		};
-		52F11AAE26A7FF44007DBE0A /* DataSourceModels */ = {
+		52F11AAE26A7FF44007DBE0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				52F11AAF26A7FF5B007DBE0A /* MovieDataSourceModel.swift */,
 			);
-			path = DataSourceModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		52F11AB126A802DB007DBE0A /* Models */ = {
@@ -356,12 +353,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		52F11AB426A80367007DBE0A /* RepositoryModels */ = {
+		52F11AB426A80367007DBE0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				52F11AB526A8037C007DBE0A /* MovieRepositoryModel.swift */,
 			);
-			path = RepositoryModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,7 +447,6 @@
 				523C2EBF269EDC7A00F2EDD6 /* MoviesPresenter.swift in Sources */,
 				52F11AA726A70680007DBE0A /* NetworkConstants.swift in Sources */,
 				526B5169269D6D370095F3E2 /* MoviesViewController.swift in Sources */,
-				5203716B26A576B700DE4AC7 /* NetworkResult.swift in Sources */,
 				52F11AB326A80308007DBE0A /* MovieModel.swift in Sources */,
 				52F11AB626A8037C007DBE0A /* MovieRepositoryModel.swift in Sources */,
 				522EE8E926A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift in Sources */,

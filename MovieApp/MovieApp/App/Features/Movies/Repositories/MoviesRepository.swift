@@ -6,20 +6,19 @@ class MoviesRepository: MoviesRepositoryProtocol {
         self.networkDataSource = networkDataSource
     }
     
-    func fetchMovies(completion: @escaping (NetworkResult<[MovieRepositoryModel], NetworkError>) -> Void) {
-        networkDataSource.fetchMovies { (result: NetworkResult<[MovieDataSourceModel], NetworkError>) in
+    func fetchMovies(completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void) {
+        networkDataSource.fetchMovies { (result: Result<[MovieDataSourceModel], NetworkError>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let repositoryModel: [MovieRepositoryModel] = value.map { model -> MovieRepositoryModel in
-                    let imageUrl = NetworkConstants.imagePath + model.imageUrl
+                let repositoryModels: [MovieRepositoryModel] = value.map { model -> MovieRepositoryModel in
                     return MovieRepositoryModel(
-                        imageUrl: imageUrl,
+                        imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description)
                 }
-                completion(.success(repositoryModel))
+                completion(.success(repositoryModels))
             }
         }
     }

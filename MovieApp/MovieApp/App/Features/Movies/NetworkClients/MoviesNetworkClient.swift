@@ -8,7 +8,7 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         self.networkService = networkService
     }
     
-    func getMovies(completion: @escaping (NetworkResult<MoviesNetworkModel, NetworkError>) -> Void) {
+    func getMovies(completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void) {
         guard let url = EndpointConstant.popularMovies.url else { return }
         
         networkService.get(url: url, completion: completion)

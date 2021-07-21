@@ -6,20 +6,20 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         self.repository = repository
     }
     
-    func fetchMovies(completion: @escaping (NetworkResult<[MovieModel], NetworkError>) -> Void) {
-        repository.fetchMovies { (result: NetworkResult<[MovieRepositoryModel], NetworkError>) in
+    func fetchMovies(completion: @escaping (Result<[MovieModel], Error>) -> Void) {
+        repository.fetchMovies { (result: Result<[MovieRepositoryModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let useCaseModel: [MovieModel] = value.map { model -> MovieModel in
+                let useCaseModels: [MovieModel] = value.map { model -> MovieModel in
                     let imageUrl = NetworkConstants.imagePath + model.imageUrl
                     return MovieModel(
                         imageUrl: imageUrl,
                         title: model.title,
                         description: model.description)
                 }
-                completion(.success(useCaseModel))
+                completion(.success(useCaseModels))
             }
         }
     }
