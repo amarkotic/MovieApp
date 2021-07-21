@@ -7,7 +7,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
     }
     
     func fetchMovies(completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void) {
-        networkDataSource.fetchMovies { (result: Result<[MovieDataSourceModel], NetworkError>) in
+        networkDataSource.fetchMovies { (result: Result<[MovieDataSourceModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)

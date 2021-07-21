@@ -6,7 +6,7 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         self.networkClient = networkClient
     }
     
-    func fetchMovies(completion: @escaping (Result<[MovieDataSourceModel], NetworkError>) -> Void) {
+    func fetchMovies(completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void) {
         networkClient.getMovies { (result: Result<MoviesNetworkModel, NetworkError>) in
             switch result {
             case .failure(let error):
