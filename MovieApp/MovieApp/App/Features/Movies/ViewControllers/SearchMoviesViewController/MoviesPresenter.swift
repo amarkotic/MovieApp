@@ -1,13 +1,13 @@
 import UIKit
 import Alamofire
 
-class MoviesViewPresenter {
+class MoviesPresenter {
     
-    private let moviesNetworkService: MoviesNetworkClient
+    private let moviesUseCase: MoviesUseCaseProtocol
     weak private var moviesViewDelegate: MoviesViewController?
     
-    init(moviesNetworkService: MoviesNetworkClient) {
-        self.moviesNetworkService = moviesNetworkService
+    init(moviesUseCase: MoviesUseCaseProtocol) {
+        self.moviesUseCase = moviesUseCase
     }
     
     func setMoviesViewDelegate(moviesViewDelegate: MoviesViewController?) {
@@ -15,15 +15,14 @@ class MoviesViewPresenter {
     }
     
     func fetchMovies() {
-        moviesNetworkService.getMovies { [weak self] (result: NetworkResult<MoviesNetworkModel, NetworkError>) in
+        moviesUseCase.fetchMovies { [weak self] (result: Result<[MovieModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let viewModels = value.results.map { model -> MovieViewModel in
-                    let imageUrl = NetworkConstants.imagePath + model.imageUrl
+                let viewModels: [MovieViewModel] = value.map { model -> MovieViewModel in
                     return MovieViewModel(
-                        imageUrl: imageUrl,
+                        imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description)
                 }
