@@ -2,10 +2,10 @@ import UIKit
 
 class CustomTabBarController: UITabBarController {
     
-    var homeViewController: HomeViewController
-    var favoriteMoviesViewController: FavoriteMoviesViewController
+    var homeViewController: UINavigationController
+    var favoriteMoviesViewController: UINavigationController
     
-    init(homeViewController: HomeViewController, favoriteMoviesViewController: FavoriteMoviesViewController) {
+    init(homeViewController: UINavigationController, favoriteMoviesViewController: UINavigationController) {
         self.homeViewController = homeViewController
         self.favoriteMoviesViewController = favoriteMoviesViewController
         super.init(nibName: nil, bundle: nil)
