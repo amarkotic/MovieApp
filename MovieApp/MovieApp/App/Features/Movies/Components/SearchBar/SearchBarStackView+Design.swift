@@ -46,26 +46,27 @@ extension SearchBarStackView: DesignProtocol {
         cancelButton.setTitleColor(.appBlue, for: .normal)
     }
     
+
     func defineLayoutForViews() {
         magnifierImageView.snp.makeConstraints {
-            $0.size.equalTo(CGSize(width: 20, height: 20))
-            $0.top.equalToSuperview().offset(11)
-            $0.leading.equalToSuperview().offset(13)
-            $0.bottom.equalToSuperview().inset(12)
+            $0.size.equalTo(CGSize(width: magnifierDimension, height: magnifierDimension))
+            $0.top.equalToSuperview().offset(defaultInset)
+            $0.leading.equalToSuperview().offset(defaultInset)
+            $0.bottom.equalToSuperview().inset(defaultInset)
         }
         
         searchTextField.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(11)
-            $0.leading.equalToSuperview().offset(42)
-            $0.bottom.equalToSuperview().inset(13)
-            $0.trailing.equalToSuperview().inset(57)
+            $0.top.equalToSuperview().offset(defaultInset)
+            $0.leading.equalToSuperview().offset(4 * defaultInset)
+            $0.bottom.equalToSuperview().inset(defaultInset)
+            $0.trailing.equalToSuperview().inset(5 * defaultInset)
         }
         
         searchCancelButton.snp.makeConstraints {
-            $0.size.equalTo(CGSize(width: 12, height: 12))
-            $0.top.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().inset(12)
-            $0.bottom.equalToSuperview().inset(15)
+            $0.size.equalTo(CGSize(width: cancelDimension, height: cancelDimension))
+            $0.top.equalToSuperview().offset(secondaryInset)
+            $0.trailing.equalToSuperview().inset(defaultInset)
+            $0.bottom.equalToSuperview().inset(secondaryInset)
         }
     }
     
