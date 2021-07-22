@@ -6,6 +6,7 @@ class SearchBarStackView: UIStackView {
     let secondaryInset = 15
     let magnifierDimension = 21
     let cancelDimension = 13
+    
     var searchView: UIView!
     var magnifierImageView: UIImageView!
     var searchTextField: UITextField!
