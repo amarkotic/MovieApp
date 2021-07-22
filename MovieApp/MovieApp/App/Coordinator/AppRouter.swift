@@ -21,7 +21,7 @@ class AppRouter {
     
     func setStartScreen(in window: UIWindow?) {
         homeNavigationController.setViewControllers([homeViewController], animated: true)
-        favoriteNavigationController.setViewControllers([favoriteNavigationController], animated: true)
+        favoriteNavigationController.setViewControllers([favoriteMoviesViewController], animated: true)
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()

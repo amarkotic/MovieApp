@@ -17,8 +17,8 @@ extension SearchBarStackView: DesignProtocol {
         searchView.addSubview(magnifierImageView)
         searchTextField = UITextField()
         searchView.addSubview(searchTextField)
-        cancelImageView = UIImageView()
-        searchView.addSubview(cancelImageView)
+        searchCancelButton = UIButton()
+        searchView.addSubview(searchCancelButton)
         
         cancelButton = UIButton()
         addArrangedSubview(cancelButton)
@@ -27,22 +27,25 @@ extension SearchBarStackView: DesignProtocol {
     }
     
     func styleViews() {
+        distribution = .fillProportionally
+        
         searchView.backgroundColor = .searchBarGray
         searchView.layer.cornerRadius = 10
         
         magnifierImageView.image = UIImage(with: .searchImage)
         
         searchTextField.textColor = .black
-        searchTextField.attributedPlaceholder = NSAttributedString(string: "Search")
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
         
-        cancelImageView.image = UIImage(with: .cancelImage)
+        searchCancelButton.setImage(UIImage(with: .cancelImage), for: .normal)
         
+        cancelButton.isHidden = true
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.setTitleColor(.appBlue, for: .normal)
+        
     }
     
     func defineLayoutForViews() {
-        setCustomSpacing(17, after: searchView)
         
         magnifierImageView.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 20, height: 20))
@@ -58,7 +61,7 @@ extension SearchBarStackView: DesignProtocol {
             $0.top.equalToSuperview().offset(11)
         }
         
-        cancelImageView.snp.makeConstraints {
+        searchCancelButton.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 12, height: 12))
             $0.top.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().inset(12)

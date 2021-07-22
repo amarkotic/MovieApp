@@ -9,7 +9,14 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         buildViews()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uiViewPressed))
+        view.addGestureRecognizer(tap)
+        
         buildNavigationBar()
     }
     
+    @objc private func uiViewPressed(){
+        view.endEditing(true)
+    }
 }

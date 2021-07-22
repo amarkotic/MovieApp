@@ -12,14 +12,11 @@ extension HomeViewController: DesignProtocol {
         searchBarStackView = SearchBarStackView()
         view.addSubview(searchBarStackView)
         
-//        logoImageView = UIImageView()
-//        view.addSubview(logoImageView)
     }
     
     func styleViews() {
         view.backgroundColor = .white
-//        logoImageView.image = UIImage(with: .appLogo)
-       
+        
     }
     
     func defineLayoutForViews() {
@@ -31,7 +28,6 @@ extension HomeViewController: DesignProtocol {
        
     }
 
-    
     func buildNavigationBar(){
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = .appBlue
