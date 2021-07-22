@@ -37,7 +37,7 @@
 		523C2EDF26A1B4B300F2EDD6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2EDE26A1B4B300F2EDD6 /* Kingfisher */; };
 		525666A726A840BE00B5E0BE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666A626A840BE00B5E0BE /* HomeViewController.swift */; };
 		525666AA26A8418300B5E0BE /* FavoriteMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666A926A8418300B5E0BE /* FavoriteMoviesViewController.swift */; };
-		525666AC26A8435100B5E0BE /* BundleTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666AB26A8435100B5E0BE /* BundleTabBar.swift */; };
+		525666AC26A8435100B5E0BE /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666AB26A8435100B5E0BE /* LocalizableStrings.swift */; };
 		525666AE26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666AD26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift */; };
 		525666B026A847C900B5E0BE /* HomeViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666AF26A847C900B5E0BE /* HomeViewController+Design.swift */; };
 		525666B326A8494A00B5E0BE /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666B226A8494A00B5E0BE /* CustomTabBarController.swift */; };
@@ -85,7 +85,7 @@
 		523C2ED226A0559D00F2EDD6 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		525666A626A840BE00B5E0BE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		525666A926A8418300B5E0BE /* FavoriteMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesViewController.swift; sourceTree = "<group>"; };
-		525666AB26A8435100B5E0BE /* BundleTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleTabBar.swift; sourceTree = "<group>"; };
+		525666AB26A8435100B5E0BE /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		525666AD26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteMoviesViewController+Design.swift"; sourceTree = "<group>"; };
 		525666AF26A847C900B5E0BE /* HomeViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Design.swift"; sourceTree = "<group>"; };
 		525666B226A8494A00B5E0BE /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -139,6 +139,7 @@
 				5203716F26A57D3500DE4AC7 /* Core */,
 				5203716D26A57CD600DE4AC7 /* CoreUI */,
 				5203717026A57DD500DE4AC7 /* Features */,
+				525666C126A9678400B5E0BE /* Localization */,
 				523C2EDC26A174CF00F2EDD6 /* Networking */,
 				525666B126A8492B00B5E0BE /* TabBar */,
 			);
@@ -170,7 +171,6 @@
 			children = (
 				523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */,
 				52F11AA226A70637007DBE0A /* BundleImage.swift */,
-				525666AB26A8435100B5E0BE /* BundleTabBar.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -342,6 +342,14 @@
 				525666B426A84D9000B5E0BE /* CustomTabBarController+Design.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		525666C126A9678400B5E0BE /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				525666AB26A8435100B5E0BE /* LocalizableStrings.swift */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		526B5158269D6D370095F3E2 = {
@@ -524,7 +532,7 @@
 				525666B326A8494A00B5E0BE /* CustomTabBarController.swift in Sources */,
 				523C2EB0269DB2C800F2EDD6 /* MovieCell+Design.swift in Sources */,
 				5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */,
-				525666AC26A8435100B5E0BE /* BundleTabBar.swift in Sources */,
+				525666AC26A8435100B5E0BE /* LocalizableStrings.swift in Sources */,
 				523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */,
 				52F11AA126A705FE007DBE0A /* UIImage+Extensions.swift in Sources */,
 				525666B026A847C900B5E0BE /* HomeViewController+Design.swift in Sources */,
