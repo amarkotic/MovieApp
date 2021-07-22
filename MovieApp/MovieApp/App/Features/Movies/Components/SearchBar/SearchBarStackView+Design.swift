@@ -12,7 +12,7 @@ extension SearchBarStackView: DesignProtocol {
     func createViews() {
         searchView = UIView()
         addArrangedSubview(searchView)
-    
+        
         magnifierImageView = UIImageView()
         searchView.addSubview(magnifierImageView)
         searchTextField = UITextField()
@@ -22,8 +22,6 @@ extension SearchBarStackView: DesignProtocol {
         
         cancelButton = UIButton()
         addArrangedSubview(cancelButton)
-        
-        
     }
     
     func styleViews() {
@@ -35,30 +33,32 @@ extension SearchBarStackView: DesignProtocol {
         magnifierImageView.image = UIImage(with: .searchImage)
         
         searchTextField.textColor = .black
-        searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
+        searchTextField.attributedPlaceholder = NSAttributedString(
+            string: LocalizableStrings.searchBarPlaceholder.rawValue,
+            attributes: [NSAttributedString.Key.foregroundColor : UIColor.black]
+        )
         
         searchCancelButton.setImage(UIImage(with: .cancelImage), for: .normal)
+        searchCancelButton.isHidden = true
         
         cancelButton.isHidden = true
-        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.setTitle(LocalizableStrings.cancelButtonTitle.rawValue, for: .normal)
         cancelButton.setTitleColor(.appBlue, for: .normal)
-        
     }
     
     func defineLayoutForViews() {
-        
         magnifierImageView.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 20, height: 20))
-            $0.leading.equalToSuperview().offset(13)
             $0.top.equalToSuperview().offset(11)
+            $0.leading.equalToSuperview().offset(13)
             $0.bottom.equalToSuperview().inset(12)
         }
         
         searchTextField.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(42)
-            $0.trailing.equalToSuperview().inset(57)
-            $0.bottom.equalToSuperview().inset(13)
             $0.top.equalToSuperview().offset(11)
+            $0.leading.equalToSuperview().offset(42)
+            $0.bottom.equalToSuperview().inset(13)
+            $0.trailing.equalToSuperview().inset(57)
         }
         
         searchCancelButton.snp.makeConstraints {
@@ -67,8 +67,6 @@ extension SearchBarStackView: DesignProtocol {
             $0.trailing.equalToSuperview().inset(12)
             $0.bottom.equalToSuperview().inset(15)
         }
-        
     }
-    
     
 }

@@ -2,12 +2,15 @@ import UIKit
 
 class CustomTabBarController: UITabBarController {
     
-    var homeViewController: UINavigationController
-    var favoriteMoviesViewController: UINavigationController
+    var homeNavigationController: UINavigationController!
+    var favoriteNavigationController: UINavigationController!
     
-    init(homeViewController: UINavigationController, favoriteMoviesViewController: UINavigationController) {
-        self.homeViewController = homeViewController
-        self.favoriteMoviesViewController = favoriteMoviesViewController
+    init(
+        homeNavigationController: UINavigationController,
+        favoriteNavigationController: UINavigationController
+    ) {
+        self.homeNavigationController = homeNavigationController
+        self.favoriteNavigationController = favoriteNavigationController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -18,7 +21,8 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        styleTabBar()
+        buildViews()
+        setupChildViewControllers()
     }
-
+    
 }

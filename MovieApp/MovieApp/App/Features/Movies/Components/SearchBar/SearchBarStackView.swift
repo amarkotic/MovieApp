@@ -7,12 +7,11 @@ class SearchBarStackView: UIStackView {
     var searchTextField: UITextField!
     var searchCancelButton: UIButton!
     var cancelButton: UIButton!
-
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         buildViews()
-   
         searchCancelButton.addTarget(self, action: #selector(didTapSearchCancelButton), for: .touchUpInside)
         searchTextField.addTarget(self, action: #selector(didTapTextField), for: .touchDown)
         cancelButton.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
@@ -23,20 +22,21 @@ class SearchBarStackView: UIStackView {
     }
     
     @objc func didTapSearchCancelButton() {
-        searchTextField.text = ""
         setView(view: cancelButton, hidden: true)
-        self.endEditing(true)
+        setView(view: searchCancelButton, hidden: true)
+        searchTextField.text = .none
+        endEditing(true)
     }
     
     @objc func didTapTextField() {
-        searchTextField.text = ""
         setView(view: cancelButton, hidden: false)
+        setView(view: searchCancelButton, hidden: false)
     }
     
     @objc func didTapCancelButton() {
         setView(view: cancelButton, hidden: true)
-        searchTextField.text = ""
-        self.endEditing(true)
+        setView(view: searchCancelButton, hidden: true)
+        endEditing(true)
     }
     
 }
@@ -44,10 +44,9 @@ class SearchBarStackView: UIStackView {
 extension SearchBarStackView {
     
     func setView(view: UIView, hidden: Bool) {
-        UIView.transition(with: view, duration: 0.2, options: .transitionFlipFromLeft, animations: {
+        UIView.transition(with: view, duration: 0.2, options: .curveEaseInOut, animations: {
             view.isHidden = hidden
         })
     }
-    
     
 }

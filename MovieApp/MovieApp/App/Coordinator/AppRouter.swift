@@ -2,30 +2,25 @@ import UIKit
 
 class AppRouter {
     
-    private let homeNavigationController: UINavigationController
-    private let favoriteNavigationController: UINavigationController
-    private let homeViewController: HomeViewController
-    private let favoriteMoviesViewController: FavoriteMoviesViewController
-    private let tabBarController: CustomTabBarController
     private let appDependencies: AppDependencies
     
-    init(homeNavigationController: UINavigationController, favoriteNavigationController: UINavigationController) {
-        self.homeNavigationController = homeNavigationController
-        self.favoriteNavigationController = favoriteNavigationController
-        self.homeViewController = HomeViewController()
-        self.favoriteMoviesViewController = FavoriteMoviesViewController()
-        self.tabBarController = CustomTabBarController(homeViewController: homeNavigationController,
-                                                       favoriteMoviesViewController: favoriteNavigationController)
+    private lazy var tabBarController: UITabBarController = {
+        let homeViewController = HomeViewController()
+        let favoriteViewController = FavoriteMoviesViewController()
+        let homeNavigationController = UINavigationController(rootViewController: homeViewController)
+        let favoriteNavigationController = UINavigationController(rootViewController: favoriteViewController)
+        return CustomTabBarController(
+            homeNavigationController: homeNavigationController,
+            favoriteNavigationController: favoriteNavigationController)
+    }()
+    
+    init(homeNavigationController: UINavigationController, favoritesNavigationController: UINavigationController) {
         self.appDependencies = AppDependencies()
     }
     
     func setStartScreen(in window: UIWindow?) {
-        homeNavigationController.setViewControllers([homeViewController], animated: true)
-        favoriteNavigationController.setViewControllers([favoriteMoviesViewController], animated: true)
-        
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
     
-
 }

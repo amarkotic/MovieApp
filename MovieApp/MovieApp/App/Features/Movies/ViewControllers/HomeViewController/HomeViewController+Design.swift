@@ -16,7 +16,6 @@ extension HomeViewController: DesignProtocol {
     
     func styleViews() {
         view.backgroundColor = .white
-        
     }
     
     func defineLayoutForViews() {
@@ -25,10 +24,9 @@ extension HomeViewController: DesignProtocol {
             $0.leading.trailing.equalToSuperview().inset(18)
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(22)
         }
-       
     }
-
-    func buildNavigationBar(){
+    
+    func buildNavigationBar() {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = .appBlue
         let logo = UIImage(with: .appLogo)

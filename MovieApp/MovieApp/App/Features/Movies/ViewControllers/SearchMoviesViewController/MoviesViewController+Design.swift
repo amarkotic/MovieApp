@@ -32,7 +32,7 @@ extension MoviesViewController: DesignProtocol {
         }
     }
     
-    func buildNavigationBar(){
+    func buildNavigationBar() {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = .appBlue
         let logo = UIImage(with: .appLogo)
