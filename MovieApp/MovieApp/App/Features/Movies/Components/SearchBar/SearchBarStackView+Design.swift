@@ -35,7 +35,7 @@ extension SearchBarStackView: DesignProtocol {
         searchTextField.textColor = .black
         searchTextField.attributedPlaceholder = NSAttributedString(
             string: LocalizableStrings.searchBarPlaceholder.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor : UIColor.black]
+            attributes: [NSAttributedString.Key.foregroundColor : UIColor.appBlue]
         )
         
         searchCancelButton.setImage(UIImage(with: .cancelImage), for: .normal)
