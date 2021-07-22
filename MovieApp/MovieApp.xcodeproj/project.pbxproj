@@ -35,6 +35,13 @@
 		523C2ED926A1655C00F2EDD6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2ED826A1655C00F2EDD6 /* Alamofire */; };
 		523C2EDB26A174C600F2EDD6 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		523C2EDF26A1B4B300F2EDD6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 523C2EDE26A1B4B300F2EDD6 /* Kingfisher */; };
+		525666A726A840BE00B5E0BE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666A626A840BE00B5E0BE /* HomeViewController.swift */; };
+		525666AA26A8418300B5E0BE /* FavoriteMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666A926A8418300B5E0BE /* FavoriteMoviesViewController.swift */; };
+		525666AC26A8435100B5E0BE /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666AB26A8435100B5E0BE /* LocalizableStrings.swift */; };
+		525666AE26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666AD26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift */; };
+		525666B026A847C900B5E0BE /* HomeViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666AF26A847C900B5E0BE /* HomeViewController+Design.swift */; };
+		525666B326A8494A00B5E0BE /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666B226A8494A00B5E0BE /* CustomTabBarController.swift */; };
+		525666B526A84D9000B5E0BE /* CustomTabBarController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666B426A84D9000B5E0BE /* CustomTabBarController+Design.swift */; };
 		526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5164269D6D370095F3E2 /* AppDelegate.swift */; };
 		526B5167269D6D370095F3E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5166269D6D370095F3E2 /* SceneDelegate.swift */; };
 		526B5169269D6D370095F3E2 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5168269D6D370095F3E2 /* MoviesViewController.swift */; };
@@ -76,6 +83,13 @@
 		523C2ECA269EE89B00F2EDD6 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		523C2ED026A0177700F2EDD6 /* MovieDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataServiceProtocol.swift; sourceTree = "<group>"; };
 		523C2ED226A0559D00F2EDD6 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		525666A626A840BE00B5E0BE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		525666A926A8418300B5E0BE /* FavoriteMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesViewController.swift; sourceTree = "<group>"; };
+		525666AB26A8435100B5E0BE /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
+		525666AD26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteMoviesViewController+Design.swift"; sourceTree = "<group>"; };
+		525666AF26A847C900B5E0BE /* HomeViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Design.swift"; sourceTree = "<group>"; };
+		525666B226A8494A00B5E0BE /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		525666B426A84D9000B5E0BE /* CustomTabBarController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTabBarController+Design.swift"; sourceTree = "<group>"; };
 		526B5161269D6D370095F3E2 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526B5164269D6D370095F3E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		526B5166269D6D370095F3E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,7 +139,9 @@
 				5203716F26A57D3500DE4AC7 /* Core */,
 				5203716D26A57CD600DE4AC7 /* CoreUI */,
 				5203717026A57DD500DE4AC7 /* Features */,
+				525666C126A9678400B5E0BE /* Localization */,
 				523C2EDC26A174CF00F2EDD6 /* Networking */,
+				525666B126A8492B00B5E0BE /* TabBar */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -192,6 +208,8 @@
 		5203717426A57E8900DE4AC7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				525666A826A8416800B5E0BE /* FavoriteMoviesViewController */,
+				525666A526A840A500B5E0BE /* HomeViewController */,
 				52F11AAD26A7176B007DBE0A /* SearchMoviesViewController */,
 			);
 			path = ViewControllers;
@@ -297,6 +315,41 @@
 				5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		525666A526A840A500B5E0BE /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				525666A626A840BE00B5E0BE /* HomeViewController.swift */,
+				525666AF26A847C900B5E0BE /* HomeViewController+Design.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		525666A826A8416800B5E0BE /* FavoriteMoviesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				525666A926A8418300B5E0BE /* FavoriteMoviesViewController.swift */,
+				525666AD26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift */,
+			);
+			path = FavoriteMoviesViewController;
+			sourceTree = "<group>";
+		};
+		525666B126A8492B00B5E0BE /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				525666B226A8494A00B5E0BE /* CustomTabBarController.swift */,
+				525666B426A84D9000B5E0BE /* CustomTabBarController+Design.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		525666C126A9678400B5E0BE /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				525666AB26A8435100B5E0BE /* LocalizableStrings.swift */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		526B5158269D6D370095F3E2 = {
@@ -447,11 +500,13 @@
 				523C2EBF269EDC7A00F2EDD6 /* MoviesPresenter.swift in Sources */,
 				52F11AA726A70680007DBE0A /* NetworkConstants.swift in Sources */,
 				526B5169269D6D370095F3E2 /* MoviesViewController.swift in Sources */,
+				525666A726A840BE00B5E0BE /* HomeViewController.swift in Sources */,
 				52F11AB326A80308007DBE0A /* MovieModel.swift in Sources */,
 				52F11AB626A8037C007DBE0A /* MovieRepositoryModel.swift in Sources */,
 				522EE8E926A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift in Sources */,
 				5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */,
 				522EE8EC26A6C2B100A456E2 /* MoviesNetworkDataSource.swift in Sources */,
+				525666AE26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift in Sources */,
 				52F11AAC26A71487007DBE0A /* AppDependecies.swift in Sources */,
 				522EE8DC26A6BAED00A456E2 /* MoviesUseCase.swift in Sources */,
 				5203716926A5672B00DE4AC7 /* NetworkError.swift in Sources */,
@@ -466,16 +521,21 @@
 				526B5167269D6D370095F3E2 /* SceneDelegate.swift in Sources */,
 				5203718426A6AB3500DE4AC7 /* MoviesNetworkClient.swift in Sources */,
 				5203717B26A5B3DB00DE4AC7 /* MovieNetworkModel.swift in Sources */,
+				525666B526A84D9000B5E0BE /* CustomTabBarController+Design.swift in Sources */,
 				523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */,
 				523C2EDB26A174C600F2EDD6 /* (null) in Sources */,
+				525666AA26A8418300B5E0BE /* FavoriteMoviesViewController.swift in Sources */,
 				5203717926A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift in Sources */,
 				52F11AA526A70648007DBE0A /* EndpointConstant.swift in Sources */,
 				52F11AA326A70637007DBE0A /* BundleImage.swift in Sources */,
 				52F11AB026A7FF5B007DBE0A /* MovieDataSourceModel.swift in Sources */,
+				525666B326A8494A00B5E0BE /* CustomTabBarController.swift in Sources */,
 				523C2EB0269DB2C800F2EDD6 /* MovieCell+Design.swift in Sources */,
 				5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */,
+				525666AC26A8435100B5E0BE /* LocalizableStrings.swift in Sources */,
 				523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */,
 				52F11AA126A705FE007DBE0A /* UIImage+Extensions.swift in Sources */,
+				525666B026A847C900B5E0BE /* HomeViewController+Design.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
