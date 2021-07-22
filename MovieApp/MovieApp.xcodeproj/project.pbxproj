@@ -175,7 +175,6 @@
 			children = (
 				523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */,
 				52F11AA226A70637007DBE0A /* BundleImage.swift */,
-				525666AB26A8435100B5E0BE /* BundleTabBar.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
