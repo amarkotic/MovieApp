@@ -1,7 +1,7 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     let navigationController = UINavigationController()
     var window: UIWindow?
     
@@ -9,11 +9,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         
         window = UIWindow(windowScene: windowScene)
-        let homeNavigationController = UINavigationController()
-        let favoriteNavigationController = UINavigationController()
+        setupNavigationViewController()
         
-        let appRouter = AppRouter(homeNavigationController: homeNavigationController, favoritesNavigationController: favoriteNavigationController)
+        let appRouter = AppRouter(navigationController: navigationController)
         appRouter.setStartScreen(in: window)
+    }
+    
+    func setupNavigationViewController() {
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.barTintColor = .appBlue
+        let logo = UIImage(with: .appLogo)
+        let logoImageView = UIImageView()
+        logoImageView.image = logo
+        navigationController.navigationItem.titleView = logoImageView
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -24,14 +24,14 @@ extension CustomTabBarController: DesignProtocol {
     }
     
     func setupChildViewControllers() {
-        addChild(homeNavigationController)
-        addChild(favoriteNavigationController)
+        addChild(homeViewController)
+        addChild(favoriteViewController)
         
-        homeNavigationController.tabBarItem.image = UIImage(with: .homeLogo)
-        homeNavigationController.tabBarItem.title = LocalizableStrings.tabBarHomeTitle.rawValue
+        homeViewController.tabBarItem.image = UIImage(with: .homeLogo)
+        homeViewController.tabBarItem.title = LocalizableStrings.tabBarHomeTitle.rawValue
         
-        favoriteNavigationController.tabBarItem.image = UIImage(with: .favoriteLogo)
-        favoriteNavigationController.tabBarItem.title = LocalizableStrings.tabBarFavoritesTitle.rawValue
+        favoriteViewController.tabBarItem.image = UIImage(with: .favoriteLogo)
+        favoriteViewController.tabBarItem.title = LocalizableStrings.tabBarFavoritesTitle.rawValue
     }
     
 }

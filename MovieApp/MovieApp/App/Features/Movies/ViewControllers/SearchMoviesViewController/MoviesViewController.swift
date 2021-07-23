@@ -22,7 +22,6 @@ class MoviesViewController: UIViewController {
         presenter.setMoviesViewDelegate(moviesViewDelegate: self)
         presenter.fetchMovies()
         buildViews()
-        buildNavigationBar()
     }
     
     func fetchSuccesful(movies: [MovieViewModel]) {

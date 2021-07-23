@@ -18,12 +18,4 @@ extension FavoriteMoviesViewController: DesignProtocol {
     func defineLayoutForViews() {
     }
     
-    func buildNavigationBar() {
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = .appBlue
-        let logo = UIImage(with: .appLogo)
-        let logoImageView = UIImageView(image: logo)
-        navigationItem.titleView = logoImageView
-    }
-    
 }

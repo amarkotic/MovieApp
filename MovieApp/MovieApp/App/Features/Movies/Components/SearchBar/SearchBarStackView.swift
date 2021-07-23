@@ -4,8 +4,8 @@ class SearchBarStackView: UIStackView {
     
     let defaultInset = 11
     let secondaryInset = 15
-    let magnifierDimension = 21
-    let cancelDimension = 13
+    let magnifierSize = CGSize(width: 21, height: 21)
+    let cancelSize = CGSize(width: 13, height: 13)
     
     var searchView: UIView!
     var magnifierImageView: UIImageView!
