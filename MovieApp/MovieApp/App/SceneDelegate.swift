@@ -9,19 +9,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         
         window = UIWindow(windowScene: windowScene)
-        setupNavigationViewController()
         
         let appRouter = AppRouter(navigationController: navigationController)
         appRouter.setStartScreen(in: window)
-    }
-    
-    func setupNavigationViewController() {
-        navigationController.navigationBar.isTranslucent = false
-        navigationController.navigationBar.barTintColor = .appBlue
-        let logo = UIImage(with: .appLogo)
-        let logoImageView = UIImageView()
-        logoImageView.image = logo
-        navigationController.navigationItem.titleView = logoImageView
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

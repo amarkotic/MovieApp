@@ -16,6 +16,8 @@ class AppRouter {
     init(navigationController: UINavigationController) {
         self.appDependencies = AppDependencies()
         self.navigationController = navigationController
+        
+        styleNavigationBar()
     }
     
     func setStartScreen(in window: UIWindow?) {
@@ -23,6 +25,11 @@ class AppRouter {
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+    }
+    
+    func styleNavigationBar() {
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.barTintColor = .appBlue
     }
     
 }

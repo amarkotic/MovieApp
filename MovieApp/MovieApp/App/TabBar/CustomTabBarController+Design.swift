@@ -34,18 +34,5 @@ extension CustomTabBarController: DesignProtocol {
         favoriteViewController.tabBarItem.title = LocalizableStrings.tabBarFavoritesTitle.rawValue
     }
     
-    func setupNavigationViewController() {
-        guard let navigationController = self.navigationController else {
-            print("nema ga")
-            return
-        }
-        navigationController.navigationBar.isTranslucent = false
-        navigationController.navigationBar.barTintColor = .appBlue
-        let logo = UIImage(with: .appLogo)
-        let logoImageView = UIImageView()
-        logoImageView.image = logo
-        navigationController.navigationItem.titleView = logoImageView
-        
-    }
 }
 

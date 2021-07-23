@@ -26,4 +26,10 @@ class CustomTabBarController: UITabBarController {
         setupNavigationViewController()
     }
     
+    func setupNavigationViewController() {
+        let logo = UIImage(with: .appLogo)
+        let logoImageView = UIImageView()
+        logoImageView.image = logo
+        navigationItem.titleView = logoImageView
+    }
 }
