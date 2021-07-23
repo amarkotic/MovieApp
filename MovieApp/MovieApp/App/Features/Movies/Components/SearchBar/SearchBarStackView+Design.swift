@@ -37,6 +37,7 @@ extension SearchBarStackView: DesignProtocol {
             string: LocalizableStrings.searchBarPlaceholder.rawValue,
             attributes: [NSAttributedString.Key.foregroundColor : UIColor.appBlue]
         )
+
         
         searchCancelButton.setImage(UIImage(with: .cancelImage), for: .normal)
         searchCancelButton.isHidden = true

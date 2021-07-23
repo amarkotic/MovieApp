@@ -21,6 +21,7 @@ extension HomeViewController: DesignProtocol {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.allowsSelection = false
         tableView.backgroundColor = .none
         tableView.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.reuseIdentifier)
         tableView.bounces = true
