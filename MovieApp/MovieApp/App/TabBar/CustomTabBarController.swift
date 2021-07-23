@@ -23,6 +23,7 @@ class CustomTabBarController: UITabBarController {
         
         buildViews()
         setupChildViewControllers()
+        setupNavigationViewController()
     }
     
 }
