@@ -15,8 +15,10 @@ extension SearchBarStackView: DesignProtocol {
         
         magnifierImageView = UIImageView()
         searchView.addSubview(magnifierImageView)
+        
         searchTextField = UITextField()
         searchView.addSubview(searchTextField)
+        
         searchCancelButton = UIButton()
         searchView.addSubview(searchCancelButton)
         

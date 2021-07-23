@@ -11,7 +11,6 @@ extension HomeViewController: DesignProtocol {
     func createViews() {
         searchBarStackView = SearchBarStackView()
         view.addSubview(searchBarStackView)
-        
     }
     
     func styleViews() {

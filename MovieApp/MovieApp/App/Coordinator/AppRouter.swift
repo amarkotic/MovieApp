@@ -27,7 +27,7 @@ class AppRouter {
         window?.makeKeyAndVisible()
     }
     
-    func styleNavigationBar() {
+    private func styleNavigationBar() {
         navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.barTintColor = .appBlue
     }
