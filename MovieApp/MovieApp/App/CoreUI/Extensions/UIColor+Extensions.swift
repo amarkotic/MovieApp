@@ -14,6 +14,10 @@ extension UIColor {
         UIColor(rgb: 0x0B253F)
     }
     
+    static var searchBarGray: UIColor {
+        UIColor(rgb: 0xEAEAEB)
+    }
+    
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")

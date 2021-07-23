@@ -22,6 +22,6 @@ extension CustomTabBarController: DesignProtocol {
     
     func defineLayoutForViews() {
     }
-    
+
 }
 

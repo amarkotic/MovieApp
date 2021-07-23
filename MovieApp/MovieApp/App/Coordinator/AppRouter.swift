@@ -2,25 +2,34 @@ import UIKit
 
 class AppRouter {
     
-    private let navigationController: UINavigationController
     private let appDependencies: AppDependencies
+    private let navigationController: UINavigationController
     
     private lazy var tabBarController: UITabBarController = {
         let homeViewController = HomeViewController()
-        let favoriteMoviesViewController = FavoriteMoviesViewController()
+        let favoriteViewController = FavoriteMoviesViewController()
         return CustomTabBarController(
             homeViewController: homeViewController,
-            favoriteMoviesViewController: favoriteMoviesViewController)
+            favoriteViewController: favoriteViewController)
     }()
     
     init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
         self.appDependencies = AppDependencies()
+        self.navigationController = navigationController
+        
+        styleNavigationBar()
     }
     
     func setStartScreen(in window: UIWindow?) {
-        window?.rootViewController = tabBarController
+        navigationController.setViewControllers([tabBarController], animated: false)
+        
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
-
+    
+    private func styleNavigationBar() {
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.barTintColor = .appBlue
+    }
+    
 }

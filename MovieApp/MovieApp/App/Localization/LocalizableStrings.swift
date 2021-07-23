@@ -1,6 +1,8 @@
 enum LocalizableStrings: String {
     
-    case tabBarHomeTitle = "home"
-    case tabBarFavoritesTitle = "favorites"
+    case tabBarHomeTitle = "Home"
+    case tabBarFavoritesTitle = "Favorites"
+    case searchBarPlaceholder = "Search"
+    case cancelButtonTitle = "Cancel"
     
 }
