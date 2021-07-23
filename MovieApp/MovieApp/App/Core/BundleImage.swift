@@ -5,6 +5,7 @@ enum BundleImage: String {
     case favoriteLogo = "Heart"
     case searchImage = "Magnifier"
     case cancelImage = "Cancel"
+    case temporaryImage = "ironman1"
     
 }
 

@@ -15,11 +15,24 @@ extension CategoryCell: DesignProtocol {
         
         categoryScrollView = UIScrollView()
         contentView.addSubview(categoryScrollView)
+        
         scrollContentView = UIView()
         categoryScrollView.addSubview(scrollContentView)
         
         categoryStackView = UIStackView()
+        for i in 0..<categoryArray.count {
+            categoryStackView.addArrangedSubview(categoryArray[i])
+        }
         scrollContentView.addSubview(categoryStackView)
+        
+        moviesScrollView = UIScrollView()
+        contentView.addSubview(moviesScrollView)
+        
+        moviesStackView = UIStackView()
+        for i in 0..<10 {
+            moviesStackView.addArrangedSubview(moviesArray[i])
+        }
+        moviesScrollView.addSubview(moviesStackView)
     }
     
     func styleViews() {
@@ -31,13 +44,9 @@ extension CategoryCell: DesignProtocol {
         
         categoryStackView.distribution = .fillProportionally
         categoryStackView.spacing = 23
-      
-        for i in 0..<categoryArray.count {
-            categoryArray[i].setTitle(temporaryCartegoryArray[i], for: .normal)
-            categoryArray[i].setTitleColor(UIColor.appBlue, for: .normal)
-            categoryArray[i].titleLabel?.font = UIFont.proximaMedium
-            categoryStackView.addArrangedSubview(categoryArray[i])
-        }
+        
+        moviesStackView.distribution = .fillProportionally
+        moviesStackView.spacing = 8   
     }
     
     func defineLayoutForViews() {
@@ -56,12 +65,30 @@ extension CategoryCell: DesignProtocol {
         scrollContentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.height.equalToSuperview()
-            
         }
         
         categoryStackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.height.equalToSuperview()
+        }
+        
+        moviesScrollView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(18)
+            $0.top.equalTo(categoryScrollView.snp.bottom).offset(31)
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(179)
+        }
+        
+        moviesStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.height.equalToSuperview()
+//            $0.width.equalTo(moviesArray.count * 130 - 8)
+        }
+        
+        for i in 0..<10 {
+            moviesArray[i].snp.makeConstraints {
+                $0.width.equalTo(122)
+            }
         }
     }
     

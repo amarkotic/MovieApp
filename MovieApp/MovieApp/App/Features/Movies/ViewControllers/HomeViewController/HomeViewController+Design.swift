@@ -21,11 +21,12 @@ extension HomeViewController: DesignProtocol {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 311
+        tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .none
         tableView.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.reuseIdentifier)
         tableView.bounces = true
-        tableView.rowHeight = 50
     }
     
     func defineLayoutForViews() {
