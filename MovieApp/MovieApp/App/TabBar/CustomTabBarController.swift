@@ -23,7 +23,7 @@ class CustomTabBarController: UITabBarController {
         
         buildViews()
         setupChildViewControllers()
-        setupNavigationViewController()
+        styleNavigationController()
     }
     
     private func setupChildViewControllers() {
@@ -38,7 +38,7 @@ class CustomTabBarController: UITabBarController {
     }
     
     
-    private func setupNavigationViewController() {
+    private func styleNavigationController() {
         let logo = UIImage(with: .appLogo)
         let logoImageView = UIImageView()
         logoImageView.image = logo

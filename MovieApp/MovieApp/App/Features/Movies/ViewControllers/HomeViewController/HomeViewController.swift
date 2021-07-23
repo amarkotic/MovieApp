@@ -10,7 +10,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         buildViews()
-        
         setupGestureRecognizer()
     }
     
