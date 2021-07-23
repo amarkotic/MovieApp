@@ -3,17 +3,21 @@ import UIKit
 class HomeViewController: UIViewController {
     
     let defaultInset = 20
-    
+    let searchBarHeight = 43
+
     var logoImageView: UIImageView!
     var searchBarStackView: SearchBarStackView!
     var tableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         buildViews()
         buildNavigationBar()
-        
+        setupGestureRecognizer()
+    }
+    
+    private func setupGestureRecognizer() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uiViewPressed))
         view.addGestureRecognizer(tap)
     }
@@ -43,6 +47,7 @@ extension HomeViewController: UITableViewDataSource {
         }
 
         return cell
+        setupGestureRecognizer()
     }
-    
+
 }

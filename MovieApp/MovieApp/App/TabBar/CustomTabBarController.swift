@@ -2,15 +2,15 @@ import UIKit
 
 class CustomTabBarController: UITabBarController {
     
-    var homeNavigationController: UINavigationController!
-    var favoriteNavigationController: UINavigationController!
+    var homeViewController: UIViewController!
+    var favoriteViewController: UIViewController!
     
     init(
-        homeNavigationController: UINavigationController,
-        favoriteNavigationController: UINavigationController
+        homeViewController: UIViewController,
+        favoriteViewController: UIViewController
     ) {
-        self.homeNavigationController = homeNavigationController
-        self.favoriteNavigationController = favoriteNavigationController
+        self.homeViewController = homeViewController
+        self.favoriteViewController = favoriteViewController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,6 +23,25 @@ class CustomTabBarController: UITabBarController {
         
         buildViews()
         setupChildViewControllers()
+        styleNavigationController()
     }
     
+    private func setupChildViewControllers() {
+        addChild(homeViewController)
+        addChild(favoriteViewController)
+        
+        homeViewController.tabBarItem.image = UIImage(with: .homeLogo)
+        homeViewController.tabBarItem.title = LocalizableStrings.tabBarHomeTitle.rawValue
+        
+        favoriteViewController.tabBarItem.image = UIImage(with: .favoriteLogo)
+        favoriteViewController.tabBarItem.title = LocalizableStrings.tabBarFavoritesTitle.rawValue
+    }
+    
+    
+    private func styleNavigationController() {
+        let logo = UIImage(with: .appLogo)
+        let logoImageView = UIImageView()
+        logoImageView.image = logo
+        navigationItem.titleView = logoImageView
+    }
 }

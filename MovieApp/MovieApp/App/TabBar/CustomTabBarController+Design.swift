@@ -22,17 +22,5 @@ extension CustomTabBarController: DesignProtocol {
     
     func defineLayoutForViews() {
     }
-    
-    func setupChildViewControllers() {
-        addChild(homeNavigationController)
-        addChild(favoriteNavigationController)
-        
-        homeNavigationController.tabBarItem.image = UIImage(with: .homeLogo)
-        homeNavigationController.tabBarItem.title = LocalizableStrings.tabBarHomeTitle.rawValue
-        
-        favoriteNavigationController.tabBarItem.image = UIImage(with: .favoriteLogo)
-        favoriteNavigationController.tabBarItem.title = LocalizableStrings.tabBarFavoritesTitle.rawValue
-    }
-    
 }
 
