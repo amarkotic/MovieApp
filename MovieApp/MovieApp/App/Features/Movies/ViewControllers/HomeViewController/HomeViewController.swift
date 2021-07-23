@@ -2,6 +2,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    let defaultInset = 20
+    let searchBarHeight = 43
     var searchBarStackView: SearchBarStackView!
     var logoImageView: UIImageView!
     

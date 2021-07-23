@@ -20,9 +20,9 @@ extension HomeViewController: DesignProtocol {
     
     func defineLayoutForViews() {
         searchBarStackView.snp.makeConstraints {
-            $0.height.equalTo(43)
-            $0.leading.trailing.equalToSuperview().inset(18)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(22)
+            $0.height.equalTo(searchBarHeight)
+            $0.leading.trailing.equalToSuperview().inset(defaultInset)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(defaultInset)
         }
     }
     
