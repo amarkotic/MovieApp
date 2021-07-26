@@ -21,7 +21,7 @@ extension HomeViewController: DesignProtocol {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 311
+        tableView.rowHeight = rowHeight
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .none

@@ -4,6 +4,7 @@ class HomeViewController: UIViewController {
     
     let defaultInset = 20
     let searchBarHeight = 43
+    let rowHeight = CGFloat(311)
 
     var logoImageView: UIImageView!
     var searchBarStackView: SearchBarStackView!
