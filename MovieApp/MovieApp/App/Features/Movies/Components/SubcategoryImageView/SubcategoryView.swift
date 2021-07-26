@@ -2,6 +2,9 @@ import UIKit
 
 class SubcategoryView: UIView {
     
+    let underlineHeight = 3
+    let defaultInset = 10
+    
     var titleLabel: UILabel!
     var underline: UIView!
     var selected = false
@@ -17,10 +20,6 @@ class SubcategoryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(title: String) {
-        titleLabel.text = title
-    }
-    
     private func enableInteraction() {
         titleLabel.isUserInteractionEnabled = true
         titleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(titleTapped)))
@@ -28,20 +27,33 @@ class SubcategoryView: UIView {
     
     @objc private func titleTapped(_ recognizer: UITapGestureRecognizer) {
         if !selected {
-            underline.isHidden = false
-            titleLabel.textColor = .black
-            titleLabel.font = .proximaBold
-            titleLabel.snp.updateConstraints {
-                $0.leading.trailing.equalToSuperview()
-            }
+            select()
         } else {
-            underline.isHidden = true
-            titleLabel.textColor = .appGray
-            titleLabel.font = .proximaMedium
-            titleLabel.snp.updateConstraints {
-                $0.leading.trailing.equalToSuperview().inset(10)
-            }
+           deselect()
         }
         selected = !selected
     }
+    
+    func select() {
+        underline.isHidden = false
+        titleLabel.textColor = .black
+        titleLabel.font = .proximaBold
+        titleLabel.snp.updateConstraints {
+            $0.leading.trailing.equalToSuperview()
+        }
+    }
+    
+    private func deselect() {
+        underline.isHidden = true
+        titleLabel.textColor = .appGray
+        titleLabel.font = .proximaMedium
+        titleLabel.snp.updateConstraints {
+            $0.leading.trailing.equalToSuperview().inset(10)
+        }
+    }
+    
+    func setData(title: String) {
+        titleLabel.text = title
+    }
+    
 }

@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-extension MovieImageView: DesignProtocol {
+extension MovieImageCell: DesignProtocol {
     
     func buildViews() {
         createViews()
@@ -10,19 +10,30 @@ extension MovieImageView: DesignProtocol {
     }
     
     func createViews() {
+        imageView = UIImageView()
+        contentView.addSubview(imageView)
+        
         ellipseImageView = UIImageView()
-        addSubview(ellipseImageView)
+        contentView.addSubview(ellipseImageView)
         
         heartImageView = UIImageView()
         ellipseImageView.addSubview(heartImageView)
     }
     
     func styleViews() {
+        imageView.layer.cornerRadius = cornerRadius
+        imageView.layer.masksToBounds = true
+        
         ellipseImageView.image = UIImage(with: .ellipseImage)
+        
         heartImageView.image = UIImage(with: .heartEmpty)
     }
     
     func defineLayoutForViews() {
+        imageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         ellipseImageView.snp.makeConstraints {
             $0.leading.top.equalToSuperview().offset(defaultOffset)
             $0.size.equalTo(ellipseSize)

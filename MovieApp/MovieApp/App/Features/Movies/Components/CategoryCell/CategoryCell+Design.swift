@@ -1,8 +1,8 @@
 import UIKit
 import SnapKit
 
-extension CategoryCell: DesignProtocol {
-    
+extension CategoryCell: DesignProtocol{
+
     func buildViews() {
         createViews()
         styleViews()
@@ -22,14 +22,11 @@ extension CategoryCell: DesignProtocol {
         }
         categoryScrollView.addSubview(categoryStackView)
         
-        moviesScrollView = UIScrollView()
-        contentView.addSubview(moviesScrollView)
-        
-        moviesStackView = UIStackView()
-        for i in 0..<10 {
-            moviesStackView.addArrangedSubview(moviesArray[i])
-        }
-        moviesScrollView.addSubview(moviesStackView)
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: collectionViewCellWidth, height: collectionViewCellHeight)
+        self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        contentView.addSubview(collectionView)
     }
     
     func styleViews() {
@@ -42,21 +39,23 @@ extension CategoryCell: DesignProtocol {
         categoryStackView.distribution = .fillProportionally
         categoryStackView.spacing = 13
         
-        moviesStackView.distribution = .fillProportionally
-        moviesStackView.spacing = 8   
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(MovieImageCell.self, forCellWithReuseIdentifier: MovieImageCell.reuseIdentifier)
+        collectionView.backgroundColor = .none
     }
     
     func defineLayoutForViews() {
         titleLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
             $0.top.equalToSuperview()
         }
         
         categoryScrollView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(18)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().offset(defaultOffset)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(secondaryOffset)
             $0.trailing.equalToSuperview()
-            $0.height.equalTo(22)
+            $0.height.equalTo(scrollHeight)
         }
         
         categoryStackView.snp.makeConstraints {
@@ -64,23 +63,11 @@ extension CategoryCell: DesignProtocol {
             $0.height.equalToSuperview()
         }
         
-        moviesScrollView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(18)
-            $0.top.equalTo(categoryScrollView.snp.bottom).offset(31)
+        collectionView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(defaultOffset)
+            $0.top.equalTo(categoryScrollView.snp.bottom).offset(4 * secondaryOffset)
             $0.trailing.equalToSuperview()
-            $0.height.equalTo(179)
-        }
-        
-        moviesStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.height.equalToSuperview()
-//            $0.width.equalTo(moviesArray.count * 130 - 8)
-        }
-        
-        for i in 0..<10 {
-            moviesArray[i].snp.makeConstraints {
-                $0.width.equalTo(122)
-            }
+            $0.height.equalTo(collectionViewCellHeight)
         }
     }
     

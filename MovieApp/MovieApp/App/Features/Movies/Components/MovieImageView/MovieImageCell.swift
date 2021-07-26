@@ -1,19 +1,21 @@
 import UIKit
 
-class MovieImageView: UIImageView {
+class MovieImageCell: UICollectionViewCell {
+    
+    static let reuseIdentifier = String(describing: MovieImageCell.self)
     
     let defaultOffset = 9
     let ellipseSize = CGSize(width: 32, height: 32)
     let heartSize = CGSize(width: 18, height: 16)
+    let cornerRadius = CGFloat(10)
     
+    var imageView: UIImageView!
     var ellipseImageView: UIImageView!
     var heartImageView: UIImageView!
-    var favorite = false
+    var isFavorite = false
 
-    
-    override init(image: UIImage?) {
-        super.init(image: image)
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         buildViews()
         enableInteraction()
     }
@@ -28,12 +30,16 @@ class MovieImageView: UIImageView {
     }
     
     @objc private func heartTapped(_ recognizer: UITapGestureRecognizer) {
-        if !favorite {
+        if !isFavorite {
             heartImageView.image = UIImage(with: .heartFilled)
         } else {
             heartImageView.image = UIImage(with: .heartEmpty)
         }
-        favorite = !favorite
+        isFavorite = !isFavorite
+    }
+    
+    func setData(with image: UIImage){
+        imageView.image = image
     }
     
 }

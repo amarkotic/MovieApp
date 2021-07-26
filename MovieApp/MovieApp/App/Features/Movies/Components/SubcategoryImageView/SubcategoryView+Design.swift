@@ -29,12 +29,12 @@ extension SubcategoryView: DesignProtocol {
     func defineLayoutForViews() {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.leading.trailing.equalToSuperview().inset(defaultInset)
         }
         
         underline.snp.makeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()
-            $0.height.equalTo(3)
+            $0.height.equalTo(underlineHeight)
         }
     }
     
