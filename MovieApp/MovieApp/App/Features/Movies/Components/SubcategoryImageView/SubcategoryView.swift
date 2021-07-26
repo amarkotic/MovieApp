@@ -7,7 +7,10 @@ class SubcategoryView: UIView {
     
     var titleLabel: UILabel!
     var underline: UIView!
-    var selected = false
+    var isSelected = false
+    var identifier: Int!
+    
+    weak var delegate: CategoryCell?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,12 +29,17 @@ class SubcategoryView: UIView {
     }
     
     @objc private func titleTapped(_ recognizer: UITapGestureRecognizer) {
-        if !selected {
+        guard let delegate = delegate else { return }
+        
+        if !isSelected {
             select()
+            self.isSelected = true
+            delegate.update(with: identifier)
         } else {
            deselect()
+            self.isSelected = true
         }
-        selected = !selected
+        isSelected = !isSelected
     }
     
     func select() {
@@ -39,11 +47,11 @@ class SubcategoryView: UIView {
         titleLabel.textColor = .black
         titleLabel.font = .proximaBold
         titleLabel.snp.updateConstraints {
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(5)
         }
     }
     
-    private func deselect() {
+    func deselect() {
         underline.isHidden = true
         titleLabel.textColor = .appGray
         titleLabel.font = .proximaMedium

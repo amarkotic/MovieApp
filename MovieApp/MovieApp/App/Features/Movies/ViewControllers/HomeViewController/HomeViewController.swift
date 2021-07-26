@@ -29,7 +29,6 @@ class HomeViewController: UIViewController {
 
 
 extension HomeViewController: UITableViewDelegate {
-
     
 }
 

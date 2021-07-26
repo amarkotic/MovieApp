@@ -12,7 +12,6 @@ class CategoryCell: UITableViewCell {
     let collectionViewCellHeight = 179
     let scrollHeight = 22
 
-    
     var titleLabel: UILabel!
     
     var categoryScrollView: UIScrollView!
@@ -23,7 +22,7 @@ class CategoryCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         createButtons()
         buildViews()
     }
@@ -35,14 +34,26 @@ class CategoryCell: UITableViewCell {
     private func createButtons() {
         for i in 0..<temporaryCategoryArray.count {
             let titleView = SubcategoryView(frame: .zero)
-            if (i == 0){
+            titleView.identifier = i
+            if (titleView.identifier == 0) {
                 titleView.select()
+                titleView.isSelected = true
             }
+            titleView.delegate = self
             titleView.isUserInteractionEnabled = true
             titleView.setData(title: temporaryCategoryArray[i])
             categoryArray.append(titleView)
         }
     }
+    
+    func update(with identifier: Int) {
+        for item in categoryArray {
+            if item.identifier != identifier {
+                item.deselect()
+            }
+        }
+    }
+    
 }
 
 extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
