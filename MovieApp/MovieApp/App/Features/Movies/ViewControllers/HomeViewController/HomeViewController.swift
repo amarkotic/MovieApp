@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         buildViews()
-        buildNavigationBar()
         setupGestureRecognizer()
     }
     
@@ -45,9 +44,8 @@ extension HomeViewController: UITableViewDataSource {
         else {
             return CategoryCell()
         }
-
+        
         return cell
-        setupGestureRecognizer()
     }
 
 }

@@ -6,7 +6,6 @@ class FavoriteMoviesViewController: UIViewController {
         super.viewDidLoad()
         
         buildViews()
-        buildNavigationBar()
     }
     
 }

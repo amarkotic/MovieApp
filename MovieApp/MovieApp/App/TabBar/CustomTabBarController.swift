@@ -37,7 +37,6 @@ class CustomTabBarController: UITabBarController {
         favoriteViewController.tabBarItem.title = LocalizableStrings.tabBarFavoritesTitle.rawValue
     }
     
-    
     private func styleNavigationController() {
         let logo = UIImage(with: .appLogo)
         let logoImageView = UIImageView()

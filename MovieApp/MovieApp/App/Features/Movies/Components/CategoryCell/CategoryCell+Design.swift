@@ -16,14 +16,11 @@ extension CategoryCell: DesignProtocol {
         categoryScrollView = UIScrollView()
         contentView.addSubview(categoryScrollView)
         
-        scrollContentView = UIView()
-        categoryScrollView.addSubview(scrollContentView)
-        
         categoryStackView = UIStackView()
         for i in 0..<categoryArray.count {
             categoryStackView.addArrangedSubview(categoryArray[i])
         }
-        scrollContentView.addSubview(categoryStackView)
+        categoryScrollView.addSubview(categoryStackView)
         
         moviesScrollView = UIScrollView()
         contentView.addSubview(moviesScrollView)
@@ -43,7 +40,7 @@ extension CategoryCell: DesignProtocol {
         titleLabel.textColor = UIColor.appBlue
         
         categoryStackView.distribution = .fillProportionally
-        categoryStackView.spacing = 23
+        categoryStackView.spacing = 13
         
         moviesStackView.distribution = .fillProportionally
         moviesStackView.spacing = 8   
@@ -60,11 +57,6 @@ extension CategoryCell: DesignProtocol {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.trailing.equalToSuperview()
             $0.height.equalTo(22)
-        }
-        
-        scrollContentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.height.equalToSuperview()
         }
         
         categoryStackView.snp.makeConstraints {

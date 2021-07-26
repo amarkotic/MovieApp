@@ -10,7 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        let appRouter = AppRouter(homeNavigationController: homeNavigationController, favoritesNavigationController: favoriteNavigationController)
+        let appRouter = AppRouter(navigationController: navigationController)
         appRouter.setStartScreen(in: window)
     }
     

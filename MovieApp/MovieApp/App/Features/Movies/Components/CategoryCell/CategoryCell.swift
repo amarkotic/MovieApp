@@ -6,15 +6,14 @@ class CategoryCell: UITableViewCell {
     static let reuseIdentifier = String(describing: CategoryCell.self)
     
     var titleLabel: UILabel!
+    
     var categoryScrollView: UIScrollView!
-    var scrollContentView: UIView!
     var categoryStackView: UIStackView!
-    var categoryArray = [UIButton]()
+    var categoryArray = [SubcategoryView]()
     
     var moviesScrollView: UIScrollView!
-//    var moviesScrollContentView: UIView!
     var moviesStackView: UIStackView!
-    var moviesArray = [UIImageView]()
+    var moviesArray = [MovieImageView]()
     
     let temporaryCategoryArray = ["Streaming", "On TV", "For Rent", "In theaters", "Popular", "For rent"]
     
@@ -30,21 +29,29 @@ class CategoryCell: UITableViewCell {
     
     private func createButtons() {
         for i in 0..<temporaryCategoryArray.count {
-            categoryArray.append(UIButton())
-            categoryArray[i].setTitle(temporaryCategoryArray[i], for: .normal)
-            categoryArray[i].setTitleColor(UIColor.appBlue, for: .normal)
-            categoryArray[i].titleLabel?.font = UIFont.proximaMedium
+            let titleView = SubcategoryView(frame: .zero)
+            titleView.isUserInteractionEnabled = true
+            titleView.setData(title: temporaryCategoryArray[i])
+            categoryArray.append(titleView)
         }
         
         for i in 0..<10 {
-            moviesArray.append(UIImageView())
-            moviesArray[i].image = UIImage(with: .temporaryImage)
+            let imageView = MovieImageView(image: UIImage(with: .temporaryImage))
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
+            moviesArray.append(imageView)
             moviesArray[i].layer.cornerRadius = 10
             moviesArray[i].layer.masksToBounds = true
             moviesArray[i].backgroundColor = .blue
         }
     }
     
-    
+    @objc private func imageTapped(_ recognizer: UITapGestureRecognizer) {
+        print("image tapped")
+    }
 }
+
+
+
+
 
