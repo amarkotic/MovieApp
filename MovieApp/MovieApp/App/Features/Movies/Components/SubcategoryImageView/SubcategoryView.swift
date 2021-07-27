@@ -8,6 +8,7 @@ class SubcategoryView: UIView {
     var titleLabel: UILabel!
     var underline: UIView!
     var isSelected = false
+    var globalIdentifier: Int!
     var identifier: Int!
     
     weak var delegate: CategoryCell?
@@ -33,11 +34,7 @@ class SubcategoryView: UIView {
         
         if !isSelected {
             select()
-            self.isSelected = true
             delegate.update(with: identifier)
-        } else {
-           deselect()
-            self.isSelected = true
         }
         isSelected = !isSelected
     }
@@ -46,18 +43,14 @@ class SubcategoryView: UIView {
         underline.isHidden = false
         titleLabel.textColor = .black
         titleLabel.font = .proximaBold
-        titleLabel.snp.updateConstraints {
-            $0.leading.trailing.equalToSuperview().inset(5)
-        }
+        isSelected = true
     }
     
     func deselect() {
         underline.isHidden = true
         titleLabel.textColor = .appGray
         titleLabel.font = .proximaMedium
-        titleLabel.snp.updateConstraints {
-            $0.leading.trailing.equalToSuperview().inset(10)
-        }
+        isSelected = false
     }
     
     func setData(title: String) {

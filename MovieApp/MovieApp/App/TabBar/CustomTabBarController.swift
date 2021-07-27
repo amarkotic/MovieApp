@@ -31,9 +31,11 @@ class CustomTabBarController: UITabBarController {
         addChild(favoriteViewController)
         
         homeViewController.tabBarItem.image = UIImage(with: .homeLogo)
+        homeViewController.tabBarItem.selectedImage = UIImage(with: .homeLogoSelected)
         homeViewController.tabBarItem.title = LocalizableStrings.tabBarHomeTitle.rawValue
         
         favoriteViewController.tabBarItem.image = UIImage(with: .favoriteLogo)
+        favoriteViewController.tabBarItem.selectedImage = UIImage(with: .favoriteLogoSelected)
         favoriteViewController.tabBarItem.title = LocalizableStrings.tabBarFavoritesTitle.rawValue
     }
     

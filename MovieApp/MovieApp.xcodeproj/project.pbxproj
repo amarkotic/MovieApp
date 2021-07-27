@@ -55,6 +55,8 @@
 		5293A7A626AE973700F786E9 /* MovieImageCell+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7A526AE973700F786E9 /* MovieImageCell+Design.swift */; };
 		5293A7A926AEA92B00F786E9 /* SubcategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7A826AEA92B00F786E9 /* SubcategoryView.swift */; };
 		5293A7AB26AEA93A00F786E9 /* SubcategoryView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7AA26AEA93A00F786E9 /* SubcategoryView+Design.swift */; };
+		5293A7AE26AFEFA300F786E9 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7AD26AFEFA200F786E9 /* CategoryData.swift */; };
+		5293A7B026AFF0A800F786E9 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7AF26AFF0A800F786E9 /* HomePresenter.swift */; };
 		52F11AA126A705FE007DBE0A /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F11AA026A705FE007DBE0A /* UIImage+Extensions.swift */; };
 		52F11AA326A70637007DBE0A /* BundleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F11AA226A70637007DBE0A /* BundleImage.swift */; };
 		52F11AA526A70648007DBE0A /* EndpointConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F11AA426A70648007DBE0A /* EndpointConstant.swift */; };
@@ -113,6 +115,8 @@
 		5293A7A526AE973700F786E9 /* MovieImageCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieImageCell+Design.swift"; sourceTree = "<group>"; };
 		5293A7A826AEA92B00F786E9 /* SubcategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryView.swift; sourceTree = "<group>"; };
 		5293A7AA26AEA93A00F786E9 /* SubcategoryView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubcategoryView+Design.swift"; sourceTree = "<group>"; };
+		5293A7AD26AFEFA200F786E9 /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
+		5293A7AF26AFF0A800F786E9 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		52F11AA026A705FE007DBE0A /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		52F11AA226A70637007DBE0A /* BundleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleImage.swift; sourceTree = "<group>"; };
 		52F11AA426A70648007DBE0A /* EndpointConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointConstant.swift; sourceTree = "<group>"; };
@@ -339,8 +343,10 @@
 		525666A526A840A500B5E0BE /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5293A7AF26AFF0A800F786E9 /* HomePresenter.swift */,
 				525666A626A840BE00B5E0BE /* HomeViewController.swift */,
 				525666AF26A847C900B5E0BE /* HomeViewController+Design.swift */,
+				5293A7AC26AFEF7000F786E9 /* ViewModels */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -443,12 +449,20 @@
 			path = SubcategoryImageView;
 			sourceTree = "<group>";
 		};
+		5293A7AC26AFEF7000F786E9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5293A7AD26AFEFA200F786E9 /* CategoryData.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		52F11AAD26A7176B007DBE0A /* SearchMoviesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				523C2EBE269EDC7A00F2EDD6 /* MoviesPresenter.swift */,
 				526B5168269D6D370095F3E2 /* MoviesViewController.swift */,
 				526B517B269DA8610095F3E2 /* MoviesViewController+Design.swift */,
-				523C2EBE269EDC7A00F2EDD6 /* MoviesPresenter.swift */,
 				5203717526A57EC100DE4AC7 /* ViewModels */,
 			);
 			path = SearchMoviesViewController;
@@ -601,8 +615,10 @@
 				525666B326A8494A00B5E0BE /* CustomTabBarController.swift in Sources */,
 				523C2EB0269DB2C800F2EDD6 /* MovieCell+Design.swift in Sources */,
 				5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */,
+				5293A7AE26AFEFA300F786E9 /* CategoryData.swift in Sources */,
 				525666BC26A8639600B5E0BE /* SearchBarStackView.swift in Sources */,
 				525666AC26A8435100B5E0BE /* LocalizableStrings.swift in Sources */,
+				5293A7B026AFF0A800F786E9 /* HomePresenter.swift in Sources */,
 				5293A7A926AEA92B00F786E9 /* SubcategoryView.swift in Sources */,
 				523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */,
 				52F11AA126A705FE007DBE0A /* UIImage+Extensions.swift in Sources */,

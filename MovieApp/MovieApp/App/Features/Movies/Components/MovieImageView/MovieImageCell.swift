@@ -29,6 +29,10 @@ class MovieImageCell: UICollectionViewCell {
         ellipseImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(heartTapped)))
     }
     
+    func setData(with image: UIImage){
+        imageView.image = image
+    }
+    
     @objc private func heartTapped(_ recognizer: UITapGestureRecognizer) {
         if !isFavorite {
             heartImageView.image = UIImage(with: .heartFilled)
@@ -36,10 +40,6 @@ class MovieImageCell: UICollectionViewCell {
             heartImageView.image = UIImage(with: .heartEmpty)
         }
         isFavorite = !isFavorite
-    }
-    
-    func setData(with image: UIImage){
-        imageView.image = image
     }
     
 }

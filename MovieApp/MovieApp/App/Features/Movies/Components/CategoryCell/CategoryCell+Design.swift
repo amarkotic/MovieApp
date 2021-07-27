@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 extension CategoryCell: DesignProtocol{
-
+    
     func buildViews() {
         createViews()
         styleViews()
@@ -10,7 +10,7 @@ extension CategoryCell: DesignProtocol{
     }
     
     func createViews() {
-        titleLabel = UILabel()
+//        categoryTitle = UILabel()
         contentView.addSubview(titleLabel)
         
         categoryScrollView = UIScrollView()
@@ -22,9 +22,6 @@ extension CategoryCell: DesignProtocol{
         }
         categoryScrollView.addSubview(categoryStackView)
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: collectionViewCellWidth, height: collectionViewCellHeight)
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         contentView.addSubview(collectionView)
     }
@@ -32,16 +29,18 @@ extension CategoryCell: DesignProtocol{
     func styleViews() {
         backgroundColor = .white
         
-        titleLabel.text = "What's popular"
         titleLabel.font = UIFont.bold(size: 20)
         titleLabel.textColor = UIColor.appBlue
         
-        categoryStackView.distribution = .fillProportionally
+        categoryScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat(defaultOffset))
+        
+        categoryStackView.distribution = .equalSpacing
         categoryStackView.spacing = 13
         
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(MovieImageCell.self, forCellWithReuseIdentifier: MovieImageCell.reuseIdentifier)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat(defaultOffset))
         collectionView.backgroundColor = .none
     }
     
@@ -59,8 +58,7 @@ extension CategoryCell: DesignProtocol{
         }
         
         categoryStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.height.equalToSuperview()
+            $0.edges.height.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints {
