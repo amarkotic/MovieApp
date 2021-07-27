@@ -1,8 +1,8 @@
 import UIKit
 
-class MovieImageCell: UICollectionViewCell {
+class MovieCollectionViewCell: UICollectionViewCell {
     
-    static let reuseIdentifier = String(describing: MovieImageCell.self)
+    static let reuseIdentifier = String(describing: MovieCollectionViewCell.self)
     
     let defaultOffset = 9
     let ellipseSize = CGSize(width: 32, height: 32)

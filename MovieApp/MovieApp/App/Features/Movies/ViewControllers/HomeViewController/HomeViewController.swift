@@ -6,7 +6,6 @@ class HomeViewController: UIViewController {
     let searchBarHeight = 43
     let rowHeight = CGFloat(311)
 
-    var logoImageView: UIImageView!
     var searchBarStackView: SearchBarStackView!
     var tableView: UITableView!
 
@@ -40,7 +39,7 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseIdentifier) as? CategoryCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseIdentifier) as? CategoryCell
         else {
             return CategoryCell()
         }

@@ -14,8 +14,8 @@ class CategoryCell: UITableViewCell {
 
     var titleLabel: UILabel!
     
-    var categoryScrollView: UIScrollView!
-    var categoryStackView: UIStackView!
+    var scrollView: UIScrollView!
+    var stackView: UIStackView!
     var categoryArray = [SubcategoryView]()
     
     var collectionView: UICollectionView!
@@ -25,6 +25,7 @@ class CategoryCell: UITableViewCell {
 
         createButtons()
         buildViews()
+        categoryArray.forEach { stackView.addArrangedSubview($0) }
     }
     
     required init?(coder: NSCoder) {
