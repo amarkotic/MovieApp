@@ -8,7 +8,6 @@ class SubcategoryView: UIView {
     var titleLabel: UILabel!
     var underline: UIView!
     var isSelected = false
-    var globalIdentifier: Int!
     var identifier: Int!
     
     weak var delegate: CategoryCell?
@@ -35,8 +34,8 @@ class SubcategoryView: UIView {
         if !isSelected {
             select()
             delegate.update(with: identifier)
+            isSelected = !isSelected
         }
-        isSelected = !isSelected
     }
     
     func select() {
