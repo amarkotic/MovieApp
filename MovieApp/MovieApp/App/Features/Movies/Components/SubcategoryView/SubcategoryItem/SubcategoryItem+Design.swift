@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-extension SubcategoryView: DesignProtocol {
+extension SubcategoryItem: DesignProtocol {
     
     func buildViews() {
         createViews()
@@ -27,13 +27,12 @@ extension SubcategoryView: DesignProtocol {
     
     func defineLayoutForViews() {
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.top.equalToSuperview()
         }
         
         underline.snp.makeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(defaultOffset)
             $0.height.equalTo(underlineHeight)
         }
     }

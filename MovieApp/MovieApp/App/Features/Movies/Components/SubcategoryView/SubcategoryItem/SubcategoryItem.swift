@@ -1,16 +1,17 @@
 import UIKit
 
-class SubcategoryView: UIView {
+class SubcategoryItem: UIView {
     
     let underlineHeight = 3
     let defaultInset = 10
+    let defaultOffset = 4
     
     var titleLabel: UILabel!
     var underline: UIView!
     var isSelected = false
     var identifier: Int!
-    
-    weak var delegate: CategoryTableViewCell?
+
+    private weak var delegate: SubcategoryScrollView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,26 +35,30 @@ class SubcategoryView: UIView {
         if !isSelected {
             select()
             delegate.update(with: identifier)
-            isSelected = !isSelected
+            isSelected = true
         }
     }
     
     func select() {
+        isSelected = true
         underline.isHidden = false
         titleLabel.textColor = .black
         titleLabel.font = .proximaBold
-        isSelected = true
     }
     
     func deselect() {
+        isSelected = false
         underline.isHidden = true
         titleLabel.textColor = .appGray
         titleLabel.font = .proximaMedium
-        isSelected = false
     }
     
     func setData(title: String) {
         titleLabel.text = title
+    }
+    
+    func setSubcategoryItemDelegate(delegate: SubcategoryScrollView) {
+        self.delegate = delegate
     }
     
 }

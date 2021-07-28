@@ -7,8 +7,6 @@ class CategoryTableViewCell: UITableViewCell {
     
     let defaultOffset = 18
     let secondaryOffset = 8
-    let collectionViewCellWidth = 122
-    let collectionViewCellHeight = 179
     let scrollHeight = 22
     
     let layout: UICollectionViewFlowLayout = {
@@ -19,55 +17,33 @@ class CategoryTableViewCell: UITableViewCell {
         return layout
     }()
     
-    var titleLabel = UILabel()
-    var categories = [String]()
-    var scrollView: UIScrollView!
-    var stackView: UIStackView!
-    var categoryArray = [SubcategoryView]()
-    var collectionView: UICollectionView!
     
     var firstLoad = true
+    var subcategories = [String]()
     
+    var titleLabel: UILabel!
+    var scrollView: SubcategoryScrollView!
+    var collectionView: UICollectionView!
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-      
+        
+        buildViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createButtons() {
-        for i in 0..<categories.count {
-            let categoriesView = SubcategoryView(frame: .zero)
-            categoriesView.delegate = self
-            categoriesView.isUserInteractionEnabled = true
-            categoriesView.identifier = i
-            if (categoriesView.identifier == 0) {
-                categoriesView.select()
-            }
-            categoriesView.setData(title: categories[i])
-            categoryArray.append(categoriesView)
-        }
-        buildViews()
-    }
-    
     func populateCell(category: String, subcategories: [String]) {
-        categories = subcategories
+        self.subcategories = subcategories
         titleLabel.text = category
-        
-        if(firstLoad){
-            createButtons()
-            firstLoad = false
-        }
+        scrollView.populateCell(category: category, subcategories: subcategories)
+        scrollView.setScrollViewDelegate(delegate: self)
     }
     
-    func update(with identifier: Int) {
-        for item in categoryArray {
-            if item.identifier != identifier {
-                item.deselect()
-            }
-        }
+    func subcategoryPressed(identifier: Int, category: String) {
+        print("You selected item n. \(identifier) from category: \(category)")
     }
     
 }
