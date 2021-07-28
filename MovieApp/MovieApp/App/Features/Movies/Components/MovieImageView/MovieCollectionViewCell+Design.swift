@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-extension MovieImageCell: DesignProtocol {
+extension MovieCollectionViewCell: DesignProtocol {
     
     func buildViews() {
         createViews()

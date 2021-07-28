@@ -5,13 +5,13 @@ class HomeViewController: UIViewController {
     let defaultInset = 20
     let searchBarHeight = 43
     let rowHeight = CGFloat(311)
-
+    
     var searchBarStackView: SearchBarStackView!
     var tableView: UITableView!
     
     var temporaryCategories = [String]()
     var temporarySubCategories = [[String]]()
-
+    
     private var presenter: HomePresenter!
     
     convenience init(presenter: HomePresenter) {
@@ -57,14 +57,14 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseIdentifier) as? CategoryCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTableViewCell.reuseIdentifier) as? CategoryTableViewCell
         else {
-            return CategoryCell()
+            return CategoryTableViewCell()
         }
         
         cell.populateCell(category: temporaryCategories[indexPath.row],
                           subcategories: temporarySubCategories[indexPath.row])
         return cell
     }
-
+    
 }

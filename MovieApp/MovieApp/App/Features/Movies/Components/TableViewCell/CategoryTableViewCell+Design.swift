@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-extension CategoryCell: DesignProtocol{
+extension CategoryTableViewCell: DesignProtocol {
     
     func buildViews() {
         createViews()
@@ -13,33 +13,31 @@ extension CategoryCell: DesignProtocol{
 //        categoryTitle = UILabel()
         contentView.addSubview(titleLabel)
         
-        categoryScrollView = UIScrollView()
-        contentView.addSubview(categoryScrollView)
+        scrollView = UIScrollView()
+        contentView.addSubview(scrollView)
         
-        categoryStackView = UIStackView()
-        for i in 0..<categoryArray.count {
-            categoryStackView.addArrangedSubview(categoryArray[i])
-        }
-        categoryScrollView.addSubview(categoryStackView)
+        stackView = UIStackView()
+        categoryArray.forEach { stackView.addArrangedSubview($0) }
+        scrollView.addSubview(stackView)
         
-        self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         contentView.addSubview(collectionView)
     }
     
     func styleViews() {
         backgroundColor = .white
         
-        titleLabel.font = UIFont.bold(size: 20)
-        titleLabel.textColor = UIColor.appBlue
+        titleLabel.font = .bold(size: 20)
+        titleLabel.textColor = .appBlue
         
-        categoryScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat(defaultOffset))
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat(defaultOffset))
         
-        categoryStackView.distribution = .equalSpacing
-        categoryStackView.spacing = 13
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 13
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(MovieImageCell.self, forCellWithReuseIdentifier: MovieImageCell.reuseIdentifier)
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.reuseIdentifier)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat(defaultOffset))
         collectionView.backgroundColor = .none
     }
@@ -50,20 +48,20 @@ extension CategoryCell: DesignProtocol{
             $0.top.equalToSuperview()
         }
         
-        categoryScrollView.snp.makeConstraints {
+        scrollView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(defaultOffset)
             $0.top.equalTo(titleLabel.snp.bottom).offset(secondaryOffset)
             $0.trailing.equalToSuperview()
             $0.height.equalTo(scrollHeight)
         }
         
-        categoryStackView.snp.makeConstraints {
-            $0.edges.height.equalToSuperview()
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(defaultOffset)
-            $0.top.equalTo(categoryScrollView.snp.bottom).offset(4 * secondaryOffset)
+            $0.top.equalTo(scrollView.snp.bottom).offset(4 * secondaryOffset)
             $0.trailing.equalToSuperview()
             $0.height.equalTo(collectionViewCellHeight)
         }

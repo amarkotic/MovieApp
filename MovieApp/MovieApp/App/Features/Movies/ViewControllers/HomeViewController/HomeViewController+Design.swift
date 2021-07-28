@@ -25,7 +25,7 @@ extension HomeViewController: DesignProtocol {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .none
-        tableView.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.reuseIdentifier)
+        tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: CategoryTableViewCell.reuseIdentifier)
         tableView.bounces = true
     }
     

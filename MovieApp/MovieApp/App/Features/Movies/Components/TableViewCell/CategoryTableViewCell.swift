@@ -1,9 +1,9 @@
 import UIKit
 import Kingfisher
 
-class CategoryCell: UITableViewCell {
+class CategoryTableViewCell: UITableViewCell {
     
-    static let reuseIdentifier = String(describing: CategoryCell.self)
+    static let reuseIdentifier = String(describing: CategoryTableViewCell.self)
     
     let defaultOffset = 18
     let secondaryOffset = 8
@@ -21,8 +21,8 @@ class CategoryCell: UITableViewCell {
     
     var titleLabel = UILabel()
     var categories = [String]()
-    var categoryScrollView: UIScrollView!
-    var categoryStackView: UIStackView!
+    var scrollView: UIScrollView!
+    var stackView: UIStackView!
     var categoryArray = [SubcategoryView]()
     var collectionView: UICollectionView!
     
@@ -72,7 +72,7 @@ class CategoryCell: UITableViewCell {
     
 }
 
-extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -80,8 +80,8 @@ extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieImageCell.reuseIdentifier,
-                                                          for: indexPath) as? MovieImageCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.reuseIdentifier,
+                                                          for: indexPath) as? MovieCollectionViewCell
         else {
             return UICollectionViewCell()
         }
