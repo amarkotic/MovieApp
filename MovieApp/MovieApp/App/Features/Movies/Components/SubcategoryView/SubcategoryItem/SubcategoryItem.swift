@@ -35,7 +35,6 @@ class SubcategoryItem: UIView {
         if !isSelected {
             select()
             delegate.update(with: identifier)
-            isSelected = true
         }
     }
     
