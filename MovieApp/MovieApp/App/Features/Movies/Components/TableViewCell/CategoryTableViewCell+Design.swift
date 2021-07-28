@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-extension CategoryCell: DesignProtocol{
+extension CategoryTableViewCell: DesignProtocol{
 
     func buildViews() {
         createViews()
@@ -38,7 +38,7 @@ extension CategoryCell: DesignProtocol{
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(MovieImageCell.self, forCellWithReuseIdentifier: MovieImageCell.reuseIdentifier)
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.reuseIdentifier)
         collectionView.backgroundColor = .none
     }
     

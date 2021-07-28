@@ -10,7 +10,7 @@ class SubcategoryView: UIView {
     var isSelected = false
     var identifier: Int!
     
-    weak var delegate: CategoryCell?
+    weak var delegate: CategoryTableViewCell?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

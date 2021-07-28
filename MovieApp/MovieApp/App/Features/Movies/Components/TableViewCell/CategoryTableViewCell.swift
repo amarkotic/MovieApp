@@ -1,9 +1,9 @@
 import UIKit
 import Kingfisher
 
-class CategoryCell: UITableViewCell {
+class CategoryTableViewCell: UITableViewCell {
     
-    static let reuseIdentifier = String(describing: CategoryCell.self)
+    static let reuseIdentifier = String(describing: CategoryTableViewCell.self)
     let temporaryCategoryArray = ["Streaming", "On TV", "For Rent", "In theaters", "Popular", "For rent"]
     
     let defaultOffset = 18
@@ -48,7 +48,9 @@ class CategoryCell: UITableViewCell {
     }
     
     func update(with identifier: Int) {
+        
         for item in categoryArray {
+            print(item.identifier)
             if item.identifier != identifier {
                 item.deselect()
             }
@@ -57,7 +59,7 @@ class CategoryCell: UITableViewCell {
     
 }
 
-extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -65,7 +67,7 @@ extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieImageCell.reuseIdentifier, for: indexPath) as? MovieImageCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.reuseIdentifier, for: indexPath) as? MovieCollectionViewCell
         else {
             return UICollectionViewCell()
         }
