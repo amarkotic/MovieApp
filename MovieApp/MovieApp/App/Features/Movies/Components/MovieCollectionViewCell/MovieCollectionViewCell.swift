@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class MovieCollectionViewCell: UICollectionViewCell {
     
@@ -29,8 +30,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
         ellipseImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(heartTapped)))
     }
     
-    func setData(with image: UIImage){
-        imageView.image = image
+    func setData(with movie: MovieModel){
+        let url = URL(string: movie.imageUrl)
+        imageView.kf.setImage(with: url)
     }
     
     @objc private func heartTapped(_ recognizer: UITapGestureRecognizer) {

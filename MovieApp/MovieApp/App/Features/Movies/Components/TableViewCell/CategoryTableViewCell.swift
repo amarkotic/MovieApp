@@ -21,6 +21,8 @@ class CategoryTableViewCell: UITableViewCell {
     var scrollView: SubcategoryScrollView!
     var collectionView: UICollectionView!
     
+    var movies = [MovieModel]()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -31,9 +33,10 @@ class CategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func populateCell(title: String, categories: [String]) {
+    func populateCell(title: String, categories: [String], movies: [MovieModel]) {
         titleLabel.text = title
         scrollView.setData(categories: categories)
+        self.movies = movies
     }
     
     func subcategoryPressed(category: String) {
@@ -45,7 +48,7 @@ class CategoryTableViewCell: UITableViewCell {
 extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,7 +60,7 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
             return UICollectionViewCell()
         }
         
-        cell.setData(with: UIImage(with: .temporaryImage)!)
+        cell.setData(with: movies[indexPath.row])
         return cell
     }
     

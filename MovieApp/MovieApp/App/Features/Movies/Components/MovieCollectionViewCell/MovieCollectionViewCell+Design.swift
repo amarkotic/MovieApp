@@ -23,6 +23,7 @@ extension MovieCollectionViewCell: DesignProtocol {
     func styleViews() {
         imageView.layer.cornerRadius = cornerRadius
         imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
         
         ellipseImageView.image = UIImage(with: .ellipseImage)
         

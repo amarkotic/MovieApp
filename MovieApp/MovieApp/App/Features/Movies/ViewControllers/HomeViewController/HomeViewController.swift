@@ -9,9 +9,6 @@ class HomeViewController: UIViewController {
     var searchBarStackView: SearchBarStackView!
     var tableView: UITableView!
     
-//    var temporaryCategories = [String]()
-//    var temporarySubCategories = [[String]]()
-    
     private var presenter: HomePresenter!
     
     convenience init(presenter: HomePresenter) {
@@ -37,13 +34,7 @@ class HomeViewController: UIViewController {
         view.endEditing(true)
     }
     
-//    func get(categories: [String], subcategories: [[String]]){
-//        temporaryCategories = categories
-//        temporarySubCategories = subcategories
-//    }
-    
 }
-
 
 extension HomeViewController: UITableViewDelegate {
 }
@@ -61,7 +52,8 @@ extension HomeViewController: UITableViewDataSource {
             return CategoryTableViewCell()
         }
         
-        cell.populateCell(title: presenter.mockData[indexPath.row].title, categories: presenter.mockData[indexPath.row].categories)
+        let mockedData = presenter.mockData[indexPath.row]
+        cell.populateCell(title: mockedData.title, categories: mockedData.categories, movies: mockedData.movies)
         return cell
     }
     
