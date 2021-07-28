@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-extension SubcategoryItem: DesignProtocol {
+extension SubcategoryItemView: DesignProtocol {
     
     func buildViews() {
         createViews()
@@ -18,6 +18,8 @@ extension SubcategoryItem: DesignProtocol {
     }
     
     func styleViews() {
+        isUserInteractionEnabled = true
+
         titleLabel.textColor = .appGray
         titleLabel.textAlignment = .center
         

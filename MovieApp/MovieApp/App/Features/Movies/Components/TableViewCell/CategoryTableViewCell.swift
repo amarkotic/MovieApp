@@ -17,14 +17,10 @@ class CategoryTableViewCell: UITableViewCell {
         return layout
     }()
     
-    
-    var firstLoad = true
-    var subcategories = [String]()
-    
     var titleLabel: UILabel!
     var scrollView: SubcategoryScrollView!
     var collectionView: UICollectionView!
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -35,15 +31,13 @@ class CategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func populateCell(category: String, subcategories: [String]) {
-        self.subcategories = subcategories
-        titleLabel.text = category
-        scrollView.populateCell(category: category, subcategories: subcategories)
-        scrollView.setScrollViewDelegate(delegate: self)
+    func populateCell(title: String, categories: [String]) {
+        titleLabel.text = title
+        scrollView.setData(categories: categories)
     }
     
-    func subcategoryPressed(identifier: Int, category: String) {
-        print("You selected item n. \(identifier) from category: \(category)")
+    func subcategoryPressed(category: String) {
+        print("You selected item n. from category: \(category)")
     }
     
 }
@@ -56,8 +50,9 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.reuseIdentifier,
-                                                          for: indexPath) as? MovieCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: MovieCollectionViewCell.reuseIdentifier,
+                for: indexPath) as? MovieCollectionViewCell
         else {
             return UICollectionViewCell()
         }

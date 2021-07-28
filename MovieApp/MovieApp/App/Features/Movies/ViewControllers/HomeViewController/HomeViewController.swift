@@ -9,8 +9,8 @@ class HomeViewController: UIViewController {
     var searchBarStackView: SearchBarStackView!
     var tableView: UITableView!
     
-    var temporaryCategories = [String]()
-    var temporarySubCategories = [[String]]()
+//    var temporaryCategories = [String]()
+//    var temporarySubCategories = [[String]]()
     
     private var presenter: HomePresenter!
     
@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.setDelegate(delegate: self)
-        presenter.fetchCategories()
         buildViews()
         setupGestureRecognizer()
     }
@@ -38,10 +37,10 @@ class HomeViewController: UIViewController {
         view.endEditing(true)
     }
     
-    func get(categories: [String], subcategories: [[String]]){
-        temporaryCategories = categories
-        temporarySubCategories = subcategories
-    }
+//    func get(categories: [String], subcategories: [[String]]){
+//        temporaryCategories = categories
+//        temporarySubCategories = subcategories
+//    }
     
 }
 
@@ -52,7 +51,7 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return temporaryCategories.count
+        return presenter.mockData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,8 +61,7 @@ extension HomeViewController: UITableViewDataSource {
             return CategoryTableViewCell()
         }
         
-        cell.populateCell(category: temporaryCategories[indexPath.row],
-                          subcategories: temporarySubCategories[indexPath.row])
+        cell.populateCell(title: presenter.mockData[indexPath.row].title, categories: presenter.mockData[indexPath.row].categories)
         return cell
     }
     

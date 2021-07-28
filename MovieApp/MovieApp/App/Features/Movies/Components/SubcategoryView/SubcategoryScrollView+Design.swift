@@ -11,7 +11,6 @@ extension SubcategoryScrollView: DesignProtocol {
     
     func createViews() {
         stackView = UIStackView()
-        subcategoryArray.forEach { stackView.addArrangedSubview($0) }
         addSubview(stackView)
     }
     

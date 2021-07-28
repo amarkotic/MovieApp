@@ -9,3 +9,10 @@ struct CategoryData {
     let categories = ["What's popular", "Top rated", "Trending"]
     
 }
+
+struct CategoryViewModel {
+    
+    let title: String
+    let categories: [String]
+    
+}
