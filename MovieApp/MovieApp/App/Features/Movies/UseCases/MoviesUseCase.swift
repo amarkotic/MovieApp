@@ -15,6 +15,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 let useCaseModels: [MovieModel] = value.map { model -> MovieModel in
                     let imageUrl = NetworkConstants.imagePath + model.imageUrl
                     return MovieModel(
+                        id: model.id,
                         imageUrl: imageUrl,
                         title: model.title,
                         description: model.description)

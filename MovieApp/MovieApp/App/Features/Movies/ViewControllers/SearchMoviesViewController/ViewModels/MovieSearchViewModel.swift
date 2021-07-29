@@ -1,9 +1,11 @@
 import UIKit
 
-struct MovieViewModel {
+struct MovieSearchViewModel {
     
+    let id: Int
     let imageUrl: String
     let title: String
     let description: String
     
 }
+

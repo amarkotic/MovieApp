@@ -6,7 +6,6 @@ class SubcategoryScrollView: UIScrollView {
     var indexSelected = 0
     
     var stackView: UIStackView!
-    var title: String!
     
     private weak var scrollViewDelegate: CategoryTableViewCell?
     
@@ -24,9 +23,8 @@ class SubcategoryScrollView: UIScrollView {
         scrollViewDelegate = delegate
     }
     
-    func setData(title: String, categories: [String]) {
+    func setData(categories: [SubcategoryEnum]) {
         updateLayout()
-        self.title = title
         createCategoryViews(with: categories)
     }
     
@@ -36,7 +34,7 @@ class SubcategoryScrollView: UIScrollView {
         }
     }
     
-    private func createCategoryViews(with categories: [String]) {
+    private func createCategoryViews(with categories: [SubcategoryEnum]) {
         categories.enumerated().forEach { index, category in
             let item = SubcategoryItemView(category: category)
             stackView.addArrangedSubview(item)
@@ -63,7 +61,7 @@ class SubcategoryScrollView: UIScrollView {
                 arrayItem.styleDeselect()
             }
         }
-        delegate.subcategoryPressed(category: item.category, title: title)
+        delegate.subcategoryPressed(subCategory: item.category)
     }
     
 }

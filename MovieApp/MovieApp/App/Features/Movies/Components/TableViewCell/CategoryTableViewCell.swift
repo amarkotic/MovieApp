@@ -21,7 +21,8 @@ class CategoryTableViewCell: UITableViewCell {
     var scrollView: SubcategoryScrollView!
     var collectionView: UICollectionView!
     
-    var movies = [MovieModel]()
+    var category: CategoryEnum!
+    var movies = [MovieViewModel]()
     
     weak private var delegate: HomeViewController?
     
@@ -35,15 +36,16 @@ class CategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func populateCell(title: String, categories: [String], movies: [MovieModel]) {
-        titleLabel.text = title
-        scrollView.setData(title: title, categories: categories)
+    func populateCell(title: CategoryEnum, categories: [SubcategoryEnum], movies: [MovieViewModel]) {
+        category = title
+        titleLabel.text = title.rawValue
+        scrollView.setData(categories: categories)
         self.movies = movies
         collectionView.reloadData()
     }
     
-    func subcategoryPressed(category: String, title: String) {
-        delegate?.subcategoryPressed(category: category, title: title)
+    func subcategoryPressed(subCategory: SubcategoryEnum) {
+        delegate?.subcategoryPressed(category: category, subCategory: subCategory)
     }
     
     func set(delegate: HomeViewController) {
@@ -57,6 +59,7 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard

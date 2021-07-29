@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-extension MoviesViewController: DesignProtocol {
+extension MoviesSearchViewController: DesignProtocol {
     
     func buildViews() {
         createViews()
@@ -20,7 +20,7 @@ extension MoviesViewController: DesignProtocol {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .white
-        tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.reuseIdentifier)
+        tableView.register(MovieSearchCell.self, forCellReuseIdentifier: MovieSearchCell.reuseIdentifier)
         tableView.rowHeight = rowHeight
         tableView.bounces = true
         tableView.separatorStyle = .none

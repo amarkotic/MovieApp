@@ -19,7 +19,6 @@ extension HomeViewController: DesignProtocol {
     func styleViews() {
         view.backgroundColor = .white
         
-        tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = rowHeight
         tableView.separatorStyle = .none

@@ -10,8 +10,8 @@ extension MovieCollectionViewCell: DesignProtocol {
     }
     
     func createViews() {
-        imageView = UIImageView()
-        contentView.addSubview(imageView)
+        movieImageView = UIImageView()
+        contentView.addSubview(movieImageView)
         
         ellipseImageView = UIImageView()
         contentView.addSubview(ellipseImageView)
@@ -21,9 +21,9 @@ extension MovieCollectionViewCell: DesignProtocol {
     }
     
     func styleViews() {
-        imageView.layer.cornerRadius = cornerRadius
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFill
+        movieImageView.layer.cornerRadius = cornerRadius
+        movieImageView.layer.masksToBounds = true
+        movieImageView.contentMode = .scaleAspectFill
         
         ellipseImageView.image = UIImage(with: .ellipseImage)
         
@@ -31,7 +31,7 @@ extension MovieCollectionViewCell: DesignProtocol {
     }
     
     func defineLayoutForViews() {
-        imageView.snp.makeConstraints {
+        movieImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         

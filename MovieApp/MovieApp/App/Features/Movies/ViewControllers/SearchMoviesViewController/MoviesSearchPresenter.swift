@@ -1,16 +1,16 @@
 import UIKit
 import Alamofire
 
-class MoviesPresenter {
+class MoviesSearchPresenter {
     
     private let moviesUseCase: MoviesUseCaseProtocol
-    weak private var moviesViewDelegate: MoviesViewController?
+    weak private var moviesViewDelegate: MoviesSearchViewController?
     
     init(moviesUseCase: MoviesUseCaseProtocol) {
         self.moviesUseCase = moviesUseCase
     }
     
-    func setMoviesViewDelegate(moviesViewDelegate: MoviesViewController?) {
+    func setMoviesViewDelegate(moviesViewDelegate: MoviesSearchViewController?) {
         self.moviesViewDelegate = moviesViewDelegate
     }
     
@@ -20,8 +20,9 @@ class MoviesPresenter {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let viewModels: [MovieViewModel] = value.map { model -> MovieViewModel in
-                    return MovieViewModel(
+                let viewModels: [MovieSearchViewModel] = value.map { model -> MovieSearchViewModel in
+                    return MovieSearchViewModel(
+                        id: model.id,
                         imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description)

@@ -1,4 +1,4 @@
-enum Subcategory: String {
+enum SubcategoryEnum: String {
     
     case action = "Action"
     case comedy = "Comedy"
@@ -10,4 +10,5 @@ enum Subcategory: String {
     case western = "Western"
     case today = "Today"
     case thisWeek = "This week"
+    
 }
