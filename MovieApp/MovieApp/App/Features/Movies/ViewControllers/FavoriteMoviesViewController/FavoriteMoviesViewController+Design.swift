@@ -17,5 +17,5 @@ extension FavoriteMoviesViewController: DesignProtocol {
     
     func defineLayoutForViews() {
     }
-    
+
 }
