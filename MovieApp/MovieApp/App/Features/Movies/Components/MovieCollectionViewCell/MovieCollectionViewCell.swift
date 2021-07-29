@@ -14,9 +14,10 @@ class MovieCollectionViewCell: UICollectionViewCell {
     var ellipseImageView: UIImageView!
     var heartImageView: UIImageView!
     var isFavorite = false
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         buildViews()
         enableInteraction()
     }

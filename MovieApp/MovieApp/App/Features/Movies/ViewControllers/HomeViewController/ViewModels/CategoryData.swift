@@ -4,6 +4,7 @@ struct CategoryViewModel {
     
     let title: String
     let categories: [String]
-    let movies: [MovieModel]
+    //Temporary changed to var just for demonstration purposes with mocked data
+    var movies: [MovieModel]
     
 }

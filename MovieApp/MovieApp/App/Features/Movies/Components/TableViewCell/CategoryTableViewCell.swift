@@ -23,6 +23,8 @@ class CategoryTableViewCell: UITableViewCell {
     
     var movies = [MovieModel]()
     
+    weak private var delegate: HomeViewController?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -35,12 +37,17 @@ class CategoryTableViewCell: UITableViewCell {
     
     func populateCell(title: String, categories: [String], movies: [MovieModel]) {
         titleLabel.text = title
-        scrollView.setData(categories: categories)
+        scrollView.setData(title: title, categories: categories)
         self.movies = movies
+        collectionView.reloadData()
     }
     
-    func subcategoryPressed(category: String) {
-        print("You selected item n. from category: \(category)")
+    func subcategoryPressed(category: String, title: String) {
+        delegate?.subcategoryPressed(category: category, title: title)
+    }
+    
+    func set(delegate: HomeViewController) {
+        self.delegate = delegate
     }
     
 }

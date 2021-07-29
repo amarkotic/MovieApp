@@ -45,5 +45,5 @@ extension MovieCollectionViewCell: DesignProtocol {
             $0.size.equalTo(heartSize)
         }
     }
-
+    
 }

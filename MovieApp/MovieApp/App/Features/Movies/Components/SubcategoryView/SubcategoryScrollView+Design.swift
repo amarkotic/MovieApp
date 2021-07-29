@@ -22,6 +22,7 @@ extension SubcategoryScrollView: DesignProtocol {
     func defineLayoutForViews() {
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.height.equalToSuperview()
         }
     }
 

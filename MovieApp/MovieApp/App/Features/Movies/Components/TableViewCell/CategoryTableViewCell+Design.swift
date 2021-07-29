@@ -27,7 +27,7 @@ extension CategoryTableViewCell: DesignProtocol {
         
         scrollView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(defaultOffset), bottom: 0, right: CGFloat(defaultOffset))
         scrollView.isDirectionalLockEnabled = true
-        scrollView.setScrollViewDelegate(delegate: self)
+        scrollView.setDelegate(delegate: self)
         
         collectionView.dataSource = self
         collectionView.delegate = self
