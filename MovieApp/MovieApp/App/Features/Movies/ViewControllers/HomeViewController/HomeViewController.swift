@@ -9,9 +9,6 @@ class HomeViewController: UIViewController {
     var searchBarStackView: SearchBarStackView!
     var tableView: UITableView!
     
-//    var temporaryCategories = [String]()
-//    var temporarySubCategories = [[String]]()
-    
     private var presenter: HomePresenter!
     
     convenience init(presenter: HomePresenter) {
@@ -28,6 +25,12 @@ class HomeViewController: UIViewController {
         setupGestureRecognizer()
     }
     
+    func subcategoryPressed(category: CategoryEnum, subCategory: SubcategoryEnum) {
+        presenter.fetchMovies(category: category, subCategory: subCategory)
+        tableView.reloadData()
+        print("You selected item: \(subCategory) from category: \(category)")
+    }
+    
     private func setupGestureRecognizer() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uiViewPressed))
         view.addGestureRecognizer(tap)
@@ -37,15 +40,6 @@ class HomeViewController: UIViewController {
         view.endEditing(true)
     }
     
-//    func get(categories: [String], subcategories: [[String]]){
-//        temporaryCategories = categories
-//        temporarySubCategories = subcategories
-//    }
-    
-}
-
-
-extension HomeViewController: UITableViewDelegate {
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -61,7 +55,10 @@ extension HomeViewController: UITableViewDataSource {
             return CategoryTableViewCell()
         }
         
-        cell.populateCell(title: presenter.mockData[indexPath.row].title, categories: presenter.mockData[indexPath.row].categories)
+        cell.set(delegate: self)
+
+        let data = presenter.mockData[indexPath.row]
+        cell.populateCell(title: data.title, categories: data.categories, movies: data.movies)
         return cell
     }
     

@@ -21,6 +21,11 @@ class CategoryTableViewCell: UITableViewCell {
     var scrollView: SubcategoryScrollView!
     var collectionView: UICollectionView!
     
+    var category: CategoryEnum!
+    var movies = [MovieViewModel]()
+    
+    weak private var delegate: HomeViewController?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -31,13 +36,20 @@ class CategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func populateCell(title: String, categories: [String]) {
-        titleLabel.text = title
+    func populateCell(title: CategoryEnum, categories: [SubcategoryEnum], movies: [MovieViewModel]) {
+        category = title
+        titleLabel.text = title.rawValue
         scrollView.setData(categories: categories)
+        self.movies = movies
+        collectionView.reloadData()
     }
     
-    func subcategoryPressed(category: String) {
-        print("You selected item n. from category: \(category)")
+    func subcategoryPressed(subCategory: SubcategoryEnum) {
+        delegate?.subcategoryPressed(category: category, subCategory: subCategory)
+    }
+    
+    func set(delegate: HomeViewController) {
+        self.delegate = delegate
     }
     
 }
@@ -45,8 +57,9 @@ class CategoryTableViewCell: UITableViewCell {
 extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return movies.count
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
@@ -57,7 +70,7 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
             return UICollectionViewCell()
         }
         
-        cell.setData(with: UIImage(with: .temporaryImage)!)
+        cell.setData(with: movies[indexPath.row])
         return cell
     }
     

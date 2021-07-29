@@ -1,9 +1,9 @@
 import UIKit
 import Kingfisher
 
-class MovieCell: UITableViewCell {
+class MovieSearchCell: UITableViewCell {
 
-    static let reuseIdentifier = String(describing: MovieCell.self)
+    static let reuseIdentifier = String(describing: MovieSearchCell.self)
 
     let defaultInset: CGFloat = 5
     let movieImageViewWidth = 100
@@ -22,7 +22,7 @@ class MovieCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func populateCell(with movie: MovieViewModel) {
+    func populateCell(with movie: MovieSearchViewModel) {
         movieImageView.kf.setImage(with: URL(string: movie.imageUrl))
         titleLabel.text = movie.title
         descriptionLabel.text = movie.description

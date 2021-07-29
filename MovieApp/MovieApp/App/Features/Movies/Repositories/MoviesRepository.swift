@@ -14,6 +14,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
             case .success(let value):
                 let repositoryModels: [MovieRepositoryModel] = value.map { model -> MovieRepositoryModel in
                     return MovieRepositoryModel(
+                        id: model.id,
                         imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description)

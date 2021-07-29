@@ -3,6 +3,7 @@ import UIKit
 class SubcategoryScrollView: UIScrollView {
     
     let stackViewSpacing = CGFloat(23)
+    var indexSelected = 0
     
     var stackView: UIStackView!
     
@@ -18,11 +19,11 @@ class SubcategoryScrollView: UIScrollView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setScrollViewDelegate(delegate: CategoryTableViewCell) {
+    func setDelegate(delegate: CategoryTableViewCell) {
         scrollViewDelegate = delegate
     }
     
-    func setData(categories: [String]) {
+    func setData(categories: [SubcategoryEnum]) {
         updateLayout()
         createCategoryViews(with: categories)
     }
@@ -33,14 +34,12 @@ class SubcategoryScrollView: UIScrollView {
         }
     }
     
-    private func createCategoryViews(with categories: [String]) {
+    private func createCategoryViews(with categories: [SubcategoryEnum]) {
         categories.enumerated().forEach { index, category in
             let item = SubcategoryItemView(category: category)
             stackView.addArrangedSubview(item)
-            
             item.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(titleTapped)))
-            
-            let isSelected = index == 0
+            let isSelected = index == indexSelected
             isSelected ? item.styleSelect() : item.styleDeselect()
         }
     }
@@ -53,12 +52,16 @@ class SubcategoryScrollView: UIScrollView {
         else {
             return
         }
-
-        items.forEach {
-            let isTapped = item.category == $0.category
-            isTapped ? $0.styleSelect() : $0.styleDeselect()
+        
+        items.enumerated().forEach { index, arrayItem in
+            if (item.category == arrayItem.category) {
+                arrayItem.styleSelect()
+                indexSelected = index
+            } else {
+                arrayItem.styleDeselect()
+            }
         }
-        delegate.subcategoryPressed(category: item.category)
+        delegate.subcategoryPressed(subCategory: item.category)
     }
     
 }

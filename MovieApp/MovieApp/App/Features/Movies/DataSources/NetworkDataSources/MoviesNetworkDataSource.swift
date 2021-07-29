@@ -14,6 +14,7 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             case .success(let value):
                 let movieDataSourceModels: [MovieDataSourceModel] = value.results.map { model -> MovieDataSourceModel in
                     return MovieDataSourceModel(
+                        id: model.id,
                         imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description)
