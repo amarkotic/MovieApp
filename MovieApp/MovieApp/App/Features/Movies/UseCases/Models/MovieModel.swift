@@ -1,6 +1,6 @@
 import UIKit
 
-struct MoviePosterModel {
+struct MovieModel {
     
     let id: Int
     let imageUrl: String

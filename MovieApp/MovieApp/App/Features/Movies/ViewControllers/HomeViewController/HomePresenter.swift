@@ -29,13 +29,13 @@ class HomePresenter {
     }
     
     func fetchMovies(category: CategoryEnum, subCategory: SubcategoryEnum) {
-        moviesUseCase.fetchPosterMovies(category: category, subcategory: subCategory) { [weak self] (result: Result<[MoviePosterModel], Error>) in
+        moviesUseCase.fetchMovies(category: category, subcategory: subCategory) { [weak self] (result: Result<[MovieModel], Error>) in
             guard let self = self else { return }
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let viewModels: [MovieViewModel] = value.map { model -> MovieViewModel in
+                    let viewModels: [MovieViewModel] = value.map { model -> MovieViewModel in
                     return MovieViewModel(
                         id: model.id,
                         imageUrl: model.imageUrl,

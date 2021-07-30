@@ -9,14 +9,20 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         self.networkService = networkService
     }
     
-    func getMovies(category: CategoryEnum, completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void) {
+    func getMovies(category: CategoryEnum, subcategory: SubcategoryEnum,
+                   completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void) {
         switch category {
         case .popular:
             url = EndpointConstant.popularMovies.url
         case .topRated:
             url = EndpointConstant.topRatedMovies.url
         case .trending:
-            url = EndpointConstant.trendingMoviesToday.url
+            switch subcategory {
+            case .thisWeek:
+                url = EndpointConstant.trendingMoviesThisWeek.url
+            default:
+                url = EndpointConstant.trendingMoviesToday.url
+            }
         }
         guard let url = url else { return }
         

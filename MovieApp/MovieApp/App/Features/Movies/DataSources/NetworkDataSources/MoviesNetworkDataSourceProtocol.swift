@@ -1,5 +1,8 @@
 protocol MoviesNetworkDataSourceProtocol {
-  
-    func fetchMovies(category: CategoryEnum, completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void)
+    
+    func fetchMovies(
+        category: CategoryEnum, subcategory: SubcategoryEnum,
+        completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void
+    )
     
 }

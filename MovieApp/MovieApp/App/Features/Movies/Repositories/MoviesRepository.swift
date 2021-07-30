@@ -6,8 +6,8 @@ class MoviesRepository: MoviesRepositoryProtocol {
         self.networkDataSource = networkDataSource
     }
     
-    func fetchMovies(category: CategoryEnum, completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void) {
-        networkDataSource.fetchMovies(category: category) { (result: Result<[MovieDataSourceModel], Error>) in
+    func fetchMovies(category: CategoryEnum, subcategory: SubcategoryEnum, completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void) {
+        networkDataSource.fetchMovies(category: category, subcategory: subcategory) { (result: Result<[MovieDataSourceModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
