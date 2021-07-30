@@ -6,8 +6,8 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         self.networkClient = networkClient
     }
     
-    func fetchMovies(completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void) {
-        networkClient.getMovies { (result: Result<MoviesNetworkModel, NetworkError>) in
+    func fetchMovies(category: CategoryEnum, completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void) {
+        networkClient.getMovies(category: category) { (result: Result<MoviesNetworkModel, NetworkError>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -17,7 +17,9 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
                         id: model.id,
                         imageUrl: model.imageUrl,
                         title: model.title,
-                        description: model.description)
+                        description: model.description,
+                        genreIds: model.genreIds
+                    )
                 }
                 completion(.success(movieDataSourceModels))
             }

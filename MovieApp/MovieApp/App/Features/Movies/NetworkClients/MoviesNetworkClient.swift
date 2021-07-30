@@ -3,13 +3,22 @@ import Foundation
 class MoviesNetworkClient: MoviesNetworkClientProtocol {
     
     private let networkService: NetworkServiceProtocol
+    var url: URL!
     
     init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }
     
-    func getMovies(completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void) {
-        guard let url = EndpointConstant.popularMovies.url else { return }
+    func getMovies(category: CategoryEnum, completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void) {
+        switch category {
+        case .popular:
+            url = EndpointConstant.popularMovies.url
+        case .topRated:
+            url = EndpointConstant.topRatedMovies.url
+        case .trending:
+            url = EndpointConstant.trendingMoviesToday.url
+        }
+        guard let url = url else { return }
         
         networkService.get(url: url, completion: completion)
     }

@@ -1,5 +1,5 @@
 protocol MoviesNetworkClientProtocol {
     
-    func getMovies(completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void)
-    
+    func getMovies(category: CategoryEnum, completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void)
+
 }

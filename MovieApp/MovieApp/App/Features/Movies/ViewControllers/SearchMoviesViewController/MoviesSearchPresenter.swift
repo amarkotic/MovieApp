@@ -15,7 +15,7 @@ class MoviesSearchPresenter {
     }
     
     func fetchMovies() {
-        moviesUseCase.fetchMovies { [weak self] (result: Result<[MovieModel], Error>) in
+        moviesUseCase.fetchSearchMovies(category: .popular) { [weak self] (result: Result<[MovieSearchModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)

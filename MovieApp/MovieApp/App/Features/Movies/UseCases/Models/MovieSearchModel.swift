@@ -1,6 +1,6 @@
 import UIKit
 
-struct MovieModel {
+struct MovieSearchModel {
     
     let id: Int
     let imageUrl: String

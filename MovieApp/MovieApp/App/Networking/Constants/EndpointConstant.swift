@@ -11,10 +11,35 @@ extension EndpointConstant {
     
     static var popularMovies: EndpointConstant {
         EndpointConstant(path: "/3/movie/popular",
-                        queryItems: [
+                         queryItems: [
                             URLQueryItem(name: "api_key", value: NetworkConstants.apiKey),
                             URLQueryItem(name: "language", value: NetworkConstants.language)
-                        ]
+                         ]
+        )
+    }
+    
+    static var topRatedMovies: EndpointConstant {
+        EndpointConstant(path: "/3/movie/top_rated",
+                         queryItems: [
+                            URLQueryItem(name: "api_key", value: NetworkConstants.apiKey),
+                            URLQueryItem(name: "language", value: NetworkConstants.language)
+                         ]
+        )
+    }
+    
+    static var trendingMoviesToday: EndpointConstant {
+        EndpointConstant(path: "/3/trending/movie/day",
+                         queryItems: [
+                            URLQueryItem(name: "api_key", value: NetworkConstants.apiKey)
+                         ]
+        )
+    }
+    
+    static var trendingMoviesThisWeek: EndpointConstant {
+        EndpointConstant(path: "/3/trending/movie/week",
+                         queryItems: [
+                            URLQueryItem(name: "api_key", value: NetworkConstants.apiKey)
+                         ]
         )
     }
     

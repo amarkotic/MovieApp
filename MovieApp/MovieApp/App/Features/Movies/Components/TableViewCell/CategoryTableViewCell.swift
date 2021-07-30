@@ -8,6 +8,7 @@ class CategoryTableViewCell: UITableViewCell {
     let defaultOffset = 18
     let secondaryOffset = 8
     let scrollHeight = 22
+    let refreshCollectionViewOffset = CGPoint(x: -18, y: 0)
     
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -45,13 +46,14 @@ class CategoryTableViewCell: UITableViewCell {
     }
     
     func subcategoryPressed(subCategory: SubcategoryEnum) {
+        collectionView.setContentOffset(refreshCollectionViewOffset, animated: true)
         delegate?.subcategoryPressed(category: category, subCategory: subCategory)
     }
     
     func set(delegate: HomeViewController) {
         self.delegate = delegate
     }
-    
+ 
 }
 
 extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -59,8 +61,7 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(

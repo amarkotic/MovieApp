@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.setDelegate(delegate: self)
+        fetchInitialData()
         buildViews()
         setupGestureRecognizer()
     }
@@ -29,6 +30,16 @@ class HomeViewController: UIViewController {
         presenter.fetchMovies(category: category, subCategory: subCategory)
         tableView.reloadData()
         print("You selected item: \(subCategory) from category: \(category)")
+    }
+    
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+    private func fetchInitialData() {
+        presenter.fetchMovies(category: .popular, subCategory: .action)
+        presenter.fetchMovies(category: .topRated, subCategory: .action)
+        presenter.fetchMovies(category: .trending, subCategory: .today)
     }
     
     private func setupGestureRecognizer() {
@@ -45,7 +56,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.mockData.count
+        return presenter.data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,8 +67,8 @@ extension HomeViewController: UITableViewDataSource {
         }
         
         cell.set(delegate: self)
-
-        let data = presenter.mockData[indexPath.row]
+        
+        let data = presenter.data[indexPath.row]
         cell.populateCell(title: data.title, categories: data.categories, movies: data.movies)
         return cell
     }
