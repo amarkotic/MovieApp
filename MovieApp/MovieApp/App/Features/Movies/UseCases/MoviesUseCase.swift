@@ -32,13 +32,13 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 print(error.localizedDescription)
             case .success(let value):
                 var filteredValue = [MovieRepositoryModel]()
-                switch subcategory {
-                case .today, .thisWeek:
-                    filteredValue = value
-                default:
+                switch category {
+                case .popular, .topRated:
                     filteredValue = value.filter({
                         $0.genreIds.contains(subcategory.integerValue)
                     })
+                default:
+                    filteredValue = value
                 }
                 let useCasePosterModels: [MovieModel] = filteredValue.map { model -> MovieModel in
                     let imageUrl = NetworkConstants.imagePath + model.imageUrl

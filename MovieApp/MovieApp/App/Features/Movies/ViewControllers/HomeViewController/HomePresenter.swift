@@ -35,7 +35,7 @@ class HomePresenter {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                    let viewModels: [MovieViewModel] = value.map { model -> MovieViewModel in
+                let viewModels: [MovieViewModel] = value.map { model -> MovieViewModel in
                     return MovieViewModel(
                         id: model.id,
                         imageUrl: model.imageUrl,
@@ -53,6 +53,12 @@ class HomePresenter {
                 self.delegate?.reloadData()
             }
         }
+    }
+    
+    func initialFetch() {
+        fetchMovies(category: .popular, subCategory: .action)
+        fetchMovies(category: .topRated, subCategory: .action)
+        fetchMovies(category: .trending, subCategory: .today)
     }
     
 }

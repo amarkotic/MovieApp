@@ -9,7 +9,7 @@ class HomeViewController: UIViewController {
     var searchBarStackView: SearchBarStackView!
     var tableView: UITableView!
     
-    private var presenter: HomePresenter!
+    var presenter: HomePresenter!
     
     convenience init(presenter: HomePresenter) {
         self.init()
@@ -21,7 +21,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.setDelegate(delegate: self)
-        fetchInitialData()
         buildViews()
         setupGestureRecognizer()
     }
@@ -29,17 +28,10 @@ class HomeViewController: UIViewController {
     func subcategoryPressed(category: CategoryEnum, subCategory: SubcategoryEnum) {
         presenter.fetchMovies(category: category, subCategory: subCategory)
         tableView.reloadData()
-        print("You selected item: \(subCategory) from category: \(category)")
     }
     
     func reloadData() {
         tableView.reloadData()
-    }
-    
-    private func fetchInitialData() {
-        presenter.fetchMovies(category: .popular, subCategory: .action)
-        presenter.fetchMovies(category: .topRated, subCategory: .action)
-        presenter.fetchMovies(category: .trending, subCategory: .today)
     }
     
     private func setupGestureRecognizer() {
