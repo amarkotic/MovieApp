@@ -31,9 +31,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                
                 var filteredValue = [MovieRepositoryModel]()
-                
                 switch subcategory {
                 case .today, .thisWeek:
                     filteredValue = value

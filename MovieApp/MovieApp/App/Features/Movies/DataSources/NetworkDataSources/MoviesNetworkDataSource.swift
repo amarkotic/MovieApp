@@ -18,8 +18,7 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
                         imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description,
-                        genreIds: model.genreIds
-                    )
+                        genreIds: model.genreIds)
                 }
                 completion(.success(movieDataSourceModels))
             }
