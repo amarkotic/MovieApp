@@ -6,7 +6,8 @@ class AppRouter {
     private let navigationController: UINavigationController
     
     private lazy var tabBarController: UITabBarController = {
-        let homeViewController = HomeViewController(presenter: HomePresenter(moviesUseCase: appDependencies.moviesUseCase))
+        let homeViewController = HomeViewController(
+            presenter: HomePresenter(moviesUseCase: appDependencies.moviesUseCase), router: self)
         let favoriteViewController = FavoriteMoviesViewController()
         return CustomTabBarController(
             homeViewController: homeViewController,
@@ -25,6 +26,10 @@ class AppRouter {
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+    }
+    
+    func moviePressed() {
+        navigationController.pushViewController(DetailsViewController(), animated: true)
     }
     
     private func styleNavigationBar() {

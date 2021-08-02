@@ -10,11 +10,13 @@ class HomeViewController: UIViewController {
     var tableView: UITableView!
     
     var presenter: HomePresenter!
+    var appRouter: AppRouter!
     
-    convenience init(presenter: HomePresenter) {
+    convenience init(presenter: HomePresenter, router: AppRouter) {
         self.init()
         
         self.presenter = presenter
+        self.appRouter = router
     }
     
     override func viewDidLoad() {
@@ -32,6 +34,10 @@ class HomeViewController: UIViewController {
     
     func reloadData() {
         tableView.reloadData()
+    }
+    
+    func moviePressed(with id: Int) {
+        appRouter.moviePressed()
     }
     
     private func setupGestureRecognizer() {

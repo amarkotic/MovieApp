@@ -14,6 +14,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
     var ellipseImageView: UIImageView!
     var heartImageView: UIImageView!
     
+    var identifier: Int!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -30,6 +32,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         let url = URL(string: movie.imageUrl)
         movieImageView.kf.setImage(with: url)
         heartImageView.image = image
+        identifier = movie.id
     }
     
     private func enableInteraction() {

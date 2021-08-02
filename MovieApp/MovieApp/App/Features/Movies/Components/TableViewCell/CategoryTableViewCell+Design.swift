@@ -26,7 +26,6 @@ extension CategoryTableViewCell: DesignProtocol {
         titleLabel.textColor = .appBlue
         
         scrollView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(defaultOffset), bottom: 0, right: CGFloat(defaultOffset))
-        scrollView.isDirectionalLockEnabled = true
         scrollView.setDelegate(delegate: self)
         
         collectionView.dataSource = self

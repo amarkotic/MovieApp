@@ -53,6 +53,13 @@ class CategoryTableViewCell: UITableViewCell {
     func set(delegate: HomeViewController) {
         self.delegate = delegate
     }
+    
+    @objc private func movieTapped(_ sender: UITapGestureRecognizer) {
+        guard let item = sender.view as? MovieCollectionViewCell else { return }
+        if let id = item.identifier {
+            delegate?.moviePressed(with: id)
+        }
+    }
  
 }
 
@@ -72,6 +79,7 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         }
         
         cell.setData(with: movies[indexPath.row])
+        cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(movieTapped)))
         return cell
     }
     
