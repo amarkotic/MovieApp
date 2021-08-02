@@ -6,5 +6,6 @@ struct MovieModel {
     let imageUrl: String
     let isSelected: Bool
     let genreIds: [Int]
+    
 }
 
