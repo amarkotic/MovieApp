@@ -9,8 +9,11 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         self.networkService = networkService
     }
     
-    func getMovies(category: CategoryEnum, subcategory: SubcategoryEnum,
+    func getMovies(category: CategoryEnum,
+                   subcategory: SubcategoryDataSourceModel,
                    completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void) {
+        guard let subcategory = SubcategoryDataSourceModel(rawValue: subcategory.rawValue) else { return }
+        
         switch category {
         case .popular:
             url = EndpointConstant.popularMovies.url

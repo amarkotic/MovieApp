@@ -6,12 +6,12 @@ class SubcategoryItemView: UIView {
     let defaultInset = 10
     let defaultOffset = 4
     
-    let category: SubcategoryEnum
+    let category: SubcategoryViewModel
     
     var titleLabel: UILabel!
     var underline: UIView!
     
-    init(category: SubcategoryEnum) {
+    init(category: SubcategoryViewModel) {
         self.category = category
         super.init(frame: .zero)
         
@@ -23,7 +23,7 @@ class SubcategoryItemView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setData(title: SubcategoryEnum) {
+    private func setData(title: SubcategoryViewModel) {
         titleLabel.text = title.rawValue
     }
     

@@ -7,7 +7,7 @@ protocol MoviesUseCaseProtocol {
     
     func fetchMovies(
         category: CategoryEnum,
-        subcategory: SubcategoryEnum,
+        subcategory: SubcategoryViewModel,
         completion: @escaping (Result<[MovieModel], Error>) -> Void
     )
     

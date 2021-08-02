@@ -37,7 +37,7 @@ class CategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func populateCell(title: CategoryEnum, categories: [SubcategoryEnum], movies: [MovieViewModel]) {
+    func populateCell(title: CategoryEnum, categories: [SubcategoryViewModel], movies: [MovieViewModel]) {
         category = title
         titleLabel.text = title.rawValue
         scrollView.setData(categories: categories)
@@ -45,7 +45,7 @@ class CategoryTableViewCell: UITableViewCell {
         collectionView.reloadData()
     }
     
-    func subcategoryPressed(subCategory: SubcategoryEnum) {
+    func subcategoryPressed(subCategory: SubcategoryViewModel) {
         collectionView.setContentOffset(refreshCollectionViewOffset, animated: true)
         delegate?.subcategoryPressed(category: category, subCategory: subCategory)
     }

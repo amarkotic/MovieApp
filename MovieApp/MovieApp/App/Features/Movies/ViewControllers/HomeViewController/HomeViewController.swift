@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
         setupGestureRecognizer()
     }
     
-    func subcategoryPressed(category: CategoryEnum, subCategory: SubcategoryEnum) {
+    func subcategoryPressed(category: CategoryEnum, subCategory: SubcategoryViewModel) {
         presenter.fetchMovies(category: category, subCategory: subCategory)
         tableView.reloadData()
     }

@@ -6,8 +6,10 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         self.repository = repository
     }
     
-    func fetchSearchMovies(category: CategoryEnum, completion: @escaping (Result<[MovieSearchModel], Error>) -> Void) {
-        repository.fetchMovies(category: .popular, subcategory: .action) { (result: Result<[MovieRepositoryModel], Error>) in
+    func fetchSearchMovies(category: CategoryEnum,
+                           completion: @escaping (Result<[MovieSearchModel], Error>) -> Void) {
+        repository.fetchMovies(category: .popular, subcategory: .action) {
+            (result: Result<[MovieRepositoryModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -25,29 +27,36 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
-    func fetchMovies(category: CategoryEnum, subcategory: SubcategoryEnum, completion: @escaping (Result<[MovieModel], Error>) -> Void) {
-        repository.fetchMovies(category: category, subcategory: subcategory) { (result: Result<[MovieRepositoryModel], Error>)  in
+    func fetchMovies(
+        category: CategoryEnum,
+        subcategory: SubcategoryViewModel,
+        completion: @escaping (Result<[MovieModel], Error>) -> Void) {
+        guard let subcategory = SubcategoryModel(rawValue: subcategory.rawValue) else { return }
+        
+        repository.fetchMovies(category: category, subcategory: subcategory) {
+            (result: Result<[MovieRepositoryModel], Error>)  in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                var filteredValue = [MovieRepositoryModel]()
-                switch category {
-                case .popular, .topRated:
-                    filteredValue = value.filter({
-                        $0.genreIds.contains(subcategory.genreId)
-                    })
-                default:
-                    filteredValue = value
-                }
-                let useCasePosterModels: [MovieModel] = filteredValue.map { model -> MovieModel in
+                let useCasePosterModels: [MovieModel] = value.map { model -> MovieModel in
                     let imageUrl = NetworkConstants.imagePath + model.imageUrl
                     return MovieModel(
                         id: model.id,
                         imageUrl: imageUrl,
-                        isSelected: false)
+                        isSelected: false,
+                        genreIds: model.genreIds)
                 }
-                completion(.success(useCasePosterModels))
+                var filteredValue = [MovieModel]()
+                switch category {
+                case .popular, .topRated:
+                    filteredValue = useCasePosterModels.filter({
+                        $0.genreIds.contains(subcategory.genreId)
+                    })
+                default:
+                    filteredValue = useCasePosterModels
+                }
+                completion(.success(filteredValue))
             }
         }
     }

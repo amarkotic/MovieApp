@@ -1,4 +1,4 @@
-enum SubcategoryEnum: String {
+enum SubcategoryModel: String {
     
     case action = "Action"
     case adventure = "Adventure"
@@ -36,5 +36,13 @@ enum SubcategoryEnum: String {
             return 0
         }
     }
+
+      
+  }
+
     
-}
+    
+    
+    
+    
+    
