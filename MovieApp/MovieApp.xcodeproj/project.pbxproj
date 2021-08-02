@@ -49,6 +49,8 @@
 		526B5169269D6D370095F3E2 /* MoviesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5168269D6D370095F3E2 /* MoviesSearchViewController.swift */; };
 		526B5171269D6D390095F3E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526B5170269D6D390095F3E2 /* Assets.xcassets */; };
 		526B517C269DA8610095F3E2 /* MoviesSearchViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B517B269DA8610095F3E2 /* MoviesSearchViewController+Design.swift */; };
+		5288080A26B7EE4100B72EDB /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288080926B7EE4100B72EDB /* DetailsViewController.swift */; };
+		5288080C26B7EE4C00B72EDB /* DetailsViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288080B26B7EE4C00B72EDB /* DetailsViewController+Design.swift */; };
 		5293A79F26A9A4C700F786E9 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A79E26A9A4C700F786E9 /* CategoryTableViewCell.swift */; };
 		5293A7A126A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7A026A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift */; };
 		5293A7A426AE973000F786E9 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7A326AE973000F786E9 /* MovieCollectionViewCell.swift */; };
@@ -121,6 +123,8 @@
 		526B5170269D6D390095F3E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		526B5175269D6D390095F3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		526B517B269DA8610095F3E2 /* MoviesSearchViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesSearchViewController+Design.swift"; sourceTree = "<group>"; };
+		5288080926B7EE4100B72EDB /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		5288080B26B7EE4C00B72EDB /* DetailsViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsViewController+Design.swift"; sourceTree = "<group>"; };
 		5293A79E26A9A4C700F786E9 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		5293A7A026A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryTableViewCell+Design.swift"; sourceTree = "<group>"; };
 		5293A7A326AE973000F786E9 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 		5203717426A57E8900DE4AC7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5288080826B7EE2900B72EDB /* DetailsViewController */,
 				525666A826A8416800B5E0BE /* FavoriteMoviesViewController */,
 				525666A526A840A500B5E0BE /* HomeViewController */,
 				52F11AAD26A7176B007DBE0A /* SearchMoviesViewController */,
@@ -444,6 +449,15 @@
 				5203716C26A57CCC00DE4AC7 /* App */,
 			);
 			path = MovieApp;
+			sourceTree = "<group>";
+		};
+		5288080826B7EE2900B72EDB /* DetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5288080926B7EE4100B72EDB /* DetailsViewController.swift */,
+				5288080B26B7EE4C00B72EDB /* DetailsViewController+Design.swift */,
+			);
+			path = DetailsViewController;
 			sourceTree = "<group>";
 		};
 		5293A79D26A9A4B300F786E9 /* TableViewCell */ = {
@@ -662,7 +676,9 @@
 				5203718426A6AB3500DE4AC7 /* MoviesNetworkClient.swift in Sources */,
 				5293A7AB26AEA93A00F786E9 /* SubcategoryScrollView+Design.swift in Sources */,
 				5203717B26A5B3DB00DE4AC7 /* MovieNetworkModel.swift in Sources */,
+				5288080C26B7EE4C00B72EDB /* DetailsViewController+Design.swift in Sources */,
 				525666B526A84D9000B5E0BE /* CustomTabBarController+Design.swift in Sources */,
+				5288080A26B7EE4100B72EDB /* DetailsViewController.swift in Sources */,
 				525666BE26A8646D00B5E0BE /* SearchBarStackView+Design.swift in Sources */,
 				523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */,
 				52F64E7526B932240046A8ED /* MovieCategoryModel.swift in Sources */,
