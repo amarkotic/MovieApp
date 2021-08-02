@@ -35,7 +35,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 switch category {
                 case .popular, .topRated:
                     filteredValue = value.filter({
-                        $0.genreIds.contains(subcategory.integerValue)
+                        $0.genreIds.contains(subcategory.genreId)
                     })
                 default:
                     filteredValue = value

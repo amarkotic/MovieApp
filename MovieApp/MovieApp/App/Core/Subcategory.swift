@@ -12,7 +12,7 @@ enum SubcategoryEnum: String {
     case today = "Today"
     case thisWeek = "This week"
     
-    var integerValue: Int {
+    var genreId: Int {
         switch self {
         case .action:
             return 28
