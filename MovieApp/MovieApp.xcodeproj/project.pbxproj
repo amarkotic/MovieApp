@@ -77,6 +77,10 @@
 		52F64E7326B82F490046A8ED /* MainInfoView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E7226B82F490046A8ED /* MainInfoView+Design.swift */; };
 		52F64E7F26B95EA40046A8ED /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E7E26B95EA40046A8ED /* OverviewView.swift */; };
 		52F64E8126B95EAD0046A8ED /* OverviewView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E8026B95EAD0046A8ED /* OverviewView+Design.swift */; };
+		52F64E8626B968F70046A8ED /* CastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E8526B968F70046A8ED /* CastView.swift */; };
+		52F64E8826B969010046A8ED /* CastView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E8726B969010046A8ED /* CastView+Design.swift */; };
+		52F64E8B26B96B430046A8ED /* CastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E8A26B96B430046A8ED /* CastCollectionViewCell.swift */; };
+		52F64E8D26B96B4F0046A8ED /* CastCollectionViewCell+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E8C26B96B4F0046A8ED /* CastCollectionViewCell+Design.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -149,6 +153,10 @@
 		52F64E7226B82F490046A8ED /* MainInfoView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainInfoView+Design.swift"; sourceTree = "<group>"; };
 		52F64E7E26B95EA40046A8ED /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
 		52F64E8026B95EAD0046A8ED /* OverviewView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OverviewView+Design.swift"; sourceTree = "<group>"; };
+		52F64E8526B968F70046A8ED /* CastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastView.swift; sourceTree = "<group>"; };
+		52F64E8726B969010046A8ED /* CastView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CastView+Design.swift"; sourceTree = "<group>"; };
+		52F64E8A26B96B430046A8ED /* CastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCollectionViewCell.swift; sourceTree = "<group>"; };
+		52F64E8C26B96B4F0046A8ED /* CastCollectionViewCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CastCollectionViewCell+Design.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,11 +254,8 @@
 			isa = PBXGroup;
 			children = (
 				52F64E7C26B95E7C0046A8ED /* DetailsComponents */,
-				525666B926A8635100B5E0BE /* MovieSearchCell */,
-				5293A7A226AE96B500F786E9 /* MovieCollectionViewCell */,
-				525666BA26A8635A00B5E0BE /* SearchBar */,
-				5293A7A726AEA8F400F786E9 /* SubcategoryView */,
-				5293A79D26A9A4B300F786E9 /* TableViewCell */,
+				52F64E8326B966B30046A8ED /* HomeComponents */,
+				52F64E8226B966A60046A8ED /* SearchComponents */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -561,6 +566,7 @@
 		52F64E7C26B95E7C0046A8ED /* DetailsComponents */ = {
 			isa = PBXGroup;
 			children = (
+				52F64E8426B968E10046A8ED /* CastView */,
 				52F64E6F26B82EC10046A8ED /* MainInfoView */,
 				52F64E7D26B95E930046A8ED /* OverviewView */,
 			);
@@ -574,6 +580,44 @@
 				52F64E8026B95EAD0046A8ED /* OverviewView+Design.swift */,
 			);
 			path = OverviewView;
+			sourceTree = "<group>";
+		};
+		52F64E8226B966A60046A8ED /* SearchComponents */ = {
+			isa = PBXGroup;
+			children = (
+				525666B926A8635100B5E0BE /* MovieSearchCell */,
+				525666BA26A8635A00B5E0BE /* SearchBar */,
+			);
+			path = SearchComponents;
+			sourceTree = "<group>";
+		};
+		52F64E8326B966B30046A8ED /* HomeComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5293A7A226AE96B500F786E9 /* MovieCollectionViewCell */,
+				5293A7A726AEA8F400F786E9 /* SubcategoryView */,
+				5293A79D26A9A4B300F786E9 /* TableViewCell */,
+			);
+			path = HomeComponents;
+			sourceTree = "<group>";
+		};
+		52F64E8426B968E10046A8ED /* CastView */ = {
+			isa = PBXGroup;
+			children = (
+				52F64E8526B968F70046A8ED /* CastView.swift */,
+				52F64E8726B969010046A8ED /* CastView+Design.swift */,
+				52F64E8926B96B310046A8ED /* CastCollectionViewCell */,
+			);
+			path = CastView;
+			sourceTree = "<group>";
+		};
+		52F64E8926B96B310046A8ED /* CastCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				52F64E8A26B96B430046A8ED /* CastCollectionViewCell.swift */,
+				52F64E8C26B96B4F0046A8ED /* CastCollectionViewCell+Design.swift */,
+			);
+			path = CastCollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -663,6 +707,7 @@
 				523C2EBF269EDC7A00F2EDD6 /* MoviesSearchPresenter.swift in Sources */,
 				52F11AA726A70680007DBE0A /* NetworkConstants.swift in Sources */,
 				5293A7A626AE973700F786E9 /* MovieCollectionViewCell+Design.swift in Sources */,
+				52F64E8D26B96B4F0046A8ED /* CastCollectionViewCell+Design.swift in Sources */,
 				526B5169269D6D370095F3E2 /* MoviesSearchViewController.swift in Sources */,
 				525666A726A840BE00B5E0BE /* HomeViewController.swift in Sources */,
 				5293A7A126A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift in Sources */,
@@ -671,6 +716,7 @@
 				5293A7B626B13D1500F786E9 /* SubcategoryItemView+Design.swift in Sources */,
 				522EE8E926A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift in Sources */,
 				5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */,
+				52F64E8826B969010046A8ED /* CastView+Design.swift in Sources */,
 				522EE8EC26A6C2B100A456E2 /* MoviesNetworkDataSource.swift in Sources */,
 				525666AE26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift in Sources */,
 				52F11AAC26A71487007DBE0A /* AppDependecies.swift in Sources */,
@@ -694,6 +740,8 @@
 				5288080C26B7EE4C00B72EDB /* DetailsViewController+Design.swift in Sources */,
 				525666B526A84D9000B5E0BE /* CustomTabBarController+Design.swift in Sources */,
 				5288080A26B7EE4100B72EDB /* DetailsViewController.swift in Sources */,
+				52F64E8626B968F70046A8ED /* CastView.swift in Sources */,
+				52F64E8B26B96B430046A8ED /* CastCollectionViewCell.swift in Sources */,
 				525666BE26A8646D00B5E0BE /* SearchBarStackView+Design.swift in Sources */,
 				52F64E7126B82F420046A8ED /* MainInfoView.swift in Sources */,
 				523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */,

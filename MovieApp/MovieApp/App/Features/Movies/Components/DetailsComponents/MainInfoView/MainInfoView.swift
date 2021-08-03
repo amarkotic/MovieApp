@@ -2,8 +2,13 @@ import UIKit
 
 class MainInfoView: UIView {
     
+    let defaultOffset = 18
+    let secondaryOffset = 8
+    let progressBarTopOffset = 107
+    
     var moviePoster: UIImageView!
     var progressBar: UIImageView!
+    var progressLabel: UILabel!
     var userScoreLabel: UILabel!
     var nameLabel: UILabel!
     var releaseDateLabel: UILabel!

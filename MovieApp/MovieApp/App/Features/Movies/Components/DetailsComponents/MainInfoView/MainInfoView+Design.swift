@@ -16,7 +16,10 @@ extension MainInfoView: DesignProtocol {
         progressBar = UIImageView()
         addSubview(progressBar)
         
-        userScoreLabel = UILabel(with: .proximaMedium)
+        progressLabel = UILabel(with: .medium(size: 15))
+        progressBar.addSubview(progressLabel)
+        
+        userScoreLabel = UILabel(with: .proximaSemiBold)
         addSubview(userScoreLabel)
         
         nameLabel = UILabel(with: .bold(size: 24))
@@ -42,9 +45,12 @@ extension MainInfoView: DesignProtocol {
         
         progressBar.image = UIImage(with: .progressBar)
         
-        userScoreLabel.text = "User score"
+        progressLabel.text = "76%"
+        
+        userScoreLabel.text = LocalizableStrings.userScore.rawValue
         
         nameLabel.text = "Iron Man 1"
+        nameLabel.textColor = .detailsGray
         
         releaseDateLabel.text = "05/02/2008 (US)"
         
@@ -61,34 +67,38 @@ extension MainInfoView: DesignProtocol {
         }
         
         progressBar.snp.makeConstraints {
-            $0.leading.equalTo(21)
-            $0.top.equalTo(108)
+            $0.leading.equalTo(defaultOffset + 3)
+            $0.top.equalTo(progressBarTopOffset)
+        }
+        
+        progressLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         
         userScoreLabel.snp.makeConstraints {
-            $0.leading.equalTo(progressBar.snp.trailing).offset(8)
+            $0.leading.equalTo(progressBar.snp.trailing).offset(defaultOffset)
             $0.centerY.equalTo(progressBar)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18)
-            $0.top.equalTo(progressBar.snp.bottom).offset(9)
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
+            $0.top.equalTo(progressBar.snp.bottom).offset(secondaryOffset)
         }
         
         releaseDateLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18)
-            $0.top.equalTo(nameLabel.snp.bottom).offset(18)
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(defaultOffset)
         }
         
         genresAndDurationLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18)
-            $0.top.equalTo(releaseDateLabel.snp.bottom).offset(7)
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
+            $0.top.equalTo(releaseDateLabel.snp.bottom).offset(secondaryOffset)
         }
         
         elipseImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(18)
-            $0.top.equalTo(genresAndDurationLabel.snp.bottom).offset(15)
-            $0.bottom.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().offset(defaultOffset)
+            $0.top.equalTo(genresAndDurationLabel.snp.bottom).offset(defaultOffset)
+            $0.bottom.equalToSuperview().inset(defaultOffset)
         }
         
         favoriteImageView.snp.makeConstraints {

@@ -4,5 +4,9 @@ enum LocalizableStrings: String {
     case tabBarFavoritesTitle = "Favorites"
     case searchBarPlaceholder = "Search"
     case cancelButtonTitle = "Cancel"
+    case userScore = "User score"
+    case overview = "Overview"
+    case topBilledCast = "Top Billed Cast"
+    case fullCast = "Full Cast & Crew"
     
 }

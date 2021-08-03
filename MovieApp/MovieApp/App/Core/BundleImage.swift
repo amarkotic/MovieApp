@@ -13,6 +13,6 @@ enum BundleImage: String {
     case ellipseImage = "Ellipse"
     case progressBar = "progressbarTemporary"
     case favoriteDetails = "Star"
-    
+    case temporaryActor = "RobertDowney"
 }
 

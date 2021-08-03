@@ -10,7 +10,7 @@ extension OverviewView: DesignProtocol {
     }
     
     func createViews() {
-        title = UILabel(with: .proximaBold)
+        title = UILabel(with: .bold(size: 20))
         addSubview(title)
         
         overview = UILabel(with: .proximaMedium)
@@ -18,8 +18,8 @@ extension OverviewView: DesignProtocol {
     }
     
     func styleViews() {
-        title.text = "Overview"
-        title.textColor = .black
+        title.text = LocalizableStrings.overview.rawValue
+        title.textColor = .appBlue
         
         overview.text = "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil."
         overview.textColor = .black
@@ -32,7 +32,7 @@ extension OverviewView: DesignProtocol {
         }
         
         overview.snp.makeConstraints {
-            $0.top.equalTo(title.snp.bottom).offset(8)
+            $0.top.equalTo(title.snp.bottom).offset(defaultOffset)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

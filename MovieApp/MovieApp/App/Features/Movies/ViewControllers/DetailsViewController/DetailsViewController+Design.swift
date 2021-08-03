@@ -15,6 +15,9 @@ extension DetailsViewController: DesignProtocol {
         
         overviewView = OverviewView()
         view.addSubview(overviewView)
+        
+        castView = CastView()
+        view.addSubview(castView)
     }
     
     func styleViews() {
@@ -30,6 +33,12 @@ extension DetailsViewController: DesignProtocol {
         overviewView.snp.makeConstraints {
             $0.top.equalTo(mainInfoView.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(18)
+        }
+        
+        castView.snp.makeConstraints {
+            $0.top.equalTo(overviewView.snp.bottom).offset(40)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(70)
         }
         
     }
