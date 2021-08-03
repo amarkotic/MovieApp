@@ -1,41 +1,16 @@
 enum SubcategoryModel: Int, Codable {
     
-    case action
-    case adventure
-    case comedy
-    case drama
-    case family
-    case horror
-    case romance
-    case thriller
-    case scienceFiction
+    case action = 28
+    case adventure = 12
+    case comedy = 35
+    case drama = 18
+    case family = 10751
+    case horror = 27
+    case romance = 10749
+    case thriller = 53
+    case scienceFiction = 878
     case today
     case thisWeek
-    
-    var genreId: Int {
-        switch self {
-        case .action:
-            return 28
-        case .adventure:
-            return 12
-        case .comedy:
-            return 35
-        case .drama:
-            return 18
-        case .family:
-            return 10751
-        case .horror:
-            return 27
-        case .romance:
-            return 10749
-        case .thriller:
-            return 53
-        case .scienceFiction:
-            return 878
-        default:
-            return 0
-        }
-    }
 
     init?(from model: SubcategoryViewModel) {
         switch model {

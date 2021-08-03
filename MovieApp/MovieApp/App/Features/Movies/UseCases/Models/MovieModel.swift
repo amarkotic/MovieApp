@@ -5,7 +5,7 @@ struct MovieModel {
     let id: Int
     let imageUrl: String
     let isSelected: Bool
-    let genreIds: [Int]
+    let genreIds: [SubcategoryModel]
     
 }
 

@@ -12,7 +12,7 @@ struct MovieNetworkModel: Codable {
     let imageUrl: String
     let title: String
     let description: String
-    let genreIds: [Int]
+    let genreIds: [SubcategoryNetworkModel]
 
     enum CodingKeys: String, CodingKey {
         case id = "id"

@@ -59,7 +59,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 switch category {
                 case .popular, .topRated:
                     filteredValue = useCasePosterModels.filter({
-                        $0.genreIds.contains(subcategory.genreId)
+                        $0.genreIds.contains(subcategory)
                     })
                 default:
                     filteredValue = useCasePosterModels
