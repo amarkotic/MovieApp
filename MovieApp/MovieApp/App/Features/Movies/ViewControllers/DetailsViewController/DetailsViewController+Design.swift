@@ -12,6 +12,9 @@ extension DetailsViewController: DesignProtocol {
     func createViews() {
         mainInfoView = MainInfoView()
         view.addSubview(mainInfoView)
+        
+        overviewView = OverviewView()
+        view.addSubview(overviewView)
     }
     
     func styleViews() {
@@ -22,6 +25,11 @@ extension DetailsViewController: DesignProtocol {
         mainInfoView.snp.makeConstraints{
             $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(303)
+        }
+        
+        overviewView.snp.makeConstraints {
+            $0.top.equalTo(mainInfoView.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(18)
         }
         
     }
