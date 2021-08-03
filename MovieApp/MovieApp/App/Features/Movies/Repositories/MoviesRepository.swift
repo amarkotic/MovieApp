@@ -25,12 +25,15 @@ class MoviesRepository: MoviesRepositoryProtocol {
                 print(error.localizedDescription)
             case .success(let value):
                 let repositoryModels: [MovieRepositoryModel] = value.map { model -> MovieRepositoryModel in
+                    let genreIds = model.genreIds.map {
+                        SubcategoryRepositoryModel(rawValue: $0.rawValue)!
+                    }
                     return MovieRepositoryModel(
                         id: model.id,
                         imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description,
-                        genreIds: model.genreIds)
+                        genreIds: genreIds)
                 }
                 completion(.success(repositoryModels))
             }

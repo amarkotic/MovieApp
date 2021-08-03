@@ -48,12 +48,15 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 print(error.localizedDescription)
             case .success(let value):
                 let useCasePosterModels: [MovieModel] = value.map { model -> MovieModel in
+                    let genreIds = model.genreIds.map {
+                        SubcategoryModel(rawValue: $0.rawValue)!
+                    }
                     let imageUrl = NetworkConstants.imagePath + model.imageUrl
                     return MovieModel(
                         id: model.id,
                         imageUrl: imageUrl,
                         isSelected: false,
-                        genreIds: model.genreIds)
+                        genreIds: genreIds)
                 }
                 var filteredValue = [MovieModel]()
                 switch category {

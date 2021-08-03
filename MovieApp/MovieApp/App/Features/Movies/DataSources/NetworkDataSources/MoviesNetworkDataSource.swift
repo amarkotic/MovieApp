@@ -25,12 +25,15 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
                 print(error.localizedDescription)
             case .success(let value):
                 let movieDataSourceModels: [MovieDataSourceModel] = value.results.map { model -> MovieDataSourceModel in
+                    let genreIds = model.genreIds.map {
+                        SubcategoryDataSourceModel(rawValue: $0.rawValue)!
+                    }
                     return MovieDataSourceModel(
                         id: model.id,
                         imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description,
-                        genreIds: model.genreIds)
+                        genreIds: genreIds)
                 }
                 completion(.success(movieDataSourceModels))
             }
