@@ -1,7 +1,8 @@
 protocol MoviesNetworkClientProtocol {
     
     func getMovies(
-        category: CategoryEnum, subcategory: SubcategoryDataSourceModel,
+        category: MovieCategoryDataSourceModel,
+        subcategory: SubcategoryDataSourceModel,
         completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
     )
     

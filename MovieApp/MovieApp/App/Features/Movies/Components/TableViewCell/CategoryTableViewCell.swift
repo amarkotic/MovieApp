@@ -22,7 +22,7 @@ class CategoryTableViewCell: UITableViewCell {
     var scrollView: SubcategoryScrollView!
     var collectionView: UICollectionView!
     
-    var category: CategoryEnum!
+    var category: MovieCategoryViewModel!
     var movies = [MovieViewModel]()
     
     weak private var delegate: HomeViewController?
@@ -37,7 +37,7 @@ class CategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func populateCell(title: CategoryEnum, categories: [SubcategoryViewModel], movies: [MovieViewModel]) {
+    func populateCell(title: MovieCategoryViewModel, categories: [SubcategoryViewModel], movies: [MovieViewModel]) {
         category = title
         titleLabel.text = title.rawValue
         scrollView.setData(categories: categories)

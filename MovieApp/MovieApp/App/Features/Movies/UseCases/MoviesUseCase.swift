@@ -6,8 +6,10 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         self.repository = repository
     }
     
-    func fetchSearchMovies(category: CategoryEnum,
-                           completion: @escaping (Result<[MovieSearchModel], Error>) -> Void) {
+    func fetchSearchMovies(
+        category: MovieCategoryViewModel,
+        completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
+    ) {
         repository.fetchMovies(category: .popular, subcategory: .action) {
             (result: Result<[MovieRepositoryModel], Error>) in
             switch result {
@@ -28,10 +30,16 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
     
     func fetchMovies(
-        category: CategoryEnum,
+        category: MovieCategoryViewModel,
         subcategory: SubcategoryViewModel,
-        completion: @escaping (Result<[MovieModel], Error>) -> Void) {
-        guard let subcategory = SubcategoryModel(rawValue: subcategory.rawValue) else { return }
+        completion: @escaping (Result<[MovieModel], Error>) -> Void
+    ) {
+        guard
+            let category = MovieCategoryModel(from: category),
+            let subcategory = SubcategoryModel(from: subcategory)
+        else {
+            return
+        }
         
         repository.fetchMovies(category: category, subcategory: subcategory) {
             (result: Result<[MovieRepositoryModel], Error>)  in

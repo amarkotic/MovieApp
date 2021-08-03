@@ -3,17 +3,23 @@ import Foundation
 class MoviesNetworkClient: MoviesNetworkClientProtocol {
     
     private let networkService: NetworkServiceProtocol
-    var url: URL!
     
     init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }
     
-    func getMovies(category: CategoryEnum,
-                   subcategory: SubcategoryDataSourceModel,
-                   completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void) {
-        guard let subcategory = SubcategoryDataSourceModel(rawValue: subcategory.rawValue) else { return }
-        
+    func getMovies(
+        category: MovieCategoryDataSourceModel,
+        subcategory: SubcategoryDataSourceModel,
+        completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
+    ) {
+        guard
+            let category = MovieCategoryNetworkModel(from: category),
+            let subcategory = SubcategoryNetworkModel(from: subcategory)
+        else {
+            return
+        }
+        var url: URL!
         switch category {
         case .popular:
             url = EndpointConstant.popularMovies.url
@@ -27,7 +33,6 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
                 url = EndpointConstant.trendingMoviesToday.url
             }
         }
-        guard let url = url else { return }
         
         networkService.get(url: url, completion: completion)
     }

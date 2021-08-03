@@ -1,4 +1,4 @@
-enum CategoryEnum: String {
+enum MovieCategoryViewModel: String {
     
     case popular = "What's popular"
     case topRated = "Top rated"

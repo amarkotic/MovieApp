@@ -6,10 +6,17 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         self.networkClient = networkClient
     }
     
-    func fetchMovies(category: CategoryEnum,
-                     subcategory: SubcategoryRepositoryModel,
-                     completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void) {
-        guard let subcategory = SubcategoryDataSourceModel(rawValue: subcategory.rawValue) else { return }
+    func fetchMovies(
+        category: MovieCategoryRepositoryModel,
+        subcategory: SubcategoryRepositoryModel,
+        completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void
+    ) {
+        guard
+            let category = MovieCategoryDataSourceModel(from: category),
+            let subcategory = SubcategoryDataSourceModel(from: subcategory)
+        else {
+            return
+        }
         
         networkClient.getMovies(category: category, subcategory: subcategory) {
             (result: Result<MoviesNetworkModel, NetworkError>) in

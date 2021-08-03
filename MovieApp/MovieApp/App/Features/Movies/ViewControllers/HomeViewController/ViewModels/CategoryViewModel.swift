@@ -2,7 +2,7 @@ import UIKit
 
 struct CategoryViewModel {
     
-    let title: CategoryEnum
+    let title: MovieCategoryViewModel
     let categories: [SubcategoryViewModel]
     var movies: [MovieViewModel]
     
