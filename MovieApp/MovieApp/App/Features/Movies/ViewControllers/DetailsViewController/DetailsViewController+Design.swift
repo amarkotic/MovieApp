@@ -10,20 +10,16 @@ extension DetailsViewController: DesignProtocol {
     }
     
     func createViews() {
-        moviePoster = UIImageView()
-        view.addSubview(moviePoster)
+        mainInfoView = MainInfoView()
+        view.addSubview(mainInfoView)
     }
     
     func styleViews() {
         view.backgroundColor = .white
-        
-        moviePoster.image = UIImage(with: .temporaryImage)
-        moviePoster.contentMode = .scaleAspectFill
-        moviePoster.layer.masksToBounds = true
     }
     
     func defineLayoutForViews() {
-        moviePoster.snp.makeConstraints{
+        mainInfoView.snp.makeConstraints{
             $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(303)
         }
