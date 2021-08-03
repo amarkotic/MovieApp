@@ -6,6 +6,6 @@ struct MovieDataSourceModel {
     let imageUrl: String
     let title: String
     let description: String
-    let genreIds: [SubcategoryDataSourceModel]
+    let subcategories: [SubcategoryDataSourceModel]
     
 }

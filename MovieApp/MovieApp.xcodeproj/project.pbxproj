@@ -74,11 +74,9 @@
 		52F64E6826B819530046A8ED /* SubcategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E6726B819530046A8ED /* SubcategoryModel.swift */; };
 		52F64E6A26B820E20046A8ED /* SubcategoryRepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E6926B820E20046A8ED /* SubcategoryRepositoryModel.swift */; };
 		52F64E6C26B822740046A8ED /* SubcategoryDataSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E6B26B822740046A8ED /* SubcategoryDataSourceModel.swift */; };
-		52F64E6E26B825450046A8ED /* SubcategoryNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E6D26B825450046A8ED /* SubcategoryNetworkModel.swift */; };
 		52F64E7526B932240046A8ED /* MovieCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E7426B932240046A8ED /* MovieCategoryModel.swift */; };
 		52F64E7726B932970046A8ED /* MovieCategoryRepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E7626B932970046A8ED /* MovieCategoryRepositoryModel.swift */; };
 		52F64E7926B932B40046A8ED /* MovieCategoryDataSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E7826B932B40046A8ED /* MovieCategoryDataSourceModel.swift */; };
-		52F64E7B26B9330A0046A8ED /* MovieCategoryNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F64E7A26B9330A0046A8ED /* MovieCategoryNetworkModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,11 +146,9 @@
 		52F64E6726B819530046A8ED /* SubcategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryModel.swift; sourceTree = "<group>"; };
 		52F64E6926B820E20046A8ED /* SubcategoryRepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryRepositoryModel.swift; sourceTree = "<group>"; };
 		52F64E6B26B822740046A8ED /* SubcategoryDataSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryDataSourceModel.swift; sourceTree = "<group>"; };
-		52F64E6D26B825450046A8ED /* SubcategoryNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryNetworkModel.swift; sourceTree = "<group>"; };
 		52F64E7426B932240046A8ED /* MovieCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategoryModel.swift; sourceTree = "<group>"; };
 		52F64E7626B932970046A8ED /* MovieCategoryRepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategoryRepositoryModel.swift; sourceTree = "<group>"; };
 		52F64E7826B932B40046A8ED /* MovieCategoryDataSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategoryDataSourceModel.swift; sourceTree = "<group>"; };
-		52F64E7A26B9330A0046A8ED /* MovieCategoryNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategoryNetworkModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,8 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */,
-				52F64E6D26B825450046A8ED /* SubcategoryNetworkModel.swift */,
-				52F64E7A26B9330A0046A8ED /* MovieCategoryNetworkModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -633,7 +627,6 @@
 			files = (
 				52B5C4E326B2D15400F5265A /* MovieModel.swift in Sources */,
 				522EE8E626A6C04100A456E2 /* MoviesRepositoryProtocol.swift in Sources */,
-				52F64E7B26B9330A0046A8ED /* MovieCategoryNetworkModel.swift in Sources */,
 				523C2EAE269DB1B500F2EDD6 /* MovieSearchCell.swift in Sources */,
 				523C2EBF269EDC7A00F2EDD6 /* MoviesSearchPresenter.swift in Sources */,
 				52F11AA726A70680007DBE0A /* NetworkConstants.swift in Sources */,
@@ -656,7 +649,6 @@
 				5203716926A5672B00DE4AC7 /* NetworkError.swift in Sources */,
 				523C2ECB269EE89B00F2EDD6 /* UIColor+Extensions.swift in Sources */,
 				52B5C4E126B2A83500F5265A /* MovieViewModel.swift in Sources */,
-				52F64E6E26B825450046A8ED /* SubcategoryNetworkModel.swift in Sources */,
 				526B517C269DA8610095F3E2 /* MoviesSearchViewController+Design.swift in Sources */,
 				526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */,
 				523C2ED326A0559D00F2EDD6 /* UILabel+Extensions.swift in Sources */,

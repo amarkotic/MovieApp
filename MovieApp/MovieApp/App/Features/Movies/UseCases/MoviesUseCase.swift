@@ -30,42 +30,42 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
     
     func fetchMovies(
-        category: MovieCategoryViewModel,
-        subcategory: SubcategoryViewModel,
+        categoryViewModel: MovieCategoryViewModel,
+        subcategoryViewModel: SubcategoryViewModel,
         completion: @escaping (Result<[MovieModel], Error>) -> Void
     ) {
         guard
-            let category = MovieCategoryModel(from: category),
-            let subcategory = SubcategoryModel(from: subcategory)
+            let subcategoryModel = SubcategoryModel(from: subcategoryViewModel),
+            let categoryModel = MovieCategoryModel(from: categoryViewModel)
         else {
             return
         }
-        
-        repository.fetchMovies(category: category, subcategory: subcategory) {
+
+        repository.fetchMovies(category: categoryModel, subcategory: subcategoryModel) {
             (result: Result<[MovieRepositoryModel], Error>)  in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
-            case .success(let value):
-                let useCasePosterModels: [MovieModel] = value.map { model -> MovieModel in
-                    let genreIds = model.genreIds.map {
-                        SubcategoryModel(rawValue: $0.rawValue)!
-                    }
+            case .success(let repoModels):
+                let useCaseModels: [MovieModel] = repoModels.map { model -> MovieModel in
+                    let subcategoryModels = model.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) }
+
                     let imageUrl = NetworkConstants.imagePath + model.imageUrl
                     return MovieModel(
                         id: model.id,
                         imageUrl: imageUrl,
                         isSelected: false,
-                        genreIds: genreIds)
+                        subcategories: subcategoryModels)
                 }
+
                 var filteredValue = [MovieModel]()
-                switch category {
+                switch categoryViewModel {
                 case .popular, .topRated:
-                    filteredValue = useCasePosterModels.filter({
-                        $0.genreIds.contains(subcategory)
+                    filteredValue = useCaseModels.filter({
+                        $0.subcategories.contains(subcategoryModel)
                     })
                 default:
-                    filteredValue = useCasePosterModels
+                    filteredValue = useCaseModels
                 }
                 completion(.success(filteredValue))
             }

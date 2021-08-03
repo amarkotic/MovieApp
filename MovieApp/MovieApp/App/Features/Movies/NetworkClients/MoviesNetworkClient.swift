@@ -13,13 +13,7 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         subcategory: SubcategoryDataSourceModel,
         completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
     ) {
-        guard
-            let category = MovieCategoryNetworkModel(from: category),
-            let subcategory = SubcategoryNetworkModel(from: subcategory)
-        else {
-            return
-        }
-        var url: URL!
+        var url: URL?
         switch category {
         case .popular:
             url = EndpointConstant.popularMovies.url
@@ -33,7 +27,9 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
                 url = EndpointConstant.trendingMoviesToday.url
             }
         }
-        
+
+        guard let url = url else { return }
+
         networkService.get(url: url, completion: completion)
     }
     

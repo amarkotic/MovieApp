@@ -1,14 +1,14 @@
-enum SubcategoryModel: Int, Codable {
+enum SubcategoryModel: Int {
     
-    case action = 28
-    case adventure = 12
-    case comedy = 35
-    case drama = 18
-    case family = 10751
-    case horror = 27
-    case romance = 10749
-    case thriller = 53
-    case scienceFiction = 878
+    case action
+    case adventure
+    case comedy
+    case drama
+    case family
+    case horror
+    case romance
+    case thriller
+    case scienceFiction
     case today
     case thisWeek
 

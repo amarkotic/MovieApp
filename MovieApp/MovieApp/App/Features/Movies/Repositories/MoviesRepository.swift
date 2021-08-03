@@ -12,28 +12,28 @@ class MoviesRepository: MoviesRepositoryProtocol {
         completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
     ) {
         guard
-            let category = MovieCategoryRepositoryModel(from: category),
-            let subcategory = SubcategoryRepositoryModel(from: subcategory)
+            let categoryRepo = MovieCategoryRepositoryModel(from: category),
+            let subcategoryRepo = SubcategoryRepositoryModel(from: subcategory)
         else {
             return
         }
         
-        networkDataSource.fetchMovies(category: category, subcategory: subcategory) {
+        networkDataSource.fetchMovies(category: categoryRepo, subcategory: subcategoryRepo) {
             (result: Result<[MovieDataSourceModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
                 let repositoryModels: [MovieRepositoryModel] = value.map { model -> MovieRepositoryModel in
-                    let genreIds = model.genreIds.map {
-                        SubcategoryRepositoryModel(rawValue: $0.rawValue)!
+                    let subcategories = model.subcategories.compactMap {
+                        SubcategoryRepositoryModel(from: $0)
                     }
                     return MovieRepositoryModel(
                         id: model.id,
                         imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description,
-                        genreIds: genreIds)
+                        subcategories: subcategories)
                 }
                 completion(.success(repositoryModels))
             }
