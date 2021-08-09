@@ -39,8 +39,8 @@ extension CastView: DesignProtocol {
     
     func defineLayoutForViews() {
         title.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(defaultOffset)
             $0.top.equalToSuperview().offset(secondaryOffset)
+            $0.leading.equalToSuperview().offset(defaultOffset)
         }
         
         fullCastButton.snp.makeConstraints {

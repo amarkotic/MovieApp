@@ -10,14 +10,23 @@ extension DetailsViewController: DesignProtocol {
     }
     
     func createViews() {
+        scrollView = UIScrollView()
+        view.addSubview(scrollView)
+        
+        contentView = UIView()
+        scrollView.addSubview(contentView)
+        
         mainInfoView = MainInfoView()
-        view.addSubview(mainInfoView)
+        contentView.addSubview(mainInfoView)
         
         overviewView = OverviewView()
-        view.addSubview(overviewView)
+        contentView.addSubview(overviewView)
         
         castView = CastView()
-        view.addSubview(castView)
+        contentView.addSubview(castView)
+        
+        socialView = SocialView()
+        contentView.addSubview(socialView)
     }
     
     func styleViews() {
@@ -25,20 +34,34 @@ extension DetailsViewController: DesignProtocol {
     }
     
     func defineLayoutForViews() {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.width.equalTo(scrollView)
+            $0.height.greaterThanOrEqualTo(scrollView)
+        }
+        
         mainInfoView.snp.makeConstraints{
-            $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(303)
+            $0.leading.trailing.top.equalToSuperview()
         }
         
         overviewView.snp.makeConstraints {
-            $0.top.equalTo(mainInfoView.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.top.equalTo(mainInfoView.snp.bottom).offset(defaultOffset)
+            $0.leading.trailing.equalToSuperview()
         }
         
         castView.snp.makeConstraints {
-            $0.top.equalTo(overviewView.snp.bottom).offset(40)
+            $0.top.equalTo(overviewView.snp.bottom).offset(2 * defaultOffset)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(70)
+            $0.height.equalTo(259)
+        }
+        
+        socialView.snp.makeConstraints {
+            $0.top.equalTo(castView.snp.bottom).offset(2 * defaultOffset)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
     }

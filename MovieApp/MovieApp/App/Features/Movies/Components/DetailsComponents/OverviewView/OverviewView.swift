@@ -2,7 +2,8 @@ import UIKit
 
 class OverviewView: UIView {
     
-    let defaultOffset = 8
+    let defaultOffset = 18
+    let secondaryOffset = 8
     
     var title: UILabel!
     var overview: UILabel!
