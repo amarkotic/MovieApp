@@ -20,9 +20,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        buildViews()
         presenter.setDelegate(delegate: self)
         presenter.initialFetch()
-        buildViews()
         setupGestureRecognizer()
     }
     
