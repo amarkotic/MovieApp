@@ -31,10 +31,10 @@ extension SocialView: DesignProtocol {
     
     func styleViews() {
         title.textColor = .appBlue
-        title.text = "Social"
+        title.text = LocalizableStrings.social.rawValue
         
         reviewsButton.setTitleColor(.appBlack, for: .normal)
-        reviewsButton.setTitle("Reviews(5)", for: .normal)
+        reviewsButton.setTitle(LocalizableStrings.reviews.rawValue, for: .normal)
         
         logoImage.contentMode = .scaleToFill
         logoImage.layer.cornerRadius = 28

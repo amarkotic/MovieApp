@@ -11,6 +11,7 @@ class DetailsViewController: UIViewController {
     var overviewView: OverviewView!
     var castView: CastView!
     var socialView: SocialView!
+    var recommendationView: RecommendationsView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

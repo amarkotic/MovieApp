@@ -53,6 +53,10 @@
 		5288080C26B7EE4C00B72EDB /* DetailsViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288080B26B7EE4C00B72EDB /* DetailsViewController+Design.swift */; };
 		528DE5CF26C122DA00498E23 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5CE26C122DA00498E23 /* SocialView.swift */; };
 		528DE5D126C122E200498E23 /* SocialView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5D026C122E200498E23 /* SocialView+Design.swift */; };
+		528DE5D426C159BF00498E23 /* RecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5D326C159BF00498E23 /* RecommendationsView.swift */; };
+		528DE5D626C159CA00498E23 /* RecommendationsView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5D526C159CA00498E23 /* RecommendationsView+Design.swift */; };
+		528DE5D926C15A0300498E23 /* RecommendationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5D826C15A0300498E23 /* RecommendationCollectionViewCell.swift */; };
+		528DE5DB26C15A1200498E23 /* RecommendationCollectionViewCell+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5DA26C15A1200498E23 /* RecommendationCollectionViewCell+Design.swift */; };
 		5293A79F26A9A4C700F786E9 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A79E26A9A4C700F786E9 /* CategoryTableViewCell.swift */; };
 		5293A7A126A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7A026A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift */; };
 		5293A7A426AE973000F786E9 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7A326AE973000F786E9 /* MovieCollectionViewCell.swift */; };
@@ -131,6 +135,10 @@
 		5288080B26B7EE4C00B72EDB /* DetailsViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsViewController+Design.swift"; sourceTree = "<group>"; };
 		528DE5CE26C122DA00498E23 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		528DE5D026C122E200498E23 /* SocialView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocialView+Design.swift"; sourceTree = "<group>"; };
+		528DE5D326C159BF00498E23 /* RecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
+		528DE5D526C159CA00498E23 /* RecommendationsView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecommendationsView+Design.swift"; sourceTree = "<group>"; };
+		528DE5D826C15A0300498E23 /* RecommendationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationCollectionViewCell.swift; sourceTree = "<group>"; };
+		528DE5DA26C15A1200498E23 /* RecommendationCollectionViewCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecommendationCollectionViewCell+Design.swift"; sourceTree = "<group>"; };
 		5293A79E26A9A4C700F786E9 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		5293A7A026A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryTableViewCell+Design.swift"; sourceTree = "<group>"; };
 		5293A7A326AE973000F786E9 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -477,6 +485,25 @@
 			path = SocialView;
 			sourceTree = "<group>";
 		};
+		528DE5D226C159A900498E23 /* RecommendationsView */ = {
+			isa = PBXGroup;
+			children = (
+				528DE5D326C159BF00498E23 /* RecommendationsView.swift */,
+				528DE5D526C159CA00498E23 /* RecommendationsView+Design.swift */,
+				528DE5D726C159CD00498E23 /* RecomendationCollectionViewCell */,
+			);
+			path = RecommendationsView;
+			sourceTree = "<group>";
+		};
+		528DE5D726C159CD00498E23 /* RecomendationCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				528DE5D826C15A0300498E23 /* RecommendationCollectionViewCell.swift */,
+				528DE5DA26C15A1200498E23 /* RecommendationCollectionViewCell+Design.swift */,
+			);
+			path = RecomendationCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		5293A79D26A9A4B300F786E9 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,10 +606,11 @@
 		52F64E7C26B95E7C0046A8ED /* DetailsComponents */ = {
 			isa = PBXGroup;
 			children = (
-				528DE5CD26C122D000498E23 /* SocialView */,
 				52F64E8426B968E10046A8ED /* CastView */,
 				52F64E6F26B82EC10046A8ED /* MainInfoView */,
 				52F64E7D26B95E930046A8ED /* OverviewView */,
+				528DE5D226C159A900498E23 /* RecommendationsView */,
+				528DE5CD26C122D000498E23 /* SocialView */,
 			);
 			path = DetailsComponents;
 			sourceTree = "<group>";
@@ -724,9 +752,11 @@
 				52F64E8D26B96B4F0046A8ED /* CastCollectionViewCell+Design.swift in Sources */,
 				526B5169269D6D370095F3E2 /* MoviesSearchViewController.swift in Sources */,
 				525666A726A840BE00B5E0BE /* HomeViewController.swift in Sources */,
+				528DE5D426C159BF00498E23 /* RecommendationsView.swift in Sources */,
 				5293A7A126A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift in Sources */,
 				52F11AB326A80308007DBE0A /* MovieSearchModel.swift in Sources */,
 				52F11AB626A8037C007DBE0A /* MovieRepositoryModel.swift in Sources */,
+				528DE5DB26C15A1200498E23 /* RecommendationCollectionViewCell+Design.swift in Sources */,
 				5293A7B626B13D1500F786E9 /* SubcategoryItemView+Design.swift in Sources */,
 				528DE5CF26C122DA00498E23 /* SocialView.swift in Sources */,
 				522EE8E926A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift in Sources */,
@@ -763,6 +793,7 @@
 				523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */,
 				523C2EDB26A174C600F2EDD6 /* (null) in Sources */,
 				52F64E7F26B95EA40046A8ED /* OverviewView.swift in Sources */,
+				528DE5D926C15A0300498E23 /* RecommendationCollectionViewCell.swift in Sources */,
 				525666AA26A8418300B5E0BE /* FavoriteMoviesViewController.swift in Sources */,
 				5203717926A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift in Sources */,
 				52F64E8126B95EAD0046A8ED /* OverviewView+Design.swift in Sources */,
@@ -770,6 +801,7 @@
 				52F64E7326B82F490046A8ED /* MainInfoView+Design.swift in Sources */,
 				52F11AA326A70637007DBE0A /* BundleImage.swift in Sources */,
 				52F11AB026A7FF5B007DBE0A /* MovieDataSourceModel.swift in Sources */,
+				528DE5D626C159CA00498E23 /* RecommendationsView+Design.swift in Sources */,
 				5293A7BB26B29A3A00F786E9 /* Subcategory.swift in Sources */,
 				525666B326A8494A00B5E0BE /* CustomTabBarController.swift in Sources */,
 				523C2EB0269DB2C800F2EDD6 /* MovieSearchCell+Design.swift in Sources */,
