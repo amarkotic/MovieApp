@@ -17,7 +17,7 @@ class CastView: UIView {
     var title: UILabel!
     var fullCastButton: UIButton!
     var collectionView: UICollectionView!
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -36,7 +36,6 @@ extension CastView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         return 4
     }
     
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(

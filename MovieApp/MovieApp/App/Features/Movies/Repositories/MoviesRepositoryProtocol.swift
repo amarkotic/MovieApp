@@ -1,7 +1,8 @@
 protocol MoviesRepositoryProtocol {
     
     func fetchMovies(
-        category: CategoryEnum, subcategory: SubcategoryEnum,
+        categoryModel: MovieCategoryModel,
+        subcategoryModel: SubcategoryModel,
         completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
     )
     

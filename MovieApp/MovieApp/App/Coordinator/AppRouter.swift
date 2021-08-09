@@ -7,7 +7,8 @@ class AppRouter {
     
     private lazy var tabBarController: UITabBarController = {
         let homeViewController = HomeViewController(
-            presenter: HomePresenter(moviesUseCase: appDependencies.moviesUseCase), router: self)
+            presenter: HomePresenter(moviesUseCase: appDependencies.moviesUseCase),
+            router: self)
         let favoriteViewController = FavoriteMoviesViewController()
         return CustomTabBarController(
             homeViewController: homeViewController,

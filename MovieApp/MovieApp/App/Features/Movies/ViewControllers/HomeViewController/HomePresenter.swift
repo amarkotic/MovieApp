@@ -28,8 +28,8 @@ class HomePresenter {
         self.delegate = delegate
     }
     
-    func fetchMovies(category: CategoryEnum, subCategory: SubcategoryEnum) {
-        moviesUseCase.fetchMovies(category: category, subcategory: subCategory) { [weak self] (result: Result<[MovieModel], Error>) in
+    func fetchMovies(category: MovieCategoryViewModel, subCategory: SubcategoryViewModel) {
+        moviesUseCase.fetchMovies(categoryViewModel: category, subcategoryViewModel: subCategory) { [weak self] (result: Result<[MovieModel], Error>) in
             guard let self = self else { return }
             switch result {
             case .failure(let error):

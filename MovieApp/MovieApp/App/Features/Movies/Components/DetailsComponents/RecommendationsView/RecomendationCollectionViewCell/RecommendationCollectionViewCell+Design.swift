@@ -18,7 +18,6 @@ extension RecommendationCollectionViewCell: DesignProtocol {
     }
     
     func styleViews() {
-        
         imageView.image = UIImage(with: .temporaryImage)
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = cornerRadius
@@ -39,7 +38,5 @@ extension RecommendationCollectionViewCell: DesignProtocol {
             $0.leading.trailing.equalToSuperview()
         }
     }
-    
-    
-    
+
 }

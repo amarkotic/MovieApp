@@ -54,7 +54,6 @@ extension SocialView: DesignProtocol {
     }
     
     func defineLayoutForViews() {
-        
         title.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(secondaryOffset)
             $0.top.equalToSuperview()
@@ -88,8 +87,6 @@ extension SocialView: DesignProtocol {
             $0.top.equalTo(logoImage.snp.bottom).offset(3 * thirdOffset)
             $0.bottom.equalToSuperview()
         }
-        
     }
-    
-    
+
 }

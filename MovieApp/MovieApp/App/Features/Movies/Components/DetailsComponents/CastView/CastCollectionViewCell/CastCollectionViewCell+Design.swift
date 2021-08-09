@@ -54,7 +54,6 @@ extension CastCollectionViewCell: DesignProtocol {
             $0.trailing.equalToSuperview().inset(defaultOffset)
             $0.bottom.equalToSuperview().inset(2 * defaultOffset)
         }
-        
     }
     
 }

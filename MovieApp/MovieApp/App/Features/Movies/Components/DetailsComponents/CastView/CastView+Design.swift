@@ -53,7 +53,6 @@ extension CastView: DesignProtocol {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(collectionViewHeight)
         }
-        
     }
     
 }

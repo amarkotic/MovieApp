@@ -28,8 +28,8 @@ extension DetailsViewController: DesignProtocol {
         socialView = SocialView()
         contentView.addSubview(socialView)
         
-        recommendationView = RecommendationsView()
-        contentView.addSubview(recommendationView)
+        recommendationsView = RecommendationsView()
+        contentView.addSubview(recommendationsView)
     }
     
     func styleViews() {
@@ -59,7 +59,7 @@ extension DetailsViewController: DesignProtocol {
         castView.snp.makeConstraints {
             $0.top.equalTo(overviewView.snp.bottom).offset(2 * defaultOffset)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(259)
+            $0.height.equalTo(castViewHeight)
         }
         
         socialView.snp.makeConstraints {
@@ -67,10 +67,10 @@ extension DetailsViewController: DesignProtocol {
             $0.leading.trailing.equalToSuperview()
         }
         
-        recommendationView.snp.makeConstraints {
+        recommendationsView.snp.makeConstraints {
             $0.top.equalTo(socialView.snp.bottom).offset(2 * defaultOffset)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(114)
+            $0.height.equalTo(recommendationsViewHeight)
             $0.bottom.equalToSuperview().inset(3 * defaultOffset)
         }
         

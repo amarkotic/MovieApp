@@ -1,13 +1,13 @@
 protocol MoviesUseCaseProtocol {
     
     func fetchSearchMovies(
-        category: CategoryEnum,
+        category: MovieCategoryViewModel,
         completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
     )
     
     func fetchMovies(
-        category: CategoryEnum,
-        subcategory: SubcategoryEnum,
+        categoryViewModel: MovieCategoryViewModel,
+        subcategoryViewModel: SubcategoryViewModel,
         completion: @escaping (Result<[MovieModel], Error>) -> Void
     )
     

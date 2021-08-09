@@ -2,9 +2,8 @@ import UIKit
 
 class RecommendationsView: UIView {
     let defaultOffset = 18
-//    let secondaryOffset = 7
     let collectionViewHeight = 154
-//
+
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal

@@ -22,12 +22,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter.setDelegate(delegate: self)
         buildViews()
+        presenter.setDelegate(delegate: self)
+        presenter.initialFetch()
         setupGestureRecognizer()
     }
     
-    func subcategoryPressed(category: CategoryEnum, subCategory: SubcategoryEnum) {
+    func subcategoryPressed(category: MovieCategoryViewModel, subCategory: SubcategoryViewModel) {
         presenter.fetchMovies(category: category, subCategory: subCategory)
         tableView.reloadData()
     }

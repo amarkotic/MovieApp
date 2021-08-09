@@ -17,7 +17,7 @@ extension RecommendationsView: DesignProtocol {
     }
     
     func styleViews() {
-        title.text = "Recomendations"
+        title.text = LocalizableStrings.recomendations.rawValue
         title.textColor = .appBlue
         
         collectionView.dataSource = self

@@ -6,19 +6,37 @@ class MoviesRepository: MoviesRepositoryProtocol {
         self.networkDataSource = networkDataSource
     }
     
-    func fetchMovies(category: CategoryEnum, subcategory: SubcategoryEnum, completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void) {
-        networkDataSource.fetchMovies(category: category, subcategory: subcategory) { (result: Result<[MovieDataSourceModel], Error>) in
+    func fetchMovies(
+        categoryModel: MovieCategoryModel,
+        subcategoryModel: SubcategoryModel,
+        completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
+    ) {
+        guard
+            let categoryRepoModel = MovieCategoryRepositoryModel(from: categoryModel),
+            let subcategoryRepoModel = SubcategoryRepositoryModel(from: subcategoryModel)
+        else {
+            return
+        }
+        
+        networkDataSource.fetchMovies(
+            categoryRepositoryModel: categoryRepoModel,
+            subcategoryRepositoryModel: subcategoryRepoModel
+        ) {
+            (result: Result<[MovieDataSourceModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
                 let repositoryModels: [MovieRepositoryModel] = value.map { model -> MovieRepositoryModel in
+                    let subcategories = model.subcategories.compactMap {
+                        SubcategoryRepositoryModel(from: $0)
+                    }
                     return MovieRepositoryModel(
                         id: model.id,
                         imageUrl: model.imageUrl,
                         title: model.title,
                         description: model.description,
-                        genreIds: model.genreIds)
+                        subcategories: subcategories)
                 }
                 completion(.success(repositoryModels))
             }

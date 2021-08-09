@@ -10,5 +10,6 @@ enum LocalizableStrings: String {
     case fullCast = "Full Cast & Crew"
     case social = "Social"
     case reviews = "Reviews"
+    case recomendations = "Recomendations"
     
 }
