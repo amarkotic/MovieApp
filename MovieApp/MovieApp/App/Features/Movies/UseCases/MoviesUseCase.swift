@@ -49,7 +49,6 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .success(let repoModels):
                 let useCaseModels: [MovieModel] = repoModels.map { model -> MovieModel in
                     let subcategoryModels = model.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) }
-                    
                     let imageUrl = NetworkConstants.imagePath + model.imageUrl
                     return MovieModel(
                         id: model.id,
@@ -57,7 +56,6 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                         isSelected: false,
                         subcategories: subcategoryModels)
                 }
-                
                 var filteredValue = [MovieModel]()
                 switch categoryViewModel {
                 case .popular, .topRated:
