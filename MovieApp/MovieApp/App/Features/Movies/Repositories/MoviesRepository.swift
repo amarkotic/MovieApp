@@ -7,18 +7,21 @@ class MoviesRepository: MoviesRepositoryProtocol {
     }
     
     func fetchMovies(
-        category: MovieCategoryModel,
-        subcategory: SubcategoryModel,
+        categoryModel: MovieCategoryModel,
+        subcategoryModel: SubcategoryModel,
         completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
     ) {
         guard
-            let categoryRepo = MovieCategoryRepositoryModel(from: category),
-            let subcategoryRepo = SubcategoryRepositoryModel(from: subcategory)
+            let categoryRepoModel = MovieCategoryRepositoryModel(from: categoryModel),
+            let subcategoryRepoModel = SubcategoryRepositoryModel(from: subcategoryModel)
         else {
             return
         }
         
-        networkDataSource.fetchMovies(category: categoryRepo, subcategory: subcategoryRepo) {
+        networkDataSource.fetchMovies(
+            categoryRepositoryModel: categoryRepoModel,
+            subcategoryRepositoryModel: subcategoryRepoModel
+        ) {
             (result: Result<[MovieDataSourceModel], Error>) in
             switch result {
             case .failure(let error):

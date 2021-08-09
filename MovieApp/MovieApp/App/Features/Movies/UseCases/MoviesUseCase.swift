@@ -10,7 +10,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         category: MovieCategoryViewModel,
         completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
     ) {
-        repository.fetchMovies(category: .popular, subcategory: .action) {
+        repository.fetchMovies(categoryModel: .popular, subcategoryModel: .action) {
             (result: Result<[MovieRepositoryModel], Error>) in
             switch result {
             case .failure(let error):
@@ -40,8 +40,8 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         else {
             return
         }
-
-        repository.fetchMovies(category: categoryModel, subcategory: subcategoryModel) {
+        
+        repository.fetchMovies(categoryModel: categoryModel, subcategoryModel: subcategoryModel) {
             (result: Result<[MovieRepositoryModel], Error>)  in
             switch result {
             case .failure(let error):
@@ -49,7 +49,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .success(let repoModels):
                 let useCaseModels: [MovieModel] = repoModels.map { model -> MovieModel in
                     let subcategoryModels = model.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) }
-
+                    
                     let imageUrl = NetworkConstants.imagePath + model.imageUrl
                     return MovieModel(
                         id: model.id,
@@ -57,7 +57,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                         isSelected: false,
                         subcategories: subcategoryModels)
                 }
-
+                
                 var filteredValue = [MovieModel]()
                 switch categoryViewModel {
                 case .popular, .topRated:

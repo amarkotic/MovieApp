@@ -9,18 +9,18 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
     }
     
     func getMovies(
-        category: MovieCategoryDataSourceModel,
-        subcategory: SubcategoryDataSourceModel,
+        categoryDataSourceModel: MovieCategoryDataSourceModel,
+        subcategoryDataSourceModel: SubcategoryDataSourceModel,
         completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
     ) {
         var url: URL?
-        switch category {
+        switch categoryDataSourceModel {
         case .popular:
             url = EndpointConstant.popularMovies.url
         case .topRated:
             url = EndpointConstant.topRatedMovies.url
         case .trending:
-            switch subcategory {
+            switch subcategoryDataSourceModel {
             case .thisWeek:
                 url = EndpointConstant.trendingMoviesThisWeek.url
             default:
