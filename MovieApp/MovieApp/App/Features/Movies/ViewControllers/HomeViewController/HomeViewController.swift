@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.setDelegate(delegate: self)
+        presenter.initialFetch()
         buildViews()
         setupGestureRecognizer()
     }
