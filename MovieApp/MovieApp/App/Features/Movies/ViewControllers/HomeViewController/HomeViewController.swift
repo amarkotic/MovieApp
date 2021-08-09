@@ -9,7 +9,7 @@ class HomeViewController: UIViewController {
     var searchBarStackView: SearchBarStackView!
     var tableView: UITableView!
     
-    private var presenter: HomePresenter!
+    var presenter: HomePresenter!
     
     convenience init(presenter: HomePresenter) {
         self.init()
@@ -20,15 +20,19 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter.setDelegate(delegate: self)
         buildViews()
+        presenter.setDelegate(delegate: self)
+        presenter.initialFetch()
         setupGestureRecognizer()
     }
     
-    func subcategoryPressed(category: CategoryEnum, subCategory: SubcategoryEnum) {
+    func subcategoryPressed(category: MovieCategoryViewModel, subCategory: SubcategoryViewModel) {
         presenter.fetchMovies(category: category, subCategory: subCategory)
         tableView.reloadData()
-        print("You selected item: \(subCategory) from category: \(category)")
+    }
+    
+    func reloadData() {
+        tableView.reloadData()
     }
     
     private func setupGestureRecognizer() {
@@ -45,7 +49,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.mockData.count
+        return presenter.data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,8 +60,8 @@ extension HomeViewController: UITableViewDataSource {
         }
         
         cell.set(delegate: self)
-
-        let data = presenter.mockData[indexPath.row]
+        
+        let data = presenter.data[indexPath.row]
         cell.populateCell(title: data.title, categories: data.categories, movies: data.movies)
         return cell
     }

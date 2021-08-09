@@ -12,12 +12,15 @@ struct MovieNetworkModel: Codable {
     let imageUrl: String
     let title: String
     let description: String
+    let genreIds: [Int]
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case imageUrl = "poster_path"
         case title = "original_title"
         case description = "overview"
+        case genreIds = "genre_ids"
+        
     }
     
 }

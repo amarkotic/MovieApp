@@ -1,14 +1,15 @@
-enum SubcategoryEnum: String {
+enum SubcategoryViewModel: String {
     
     case action = "Action"
+    case adventure = "Adventure"
     case comedy = "Comedy"
     case drama = "Drama"
     case family = "Family"
-    case music = "Music"
-    case mystery = "Mystery"
+    case horror = "Horror"
+    case romance = "Romance"
     case thriller = "Thriller"
-    case western = "Western"
+    case scienceFiction = "Science fiction"
     case today = "Today"
     case thisWeek = "This week"
-    
+
 }

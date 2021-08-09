@@ -8,6 +8,7 @@ class CategoryTableViewCell: UITableViewCell {
     let defaultOffset = 18
     let secondaryOffset = 8
     let scrollHeight = 22
+    let refreshCollectionViewOffset = CGPoint(x: -18, y: 0)
     
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -21,7 +22,7 @@ class CategoryTableViewCell: UITableViewCell {
     var scrollView: SubcategoryScrollView!
     var collectionView: UICollectionView!
     
-    var category: CategoryEnum!
+    var category: MovieCategoryViewModel!
     var movies = [MovieViewModel]()
     
     weak private var delegate: HomeViewController?
@@ -36,7 +37,7 @@ class CategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func populateCell(title: CategoryEnum, categories: [SubcategoryEnum], movies: [MovieViewModel]) {
+    func populateCell(title: MovieCategoryViewModel, categories: [SubcategoryViewModel], movies: [MovieViewModel]) {
         category = title
         titleLabel.text = title.rawValue
         scrollView.setData(categories: categories)
@@ -44,14 +45,15 @@ class CategoryTableViewCell: UITableViewCell {
         collectionView.reloadData()
     }
     
-    func subcategoryPressed(subCategory: SubcategoryEnum) {
+    func subcategoryPressed(subCategory: SubcategoryViewModel) {
+        collectionView.setContentOffset(refreshCollectionViewOffset, animated: true)
         delegate?.subcategoryPressed(category: category, subCategory: subCategory)
     }
     
     func set(delegate: HomeViewController) {
         self.delegate = delegate
     }
-    
+ 
 }
 
 extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -59,8 +61,7 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(

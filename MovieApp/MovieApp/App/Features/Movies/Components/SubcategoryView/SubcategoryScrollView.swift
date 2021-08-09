@@ -23,7 +23,7 @@ class SubcategoryScrollView: UIScrollView {
         scrollViewDelegate = delegate
     }
     
-    func setData(categories: [SubcategoryEnum]) {
+    func setData(categories: [SubcategoryViewModel]) {
         updateLayout()
         createCategoryViews(with: categories)
     }
@@ -34,7 +34,7 @@ class SubcategoryScrollView: UIScrollView {
         }
     }
     
-    private func createCategoryViews(with categories: [SubcategoryEnum]) {
+    private func createCategoryViews(with categories: [SubcategoryViewModel]) {
         categories.enumerated().forEach { index, category in
             let item = SubcategoryItemView(category: category)
             stackView.addArrangedSubview(item)
