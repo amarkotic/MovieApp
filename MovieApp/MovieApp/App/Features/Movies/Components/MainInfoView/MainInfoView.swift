@@ -29,7 +29,7 @@ class MainInfoView: UIView {
         super.init(frame: frame)
         
         buildViews()
-        insertMockedData()
+        populateData()
         animateProgressBar()
     }
     
@@ -46,7 +46,7 @@ class MainInfoView: UIView {
         progressBar.add(animation, forKey: "animation")
     }
     
-    func insertMockedData() {
+    func populateData() {
         progressLabel.text = MainInfoViewModel.progressPercentage.rawValue
         nameLabel.text = MainInfoViewModel.movieName.rawValue
         releaseDateLabel.text = MainInfoViewModel.releaseDate.rawValue
