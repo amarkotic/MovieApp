@@ -13,10 +13,16 @@ extension MainInfoView: DesignProtocol {
         moviePoster = UIImageView()
         addSubview(moviePoster)
         
-        progressBar = UIImageView()
-        addSubview(progressBar)
+        backgroundProgressPath = CAShapeLayer()
+        layer.addSublayer(backgroundProgressPath)
         
-        userScoreLabel = UILabel(with: .proximaMedium)
+        progressBar = CAShapeLayer()
+        layer.addSublayer(progressBar)
+        
+        progressLabel = UILabel(with: .medium(size: 15))
+        addSubview(progressLabel)
+        
+        userScoreLabel = UILabel(with: .proximaSemiBold)
         addSubview(userScoreLabel)
         
         nameLabel = UILabel(with: .bold(size: 24))
@@ -40,11 +46,24 @@ extension MainInfoView: DesignProtocol {
         moviePoster.contentMode = .scaleAspectFill
         moviePoster.layer.masksToBounds = true
         
-        progressBar.image = UIImage(with: .progressBar)
+        backgroundProgressPath.path = circularPath.cgPath
+        backgroundProgressPath.fillColor = .none
+        backgroundProgressPath.strokeColor = UIColor.appGray.cgColor
+        backgroundProgressPath.lineWidth = 3
         
-        userScoreLabel.text = "User score"
+        progressBar.path = circularPath.cgPath
+        progressBar.fillColor = .none
+        progressBar.strokeColor = UIColor.green.cgColor
+        progressBar.lineWidth = 3
+        progressBar.lineCap = CAShapeLayerLineCap.round
+        progressBar.strokeEnd = 0
+        
+        progressLabel.text = "76%"
+        
+        userScoreLabel.text = LocalizableStrings.userScore.rawValue
         
         nameLabel.text = "Iron Man 1"
+        nameLabel.textColor = .detailsGray
         
         releaseDateLabel.text = "05/02/2008 (US)"
         
@@ -60,35 +79,35 @@ extension MainInfoView: DesignProtocol {
             $0.edges.equalToSuperview()
         }
         
-        progressBar.snp.makeConstraints {
-            $0.leading.equalTo(21)
-            $0.top.equalTo(108)
+        progressLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(thirdOffset)
+            $0.top.equalToSuperview().offset(15 * secondaryOffset + 1)
         }
         
         userScoreLabel.snp.makeConstraints {
-            $0.leading.equalTo(progressBar.snp.trailing).offset(8)
-            $0.centerY.equalTo(progressBar)
+            $0.leading.equalTo(progressLabel.snp.trailing).offset(2 * secondaryOffset)
+            $0.centerY.equalTo(progressLabel)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18)
-            $0.top.equalTo(progressBar.snp.bottom).offset(9)
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
+            $0.top.equalTo(progressLabel.snp.bottom).offset(3 * secondaryOffset)
         }
         
         releaseDateLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18)
-            $0.top.equalTo(nameLabel.snp.bottom).offset(18)
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(defaultOffset)
         }
         
         genresAndDurationLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18)
-            $0.top.equalTo(releaseDateLabel.snp.bottom).offset(7)
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
+            $0.top.equalTo(releaseDateLabel.snp.bottom).offset(secondaryOffset)
         }
         
         elipseImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(18)
-            $0.top.equalTo(genresAndDurationLabel.snp.bottom).offset(15)
-            $0.bottom.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().offset(defaultOffset)
+            $0.top.equalTo(genresAndDurationLabel.snp.bottom).offset(defaultOffset)
+            $0.bottom.equalToSuperview().inset(defaultOffset)
         }
         
         favoriteImageView.snp.makeConstraints {
@@ -96,5 +115,5 @@ extension MainInfoView: DesignProtocol {
         }
     }
     
-    
 }
+
