@@ -29,7 +29,6 @@ class MainInfoView: UIView {
         super.init(frame: frame)
         
         buildViews()
-        populateData()
         animateProgressBar()
     }
     
@@ -46,11 +45,11 @@ class MainInfoView: UIView {
         progressBar.add(animation, forKey: "animation")
     }
     
-    func populateData() {
-        progressLabel.text = MainInfoViewModel.progressPercentage.rawValue
-        nameLabel.text = MainInfoViewModel.movieName.rawValue
-        releaseDateLabel.text = MainInfoViewModel.releaseDate.rawValue
-        genresAndDurationLabel.text = MainInfoViewModel.genresAndDuration.rawValue
+    func setData(with movieDetails: MovieDetailsViewModel) {
+        progressLabel.text = movieDetails.progressPercentage
+        nameLabel.text = movieDetails.movieName
+        releaseDateLabel.text = movieDetails.releaseDate
+        genresAndDurationLabel.text = movieDetails.genresAndDuration
     }
     
 }

@@ -29,7 +29,7 @@ class AppRouter {
     }
     
     func showMovieDetails() {
-        navigationController.pushViewController(DetailsViewController(), animated: true)
+        navigationController.pushViewController(DetailsViewController(presenter: DetailsPresenter()), animated: true)
     }
     
     private func styleNavigationBar() {
