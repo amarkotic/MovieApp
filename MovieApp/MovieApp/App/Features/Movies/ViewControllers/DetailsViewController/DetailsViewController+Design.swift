@@ -21,9 +21,7 @@ extension DetailsViewController: DesignProtocol {
     func defineLayoutForViews() {
         mainInfoView.snp.makeConstraints{
             $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(303)
         }
-        
     }
     
 }
