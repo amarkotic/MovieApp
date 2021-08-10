@@ -4,6 +4,7 @@ class HomePresenter {
     
     private let moviesUseCase: MoviesUseCaseProtocol
     
+    var appRouter: AppRouter!
     var data = [CategoryViewModel(
                     title: .popular,
                     categories: [.action, .adventure, .comedy, .drama, .family, .horror, .romance, .thriller, .scienceFiction],
@@ -20,8 +21,9 @@ class HomePresenter {
     
     weak private var delegate: HomeViewController?
     
-    init(moviesUseCase: MoviesUseCaseProtocol) {
+    init(moviesUseCase: MoviesUseCaseProtocol, router: AppRouter) {
         self.moviesUseCase = moviesUseCase
+        self.appRouter = router
     }
     
     func setDelegate(delegate: HomeViewController?) {
@@ -59,6 +61,10 @@ class HomePresenter {
         fetchMovies(category: .popular, subCategory: .action)
         fetchMovies(category: .topRated, subCategory: .action)
         fetchMovies(category: .trending, subCategory: .today)
+    }
+    
+    func showMovieDetails(with id: Int) {
+        appRouter.showMovieDetails()
     }
     
 }

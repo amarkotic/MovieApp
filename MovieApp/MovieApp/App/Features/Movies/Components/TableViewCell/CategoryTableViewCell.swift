@@ -57,7 +57,7 @@ class CategoryTableViewCell: UITableViewCell {
     @objc private func movieTapped(_ sender: UITapGestureRecognizer) {
         guard let item = sender.view as? MovieCollectionViewCell else { return }
         if let id = item.identifier {
-            delegate?.moviePressed(with: id)
+            delegate?.showMovieDetails(with: id)
         }
     }
  

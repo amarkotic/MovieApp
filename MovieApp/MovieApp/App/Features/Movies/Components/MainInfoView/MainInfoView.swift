@@ -29,6 +29,7 @@ class MainInfoView: UIView {
         super.init(frame: frame)
         
         buildViews()
+        insertMockedData()
         animateProgressBar()
     }
     
@@ -43,6 +44,17 @@ class MainInfoView: UIView {
         animation.fillMode = CAMediaTimingFillMode.forwards
         animation.isRemovedOnCompletion = false
         progressBar.add(animation, forKey: "animation")
+    }
+    
+}
+
+extension MainInfoView {
+    
+    func insertMockedData() {
+        progressLabel.text = "76%"
+        nameLabel.text = "Iron Man 1"
+        releaseDateLabel.text = "05/02/2008 (US)"
+        genresAndDurationLabel.text = "Action, Science Fiction, Adventure  2h 6m"
     }
     
 }

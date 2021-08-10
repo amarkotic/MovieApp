@@ -20,22 +20,22 @@ extension MainInfoView: DesignProtocol {
         layer.addSublayer(progressBar)
         
         progressLabel = UILabel(with: .medium(size: 15))
-        addSubview(progressLabel)
+        moviePoster.addSubview(progressLabel)
         
         userScoreLabel = UILabel(with: .proximaSemiBold)
-        addSubview(userScoreLabel)
+        moviePoster.addSubview(userScoreLabel)
         
         nameLabel = UILabel(with: .bold(size: 24))
-        addSubview(nameLabel)
+        moviePoster.addSubview(nameLabel)
         
         releaseDateLabel = UILabel(with: .proximaMedium)
-        addSubview(releaseDateLabel)
+        moviePoster.addSubview(releaseDateLabel)
         
         genresAndDurationLabel = UILabel(with: .proximaMedium)
-        addSubview(genresAndDurationLabel)
+        moviePoster.addSubview(genresAndDurationLabel)
         
         elipseImageView = UIImageView()
-        addSubview(elipseImageView)
+        moviePoster.addSubview(elipseImageView)
         
         favoriteImageView = UIImageView()
         elipseImageView.addSubview(favoriteImageView)
@@ -58,16 +58,16 @@ extension MainInfoView: DesignProtocol {
         progressBar.lineCap = CAShapeLayerLineCap.round
         progressBar.strokeEnd = 0
         
-        progressLabel.text = "76%"
+        progressLabel.textColor = .appWhite
         
         userScoreLabel.text = LocalizableStrings.userScore.rawValue
-        
-        nameLabel.text = "Iron Man 1"
+        userScoreLabel.textColor = .appWhite
+    
         nameLabel.textColor = .detailsGray
         
-        releaseDateLabel.text = "05/02/2008 (US)"
-        
-        genresAndDurationLabel.text = "Action, Science Fiction, Adventure  2h 6m"
+        releaseDateLabel.textColor = .appWhite
+
+        genresAndDurationLabel.textColor = .appWhite
         
         elipseImageView.image = UIImage(with: .ellipseImage)
         

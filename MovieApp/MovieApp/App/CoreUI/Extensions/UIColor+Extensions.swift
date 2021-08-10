@@ -14,6 +14,10 @@ extension UIColor {
         UIColor(rgb: 0x0B253F)
     }
     
+    static var appWhite: UIColor {
+        UIColor(rgb: 0xFFFFFF)
+    }
+    
     static var searchBarGray: UIColor {
         UIColor(rgb: 0xEAEAEB)
     }
