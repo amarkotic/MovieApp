@@ -23,7 +23,6 @@ class HomeViewController: UIViewController {
         buildViews()
         presenter.setDelegate(delegate: self)
         presenter.initialFetch()
-        setupGestureRecognizer()
     }
     
     func subcategoryPressed(category: MovieCategoryViewModel, subCategory: SubcategoryViewModel) {
@@ -37,15 +36,7 @@ class HomeViewController: UIViewController {
     
     func showMovieDetails(with id: Int) {
         presenter.showMovieDetails(with: id)
-    }
-    
-    private func setupGestureRecognizer() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uiViewPressed))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc private func uiViewPressed(){
-        view.endEditing(true)
+        print(id)
     }
     
 }

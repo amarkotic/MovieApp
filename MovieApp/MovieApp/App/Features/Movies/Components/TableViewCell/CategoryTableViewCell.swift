@@ -8,6 +8,7 @@ class CategoryTableViewCell: UITableViewCell {
     let defaultOffset = 18
     let secondaryOffset = 8
     let scrollHeight = 22
+    let collectionViewHeight = 179
     let refreshCollectionViewOffset = CGPoint(x: -18, y: 0)
     
     let layout: UICollectionViewFlowLayout = {
@@ -53,14 +54,6 @@ class CategoryTableViewCell: UITableViewCell {
     func set(delegate: HomeViewController) {
         self.delegate = delegate
     }
-
-//    @objc private func movieTapped(_ sender: UITapGestureRecognizer) {
-//        guard let item = sender.view as? MovieCollectionViewCell else { return }
-//        if let id = item.identifier {
-//            delegate?.showMovieDetails(with: id)
-//            print(id)
-//        }
-//    }
  
 }
 
@@ -71,7 +64,8 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MovieCollectionViewCell else { return }
+        delegate?.showMovieDetails(with: cell.viewModel.id)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -84,7 +78,6 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         }
         
         cell.setData(with: movies[indexPath.row])
-//      cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(movieTapped)))
         return cell
     }
     

@@ -50,7 +50,7 @@ extension CategoryTableViewCell: DesignProtocol {
         collectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(scrollView.snp.bottom).offset(4 * secondaryOffset)
-            $0.height.equalTo(179)
+            $0.height.equalTo(collectionViewHeight)
         }
     }
     

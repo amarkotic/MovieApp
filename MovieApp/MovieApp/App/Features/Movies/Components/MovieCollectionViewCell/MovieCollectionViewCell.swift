@@ -14,7 +14,14 @@ class MovieCollectionViewCell: UICollectionViewCell {
     var ellipseImageView: UIImageView!
     var heartImageView: UIImageView!
     
-    var identifier: Int!
+    var viewModel: MovieViewModel! {
+        didSet {
+            let image = viewModel.isFavorite ? UIImage(with: .heartFilled) : UIImage(with: .heartEmpty)
+            let url = URL(string: viewModel.imageUrl)
+            movieImageView.kf.setImage(with: url)
+            heartImageView.image = image
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,12 +34,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(with movie: MovieViewModel) {
-        let image = movie.isFavorite ? UIImage(with: .heartFilled) : UIImage(with: .heartEmpty)
-        let url = URL(string: movie.imageUrl)
-        movieImageView.kf.setImage(with: url)
-        heartImageView.image = image
-        identifier = movie.id
+    func setData(with movieViewModel: MovieViewModel) {
+        viewModel = movieViewModel
     }
     
     private func enableInteraction() {
