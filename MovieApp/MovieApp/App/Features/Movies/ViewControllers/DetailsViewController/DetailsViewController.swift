@@ -17,8 +17,24 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         buildViews()
+        setupNavigationBackButton()
     }
-
+    
+    func setupNavigationBackButton() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(with: .backButton),
+            style: .plain,
+            target: self,
+            action: #selector(backButtonPressed)
+        )
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
+    
+    @objc func backButtonPressed(){
+        navigationController?.popViewController(animated: false)
+    }
+    
 }
