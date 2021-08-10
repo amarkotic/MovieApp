@@ -46,15 +46,12 @@ class MainInfoView: UIView {
         progressBar.add(animation, forKey: "animation")
     }
     
-}
-
-extension MainInfoView {
-    
     func insertMockedData() {
-        progressLabel.text = "76%"
-        nameLabel.text = "Iron Man 1"
-        releaseDateLabel.text = "05/02/2008 (US)"
-        genresAndDurationLabel.text = "Action, Science Fiction, Adventure  2h 6m"
+        progressLabel.text = MainInfoViewModel.progressPercentage.rawValue
+        nameLabel.text = MainInfoViewModel.movieName.rawValue
+        releaseDateLabel.text = MainInfoViewModel.releaseDate.rawValue
+        genresAndDurationLabel.text = MainInfoViewModel.genresAndDuration.rawValue
     }
     
 }
+
