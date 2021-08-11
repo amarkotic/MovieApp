@@ -14,6 +14,7 @@ enum BundleImage: String {
     case progressBar = "progressbarTemporary"
     case favoriteDetails = "Star"
     case reviewImage = "review"
+    case backButton = "backButton"
     
 }
 
