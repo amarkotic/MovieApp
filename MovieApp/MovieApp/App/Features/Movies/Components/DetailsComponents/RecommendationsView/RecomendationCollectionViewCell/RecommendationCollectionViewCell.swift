@@ -5,6 +5,7 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = String(describing: RecommendationCollectionViewCell.self)
     
+    let defaultOffset = 9
     let imageHeight = 85
     let cornerRadius = CGFloat(10)
     
@@ -21,4 +22,8 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setData(with model: RecommendationsViewModel) {
+        imageView.image = UIImage(named: model.imageName)
+        title.text = model.title
+    }
 }

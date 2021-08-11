@@ -13,6 +13,6 @@ enum LocalizableStrings: String {
     case reviewBy = "A review by "
     case writtenBy = "Written by "
     case on = " on \n"
-
+    case recommendations = "Recomendations"
     
 }

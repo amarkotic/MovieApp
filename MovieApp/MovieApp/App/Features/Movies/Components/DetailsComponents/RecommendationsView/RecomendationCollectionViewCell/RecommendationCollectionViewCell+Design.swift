@@ -18,13 +18,10 @@ extension RecommendationCollectionViewCell: DesignProtocol {
     }
     
     func styleViews() {
-        
-        imageView.image = UIImage(with: .temporaryImage)
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = cornerRadius
         imageView.clipsToBounds = true
         
-        title.text = "Iron man 1"
         title.textColor = .appBlue
     }
     
@@ -35,7 +32,7 @@ extension RecommendationCollectionViewCell: DesignProtocol {
         }
         
         title.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(9)
+            $0.top.equalTo(imageView.snp.bottom).offset(defaultOffset)
             $0.leading.trailing.equalToSuperview()
         }
     }

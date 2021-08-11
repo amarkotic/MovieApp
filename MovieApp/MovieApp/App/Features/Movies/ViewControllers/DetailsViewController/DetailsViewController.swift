@@ -3,6 +3,7 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     let defaultOffset = 20
+    let recommendationsCollectionViewHeight = 114
     let castCollectionViewHeight = 259
     
     var scrollView: UIScrollView!
@@ -35,6 +36,7 @@ class DetailsViewController: UIViewController {
         overviewView.setData(with: model.overview)
         castView.setData(with: model.actors)
         socialView.setData(with: model.review)
+        recommendationView.setData(with: model.recommendations)
     }
 
 }

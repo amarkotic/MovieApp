@@ -2,9 +2,8 @@ import UIKit
 
 class RecommendationsView: UIView {
     let defaultOffset = 18
-//    let secondaryOffset = 7
     let collectionViewHeight = 154
-//
+
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -15,6 +14,8 @@ class RecommendationsView: UIView {
     
     var title: UILabel!
     var collectionView: UICollectionView!
+    
+    var recommendations = [RecommendationsViewModel]()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,12 +27,16 @@ class RecommendationsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setData(with recommendationsModel: [RecommendationsViewModel]) {
+        recommendations = recommendationsModel
+    }
+    
 }
 
 extension RecommendationsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return recommendations.count
     }
     
 
@@ -44,6 +49,7 @@ extension RecommendationsView: UICollectionViewDelegate, UICollectionViewDataSou
             return UICollectionViewCell()
         }
         
+        cell.setData(with: recommendations[indexPath.row])
         return cell
     }
     

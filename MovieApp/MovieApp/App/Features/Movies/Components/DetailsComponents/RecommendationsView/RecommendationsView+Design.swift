@@ -17,12 +17,15 @@ extension RecommendationsView: DesignProtocol {
     }
     
     func styleViews() {
-        title.text = "Recomendations"
+        title.text = LocalizableStrings.recommendations.rawValue
         title.textColor = .appBlue
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(RecommendationCollectionViewCell.self, forCellWithReuseIdentifier: RecommendationCollectionViewCell.reuseIdentifier)
+        collectionView.register(
+            RecommendationCollectionViewCell.self,
+            forCellWithReuseIdentifier: RecommendationCollectionViewCell.reuseIdentifier
+        )
         collectionView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(defaultOffset), bottom: 0, right: CGFloat(defaultOffset))
         collectionView.backgroundColor = .none
     }
@@ -31,7 +34,7 @@ extension RecommendationsView: DesignProtocol {
         
         title.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
         }
         
         collectionView.snp.makeConstraints {
@@ -40,6 +43,5 @@ extension RecommendationsView: DesignProtocol {
             $0.height.equalTo(collectionViewHeight)
         }
     }
-    
     
 }
