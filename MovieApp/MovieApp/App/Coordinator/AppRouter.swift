@@ -9,7 +9,7 @@ class AppRouter {
         let homeViewController = HomeViewController(
             presenter: HomePresenter(moviesUseCase: appDependencies.moviesUseCase),
             router: self)
-        let favoriteViewController = FavoriteMoviesViewController()
+        let favoriteViewController = FavoriteMoviesViewController(presenter: FavoriteMoviesPresenter(moviesUseCase: appDependencies.moviesUseCase))
         return CustomTabBarController(
             homeViewController: homeViewController,
             favoriteViewController: favoriteViewController)

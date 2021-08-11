@@ -3,8 +3,8 @@ import UIKit
 class SubcategoryScrollView: UIScrollView {
     
     let stackViewSpacing = CGFloat(23)
-    var indexSelected = 0
     
+    var indexSelected = 0
     var stackView: UIStackView!
     
     private weak var scrollViewDelegate: CategoryTableViewCell?

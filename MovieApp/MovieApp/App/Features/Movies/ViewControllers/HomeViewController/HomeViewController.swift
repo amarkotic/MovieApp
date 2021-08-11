@@ -69,6 +69,7 @@ extension HomeViewController: UITableViewDataSource {
         
         let data = presenter.data[indexPath.row]
         cell.populateCell(title: data.title, categories: data.categories, movies: data.movies)
+        
         return cell
     }
     
