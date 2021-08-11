@@ -36,7 +36,6 @@ class HomeViewController: UIViewController {
     
     func showMovieDetails(with id: Int) {
         presenter.showMovieDetails(with: id)
-        print(id)
     }
     
 }

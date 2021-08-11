@@ -5,5 +5,6 @@ enum LocalizableStrings: String {
     case searchBarPlaceholder = "Search"
     case cancelButtonTitle = "Cancel"
     case userScore = "User score"
+    case overview = "Overview"
     
 }
