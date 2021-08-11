@@ -24,10 +24,10 @@ class DetailsViewController: UIViewController {
         presenter.fetchData()
     }
     
-    func setData(with model: MovieDetailsViewModel) {
-        mainInfoView.setData(with: model.info)
-        overviewView.setData(with: model.overview)
-        castView.setData(with: model.actors)
+    func setData(infoData: MainInfoViewModel, overviewData: OverviewViewModel, actorsData: ActorsViewModel) {
+        mainInfoView.setData(with: infoData)
+        overviewView.setData(with: overviewData)
+        castView.setData(with: actorsData)
     }
     
 }
