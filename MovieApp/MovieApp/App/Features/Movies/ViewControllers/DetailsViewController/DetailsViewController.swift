@@ -29,11 +29,11 @@ class DetailsViewController: UIViewController {
         presenter.fetchData()
     }
     
-    func setData(infoData: MainInfoViewModel, overviewData: OverviewViewModel, actorsData: ActorsViewModel, reviewData: SocialViewModel) {
-        mainInfoView.setData(with: infoData)
-        overviewView.setData(with: overviewData)
-        castView.setData(with: actorsData)
-        socialView.setData(with: reviewData)
+    func setData(model: MovieDetailsViewModel) {
+        mainInfoView.setData(with: model.info)
+        overviewView.setData(with: model.overview)
+        castView.setData(with: model.actors)
+        socialView.setData(with: model.review)
     }
 
 }
