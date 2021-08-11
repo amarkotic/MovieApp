@@ -14,7 +14,8 @@ class DetailsPresenter {
         let infoData: MainInfoViewModel = data.info
         let overviewData: OverviewViewModel = data.overview
         let actorsData: ActorsViewModel = data.actors
-        delegate?.setData(infoData: infoData, overviewData: overviewData, actorsData: actorsData)
+        let reviewData: SocialViewModel = data.review
+        delegate?.setData(infoData: infoData, overviewData: overviewData, actorsData: actorsData, reviewData: reviewData)
     }
     
 }

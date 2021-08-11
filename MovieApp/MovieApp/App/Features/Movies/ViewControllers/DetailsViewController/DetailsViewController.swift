@@ -2,20 +2,25 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     
-    let defaultOffset = 18
-    let secondaryOffset = 20
+    let defaultOffset = 20
+    let castCollectionViewHeight = 259
     
-    var presenter: DetailsPresenter!
+    var scrollView: UIScrollView!
+    var contentView: UIView!
+    
     var mainInfoView: MainInfoView!
     var overviewView: OverviewView!
     var castView: CastView!
+    var socialView: SocialView!
+    
+    var presenter: DetailsPresenter!
     
     convenience init(presenter: DetailsPresenter) {
         self.init()
         
         self.presenter = presenter
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,10 +29,11 @@ class DetailsViewController: UIViewController {
         presenter.fetchData()
     }
     
-    func setData(infoData: MainInfoViewModel, overviewData: OverviewViewModel, actorsData: ActorsViewModel) {
+    func setData(infoData: MainInfoViewModel, overviewData: OverviewViewModel, actorsData: ActorsViewModel, reviewData: SocialViewModel) {
         mainInfoView.setData(with: infoData)
         overviewView.setData(with: overviewData)
         castView.setData(with: actorsData)
+        socialView.setData(with: reviewData)
     }
-    
+
 }

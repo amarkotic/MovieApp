@@ -53,8 +53,11 @@
 		5278E23D26C2967400F4A2CE /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5278E23C26C2967400F4A2CE /* DetailsPresenter.swift */; };
 		527A3D1026C3D3F600C6D63E /* MainInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A3D0F26C3D3F600C6D63E /* MainInfoViewModel.swift */; };
 		527A3D1226C3D40400C6D63E /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A3D1126C3D40400C6D63E /* OverviewViewModel.swift */; };
+		52815EF126C4045800E6B441 /* SocialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52815EF026C4045800E6B441 /* SocialViewModel.swift */; };
 		5288080A26B7EE4100B72EDB /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288080926B7EE4100B72EDB /* DetailsViewController.swift */; };
 		5288080C26B7EE4C00B72EDB /* DetailsViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288080B26B7EE4C00B72EDB /* DetailsViewController+Design.swift */; };
+		528DE5CF26C122DA00498E23 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5CE26C122DA00498E23 /* SocialView.swift */; };
+		528DE5D126C122E200498E23 /* SocialView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5D026C122E200498E23 /* SocialView+Design.swift */; };
 		5293A79F26A9A4C700F786E9 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A79E26A9A4C700F786E9 /* CategoryTableViewCell.swift */; };
 		5293A7A126A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7A026A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift */; };
 		5293A7A426AE973000F786E9 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293A7A326AE973000F786E9 /* MovieCollectionViewCell.swift */; };
@@ -141,8 +144,11 @@
 		5278E23C26C2967400F4A2CE /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
 		527A3D0F26C3D3F600C6D63E /* MainInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoViewModel.swift; sourceTree = "<group>"; };
 		527A3D1126C3D40400C6D63E /* OverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewModel.swift; sourceTree = "<group>"; };
+		52815EF026C4045800E6B441 /* SocialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewModel.swift; sourceTree = "<group>"; };
 		5288080926B7EE4100B72EDB /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		5288080B26B7EE4C00B72EDB /* DetailsViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsViewController+Design.swift"; sourceTree = "<group>"; };
+		528DE5CE26C122DA00498E23 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
+		528DE5D026C122E200498E23 /* SocialView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocialView+Design.swift"; sourceTree = "<group>"; };
 		5293A79E26A9A4C700F786E9 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		5293A7A026A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryTableViewCell+Design.swift"; sourceTree = "<group>"; };
 		5293A7A326AE973000F786E9 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -501,6 +507,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		52815EEF26C4044800E6B441 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52815EF026C4045800E6B441 /* SocialViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		5288080826B7EE2900B72EDB /* DetailsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +524,16 @@
 				5278E23926C294DA00F4A2CE /* ViewModels */,
 			);
 			path = DetailsViewController;
+			sourceTree = "<group>";
+		};
+		528DE5CD26C122D000498E23 /* SocialView */ = {
+			isa = PBXGroup;
+			children = (
+				528DE5CE26C122DA00498E23 /* SocialView.swift */,
+				528DE5D026C122E200498E23 /* SocialView+Design.swift */,
+				52815EEF26C4044800E6B441 /* Models */,
+			);
+			path = SocialView;
 			sourceTree = "<group>";
 		};
 		5293A79D26A9A4B300F786E9 /* TableViewCell */ = {
@@ -639,6 +663,7 @@
 		52F64E7C26B95E7C0046A8ED /* DetailsComponents */ = {
 			isa = PBXGroup;
 			children = (
+				528DE5CD26C122D000498E23 /* SocialView */,
 				52F64E8426B968E10046A8ED /* CastView */,
 				52F64E6F26B82EC10046A8ED /* MainInfoView */,
 				52F64E7D26B95E930046A8ED /* OverviewView */,
@@ -794,6 +819,7 @@
 				52F11AB326A80308007DBE0A /* MovieSearchModel.swift in Sources */,
 				52F11AB626A8037C007DBE0A /* MovieRepositoryModel.swift in Sources */,
 				5293A7B626B13D1500F786E9 /* SubcategoryItemView+Design.swift in Sources */,
+				528DE5CF26C122DA00498E23 /* SocialView.swift in Sources */,
 				522EE8E926A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift in Sources */,
 				5278E23D26C2967400F4A2CE /* DetailsPresenter.swift in Sources */,
 				5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */,
@@ -803,11 +829,13 @@
 				525666AE26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift in Sources */,
 				52F11AAC26A71487007DBE0A /* AppDependecies.swift in Sources */,
 				522EE8DC26A6BAED00A456E2 /* MoviesUseCase.swift in Sources */,
+				528DE5D126C122E200498E23 /* SocialView+Design.swift in Sources */,
 				5203716926A5672B00DE4AC7 /* NetworkError.swift in Sources */,
 				523C2ECB269EE89B00F2EDD6 /* UIColor+Extensions.swift in Sources */,
 				52B5C4E126B2A83500F5265A /* MovieViewModel.swift in Sources */,
 				526B517C269DA8610095F3E2 /* MoviesSearchViewController+Design.swift in Sources */,
 				526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */,
+				52815EF126C4045800E6B441 /* SocialViewModel.swift in Sources */,
 				523C2ED326A0559D00F2EDD6 /* UILabel+Extensions.swift in Sources */,
 				522EE8E426A6C00300A456E2 /* MoviesRepository.swift in Sources */,
 				5293A7B926B299A600F786E9 /* MovieCategoryViewModel.swift in Sources */,

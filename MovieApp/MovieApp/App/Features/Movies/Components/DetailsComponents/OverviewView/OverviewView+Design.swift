@@ -27,12 +27,14 @@ extension OverviewView: DesignProtocol {
     
     func defineLayoutForViews() {
         title.snp.makeConstraints {
-            $0.leading.top.trailing.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
         }
         
         overview.snp.makeConstraints {
             $0.top.equalTo(title.snp.bottom).offset(defaultOffset)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
+            $0.bottom.equalToSuperview()
         }
     }
     
