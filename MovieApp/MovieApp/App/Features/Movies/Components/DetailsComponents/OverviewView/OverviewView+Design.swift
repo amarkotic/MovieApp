@@ -10,7 +10,7 @@ extension OverviewView: DesignProtocol {
     }
     
     func createViews() {
-        title = UILabel(with: .proximaBold)
+        title = UILabel(with: .bold(size: 20))
         addSubview(title)
         
         overview = UILabel(with: .proximaMedium)
@@ -19,7 +19,7 @@ extension OverviewView: DesignProtocol {
     
     func styleViews() {
         title.text = LocalizableStrings.overview.rawValue
-        title.textColor = .black
+        title.textColor = .appBlue
         
         overview.textColor = .black
         overview.numberOfLines = 0
