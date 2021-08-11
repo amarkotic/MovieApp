@@ -3,12 +3,12 @@ import UIKit
 class RecommendationsView: UIView {
     let defaultOffset = 18
 //    let secondaryOffset = 7
-    let collectionViewHeight = 114
+    let collectionViewHeight = 154
 //
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 125, height: 209)
+        layout.itemSize = CGSize(width: 180, height: 114)
         layout.minimumInteritemSpacing = 12
         return layout
     }()

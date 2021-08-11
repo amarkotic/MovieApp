@@ -21,18 +21,4 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        backgroundColor = .clear
-        layer.masksToBounds = false
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.1
-        layer.shadowOffset = .zero
-        layer.shadowRadius = 10
-        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        
-        contentView.backgroundColor = .white
-    }
-    
 }

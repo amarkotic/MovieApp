@@ -71,7 +71,7 @@ extension DetailsViewController: DesignProtocol {
             $0.top.equalTo(socialView.snp.bottom).offset(2 * defaultOffset)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(114)
-            $0.bottom.equalToSuperview().inset(defaultOffset)
+            $0.bottom.equalToSuperview().inset(3 * defaultOffset)
         }
     }
     

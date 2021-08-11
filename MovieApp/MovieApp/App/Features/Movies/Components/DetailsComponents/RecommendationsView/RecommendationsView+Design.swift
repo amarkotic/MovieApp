@@ -17,7 +17,9 @@ extension RecommendationsView: DesignProtocol {
     }
     
     func styleViews() {
-        title.text = "Recomendation"
+        title.text = "Recomendations"
+        title.textColor = .appBlue
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(RecommendationCollectionViewCell.self, forCellWithReuseIdentifier: RecommendationCollectionViewCell.reuseIdentifier)
