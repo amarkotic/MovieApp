@@ -1,4 +1,4 @@
-struct CastCollectionViewModel {
+struct ActorViewModel {
     
     let nameLabel: String
     let roleLabel: String

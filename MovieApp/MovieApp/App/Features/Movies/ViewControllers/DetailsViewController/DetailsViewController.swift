@@ -25,9 +25,9 @@ class DetailsViewController: UIViewController {
     }
     
     func setData(with model: MovieDetailsViewModel) {
-        mainInfoView.setData(with: model)
-        overviewView.setData(model: model)
-        castView.setData(model: model)
+        mainInfoView.setData(with: model.info)
+        overviewView.setData(with: model.overview)
+        castView.setData(with: model.actors)
     }
     
 }

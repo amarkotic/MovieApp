@@ -37,7 +37,7 @@ class CastCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .white
     }
     
-    func setData(model: CastCollectionViewModel) {
+    func setData(model: ActorViewModel) {
         nameLabel.text = model.nameLabel
         roleLabel.text = model.roleLabel
         actorImageView.image = UIImage(named: model.imageName)

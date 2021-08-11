@@ -18,7 +18,7 @@ class CastView: UIView {
     var fullCastButton: UIButton!
     var collectionView: UICollectionView!
     
-    var castViewModel = [CastCollectionViewModel]()
+    var actorsViewModel: ActorsViewModel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,8 +30,8 @@ class CastView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(model: MovieDetailsViewModel) {
-        castViewModel = model.actors
+    func setData(with actorModel: ActorsViewModel) {
+        actorsViewModel = actorModel
     }
 }
 
@@ -51,7 +51,7 @@ extension CastView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
             return UICollectionViewCell()
         }
         
-        cell.setData(model: castViewModel[indexPath.row])
+        cell.setData(model: actorsViewModel.actors[indexPath.row])
         return cell
     }
     
