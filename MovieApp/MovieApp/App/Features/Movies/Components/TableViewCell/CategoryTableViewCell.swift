@@ -8,6 +8,7 @@ class CategoryTableViewCell: UITableViewCell {
     let defaultOffset = 18
     let secondaryOffset = 8
     let scrollHeight = 22
+    let collectionViewHeight = 179
     let refreshCollectionViewOffset = CGPoint(x: -18, y: 0)
     
     let layout: UICollectionViewFlowLayout = {
@@ -60,6 +61,11 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MovieCollectionViewCell else { return }
+        delegate?.showMovieDetails(with: cell.viewModel.id)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

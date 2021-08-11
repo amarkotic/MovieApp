@@ -26,6 +26,7 @@ extension HomeViewController: DesignProtocol {
         tableView.backgroundColor = .none
         tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: CategoryTableViewCell.reuseIdentifier)
         tableView.bounces = true
+        tableView.keyboardDismissMode = .onDrag
     }
     
     func defineLayoutForViews() {
