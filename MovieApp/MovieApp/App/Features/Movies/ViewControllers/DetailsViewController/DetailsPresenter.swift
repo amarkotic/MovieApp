@@ -9,12 +9,7 @@ class DetailsPresenter {
     }
     
     func fetchData() {
-        let data = MovieDetailsViewModel()
-        
-        let infoData: MainInfoViewModel = data.info
-        let overviewData: OverviewViewModel = data.overview
-        let actorsData: ActorsViewModel = data.actors
-        delegate?.setData(infoData: infoData, overviewData: overviewData, actorsData: actorsData)
+        delegate?.setData(model: MovieDetailsViewModel())
     }
     
 }
