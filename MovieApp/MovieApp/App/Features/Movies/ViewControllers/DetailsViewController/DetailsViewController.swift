@@ -52,7 +52,7 @@ class DetailsViewController: UIViewController {
     }
     
     @objc func backButtonPressed(){
-        navigationController?.popViewController(animated: false)
+        presenter.popToHomeScreen()
     }
     
 }
