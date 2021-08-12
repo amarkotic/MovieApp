@@ -1,6 +1,6 @@
 struct MovieDetailsViewModel {
     
-    let info = MainInfoViewModel(
+    var info = MainInfoViewModel(
         progressPercentage: "76%",
         movieName: "Iron man 1",
         releaseDate: "05/02/2008 (US)",

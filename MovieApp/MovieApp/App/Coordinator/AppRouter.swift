@@ -28,9 +28,14 @@ class AppRouter {
         window?.makeKeyAndVisible()
     }
     
-    func showMovieDetails() {
+    func showMovieDetails(with identifier: Int) {
         navigationController.pushViewController(
-            DetailsViewController(presenter: DetailsPresenter(router: self)),
+            DetailsViewController(
+                presenter: DetailsPresenter(
+                    movieUseCase: appDependencies.moviesUseCase, netClient: appDependencies.moviesNetworkClient,
+                    router: self),
+                identifier: identifier
+            ),
             animated: true
         )
     }

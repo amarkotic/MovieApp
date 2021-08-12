@@ -20,7 +20,6 @@ struct MovieNetworkModel: Codable {
         case title = "original_title"
         case description = "overview"
         case genreIds = "genre_ids"
-        
     }
     
 }

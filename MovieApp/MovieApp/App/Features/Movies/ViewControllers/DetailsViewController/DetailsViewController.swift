@@ -16,11 +16,13 @@ class DetailsViewController: UIViewController {
     var recommendationView: RecommendationsView!
     
     var presenter: DetailsPresenter!
+    var identifier: Int!
     
-    convenience init(presenter: DetailsPresenter) {
+    convenience init(presenter: DetailsPresenter, identifier: Int) {
         self.init()
         
         self.presenter = presenter
+        self.identifier = identifier
     }
     
     override func viewDidLoad() {
@@ -28,7 +30,7 @@ class DetailsViewController: UIViewController {
         
         buildViews()
         presenter.setDelegate(delegate: self)
-        presenter.fetchData()
+        presenter.fetchData(with: identifier)
         
         setupNavigationBackButton()
     }

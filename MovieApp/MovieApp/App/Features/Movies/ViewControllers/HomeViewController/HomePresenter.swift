@@ -64,7 +64,7 @@ class HomePresenter {
     }
     
     func showMovieDetails(with id: Int) {
-        appRouter.showMovieDetails()
+        appRouter.showMovieDetails(with: id)
     }
     
 }
