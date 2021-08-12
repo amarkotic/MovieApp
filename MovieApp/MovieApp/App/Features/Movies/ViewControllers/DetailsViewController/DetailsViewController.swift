@@ -27,10 +27,9 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         buildViews()
+        setupNavigationBackButton()
         presenter.setDelegate(delegate: self)
         presenter.fetchData()
-        
-        setupNavigationBackButton()
     }
     
     func setData(model: MovieDetailsViewModel) {

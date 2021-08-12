@@ -1,6 +1,7 @@
 import UIKit
 
 class RecommendationsView: UIView {
+    
     let defaultOffset = 18
     let collectionViewHeight = 154
 

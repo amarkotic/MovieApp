@@ -2,7 +2,7 @@ import UIKit
 
 class DetailsPresenter {
 
-    var appRouter: AppRouter!
+    private let appRouter: AppRouter!
     weak private var delegate: DetailsViewController?
     
     init(router: AppRouter) {

@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 
 extension RecommendationsView: DesignProtocol {
+    
     func buildViews() {
         createViews()
         styleViews()
@@ -31,7 +32,6 @@ extension RecommendationsView: DesignProtocol {
     }
     
     func defineLayoutForViews() {
-        
         title.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(defaultOffset)
