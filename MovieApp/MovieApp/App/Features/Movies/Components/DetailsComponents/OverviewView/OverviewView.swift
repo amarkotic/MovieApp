@@ -17,8 +17,8 @@ class OverviewView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(model: MovieDetailsViewModel) {
-        overview.text = model.overview
+    func setData(with overviewModel: OverviewViewModel) {
+        overview.text = overviewModel.overview
     }
      
 }

@@ -9,7 +9,7 @@ class DetailsPresenter {
     }
     
     func fetchData() {
-        delegate?.setData(with: MovieDetailsViewModel())
+        delegate?.setData(model: MovieDetailsViewModel())
     }
     
 }

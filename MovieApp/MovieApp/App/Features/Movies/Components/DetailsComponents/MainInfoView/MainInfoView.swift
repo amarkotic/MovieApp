@@ -45,11 +45,11 @@ class MainInfoView: UIView {
         progressBar.add(animation, forKey: "animation")
     }
     
-    func setData(with movieDetails: MovieDetailsViewModel) {
-        progressLabel.text = movieDetails.progressPercentage
-        nameLabel.text = movieDetails.movieName
-        releaseDateLabel.text = movieDetails.releaseDate
-        genresAndDurationLabel.text = movieDetails.genresAndDuration
+    func setData(with infoModel: MainInfoViewModel) {
+        progressLabel.text = infoModel.progressPercentage
+        nameLabel.text = infoModel.movieName
+        releaseDateLabel.text = infoModel.releaseDate
+        genresAndDurationLabel.text = infoModel.genresAndDuration
     }
     
 }

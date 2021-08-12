@@ -6,5 +6,7 @@ enum LocalizableStrings: String {
     case cancelButtonTitle = "Cancel"
     case userScore = "User score"
     case overview = "Overview"
+    case topBilledCast = "Top Billed Cast"
+    case fullCast = "Full Cast & Crew"
     
 }
