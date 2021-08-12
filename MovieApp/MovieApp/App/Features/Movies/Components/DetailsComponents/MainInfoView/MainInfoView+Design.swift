@@ -13,6 +13,9 @@ extension MainInfoView: DesignProtocol {
         moviePoster = UIImageView()
         addSubview(moviePoster)
         
+        gradientView = GradientView()
+        moviePoster.addSubview(gradientView)
+    
         backgroundProgressPath = CAShapeLayer()
         layer.addSublayer(backgroundProgressPath)
         
@@ -42,7 +45,6 @@ extension MainInfoView: DesignProtocol {
     }
     
     func styleViews() {
-        moviePoster.image = UIImage(with: .temporaryImage)
         moviePoster.contentMode = .scaleAspectFill
         moviePoster.layer.masksToBounds = true
         
@@ -76,6 +78,11 @@ extension MainInfoView: DesignProtocol {
     
     func defineLayoutForViews() {
         moviePoster.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.height.equalTo(moviePosterHeight)
+        }
+        
+        gradientView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         

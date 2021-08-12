@@ -1,13 +1,9 @@
 struct MovieDetailsViewModel {
     
-    var info = MainInfoViewModel(
-        progressPercentage: "76%",
-        movieName: "Iron man 1",
-        releaseDate: "05/02/2008 (US)",
-        genresAndDuration: "Action, Science Fiction, Adventure  2h 6m"
-    )
     
-    let overview = OverviewViewModel(overview: "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.")
+    let info: MainInfoViewModel
+    
+    let overview: OverviewViewModel
     
     let actors = [
         ActorViewModel(

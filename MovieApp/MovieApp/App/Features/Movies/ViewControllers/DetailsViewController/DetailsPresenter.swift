@@ -1,7 +1,7 @@
 import UIKit
 
 class DetailsPresenter {
-
+    
     var appRouter: AppRouter!
     var movieUseCase: MoviesUseCaseProtocol!
     var netclient: MoviesNetworkClientProtocol!
@@ -18,17 +18,35 @@ class DetailsPresenter {
     }
     
     func fetchData(with id: Int) {
-        
-        netclient.getMovie(with: id) { (result: Result<MovieDetailsNetworkModel, NetworkError>) in
+        movieUseCase.fetchMovie(with: id) {
+            (result: Result<MovieDetailsModel, Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-               print(value)
+                
+                var str = ""
+                value.genres.forEach { model in
+                    str.append(model.name)
+                    str.append(" ")
+                }
+                
+                
+                let viewModel = MovieDetailsViewModel(
+                    info: MainInfoViewModel(
+                        posterPath: value.posterPath,
+                        progressPercentage: value.voteAverage,
+                        movieName: value.title,
+                        releaseDate: value.releaseDate,
+                        language: value.language,
+                        genres: str,
+                        duration: value.runtime),
+                    overview: OverviewViewModel(
+                        overview: value.overview)
+                )
+                self.delegate?.setMainInfoData(model: viewModel)
             }
         }
-        
-//        delegate?.setData(model: MovieDetailsViewModel())
     }
     
     func popToHomeScreen() {

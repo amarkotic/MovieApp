@@ -6,4 +6,9 @@ protocol MoviesRepositoryProtocol {
         completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
     )
     
+    func fetchMovie(
+        with id: Int,
+        completion: @escaping (Result<MovieDetailsRepositoryModel, Error>) -> Void
+    ) 
+    
 }

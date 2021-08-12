@@ -43,4 +43,28 @@ class MoviesRepository: MoviesRepositoryProtocol {
         }
     }
     
+    func fetchMovie(
+        with id: Int,
+        completion: @escaping (Result<MovieDetailsRepositoryModel, Error>) -> Void
+    ) {
+        networkDataSource.fetchMovie(with: id) {
+            (result: Result<MovieDetailsDataSourceModel, Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                let movieDetailsRepositoryModels = MovieDetailsRepositoryModel(
+                    posterPath: value.posterPath,
+                    voteAverage: value.voteAverage,
+                    title: value.title,
+                    releaseDate: value.releaseDate,
+                    runtime: value.runtime,
+                    language: value.language,
+                    genres: value.genres,
+                    overview: value.overview)
+                completion(.success(movieDetailsRepositoryModels))
+            }
+        }
+    }
+    
 }

@@ -11,4 +11,8 @@ protocol MoviesUseCaseProtocol {
         completion: @escaping (Result<[MovieModel], Error>) -> Void
     )
     
+    func fetchMovie(
+        with id: Int,
+        completion: @escaping (Result<MovieDetailsModel, Error>) -> Void
+    ) 
 }

@@ -35,6 +35,10 @@ class DetailsViewController: UIViewController {
         setupNavigationBackButton()
     }
     
+    func setMainInfoData(model: MovieDetailsViewModel) {
+        mainInfoView.setData(with: model.info)
+        overviewView.setData(with: model.overview)
+    }
     func setData(model: MovieDetailsViewModel) {
         mainInfoView.setData(with: model.info)
         overviewView.setData(with: model.overview)

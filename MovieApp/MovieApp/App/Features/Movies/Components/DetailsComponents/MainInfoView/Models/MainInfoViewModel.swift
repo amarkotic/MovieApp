@@ -1,8 +1,11 @@
 struct MainInfoViewModel {
     
-    let progressPercentage: String
+    let posterPath: String
+    let progressPercentage: Float
     let movieName: String
     let releaseDate: String
-    let genresAndDuration: String
+    let language: String
+    let genres: String
+    let duration: Int
     
 }
