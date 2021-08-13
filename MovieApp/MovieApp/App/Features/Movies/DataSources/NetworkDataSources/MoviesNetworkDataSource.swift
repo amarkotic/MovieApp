@@ -97,6 +97,23 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         }
     }
     
+    func fetchRecommendations(
+        with id: Int,
+        completion: @escaping (Result<[RecommendationDataSourceModel], Error>) -> Void
+    ) {
+        
+        networkClient.getRecommendations(with: id) { (result: Result<RecommendationsNetworkModel, NetworkError>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let recommendationsDataSourceModels = model.results.map {
+                    RecommendationDataSourceModel(from: $0)
+                }
+                completion(.success(recommendationsDataSourceModels))
+            }
+        }
+    }
     
     private func mapGenresToDataSourceModel(models: [GenresNetworkModel]) -> [GenresDataSourceModel] {
         models.map { GenresDataSourceModel(from: $0) }

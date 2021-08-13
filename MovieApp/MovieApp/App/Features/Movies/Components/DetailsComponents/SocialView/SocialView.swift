@@ -61,7 +61,6 @@ extension SocialView {
         let day = dateFormatter.string(from: date!)
         
         let durationAndLanguage = "\(month) \(day), \(year)"
-        print(durationAndLanguage)
         return durationAndLanguage
     }
     

@@ -30,6 +30,7 @@ class RecommendationsView: UIView {
     
     func setData(with recommendationsModel: [RecommendationsViewModel]) {
         recommendations = recommendationsModel
+        collectionView.reloadData()
     }
     
 }
