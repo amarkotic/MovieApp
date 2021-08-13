@@ -54,4 +54,15 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         networkService.get(url: url, completion: completion)
     }
     
+    func getReviews(
+        with id: Int,
+        completion: @escaping (Result<ReviewsNetworkModel, NetworkError>) -> Void
+    ) {
+        var url: URL?
+        url = EndpointConstant.review(id: id).url
+        guard let url = url else { return }
+        
+        networkService.get(url: url, completion: completion)
+    }
+    
 }

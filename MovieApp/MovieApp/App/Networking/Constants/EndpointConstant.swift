@@ -59,6 +59,13 @@ extension EndpointConstant {
         )
     }
     
+    static func review(id: Int) -> EndpointConstant {
+        EndpointConstant(path: "/3/movie/\(id)/reviews",
+                         queryItems: [
+                            URLQueryItem(name: "api_key", value: NetworkConstants.apiKey)
+                         ]
+        )
+    }
 }
 
 extension EndpointConstant {

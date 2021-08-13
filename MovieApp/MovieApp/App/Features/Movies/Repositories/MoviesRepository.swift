@@ -84,6 +84,23 @@ class MoviesRepository: MoviesRepositoryProtocol {
         }
     }
     
+    func fetchReviews(
+        with id: Int,
+        completion: @escaping (Result<[ReviewRepositoryModel], Error>) -> Void
+    ) {
+        networkDataSource.fetchReviews(with: id) { (result: Result<[ReviewDataSourceModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let reviewsRepositoryModels = model.map { dataSourceModel in
+                    ReviewRepositoryModel(from: dataSourceModel)
+                }
+                completion(.success(reviewsRepositoryModels))
+            }
+        }
+    }
+    
     
     
     private func mapGenresToReposiroryModels(from dataSourceModel: [GenresDataSourceModel]) -> [GenresRepositoryModel] {

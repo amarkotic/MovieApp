@@ -58,6 +58,20 @@ class DetailsPresenter {
             }
         }
         
+        movieUseCase.fetchReview(with: id) { (result: Result<ReviewModel, Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                
+                let viewModel = SocialViewModel(
+                    author: value.author,
+                    date: value.createdAt,
+                    review: value.content)
+                self.delegate?.setReviewData(model: viewModel)
+            }
+        }
+        
     }
     
     func popToHomeScreen() {

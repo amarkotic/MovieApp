@@ -117,6 +117,22 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
+    func fetchReview(
+        with id: Int,
+        completion: @escaping (Result<ReviewModel, Error>) -> Void
+    ) {
+        repository.fetchReviews(with: id) { (result: Result<[ReviewRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let reviewModels = model.map { repoModels -> ReviewModel in
+                    return ReviewModel(from: repoModels)
+                }
+                completion(.success(reviewModels[0]))
+            }
+        }
+    }
     
     private func mapGenresToModels(from repositoryModels: [GenresRepositoryModel]) -> [GenresModel] {
         repositoryModels.map { GenresModel(from: $0) }
