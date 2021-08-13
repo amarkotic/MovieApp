@@ -26,7 +26,7 @@ class SocialView: UIView {
     }
     
     func setData(with reviewModel: SocialViewModel) {
-        let parsedDate = parse(date: reviewModel.date)
+        let parsedDate = parse(date: reviewModel.date ?? "")
         postTitle.text?.append(reviewModel.author)
         postInfo.attributedText = createAttributed(author: reviewModel.author, date: parsedDate)
         postContent.text = reviewModel.review
@@ -46,7 +46,6 @@ extension SocialView {
     }
     
     private func parse(date: String) -> String {
-        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
@@ -60,9 +59,8 @@ extension SocialView {
         dateFormatter.dateFormat = "dd"
         let day = dateFormatter.string(from: date!)
         
-        let durationAndLanguage = "\(month) \(day), \(year)"
-        print(durationAndLanguage)
-        return durationAndLanguage
+        let dateString = "\(month) \(day), \(year)"
+        return dateString
     }
     
 }
