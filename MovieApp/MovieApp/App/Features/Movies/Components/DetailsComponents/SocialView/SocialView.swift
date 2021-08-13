@@ -29,7 +29,6 @@ class SocialView: UIView {
         postTitle.text?.append(reviewModel.author)
         postInfo.attributedText = createAttributedText(author: reviewModel.author, date: reviewModel.date)
         postContent.text = reviewModel.review
-        logoImage.kf.setImage(with: URL(string: reviewModel.posterPath))
     }
     
     private func createAttributedText(author: String, date: String) -> NSMutableAttributedString {
