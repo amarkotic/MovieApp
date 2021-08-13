@@ -16,7 +16,10 @@ class DetailsViewController: UIViewController {
     var recommendationView: RecommendationsView!
     
     var presenter: DetailsPresenter!
+<<<<<<< HEAD
     var identifier: Int!
+=======
+>>>>>>> develop
     
     convenience init(presenter: DetailsPresenter, identifier: Int) {
         self.init()
@@ -29,6 +32,7 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         buildViews()
+        setupNavigationBackButton()
         presenter.setDelegate(delegate: self)
         presenter.fetchData(with: identifier)
         
@@ -53,5 +57,5 @@ class DetailsViewController: UIViewController {
     @objc func backButtonPressed(){
         presenter.popToHomeScreen()
     }
-    
+
 }

@@ -1,6 +1,7 @@
 import UIKit
 
 class DetailsPresenter {
+<<<<<<< HEAD
     
     var appRouter: AppRouter!
     var movieUseCase: MoviesUseCaseProtocol!
@@ -8,6 +9,13 @@ class DetailsPresenter {
     
     init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter) {
         self.movieUseCase = movieUseCase
+=======
+
+    private let appRouter: AppRouter
+    weak private var delegate: DetailsViewController?
+    
+    init(router: AppRouter) {
+>>>>>>> develop
         self.appRouter = router
     }
     
@@ -15,6 +23,7 @@ class DetailsPresenter {
         self.delegate = delegate
     }
     
+<<<<<<< HEAD
     func fetchData(with id: Int) {
         movieUseCase.fetchMovie(with: id) {
             (result: Result<MovieDetailsModel, Error>) in
@@ -42,6 +51,11 @@ class DetailsPresenter {
                 self.delegate?.setMainInfoData(model: viewModel)
             }
         }
+=======
+    
+    func fetchData() {
+        delegate?.setData(model: MovieDetailsViewModel())
+>>>>>>> develop
     }
     
     func popToHomeScreen() {

@@ -28,6 +28,7 @@ class AppRouter {
         window?.makeKeyAndVisible()
     }
     
+<<<<<<< HEAD
     func showMovieDetails(with identifier: Int) {
         navigationController.pushViewController(
             DetailsViewController(
@@ -36,6 +37,11 @@ class AppRouter {
                     router: self),
                 identifier: identifier
             ),
+=======
+    func showMovieDetails() {
+        navigationController.pushViewController(
+            DetailsViewController(presenter: DetailsPresenter(router: self)),
+>>>>>>> develop
             animated: true
         )
     }

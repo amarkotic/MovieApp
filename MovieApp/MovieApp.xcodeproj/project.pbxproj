@@ -720,6 +720,7 @@
 		52F64E7C26B95E7C0046A8ED /* DetailsComponents */ = {
 			isa = PBXGroup;
 			children = (
+				528DE5CD26C122D000498E23 /* SocialView */,
 				52F64E8426B968E10046A8ED /* CastView */,
 				52F64E6F26B82EC10046A8ED /* MainInfoView */,
 				52F64E7D26B95E930046A8ED /* OverviewView */,
