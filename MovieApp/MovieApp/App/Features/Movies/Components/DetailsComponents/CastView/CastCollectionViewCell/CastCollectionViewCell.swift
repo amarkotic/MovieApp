@@ -40,7 +40,7 @@ class CastCollectionViewCell: UICollectionViewCell {
     func setData(model: ActorViewModel) {
         nameLabel.text = model.nameLabel
         roleLabel.text = model.roleLabel
-        actorImageView.kf.setImage(with: URL(string: model.posterPath))
+        actorImageView.kf.setImage(with: URL(string: model.posterPath ?? ""))
     }
     
 }

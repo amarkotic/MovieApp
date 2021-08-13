@@ -11,4 +11,5 @@ struct ActorRepositoryModel: Codable {
         profilePath = dataSourceModel.profilePath
         character = dataSourceModel.character
     }
+    
 }
