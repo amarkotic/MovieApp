@@ -9,6 +9,17 @@ struct MovieDetailsDataSourceModel {
     let genres: [GenresDataSourceModel]
     let overview: String
     
+    init(from networkModel: MovieDetailsNetworkModel, genres: [GenresDataSourceModel]) {
+        posterPath = networkModel.posterPath
+        voteAverage = networkModel.voteAverage
+        title = networkModel.title
+        releaseDate = networkModel.releaseDate
+        runtime = networkModel.runtime
+        language = networkModel.language
+        self.genres = genres
+        overview = networkModel.overview
+    }
+    
 }
 
 struct GenresDataSourceModel: Codable {

@@ -80,17 +80,10 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let posterUrl = NetworkConstants.imagePath + value.posterPath
-                let progressPercentage = value.voteAverage * 10
                 let movieDetailsModels: MovieDetailsModel = MovieDetailsModel(
-                    posterPath: posterUrl,
-                    voteAverage: progressPercentage,
-                    title: value.title,
-                    releaseDate: value.releaseDate,
-                    runtime: value.runtime,
-                    language: value.language,
-                    genres: self?.mapGenresToModels(from: value.genres) ?? [],
-                    overview: value.overview)
+                    from: value,
+                    genres: self?.mapGenresToModels(from: value.genres) ?? []
+                )
                 completion(.success(movieDetailsModels))
             }
         }

@@ -54,14 +54,9 @@ class MoviesRepository: MoviesRepositoryProtocol {
                 print(error.localizedDescription)
             case .success(let value):
                 let movieDetailsRepositoryModels = MovieDetailsRepositoryModel(
-                    posterPath: value.posterPath,
-                    voteAverage: value.voteAverage,
-                    title: value.title,
-                    releaseDate: value.releaseDate,
-                    runtime: value.runtime,
-                    language: value.language,
-                    genres: self?.mapGenresToReposiroryModels(from: value.genres) ?? [],
-                    overview: value.overview)
+                    from: value,
+                    genres: self?.mapGenresToReposiroryModels(from: value.genres) ?? []
+                )
                 completion(.success(movieDetailsRepositoryModels))
             }
         }
