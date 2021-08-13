@@ -31,7 +31,7 @@ struct MovieDetailsViewModel {
             imageName: "RobertDowney"
         )
     ]
-    
+
     let review = SocialViewModel(
         author: "The Peruvian Post",
         date: "February 17, 2020",
