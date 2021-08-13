@@ -40,14 +40,15 @@ extension CastCollectionViewCell: DesignProtocol {
         }
         
         nameLabel.snp.makeConstraints {
+            $0.top.equalTo(actorImageView.snp.bottom).offset(3 * defaultOffset)
             $0.leading.equalToSuperview().offset(2 * defaultOffset)
             $0.trailing.equalToSuperview().inset(6 * defaultOffset)
-            $0.top.equalTo(actorImageView.snp.bottom).offset(3 * defaultOffset)
         }
         
         roleLabel.snp.makeConstraints {
             $0.top.greaterThanOrEqualTo(nameLabel.snp.bottom).offset(defaultOffset)
-            $0.leading.trailing.equalToSuperview().offset(2 * defaultOffset)
+            $0.leading.equalToSuperview().inset(2 * defaultOffset)
+            $0.trailing.equalToSuperview().inset(defaultOffset)
             $0.bottom.equalToSuperview().inset(2 * defaultOffset)
         }
     }

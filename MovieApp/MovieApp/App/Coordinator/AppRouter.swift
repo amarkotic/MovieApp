@@ -29,7 +29,14 @@ class AppRouter {
     }
     
     func showMovieDetails() {
-        navigationController.pushViewController(DetailsViewController(presenter: DetailsPresenter()), animated: true)
+        navigationController.pushViewController(
+            DetailsViewController(presenter: DetailsPresenter(router: self)),
+            animated: true
+        )
+    }
+    
+    func showHomeScreen() {
+        navigationController.popViewController(animated: true)
     }
     
     private func styleNavigationBar() {

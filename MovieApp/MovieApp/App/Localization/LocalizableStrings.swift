@@ -8,5 +8,11 @@ enum LocalizableStrings: String {
     case overview = "Overview"
     case topBilledCast = "Top Billed Cast"
     case fullCast = "Full Cast & Crew"
+    case social = "Social"
+    case reviews = "Reviews"
+    case reviewBy = "A review by "
+    case writtenBy = "Written by "
+    case on = " on \n"
+    case recommendations = "Recomendations"
     
 }
