@@ -9,14 +9,14 @@ struct MovieDetailsRepositoryModel {
     let genres: [GenresRepositoryModel]
     let overview: String
 
-    init(from dataSourceModel: MovieDetailsDataSourceModel, genres: [GenresRepositoryModel]) {
+    init(from dataSourceModel: MovieDetailsDataSourceModel, genres: [GenresDataSourceModel]) {
         posterPath = dataSourceModel.posterPath
         voteAverage = dataSourceModel.voteAverage
         title = dataSourceModel.title
         releaseDate = dataSourceModel.releaseDate
         runtime = dataSourceModel.runtime
         language = dataSourceModel.language
-        self.genres = genres
+        self.genres = genres.map { GenresRepositoryModel(from: $0) }
         overview = dataSourceModel.overview
     }
 

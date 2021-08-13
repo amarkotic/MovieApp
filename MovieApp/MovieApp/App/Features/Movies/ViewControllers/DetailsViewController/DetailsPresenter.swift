@@ -50,10 +50,8 @@ class DetailsPresenter {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let viewModels: [ActorViewModel] = value.map { actorModel in
-                    ActorViewModel(nameLabel: actorModel.name,
-                                   roleLabel: actorModel.character,
-                                   posterPath: actorModel.profilePath ?? "")
+                let viewModels: [ActorViewModel] = value.map {
+                    ActorViewModel(from: $0)
                 }
                 self.delegate?.setCastData(model: viewModels)
             }
@@ -64,11 +62,7 @@ class DetailsPresenter {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                
-                let viewModel = SocialViewModel(
-                    author: value.author,
-                    date: value.createdAt ?? "",
-                    review: value.content)
+                let viewModel = SocialViewModel(from: value)
                 self.delegate?.setReviewData(model: viewModel)
             }
         }

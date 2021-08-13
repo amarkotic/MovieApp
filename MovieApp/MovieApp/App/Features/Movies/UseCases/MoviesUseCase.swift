@@ -74,7 +74,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         with id: Int,
         completion: @escaping (Result<MovieDetailsModel, Error>) -> Void
     ) {
-        repository.fetchMovie(with: id) { [weak self]
+        repository.fetchMovie(with: id) {
             (result: Result<MovieDetailsRepositoryModel, Error>) in
             switch result {
             case .failure(let error):
@@ -82,7 +82,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .success(let value):
                 let movieDetailsModels: MovieDetailsModel = MovieDetailsModel(
                     from: value,
-                    genres: self?.mapGenresToModels(from: value.genres) ?? []
+                    genres: value.genres
                 )
                 completion(.success(movieDetailsModels))
             }
@@ -98,11 +98,11 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let model):
-                let actorsModels = model.map { repoModels -> ActorModel in
-                    return ActorModel(from: repoModels)
+                let actorsModels = model.map {
+                    ActorModel(from: $0)
                 }
                 let actors = actorsModels.filter { model in
-                    model.deparment.elementsEqual("Acting")
+                    model.deparment.elementsEqual(LocalizableStrings.acting.rawValue)
                 }
                 let topActors = actors[0..<10]
                 completion(.success(Array(topActors)))
@@ -145,10 +145,6 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 completion(.success(recommendationsModels))
             }
         }
-    }
-    
-    private func mapGenresToModels(from repositoryModels: [GenresRepositoryModel]) -> [GenresModel] {
-        repositoryModels.map { GenresModel(from: $0) }
     }
     
 }

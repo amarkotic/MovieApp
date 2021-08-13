@@ -11,5 +11,6 @@ struct ActorModel: Codable {
         profilePath = NetworkConstants.imagePath + (repositoryModel.profilePath ?? "")
         character = repositoryModel.character
     }
+    
 }
 

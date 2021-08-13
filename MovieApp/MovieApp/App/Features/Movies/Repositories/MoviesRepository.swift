@@ -47,7 +47,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
         with id: Int,
         completion: @escaping (Result<MovieDetailsRepositoryModel, Error>) -> Void
     ) {
-        networkDataSource.fetchMovie(with: id) { [weak self]
+        networkDataSource.fetchMovie(with: id) {
             (result: Result<MovieDetailsDataSourceModel, Error>) in
             switch result {
             case .failure(let error):
@@ -55,7 +55,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
             case .success(let value):
                 let movieDetailsRepositoryModels = MovieDetailsRepositoryModel(
                     from: value,
-                    genres: self?.mapGenresToReposiroryModels(from: value.genres) ?? []
+                    genres: value.genres
                 )
                 completion(.success(movieDetailsRepositoryModels))
             }
@@ -71,8 +71,8 @@ class MoviesRepository: MoviesRepositoryProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let model):
-                let actorsRepositoryModels = model.map { dataSourceModel in
-                    ActorRepositoryModel(from: dataSourceModel)
+                let actorsRepositoryModels = model.map {
+                    ActorRepositoryModel(from: $0)
                 }
                 completion(.success(actorsRepositoryModels))
             }
@@ -113,10 +113,5 @@ class MoviesRepository: MoviesRepositoryProtocol {
             }
         }
     }
-    
-    
-    private func mapGenresToReposiroryModels(from dataSourceModel: [GenresDataSourceModel]) -> [GenresRepositoryModel] {
-        dataSourceModel.map { GenresRepositoryModel(from: $0) }
-    }
-    
+
 }
