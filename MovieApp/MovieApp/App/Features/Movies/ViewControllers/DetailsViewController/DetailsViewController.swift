@@ -3,6 +3,7 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     let defaultOffset = 20
+    let recommendationsCollectionViewHeight = 114
     let castCollectionViewHeight = 259
     
     var scrollView: UIScrollView!
@@ -12,6 +13,7 @@ class DetailsViewController: UIViewController {
     var overviewView: OverviewView!
     var castView: CastView!
     var socialView: SocialView!
+    var recommendationView: RecommendationsView!
     
     var presenter: DetailsPresenter!
     
@@ -23,8 +25,9 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         buildViews()
+        setupNavigationBackButton()
         presenter.setDelegate(delegate: self)
         presenter.fetchData()
     }
@@ -34,6 +37,21 @@ class DetailsViewController: UIViewController {
         overviewView.setData(with: model.overview)
         castView.setData(with: model.actors)
         socialView.setData(with: model.review)
+        recommendationView.setData(with: model.recommendations)
+    }
+    
+    private func setupNavigationBackButton() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(with: .backButton),
+            style: .plain,
+            target: self,
+            action: #selector(backButtonPressed)
+        )
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
+    @objc func backButtonPressed(){
+        presenter.popToHomeScreen()
     }
 
 }
