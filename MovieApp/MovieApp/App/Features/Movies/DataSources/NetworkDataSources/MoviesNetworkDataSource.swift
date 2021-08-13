@@ -77,11 +77,7 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
                 print(error.localizedDescription)
             case .success(let model):
                 let actorsDataSourceModels = model.cast.map { networkModel in
-                    ActorDataSourceModel(
-                        deparment: networkModel.deparment,
-                        name: networkModel.name,
-                        profilePath: networkModel.profilePath,
-                        character: networkModel.character)
+                    ActorDataSourceModel(from: networkModel)
                 }
                 completion(.success(actorsDataSourceModels))
             }

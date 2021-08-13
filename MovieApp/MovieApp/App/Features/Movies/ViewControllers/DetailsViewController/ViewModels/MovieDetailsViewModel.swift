@@ -2,29 +2,7 @@ struct MovieDetailsViewModel {
     
     let info: MainInfoViewModel
     let overview: OverviewViewModel
-    
-    let actors = [
-        ActorViewModel(
-            nameLabel: "Robert Downey Jr.",
-            roleLabel: "Tony Stark/Iron Man",
-            posterPath: "RobertDowney"
-        ),
-        ActorViewModel(
-            nameLabel: "Robert Jr.",
-            roleLabel: "Tony Stark/Iron Man",
-            posterPath: "RobertDowney"
-        ),
-        ActorViewModel(
-            nameLabel: "Robert Downey Jr.",
-            roleLabel: "Tony Stark/Iron Man",
-            posterPath: "RobertDowney"
-        ),
-        ActorViewModel(
-            nameLabel: "Robert Jr.",
-            roleLabel: "Tony Stark/Iron Man",
-            posterPath: "RobertDowney"
-        )
-    ]
+    let actors: [ActorViewModel]?
     
     let review = SocialViewModel(
         author: "The Peruvian Post",

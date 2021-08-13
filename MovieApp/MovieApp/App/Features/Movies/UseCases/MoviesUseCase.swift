@@ -106,12 +106,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 print(error.localizedDescription)
             case .success(let model):
                 let actorsModels = model.map { repoModels -> ActorModel in
-                    let posterUrl = NetworkConstants.imagePath + (repoModels.profilePath ?? "")
-                    return ActorModel(
-                        deparment: repoModels.deparment,
-                        name: repoModels.name,
-                        profilePath: posterUrl,
-                        character: repoModels.character)
+                    return ActorModel(from: repoModels)
                 }
                 let actors = actorsModels.filter { model in
                     model.deparment.elementsEqual("Acting")

@@ -37,7 +37,8 @@ class DetailsPresenter {
                         genres: genres,
                         duration: value.runtime),
                     overview: OverviewViewModel(
-                        overview: value.overview)
+                        overview: value.overview),
+                    actors: nil
                 )
                 self.delegate?.setMainInfoData(model: viewModel)
             }

@@ -5,4 +5,10 @@ struct ActorRepositoryModel: Codable {
     let profilePath: String?
     let character: String
     
+    init(from dataSourceModel: ActorDataSourceModel) {
+        deparment = dataSourceModel.deparment
+        name = dataSourceModel.name
+        profilePath = dataSourceModel.profilePath
+        character = dataSourceModel.character
+    }
 }

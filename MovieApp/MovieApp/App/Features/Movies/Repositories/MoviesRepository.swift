@@ -77,11 +77,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
                 print(error.localizedDescription)
             case .success(let model):
                 let actorsRepositoryModels = model.map { dataSourceModel in
-                    ActorRepositoryModel(
-                        deparment: dataSourceModel.deparment,
-                        name: dataSourceModel.name,
-                        profilePath: dataSourceModel.profilePath,
-                        character: dataSourceModel.character)
+                    ActorRepositoryModel(from: dataSourceModel)
                 }
                 completion(.success(actorsRepositoryModels))
             }
