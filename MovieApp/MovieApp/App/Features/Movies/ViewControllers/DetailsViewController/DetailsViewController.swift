@@ -53,5 +53,5 @@ class DetailsViewController: UIViewController {
     @objc func backButtonPressed(){
         presenter.popToHomeScreen()
     }
-    
+
 }
