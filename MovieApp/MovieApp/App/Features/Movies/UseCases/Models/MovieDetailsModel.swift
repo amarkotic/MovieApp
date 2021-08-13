@@ -9,6 +9,16 @@ struct MovieDetailsModel {
     let genres: [GenresModel]
     let overview: String
     
+    init(from repositoryModel: MovieDetailsRepositoryModel, genres: [GenresModel]) {
+        posterPath = NetworkConstants.imagePath + repositoryModel.posterPath
+        voteAverage = repositoryModel.voteAverage * 10
+        title = repositoryModel.title
+        releaseDate = repositoryModel.releaseDate
+        runtime = repositoryModel.runtime
+        language = repositoryModel.language
+        self.genres = genres
+        overview = repositoryModel.overview
+    }
 }
 
 struct GenresModel {

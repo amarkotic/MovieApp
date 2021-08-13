@@ -32,8 +32,6 @@ class DetailsViewController: UIViewController {
         setupNavigationBackButton()
         presenter.setDelegate(delegate: self)
         presenter.fetchData(with: identifier)
-        
-        setupNavigationBackButton()
     }
     
     func setMainInfoData(model: MovieDetailsViewModel) {
