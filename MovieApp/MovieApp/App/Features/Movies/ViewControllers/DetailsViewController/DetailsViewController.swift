@@ -16,10 +16,8 @@ class DetailsViewController: UIViewController {
     var recommendationView: RecommendationsView!
     
     var presenter: DetailsPresenter!
-<<<<<<< HEAD
     var identifier: Int!
-=======
->>>>>>> develop
+
     
     convenience init(presenter: DetailsPresenter, identifier: Int) {
         self.init()
