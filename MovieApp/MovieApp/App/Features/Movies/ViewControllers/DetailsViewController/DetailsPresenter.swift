@@ -4,12 +4,10 @@ class DetailsPresenter {
     
     var appRouter: AppRouter!
     var movieUseCase: MoviesUseCaseProtocol!
-    var netclient: MoviesNetworkClientProtocol!
     weak private var delegate: DetailsViewController?
     
-    init(movieUseCase: MoviesUseCaseProtocol, netClient: MoviesNetworkClientProtocol, router: AppRouter) {
+    init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter) {
         self.movieUseCase = movieUseCase
-        self.netclient = netClient
         self.appRouter = router
     }
     

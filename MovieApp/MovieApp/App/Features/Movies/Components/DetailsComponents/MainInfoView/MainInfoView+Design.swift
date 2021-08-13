@@ -15,15 +15,9 @@ extension MainInfoView: DesignProtocol {
         
         gradientView = GradientView()
         moviePoster.addSubview(gradientView)
-    
-        backgroundProgressPath = CAShapeLayer()
-        layer.addSublayer(backgroundProgressPath)
-        
-        progressBar = CAShapeLayer()
-        layer.addSublayer(progressBar)
-        
-        progressLabel = UILabel(with: .medium(size: 15))
-        moviePoster.addSubview(progressLabel)
+
+        progressView = ProgressView()
+        moviePoster.addSubview(progressView)
         
         userScoreLabel = UILabel(with: .proximaSemiBold)
         moviePoster.addSubview(userScoreLabel)
@@ -47,21 +41,7 @@ extension MainInfoView: DesignProtocol {
     func styleViews() {
         moviePoster.contentMode = .scaleAspectFill
         moviePoster.layer.masksToBounds = true
-        
-        backgroundProgressPath.path = circularPath.cgPath
-        backgroundProgressPath.fillColor = .none
-        backgroundProgressPath.strokeColor = UIColor.appGray.cgColor
-        backgroundProgressPath.lineWidth = 3
-        
-        progressBar.path = circularPath.cgPath
-        progressBar.fillColor = .none
-        progressBar.strokeColor = UIColor.green.cgColor
-        progressBar.lineWidth = 3
-        progressBar.lineCap = CAShapeLayerLineCap.round
-        progressBar.strokeEnd = 0
-        
-        progressLabel.textColor = .appWhite
-        
+
         userScoreLabel.text = LocalizableStrings.userScore.rawValue
         userScoreLabel.textColor = .appWhite
     
@@ -86,19 +66,20 @@ extension MainInfoView: DesignProtocol {
             $0.edges.equalToSuperview()
         }
         
-        progressLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(thirdOffset)
-            $0.top.equalToSuperview().offset(15 * secondaryOffset + 1)
+        progressView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(defaultOffset + 3)
+            $0.top.equalToSuperview().offset(6 * defaultOffset)
+            $0.size.equalTo(progressBarSize)
         }
-        
+
         userScoreLabel.snp.makeConstraints {
-            $0.leading.equalTo(progressLabel.snp.trailing).offset(2 * secondaryOffset)
-            $0.centerY.equalTo(progressLabel)
+            $0.leading.equalTo(progressView.snp.trailing).offset(secondaryOffset)
+            $0.centerY.equalTo(progressView)
         }
         
         nameLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(defaultOffset)
-            $0.top.equalTo(progressLabel.snp.bottom).offset(3 * secondaryOffset)
+            $0.top.equalTo(progressView.snp.bottom).offset(secondaryOffset)
         }
         
         releaseDateLabel.snp.makeConstraints {

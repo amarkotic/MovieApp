@@ -1,33 +1,23 @@
 import UIKit
+import Kingfisher
 
 class MainInfoView: UIView {
     
     let defaultOffset = 18
     let secondaryOffset = 8
     let thirdOffset = 31
+    let progressBarSize = CGSize(width: 42, height: 42)
     let moviePosterHeight = 303
-    
-    let circularPath = UIBezierPath(
-        arcCenter: CGPoint(x: 42, y: 128),
-        radius: 20,
-        startAngle: -CGFloat.pi/2,
-        endAngle: 1.5 * CGFloat.pi,
-        clockwise: true
-    )
-    
+
     var moviePoster: UIImageView!
     var gradientView: GradientView!
-    var backgroundProgressPath: CAShapeLayer!
-    var progressBar: CAShapeLayer!
-    var progressLabel: UILabel!
+    var progressView: ProgressView!
     var userScoreLabel: UILabel!
     var nameLabel: UILabel!
     var releaseDateLabel: UILabel!
     var genresAndDurationLabel: UILabel!
     var elipseImageView: UIImageView!
     var favoriteImageView: UIImageView!
-    
-    var progress: Float!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,32 +28,20 @@ class MainInfoView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func animateProgressBar() {
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.toValue = progress / 100
-        animation.duration = 1.5
-        animation.fillMode = CAMediaTimingFillMode.forwards
-        animation.isRemovedOnCompletion = false
-        progressBar.add(animation, forKey: "animation")
-    }
-    
-    func setData(with infoModel: MainInfoViewModel) {
-        progress = infoModel.progressPercentage
-        moviePoster.kf.setImage(with: URL(string: infoModel.posterPath))
-        nameLabel.attributedText = buildAttributedNameAndYear(name: infoModel.movieName, date: infoModel.releaseDate)
-        progressLabel.attributedText = buildAttributedPercentage(with: infoModel.progressPercentage)
-        releaseDateLabel.text = buildAttributedReleseDateAndCountry(date: infoModel.releaseDate, language: infoModel.language)
-        genresAndDurationLabel.attributedText = buildAttributedGenreAndDuration(genre: infoModel.genres, duration: infoModel.duration)
-        
-        animateProgressBar()
+
+    func setData(with model: MainInfoViewModel) {
+        moviePoster.kf.setImage(with: URL(string: model.posterPath))
+        progressView.setData(with: model.progressPercentage)
+        nameLabel.attributedText = buildAttributed(name: model.movieName, date: model.releaseDate)
+        releaseDateLabel.text = buildAttributed(date: model.releaseDate, language: model.language)
+        genresAndDurationLabel.attributedText = buildAttributed(genre: model.genres, duration: model.duration)
     }
     
 }
 
 extension MainInfoView {
     
-    func buildAttributedNameAndYear(name: String, date: String) -> NSMutableAttributedString {
+    func buildAttributed(name: String, date: String) -> NSMutableAttributedString {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -78,14 +56,7 @@ extension MainInfoView {
         return attributedName
     }
     
-    func buildAttributedPercentage(with percentage: Float) -> NSMutableAttributedString {
-        let attribute: [NSAttributedString.Key: Any] = [.font: UIFont.medium(size: 9)]
-        let attributedText = NSMutableAttributedString(string: "\(Int(percentage))")
-        attributedText.append(NSMutableAttributedString(string: "%", attributes: attribute))
-        return attributedText
-    }
-    
-    func buildAttributedReleseDateAndCountry(date: String, language: String) -> String{
+    func buildAttributed(date: String, language: String) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -103,7 +74,7 @@ extension MainInfoView {
         return durationAndLanguage
     }
     
-    func buildAttributedGenreAndDuration(genre: String, duration: Int) -> NSMutableAttributedString {
+    func buildAttributed(genre: String, duration: Int) -> NSMutableAttributedString {
         let runtimeHours = duration / 60
         let runtimeMinutes = duration % 60
         

@@ -32,7 +32,7 @@ class AppRouter {
         navigationController.pushViewController(
             DetailsViewController(
                 presenter: DetailsPresenter(
-                    movieUseCase: appDependencies.moviesUseCase, netClient: appDependencies.moviesNetworkClient,
+                    movieUseCase: appDependencies.moviesUseCase,
                     router: self),
                 identifier: identifier
             ),
