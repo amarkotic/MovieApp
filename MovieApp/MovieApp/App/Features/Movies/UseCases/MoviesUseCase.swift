@@ -96,6 +96,33 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
+    func fetchActors(
+        with id: Int,
+        completion: @escaping (Result<[ActorModel], Error>) -> Void
+    ) {
+        repository.fetchActors(with: id) { (result: Result<[ActorRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let actorsModels = model.map { repoModels -> ActorModel in
+                    let posterUrl = NetworkConstants.imagePath + (repoModels.profilePath ?? "")
+                    return ActorModel(
+                        deparment: repoModels.deparment,
+                        name: repoModels.name,
+                        profilePath: posterUrl,
+                        character: repoModels.character)
+                }
+                let actors = actorsModels.filter { model in
+                    model.deparment.elementsEqual("Acting")
+                }
+                let topActors = actors[0..<10]
+                completion(.success(Array(topActors)))
+            }
+        }
+    }
+    
+    
     private func mapGenresToModels(from repositoryModels: [GenresRepositoryModel]) -> [GenresModel] {
         repositoryModels.map { GenresModel(from: $0) }
     }

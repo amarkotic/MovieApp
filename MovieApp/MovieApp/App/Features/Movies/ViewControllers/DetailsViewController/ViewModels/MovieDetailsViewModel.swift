@@ -7,22 +7,22 @@ struct MovieDetailsViewModel {
         ActorViewModel(
             nameLabel: "Robert Downey Jr.",
             roleLabel: "Tony Stark/Iron Man",
-            imageName: "RobertDowney"
+            posterPath: "RobertDowney"
         ),
         ActorViewModel(
             nameLabel: "Robert Jr.",
             roleLabel: "Tony Stark/Iron Man",
-            imageName: "RobertDowney"
+            posterPath: "RobertDowney"
         ),
         ActorViewModel(
             nameLabel: "Robert Downey Jr.",
             roleLabel: "Tony Stark/Iron Man",
-            imageName: "RobertDowney"
+            posterPath: "RobertDowney"
         ),
         ActorViewModel(
             nameLabel: "Robert Jr.",
             roleLabel: "Tony Stark/Iron Man",
-            imageName: "RobertDowney"
+            posterPath: "RobertDowney"
         )
     ]
     

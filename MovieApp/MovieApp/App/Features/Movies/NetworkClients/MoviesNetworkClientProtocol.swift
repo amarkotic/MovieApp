@@ -11,4 +11,9 @@ protocol MoviesNetworkClientProtocol {
         completion: @escaping (Result<MovieDetailsNetworkModel, NetworkError>) -> Void
     ) 
     
+    func getActors(
+        with id: Int,
+        completion: @escaping (Result<ActorsNetworkModel, NetworkError>) -> Void
+    )
+    
 }

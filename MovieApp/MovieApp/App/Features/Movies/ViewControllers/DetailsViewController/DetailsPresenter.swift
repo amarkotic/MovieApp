@@ -42,6 +42,21 @@ class DetailsPresenter {
                 self.delegate?.setMainInfoData(model: viewModel)
             }
         }
+        
+        movieUseCase.fetchActors(with: id) { (result: Result<[ActorModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                let viewModels: [ActorViewModel] = value.map { actorModel in
+                    ActorViewModel(nameLabel: actorModel.name,
+                                   roleLabel: actorModel.character,
+                                   posterPath: actorModel.profilePath ?? "")
+                }
+                self.delegate?.setCastData(model: viewModels)
+            }
+        }
+        
     }
     
     func popToHomeScreen() {

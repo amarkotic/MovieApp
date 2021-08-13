@@ -11,4 +11,9 @@ protocol MoviesNetworkDataSourceProtocol {
         completion: @escaping (Result<MovieDetailsDataSourceModel, Error>) -> Void
     )
     
+    func fetchActors(
+        with id: Int,
+        completion: @escaping (Result<[ActorDataSourceModel], Error>) -> Void
+    ) 
+    
 }

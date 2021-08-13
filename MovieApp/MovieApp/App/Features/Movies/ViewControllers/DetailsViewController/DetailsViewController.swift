@@ -41,6 +41,10 @@ class DetailsViewController: UIViewController {
         overviewView.setData(with: model.overview)
     }
     
+    func setCastData(model: [ActorViewModel]) {
+        castView.setData(with: model)
+    }
+    
     private func setupNavigationBackButton() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(with: .backButton),

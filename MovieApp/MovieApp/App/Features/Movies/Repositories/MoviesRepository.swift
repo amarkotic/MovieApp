@@ -67,6 +67,29 @@ class MoviesRepository: MoviesRepositoryProtocol {
         }
     }
     
+    func fetchActors(
+        with id: Int,
+        completion: @escaping (Result<[ActorRepositoryModel], Error>) -> Void
+    ) {
+        networkDataSource.fetchActors(with: id) { (result: Result<[ActorDataSourceModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let actorsRepositoryModels = model.map { dataSourceModel in
+                    ActorRepositoryModel(
+                        deparment: dataSourceModel.deparment,
+                        name: dataSourceModel.name,
+                        profilePath: dataSourceModel.profilePath,
+                        character: dataSourceModel.character)
+                }
+                completion(.success(actorsRepositoryModels))
+            }
+        }
+    }
+    
+    
+    
     private func mapGenresToReposiroryModels(from dataSourceModel: [GenresDataSourceModel]) -> [GenresRepositoryModel] {
         dataSourceModel.map { GenresRepositoryModel(from: $0) }
     }

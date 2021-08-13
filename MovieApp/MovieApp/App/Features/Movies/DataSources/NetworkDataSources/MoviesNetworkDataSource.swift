@@ -67,6 +67,28 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         }
     }
     
+    func fetchActors(
+        with id: Int,
+        completion: @escaping (Result<[ActorDataSourceModel], Error>) -> Void
+    ) {
+        networkClient.getActors(with: id) { (result: Result<ActorsNetworkModel, NetworkError>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let actorsDataSourceModels = model.cast.map { networkModel in
+                    ActorDataSourceModel(
+                        deparment: networkModel.deparment,
+                        name: networkModel.name,
+                        profilePath: networkModel.profilePath,
+                        character: networkModel.character)
+                }
+                completion(.success(actorsDataSourceModels))
+            }
+        }
+    }
+    
+    
     private func mapGenresToDataSourceModel(models: [GenresNetworkModel]) -> [GenresDataSourceModel] {
         models.map { GenresDataSourceModel(from: $0) }
     }
