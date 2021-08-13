@@ -27,7 +27,6 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
                 url = EndpointConstant.trendingMoviesToday.url
             }
         }
-        
         guard let url = url else { return }
         
         networkService.get(url: url, completion: completion)

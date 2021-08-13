@@ -22,14 +22,11 @@ class DetailsPresenter {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                
-                var str = ""
-                value.genres.forEach { model in
-                    str.append(model.name)
-                    str.append(" ")
+                var genres = String()
+                value.genres.forEach {
+                    genres.append($0.name)
+                    genres.append(" ")
                 }
-                
-                
                 let viewModel = MovieDetailsViewModel(
                     info: MainInfoViewModel(
                         posterPath: value.posterPath,
@@ -37,7 +34,7 @@ class DetailsPresenter {
                         movieName: value.title,
                         releaseDate: value.releaseDate,
                         language: value.language,
-                        genres: str,
+                        genres: genres,
                         duration: value.runtime),
                     overview: OverviewViewModel(
                         overview: value.overview)

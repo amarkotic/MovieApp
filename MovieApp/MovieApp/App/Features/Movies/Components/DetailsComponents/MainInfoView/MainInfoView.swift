@@ -41,7 +41,7 @@ class MainInfoView: UIView {
 
 extension MainInfoView {
     
-    func buildAttributed(name: String, date: String) -> NSMutableAttributedString {
+    private func buildAttributed(name: String, date: String) -> NSMutableAttributedString {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -56,7 +56,7 @@ extension MainInfoView {
         return attributedName
     }
     
-    func buildAttributed(date: String, language: String) -> String{
+    private func buildAttributed(date: String, language: String) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -74,7 +74,7 @@ extension MainInfoView {
         return durationAndLanguage
     }
     
-    func buildAttributed(genre: String, duration: Int) -> NSMutableAttributedString {
+    private func buildAttributed(genre: String, duration: Int) -> NSMutableAttributedString {
         let runtimeHours = duration / 60
         let runtimeMinutes = duration % 60
         

@@ -39,13 +39,6 @@ class DetailsViewController: UIViewController {
         mainInfoView.setData(with: model.info)
         overviewView.setData(with: model.overview)
     }
-    func setData(model: MovieDetailsViewModel) {
-        mainInfoView.setData(with: model.info)
-        overviewView.setData(with: model.overview)
-        castView.setData(with: model.actors)
-        socialView.setData(with: model.review)
-        recommendationView.setData(with: model.recommendations)
-    }
     
     private func setupNavigationBackButton() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(

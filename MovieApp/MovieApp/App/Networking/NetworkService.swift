@@ -4,7 +4,6 @@ import Alamofire
 class NetworkService: NetworkServiceProtocol {
     
     func get<T: Codable>(url: URL, completion: @escaping (Result<T, NetworkError>) -> Void) {
-
         let request = AF.request(url)
         request.responseJSON { [weak self] (data) in
             
