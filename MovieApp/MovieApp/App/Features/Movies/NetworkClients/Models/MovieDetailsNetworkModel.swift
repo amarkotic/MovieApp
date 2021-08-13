@@ -19,7 +19,6 @@ struct MovieDetailsNetworkModel: Codable {
         case runtime = "runtime"
         case language = "original_language"
         case genres = "genres"
-
         case overview = "overview"
     }
     

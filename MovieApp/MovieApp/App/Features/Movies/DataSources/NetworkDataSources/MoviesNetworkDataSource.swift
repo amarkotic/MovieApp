@@ -54,14 +54,9 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
                 print(error.localizedDescription)
             case .success(let value):
                 let movieDataSourceModels = MovieDetailsDataSourceModel(
-                    posterPath: value.posterPath,
-                    voteAverage: value.voteAverage,
-                    title: value.title,
-                    releaseDate: value.releaseDate,
-                    runtime: value.runtime,
-                    language: value.language,
-                    genres: self?.mapGenresToDataSourceModel(models: value.genres) ?? [],
-                    overview: value.overview)
+                    from: value,
+                    genres: self?.mapGenresToDataSourceModel(models: value.genres) ?? []
+                )
                 completion(.success(movieDataSourceModels))
             }
         }
@@ -88,4 +83,5 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
     private func mapGenresToDataSourceModel(models: [GenresNetworkModel]) -> [GenresDataSourceModel] {
         models.map { GenresDataSourceModel(from: $0) }
     }
+    
 }

@@ -3,7 +3,7 @@ import UIKit
 class DetailsPresenter {
     
     private let appRouter: AppRouter
-    var movieUseCase: MoviesUseCaseProtocol!
+    private let movieUseCase: MoviesUseCaseProtocol
     weak private var delegate: DetailsViewController?
     
     init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter) {
@@ -27,6 +27,7 @@ class DetailsPresenter {
                     genres.append($0.name)
                     genres.append(" ")
                 }
+                
                 let viewModel = MovieDetailsViewModel(
                     info: MainInfoViewModel(
                         posterPath: value.posterPath,
