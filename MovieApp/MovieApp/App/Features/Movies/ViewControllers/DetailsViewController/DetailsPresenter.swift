@@ -1,7 +1,7 @@
 import UIKit
 
 class DetailsPresenter {
-
+    
     private let appRouter: AppRouter
     var movieUseCase: MoviesUseCaseProtocol!
     weak private var delegate: DetailsViewController?
@@ -43,6 +43,7 @@ class DetailsPresenter {
             }
         }
     }
+    
     func popToHomeScreen() {
         appRouter.showHomeScreen()
     }

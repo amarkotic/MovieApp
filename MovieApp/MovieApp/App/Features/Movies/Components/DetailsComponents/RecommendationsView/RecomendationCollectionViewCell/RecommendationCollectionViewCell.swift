@@ -9,7 +9,6 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
     let imageHeight = 85
     let cornerRadius: CGFloat = 10
 
-    
     var imageView: UIImageView!
     var title: UILabel!
     

@@ -18,7 +18,6 @@ class DetailsViewController: UIViewController {
     var presenter: DetailsPresenter!
     var identifier: Int!
 
-    
     convenience init(presenter: DetailsPresenter, identifier: Int) {
         self.init()
         
