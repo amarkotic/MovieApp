@@ -6,7 +6,19 @@ struct MovieDetailsModel {
     let releaseDate: String
     let runtime: Int
     let language: String
-    let genres: [GenresNetworkModel]
+    let genres: [GenresModel]
     let overview: String
+    
+}
+
+struct GenresModel {
+    
+    let id: Int
+    let name: String
+    
+    init(from genresRepositoryModel: GenresRepositoryModel) {
+        id = genresRepositoryModel.id
+        name = genresRepositoryModel.name
+    }
     
 }

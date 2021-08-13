@@ -50,8 +50,8 @@ class MainInfoView: UIView {
     
     func setData(with infoModel: MainInfoViewModel) {
         progress = infoModel.progressPercentage
-        nameLabel.text = infoModel.movieName
         moviePoster.kf.setImage(with: URL(string: infoModel.posterPath))
+        nameLabel.attributedText = buildAttributedNameAndYear(name: infoModel.movieName, date: infoModel.releaseDate)
         progressLabel.attributedText = buildAttributedPercentage(with: infoModel.progressPercentage)
         releaseDateLabel.text = buildAttributedReleseDateAndCountry(date: infoModel.releaseDate, language: infoModel.language)
         genresAndDurationLabel.attributedText = buildAttributedGenreAndDuration(genre: infoModel.genres, duration: infoModel.duration)
@@ -59,22 +59,30 @@ class MainInfoView: UIView {
         animateProgressBar()
     }
     
+}
+
+extension MainInfoView {
+    
+    func buildAttributedNameAndYear(name: String, date: String) -> NSMutableAttributedString {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "yyyy"
+        let year = dateFormatter.string(from: date!)
+        
+        let attribute: [NSAttributedString.Key: Any] = [.font: UIFont.medium(size: 24)]
+        let attributedName = NSMutableAttributedString(string: name)
+        let attributedYear = NSMutableAttributedString(string: " (\(year))", attributes: attribute)
+        attributedName.append(attributedYear)
+        return attributedName
+    }
+    
     func buildAttributedPercentage(with percentage: Float) -> NSMutableAttributedString {
         let attribute: [NSAttributedString.Key: Any] = [.font: UIFont.medium(size: 9)]
         let attributedText = NSMutableAttributedString(string: "\(Int(percentage))")
         attributedText.append(NSMutableAttributedString(string: "%", attributes: attribute))
         return attributedText
-    }
-    
-    func buildAttributedGenreAndDuration(genre: String, duration: Int) -> NSMutableAttributedString {
-        let runtimeHours = duration / 60
-        let runtimeMinutes = duration % 60
-        
-        let attribute: [NSAttributedString.Key: Any] = [.font: UIFont.bold(size: 14)]
-        let genres = NSMutableAttributedString(string: genre)
-        let runtime = NSMutableAttributedString(string: "\(runtimeHours)h \(runtimeMinutes)m", attributes: attribute)
-        genres.append(runtime)
-        return genres
     }
     
     func buildAttributedReleseDateAndCountry(date: String, language: String) -> String{
@@ -93,6 +101,17 @@ class MainInfoView: UIView {
         
         let durationAndLanguage = "\(day)/\(month)/\(year) (\(language.uppercased()))"
         return durationAndLanguage
+    }
+    
+    func buildAttributedGenreAndDuration(genre: String, duration: Int) -> NSMutableAttributedString {
+        let runtimeHours = duration / 60
+        let runtimeMinutes = duration % 60
+        
+        let attribute: [NSAttributedString.Key: Any] = [.font: UIFont.bold(size: 14)]
+        let genres = NSMutableAttributedString(string: genre)
+        let runtime = NSMutableAttributedString(string: "\(runtimeHours)h \(runtimeMinutes)m", attributes: attribute)
+        genres.append(runtime)
+        return genres
     }
     
 }

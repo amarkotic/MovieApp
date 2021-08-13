@@ -74,7 +74,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         with id: Int,
         completion: @escaping (Result<MovieDetailsModel, Error>) -> Void
     ) {
-        repository.fetchMovie(with: id) {
+        repository.fetchMovie(with: id) { [weak self]
             (result: Result<MovieDetailsRepositoryModel, Error>) in
             switch result {
             case .failure(let error):
@@ -89,12 +89,15 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     releaseDate: value.releaseDate,
                     runtime: value.runtime,
                     language: value.language,
-                    genres: value.genres,
+                    genres: self?.mapGenresToModels(from: value.genres) ?? [],
                     overview: value.overview)
                 completion(.success(movieDetailsModels))
             }
         }
-        
+    }
+    
+    private func mapGenresToModels(from repositoryModels: [GenresRepositoryModel]) -> [GenresModel] {
+        repositoryModels.map { GenresModel(from: $0) }
     }
     
 }

@@ -27,6 +27,7 @@ struct MovieDetailsNetworkModel: Codable {
 
 struct GenresNetworkModel: Codable {
     
+    let id: Int
     let name: String
     
 }

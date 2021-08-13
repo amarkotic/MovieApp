@@ -47,7 +47,7 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         with id: Int,
         completion: @escaping (Result<MovieDetailsDataSourceModel, Error>) -> Void
     ) {
-        networkClient.getMovie(with: id) {
+        networkClient.getMovie(with: id) { [weak self]
             (result: Result<MovieDetailsNetworkModel, NetworkError>) in
             switch result {
             case .failure(let error):
@@ -60,11 +60,14 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
                     releaseDate: value.releaseDate,
                     runtime: value.runtime,
                     language: value.language,
-                    genres: value.genres,
+                    genres: self?.mapGenresToDataSourceModel(models: value.genres) ?? [],
                     overview: value.overview)
                 completion(.success(movieDataSourceModels))
             }
         }
     }
     
+    private func mapGenresToDataSourceModel(models: [GenresNetworkModel]) -> [GenresDataSourceModel] {
+        models.map { GenresDataSourceModel(from: $0) }
+    }
 }
