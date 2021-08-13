@@ -122,7 +122,9 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 let reviewModels = model.map { repoModels -> ReviewModel in
                     return ReviewModel(from: repoModels)
                 }
-                completion(.success(reviewModels[0]))
+                if reviewModels.count > 0 {
+                    completion(.success(reviewModels[0]))
+                }
             }
         }
     }

@@ -4,7 +4,6 @@ struct ReviewsNetworkModel: Codable {
     
 }
 
-
 struct ReviewNetworkModel: Codable {
     
     let author: String

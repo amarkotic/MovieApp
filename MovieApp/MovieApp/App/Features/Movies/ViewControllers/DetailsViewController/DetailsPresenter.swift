@@ -67,7 +67,7 @@ class DetailsPresenter {
                 
                 let viewModel = SocialViewModel(
                     author: value.author,
-                    date: value.createdAt,
+                    date: value.createdAt ?? "",
                     review: value.content)
                 self.delegate?.setReviewData(model: viewModel)
             }

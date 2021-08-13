@@ -2,7 +2,7 @@ struct ReviewDataSourceModel: Codable {
     
     let author: String
     let content: String
-    let createdAt: String
+    let createdAt: String?
     
     init(from networkModel: ReviewNetworkModel) {
         author = networkModel.author
