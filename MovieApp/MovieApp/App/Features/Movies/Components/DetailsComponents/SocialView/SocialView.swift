@@ -30,7 +30,6 @@ class SocialView: UIView {
         postTitle.text?.append(reviewModel.author.username)
         postInfo.attributedText = createAttributed(author: reviewModel.author.username, date: parsedDate)
         postContent.text = reviewModel.review
-        print(reviewModel.author.avatarPath)
         logoImage.kf.setImage(with: URL(string: reviewModel.author.avatarPath ?? ""))
     }
     
