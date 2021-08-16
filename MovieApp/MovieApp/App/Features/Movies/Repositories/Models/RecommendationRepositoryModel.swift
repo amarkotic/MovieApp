@@ -1,4 +1,4 @@
-struct RecommendationRepositoryModel: Codable {
+struct RecommendationRepositoryModel {
     
     let title: String
     let posterPath: String

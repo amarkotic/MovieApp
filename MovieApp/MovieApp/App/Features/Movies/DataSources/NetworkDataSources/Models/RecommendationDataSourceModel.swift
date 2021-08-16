@@ -1,4 +1,4 @@
-struct RecommendationDataSourceModel: Codable {
+struct RecommendationDataSourceModel {
     
     let title: String
     let posterPath: String
