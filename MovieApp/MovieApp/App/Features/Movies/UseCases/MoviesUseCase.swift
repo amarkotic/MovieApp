@@ -99,10 +99,9 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     ActorModel(from: $0)
                 }
                 let actors = actorsModels.filter { model in
-                    model.deparment.elementsEqual("Acting")
+                    model.deparment.elementsEqual(CastKeys.acting.rawValue)
                 }
-                let topActors = actors[0..<10]
-                completion(.success(Array(topActors)))
+                completion(.success(Array(actors.prefix(10))))
             }
         }
     }
