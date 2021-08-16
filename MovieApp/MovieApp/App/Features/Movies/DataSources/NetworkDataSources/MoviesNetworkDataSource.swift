@@ -53,10 +53,7 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let movieDataSourceModels = MovieDetailsDataSourceModel(
-                    from: value,
-                    genres: value.genres
-                )
+                let movieDataSourceModels = MovieDetailsDataSourceModel(from: value)
                 completion(.success(movieDataSourceModels))
             }
         }

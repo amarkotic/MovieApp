@@ -53,10 +53,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let movieDetailsRepositoryModels = MovieDetailsRepositoryModel(
-                    from: value,
-                    genres: value.genres
-                )
+                let movieDetailsRepositoryModels = MovieDetailsRepositoryModel(from: value)
                 completion(.success(movieDetailsRepositoryModels))
             }
         }
