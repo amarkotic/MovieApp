@@ -119,13 +119,9 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 let reviewModels = model.map {
                     return ReviewModel(from: $0)
                 }
-                if reviewModels.count > 0 {
-                    completion(.success(reviewModels[0]))
-                }
+                guard let review = reviewModels.first else { return }
+                completion(.success(review))
             }
         }
     }
-    
 }
-
-
