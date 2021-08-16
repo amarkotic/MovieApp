@@ -1,4 +1,4 @@
-struct ActorModel: Codable {
+struct ActorModel {
     
     let deparment: String
     let name: String

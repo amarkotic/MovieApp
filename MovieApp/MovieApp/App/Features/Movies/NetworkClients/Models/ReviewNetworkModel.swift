@@ -6,14 +6,26 @@ struct ReviewsNetworkModel: Codable {
 
 struct ReviewNetworkModel: Codable {
     
-    let author: String
+    let author: AuthorNetworkModel
     let content: String
     let createdAt: String
     
     enum CodingKeys: String, CodingKey {
-        case author = "author"
+        case author = "author_details"
         case content = "content"
         case createdAt = "created_at"
+    }
+    
+}
+
+struct AuthorNetworkModel: Codable {
+    
+    let username: String
+    let avatarPath: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case username = "username"
+        case avatarPath = "avatar_path"
     }
     
 }
