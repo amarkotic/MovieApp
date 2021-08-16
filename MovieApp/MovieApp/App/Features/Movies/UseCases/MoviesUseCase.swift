@@ -80,10 +80,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let movieDetailsModels: MovieDetailsModel = MovieDetailsModel(
-                    from: value,
-                    genres: value.genres
-                )
+                let movieDetailsModels: MovieDetailsModel = MovieDetailsModel(from: value)
                 completion(.success(movieDetailsModels))
             }
         }
