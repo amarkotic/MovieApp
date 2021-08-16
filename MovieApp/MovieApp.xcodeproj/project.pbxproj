@@ -44,6 +44,7 @@
 		525666B526A84D9000B5E0BE /* CustomTabBarController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666B426A84D9000B5E0BE /* CustomTabBarController+Design.swift */; };
 		525666BC26A8639600B5E0BE /* SearchBarStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666BB26A8639600B5E0BE /* SearchBarStackView.swift */; };
 		525666BE26A8646D00B5E0BE /* SearchBarStackView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525666BD26A8646D00B5E0BE /* SearchBarStackView+Design.swift */; };
+		525C83EE26CAA708003F82DF /* CastKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C83ED26CAA708003F82DF /* CastKeys.swift */; };
 		526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5164269D6D370095F3E2 /* AppDelegate.swift */; };
 		526B5167269D6D370095F3E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5166269D6D370095F3E2 /* SceneDelegate.swift */; };
 		526B5169269D6D370095F3E2 /* MoviesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5168269D6D370095F3E2 /* MoviesSearchViewController.swift */; };
@@ -152,6 +153,7 @@
 		525666B426A84D9000B5E0BE /* CustomTabBarController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTabBarController+Design.swift"; sourceTree = "<group>"; };
 		525666BB26A8639600B5E0BE /* SearchBarStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarStackView.swift; sourceTree = "<group>"; };
 		525666BD26A8646D00B5E0BE /* SearchBarStackView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBarStackView+Design.swift"; sourceTree = "<group>"; };
+		525C83ED26CAA708003F82DF /* CastKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastKeys.swift; sourceTree = "<group>"; };
 		526B5161269D6D370095F3E2 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526B5164269D6D370095F3E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		526B5166269D6D370095F3E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				522EE8DB26A6BAED00A456E2 /* MoviesUseCase.swift */,
 				522EE8E126A6BF8300A456E2 /* MoviesUseCaseProtocol.swift */,
 				52F11AB126A802DB007DBE0A /* Models */,
+				525C83ED26CAA708003F82DF /* CastKeys.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -901,6 +904,7 @@
 				5293A7A626AE973700F786E9 /* MovieCollectionViewCell+Design.swift in Sources */,
 				52F64E6C26B822740046A8ED /* SubcategoryDataSourceModel.swift in Sources */,
 				52F64E8D26B96B4F0046A8ED /* CastCollectionViewCell+Design.swift in Sources */,
+				525C83EE26CAA708003F82DF /* CastKeys.swift in Sources */,
 				526B5169269D6D370095F3E2 /* MoviesSearchViewController.swift in Sources */,
 				52F64E7726B932970046A8ED /* MovieCategoryRepositoryModel.swift in Sources */,
 				52F64E6A26B820E20046A8ED /* SubcategoryRepositoryModel.swift in Sources */,
