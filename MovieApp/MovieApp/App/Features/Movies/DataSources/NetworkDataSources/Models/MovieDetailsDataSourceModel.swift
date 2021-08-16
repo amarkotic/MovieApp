@@ -22,7 +22,7 @@ struct MovieDetailsDataSourceModel {
     
 }
 
-struct GenresDataSourceModel: Codable {
+struct GenresDataSourceModel {
     
     let id: Int
     let name: String
