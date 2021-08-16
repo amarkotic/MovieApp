@@ -1,5 +1,7 @@
 class MoviesRepository: MoviesRepositoryProtocol {
     
+    var favoriteMovies = [MovieRepositoryModel]()
+    
     private let networkDataSource: MoviesNetworkDataSourceProtocol
     
     init(networkDataSource: MoviesNetworkDataSourceProtocol) {

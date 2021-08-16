@@ -26,6 +26,8 @@ class CategoryTableViewCell: UITableViewCell {
     var category: MovieCategoryViewModel!
     var movies = [MovieViewModel]()
     
+    var isMovieFavorited: ((Int) -> Void)?
+    
     weak private var delegate: HomeViewController?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -64,8 +66,7 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? MovieCollectionViewCell else { return }
-        delegate?.showMovieDetails(with: cell.viewModel.id)
+        delegate?.showMovieDetails(with: movies[indexPath.row].id)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,6 +79,12 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         }
         
         cell.setData(with: movies[indexPath.row])
+        cell.heartIsTapped = { [weak self] in
+            guard let self = self else { return }
+
+            let id = self.movies[indexPath.row].id
+            self.isMovieFavorited?(id)
+        }
         return cell
     }
     

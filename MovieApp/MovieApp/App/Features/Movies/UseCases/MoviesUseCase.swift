@@ -1,16 +1,26 @@
 class MoviesUseCase: MoviesUseCaseProtocol {
     
-    private let repository: MoviesRepositoryProtocol
+    private let moviesRepository: MoviesRepositoryProtocol
+    private let userDefaultsRepository: UserDefaultsRepositoryProtocol
     
-    init(repository: MoviesRepositoryProtocol) {
-        self.repository = repository
+    var favoriteItems: [Int] {
+        userDefaultsRepository
+            .favoriteItems
+    }
+    
+    init(
+        moviesRepository: MoviesRepositoryProtocol,
+        userDefaultsRepository: UserDefaultsRepositoryProtocol
+    ) {
+        self.moviesRepository = moviesRepository
+        self.userDefaultsRepository = userDefaultsRepository
     }
     
     func fetchSearchMovies(
         category: MovieCategoryViewModel,
         completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
     ) {
-        repository.fetchMovies(categoryModel: .popular, subcategoryModel: .action) {
+        moviesRepository.fetchMovies(categoryModel: .popular, subcategoryModel: .action) {
             (result: Result<[MovieRepositoryModel], Error>) in
             switch result {
             case .failure(let error):
@@ -41,19 +51,21 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             return
         }
         
-        repository.fetchMovies(categoryModel: categoryModel, subcategoryModel: subcategoryModel) {
+        moviesRepository.fetchMovies(categoryModel: categoryModel, subcategoryModel: subcategoryModel) {
             (result: Result<[MovieRepositoryModel], Error>)  in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let repoModels):
-                let useCaseModels: [MovieModel] = repoModels.map { model -> MovieModel in
+                let useCaseModels: [MovieModel] = repoModels.map { [weak self] model -> MovieModel in
                     let subcategoryModels = model.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) }
                     let imageUrl = NetworkConstants.imagePath + model.imageUrl
+                    let savedMovieIds = self?.userDefaultsRepository.favoriteItems
+                    let isSaved = savedMovieIds!.contains(model.id)
                     return MovieModel(
                         id: model.id,
                         imageUrl: imageUrl,
-                        isSelected: false,
+                        isSelected: isSaved,
                         subcategories: subcategoryModels)
                 }
                 var filteredValue = [MovieModel]()
@@ -74,7 +86,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         with id: Int,
         completion: @escaping (Result<MovieDetailsModel, Error>) -> Void
     ) {
-        repository.fetchMovie(with: id) {
+        moviesRepository.fetchMovie(with: id) {
             (result: Result<MovieDetailsRepositoryModel, Error>) in
             switch result {
             case .failure(let error):
@@ -90,7 +102,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         with id: Int,
         completion: @escaping (Result<[ActorModel], Error>) -> Void
     ) {
-        repository.fetchActors(with: id) { (result: Result<[ActorRepositoryModel], Error>) in
+        moviesRepository.fetchActors(with: id) { (result: Result<[ActorRepositoryModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -111,7 +123,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         with id: Int,
         completion: @escaping (Result<ReviewModel, Error>) -> Void
     ) {
-        repository.fetchReviews(with: id) { (result: Result<[ReviewRepositoryModel], Error>) in
+        moviesRepository.fetchReviews(with: id) { (result: Result<[ReviewRepositoryModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -130,8 +142,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         with id: Int,
         completion: @escaping (Result<[RecommendationModel], Error>) -> Void
     ) {
-        
-        repository.fetchRecommendations(with: id) { (result: Result<[RecommendationRepositoryModel], Error>) in
+        moviesRepository.fetchRecommendations(with: id) { (result: Result<[RecommendationRepositoryModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -142,6 +153,11 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 completion(.success(recommendationsModels))
             }
         }
+    }
+    
+    func updateFavorites(with id: Int) {
+        userDefaultsRepository
+            .updateFavorites(with: id)
     }
     
 }

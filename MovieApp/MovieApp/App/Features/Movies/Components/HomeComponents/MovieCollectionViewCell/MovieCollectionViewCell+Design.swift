@@ -26,8 +26,6 @@ extension MovieCollectionViewCell: DesignProtocol {
         movieImageView.contentMode = .scaleAspectFill
         
         ellipseImageView.image = UIImage(with: .ellipseImage)
-        
-        heartImageView.image = UIImage(with: .heartEmpty)
     }
     
     func defineLayoutForViews() {

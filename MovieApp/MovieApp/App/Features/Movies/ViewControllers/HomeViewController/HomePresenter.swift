@@ -41,7 +41,7 @@ class HomePresenter {
                     return MovieViewModel(
                         id: model.id,
                         imageUrl: model.imageUrl,
-                        isFavorite: false
+                        isFavorite: model.isSelected
                     )
                 }
                 switch category {
@@ -65,6 +65,13 @@ class HomePresenter {
     
     func showMovieDetails(with id: Int) {
         appRouter.showMovieDetails(with: id)
+    }
+    
+    func updateFavoriteMovie(with id: Int) {
+        moviesUseCase
+            .updateFavorites(with: id)
+        
+        initialFetch()
     }
     
 }

@@ -16,8 +16,12 @@ class AppDependencies {
         MoviesRepository(networkDataSource: moviesNetworkDataSource)
     }()
     
+    lazy var userDefaultsRepository: UserDefaultsRepository = {
+        UserDefaultsRepository(favoritesDataSource:  FavoritesUserDefaultsDataSource())
+    }()
+    
     lazy var moviesUseCase: MoviesUseCaseProtocol = {
-        MoviesUseCase(repository: moviesRepository)
+        MoviesUseCase(moviesRepository: moviesRepository, userDefaultsRepository: userDefaultsRepository)
     }()
     
 }
