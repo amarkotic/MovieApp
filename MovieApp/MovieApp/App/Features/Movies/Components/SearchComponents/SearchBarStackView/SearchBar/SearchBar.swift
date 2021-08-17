@@ -12,7 +12,7 @@ class SearchBar: UIView {
     var searchCancelButton: UIButton!
     
     weak private var delegate: HomeViewController?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
