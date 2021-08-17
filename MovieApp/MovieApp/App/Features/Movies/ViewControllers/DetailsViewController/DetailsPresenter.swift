@@ -27,7 +27,7 @@ class DetailsPresenter {
                     genres.append($0.name)
                     genres.append(" ")
                 }
-
+              
                 let viewModel = MovieDetailsViewModel(
                     info: MainInfoViewModel(
                         posterPath: value.posterPath,

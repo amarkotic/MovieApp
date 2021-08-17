@@ -58,7 +58,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
             }
         }
     }
-    
+
     func fetchActors(
         with id: Int,
         completion: @escaping (Result<[ActorRepositoryModel], Error>) -> Void
