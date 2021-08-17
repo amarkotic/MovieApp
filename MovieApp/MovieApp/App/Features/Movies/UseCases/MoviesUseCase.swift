@@ -154,6 +154,35 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
+    func fetchFavoriteMovies(completion: @escaping (Result<[MovieModel], Error>) -> Void) {
+        var temporaryArray = [MovieModel]()
+        var flag = 0
+        favoriteItems.forEach { [weak self] id in
+            guard let self = self else { return }
+            
+            moviesRepository.fetchMovie(with: id) {
+                (result: Result<MovieDetailsRepositoryModel, Error>) in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let value):
+                    temporaryArray.append(
+                        MovieModel(
+                            id: id,
+                            imageUrl: NetworkConstants.imagePath + value.posterPath,
+                            isSelected: true,
+                            subcategories: []
+                        )
+                    )
+                    flag += 1
+                }
+                if flag == self.favoriteItems.count {
+                    completion(.success(temporaryArray))
+                }
+            }
+        }
+    }
+    
     func updateFavorites(with id: Int) {
         userDefaultsRepository
             .updateFavorites(with: id)
