@@ -18,11 +18,10 @@ class DetailsViewController: UIViewController {
     var presenter: DetailsPresenter!
     var identifier: Int!
 
-    convenience init(presenter: DetailsPresenter, identifier: Int) {
+    convenience init(presenter: DetailsPresenter) {
         self.init()
         
         self.presenter = presenter
-        self.identifier = identifier
     }
     
     override func viewDidLoad() {
@@ -31,7 +30,8 @@ class DetailsViewController: UIViewController {
         buildViews()
         setupNavigationBackButton()
         presenter.setDelegate(delegate: self)
-        presenter.fetchData(with: identifier)
+        mainInfoView.setDelegate(delegate: self)
+        presenter.fetchData()
     }
     
     func setMainInfoData(model: MovieDetailsViewModel) {
@@ -49,6 +49,10 @@ class DetailsViewController: UIViewController {
     
     func setRecommendationsData(model: [RecommendationsViewModel]) {
         recommendationView.setData(with: model)
+    }
+    
+    func favoritePressed() {
+        presenter.updateFavoriteMovie()
     }
     
     private func setupNavigationBackButton() {

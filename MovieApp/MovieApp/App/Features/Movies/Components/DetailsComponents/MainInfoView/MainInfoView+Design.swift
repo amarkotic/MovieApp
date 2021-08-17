@@ -41,6 +41,7 @@ extension MainInfoView: DesignProtocol {
     func styleViews() {
         moviePoster.contentMode = .scaleAspectFill
         moviePoster.layer.masksToBounds = true
+        moviePoster.isUserInteractionEnabled = true
 
         userScoreLabel.text = LocalizableStrings.userScore.rawValue
         userScoreLabel.textColor = .appWhite

@@ -70,8 +70,6 @@ class HomePresenter {
     func updateFavoriteMovie(with id: Int) {
         moviesUseCase
             .updateFavorites(with: id)
-        
-        initialFetch()
     }
     
 }
