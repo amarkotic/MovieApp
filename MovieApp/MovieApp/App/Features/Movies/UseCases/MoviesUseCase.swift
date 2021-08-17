@@ -111,10 +111,9 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     ActorModel(from: $0)
                 }
                 let actors = actorsModels.filter { model in
-                    model.deparment.elementsEqual(LocalizableStrings.acting.rawValue)
+                    model.deparment.elementsEqual(CastKeys.acting.rawValue)
                 }
-                let topActors = actors[0..<10]
-                completion(.success(Array(topActors)))
+                completion(.success(Array(actors.prefix(10))))
             }
         }
     }
@@ -128,12 +127,12 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let model):
-                let reviewModels = model.map { repoModels -> ReviewModel in
-                    return ReviewModel(from: repoModels)
+                let reviewModels = model.map {
+                    return ReviewModel(from: $0)
                 }
-                if reviewModels.count > 0 {
-                    completion(.success(reviewModels[0]))
-                }
+                guard let review = reviewModels.first else { return }
+                
+                completion(.success(review))     
             }
         }
     }
@@ -161,5 +160,3 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
     
 }
-
-

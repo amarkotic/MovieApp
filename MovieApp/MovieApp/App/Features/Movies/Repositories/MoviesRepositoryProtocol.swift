@@ -25,5 +25,5 @@ protocol MoviesRepositoryProtocol {
         with id: Int,
         completion: @escaping (Result<[RecommendationRepositoryModel], Error>) -> Void
     )
-
+    
 }

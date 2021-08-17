@@ -86,8 +86,8 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let model):
-                let reviewDataSourceModels = model.results.map { networkModel in
-                    ReviewDataSourceModel(from: networkModel)
+                let reviewDataSourceModels = model.results.map {
+                    ReviewDataSourceModel(from: $0)
                 }
                 completion(.success(reviewDataSourceModels))
             }

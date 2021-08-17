@@ -26,11 +26,18 @@ class SocialView: UIView {
     }
     
     func setData(with reviewModel: SocialViewModel) {
-        let parsedDate = parse(date: reviewModel.date ?? "")
+        guard
+            let date = reviewModel.date,
+            let avatarPath = reviewModel.author.avatarPath
+        else {
+            return
+        }
+        
+        let parsedDate = parse(date: date)
         postTitle.text?.append(reviewModel.author.username)
         postInfo.attributedText = createAttributed(author: reviewModel.author.username, date: parsedDate)
         postContent.text = reviewModel.review
-        logoImage.kf.setImage(with: URL(string: reviewModel.author.avatarPath ?? ""))
+        logoImage.kf.setImage(with: URL(string: avatarPath))
     }
     
 }
@@ -47,7 +54,6 @@ extension SocialView {
     }
     
     private func parse(date: String) -> String {
-        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
@@ -61,8 +67,8 @@ extension SocialView {
         dateFormatter.dateFormat = "dd"
         let day = dateFormatter.string(from: date!)
         
-        let durationAndLanguage = "\(month) \(day), \(year)"
-        return durationAndLanguage
+        let dateString = "\(month) \(day), \(year)"
+        return dateString
     }
     
 }
