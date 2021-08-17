@@ -10,6 +10,9 @@ extension MoviesSearchViewController: DesignProtocol {
     }
     
     func createViews() {
+        searchBarStackView = SearchBarStackView()
+        view.addSubview(searchBarStackView)
+        
         tableView = UITableView(frame: CGRect.zero, style: .grouped)
         view.addSubview(tableView)
     }
@@ -27,8 +30,16 @@ extension MoviesSearchViewController: DesignProtocol {
     }
     
     func defineLayoutForViews() {
+        searchBarStackView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(defaultInset)
+            $0.leading.trailing.equalToSuperview().inset(defaultInset)
+            $0.height.equalTo(searchBarHeight)
+        }
+        
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(searchBarStackView.snp.bottom).offset(defaultInset)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
     

@@ -45,4 +45,5 @@ class CustomTabBarController: UITabBarController {
         logoImageView.image = logo
         navigationItem.titleView = logoImageView
     }
+    
 }

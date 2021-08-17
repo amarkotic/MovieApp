@@ -3,7 +3,10 @@ import UIKit
 class MoviesSearchViewController: UIViewController {
 
     let rowHeight: CGFloat = 142
+    let defaultInset = 20
+    let searchBarHeight = 43
 
+    var searchBarStackView: SearchBarStackView!
     var logoImageView: UIImageView!
     var tableView: UITableView!
     var movies = [MovieSearchViewModel]()
@@ -19,14 +22,36 @@ class MoviesSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        buildViews()
+        styleNavigationController()
         presenter.setMoviesViewDelegate(moviesViewDelegate: self)
         presenter.fetchMovies()
-        buildViews()
+        searchBarStackView.setDelegate(delegate: self)
+        searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchBarStackView.activateKeyboard()
+        
     }
     
     func fetchSuccesful(movies: [MovieSearchViewModel]) {
         self.movies = movies
         tableView.reloadData()
+    }
+    
+    private func styleNavigationController() {
+        navigationItem.hidesBackButton = true
+        let logo = UIImage(with: .appLogo)
+        let logoImageView = UIImageView()
+        logoImageView.image = logo
+        navigationItem.titleView = logoImageView
+    }
+    
+    @objc private func popViewController() {
+        presenter.popViewController()
     }
     
 }

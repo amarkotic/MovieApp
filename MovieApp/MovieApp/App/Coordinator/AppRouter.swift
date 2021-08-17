@@ -43,6 +43,17 @@ class AppRouter {
         navigationController.popViewController(animated: true)
     }
     
+    func presentSearchViewController() {
+        let searchViewController = MoviesSearchViewController(
+            presenter: MoviesSearchPresenter(moviesUseCase: appDependencies.moviesUseCase, appRouter: self)
+        )
+        navigationController.pushViewController(searchViewController, animated: false)
+    }
+    
+    func popWithoutAnimation() {
+        navigationController.popViewController(animated: false)
+    }
+    
     private func styleNavigationBar() {
         navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.barTintColor = .appBlue
