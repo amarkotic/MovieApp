@@ -66,7 +66,7 @@ class DetailsPresenter {
                 self.delegate?.setReviewData(model: viewModel)
             }
         }
-        
+
         movieUseCase.fetchRecommendations(with: id) { (result: Result<[RecommendationModel], Error>) in
             switch result {
             case .failure(let error):

@@ -115,13 +115,12 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let model):
-                let reviewModels = model.map { repoModels -> ReviewModel in
-                    return ReviewModel(from: repoModels)
+                let reviewModels = model.map {
+                    return ReviewModel(from: $0)
                 }
                 guard let review = reviewModels.first else { return }
                 
-                completion(.success(review))
-                
+                completion(.success(review))     
             }
         }
     }
@@ -143,4 +142,5 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             }
         }
     }
+
 }

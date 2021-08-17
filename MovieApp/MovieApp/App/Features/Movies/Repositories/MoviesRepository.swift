@@ -85,14 +85,15 @@ class MoviesRepository: MoviesRepositoryProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let model):
-                let reviewsRepositoryModels = model.map { dataSourceModel in
-                    ReviewRepositoryModel(from: dataSourceModel)
+                let reviewsRepositoryModels = model.map {
+                    ReviewRepositoryModel(from: $0)
                 }
                 completion(.success(reviewsRepositoryModels))
             }
         }
     }
     
+
     func fetchRecommendations(
         with id: Int,
         completion: @escaping (Result<[RecommendationRepositoryModel], Error>) -> Void
