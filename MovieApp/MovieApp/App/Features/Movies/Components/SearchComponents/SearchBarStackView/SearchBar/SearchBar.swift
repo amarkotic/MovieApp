@@ -11,7 +11,7 @@ class SearchBar: UIView {
     var searchTextField: UITextField!
     var searchCancelButton: UIButton!
     
-    weak var delegate: HomeViewController?
+    weak private var delegate: HomeViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

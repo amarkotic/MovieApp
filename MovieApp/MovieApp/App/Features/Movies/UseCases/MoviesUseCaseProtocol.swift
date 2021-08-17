@@ -2,11 +2,6 @@ protocol MoviesUseCaseProtocol {
     
     var favoriteItems: [Int] { get }
     
-    func fetchSearchMovies(
-        category: MovieCategoryViewModel,
-        completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
-    )
-    
     func fetchMovies(
         categoryViewModel: MovieCategoryViewModel,
         subcategoryViewModel: SubcategoryViewModel,
@@ -37,4 +32,8 @@ protocol MoviesUseCaseProtocol {
     
     func fetchFavoriteMovies(completion: @escaping (Result<[MovieModel], Error>) -> Void)
     
+    func fetchSearchMovies(
+        with query: String,
+        completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
+    ) 
 }

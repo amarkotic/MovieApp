@@ -16,29 +16,6 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         self.userDefaultsRepository = userDefaultsRepository
     }
     
-    func fetchSearchMovies(
-        category: MovieCategoryViewModel,
-        completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
-    ) {
-        moviesRepository.fetchMovies(categoryModel: .popular, subcategoryModel: .action) {
-            (result: Result<[MovieRepositoryModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let useCaseSearchModels: [MovieSearchModel] = value.map { model -> MovieSearchModel in
-                    let imageUrl = NetworkConstants.imagePath + model.imageUrl
-                    return MovieSearchModel(
-                        id: model.id,
-                        imageUrl: imageUrl,
-                        title: model.title,
-                        description: model.description)
-                }
-                completion(.success(useCaseSearchModels))
-            }
-        }
-    }
-    
     func fetchMovies(
         categoryViewModel: MovieCategoryViewModel,
         subcategoryViewModel: SubcategoryViewModel,
@@ -59,12 +36,11 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             case .success(let repoModels):
                 let useCaseModels: [MovieModel] = repoModels.map { [weak self] model -> MovieModel in
                     let subcategoryModels = model.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) }
-                    let imageUrl = NetworkConstants.imagePath + model.imageUrl
                     let savedMovieIds = self?.userDefaultsRepository.favoriteItems
                     let isSaved = savedMovieIds!.contains(model.id)
                     return MovieModel(
                         id: model.id,
-                        imageUrl: imageUrl,
+                        imageUrl: model.imageUrl,
                         isSelected: isSaved,
                         subcategories: subcategoryModels)
                 }
@@ -186,6 +162,23 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     func updateFavorites(with id: Int) {
         userDefaultsRepository
             .updateFavorites(with: id)
+    }
+    
+    func fetchSearchMovies(
+        with query: String,
+        completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
+    ) {
+        moviesRepository.fetchSearchMovies(with: query) { (result: Result<[MovieRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                let movieModels = value.map {
+                    MovieSearchModel(from: $0)
+                }
+                completion(.success(movieModels))
+            }
+        }
     }
     
 }

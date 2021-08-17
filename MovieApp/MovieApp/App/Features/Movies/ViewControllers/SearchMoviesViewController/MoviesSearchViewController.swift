@@ -1,6 +1,6 @@
 import UIKit
 
-class MoviesSearchViewController: UIViewController {
+class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
 
     let rowHeight: CGFloat = 142
     let defaultInset = 20
@@ -24,9 +24,10 @@ class MoviesSearchViewController: UIViewController {
         
         buildViews()
         styleNavigationController()
-        presenter.setMoviesViewDelegate(moviesViewDelegate: self)
-        presenter.fetchMovies()
+        presenter.setDelegate(delegate: self)
         searchBarStackView.setDelegate(delegate: self)
+        searchBarStackView.searchBar.searchTextField.delegate = self
+        searchBarStackView.searchBar.searchTextField.addTarget(self, action: #selector(queryMovies), for: .editingChanged)
         searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
     }
     
@@ -34,12 +35,17 @@ class MoviesSearchViewController: UIViewController {
         super.viewWillAppear(animated)
         
         searchBarStackView.activateKeyboard()
-        
     }
-    
+
     func fetchSuccesful(movies: [MovieSearchViewModel]) {
         self.movies = movies
         tableView.reloadData()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        queryMovies()
+        self.view.endEditing(true)
+        return false
     }
     
     private func styleNavigationController() {
@@ -48,6 +54,12 @@ class MoviesSearchViewController: UIViewController {
         let logoImageView = UIImageView()
         logoImageView.image = logo
         navigationItem.titleView = logoImageView
+    }
+    
+    @objc private func queryMovies() {
+        guard let text = searchBarStackView.searchBar.searchTextField.text else { return }
+        
+        presenter.fetchMovies(with: text)
     }
     
     @objc private func popViewController() {

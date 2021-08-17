@@ -26,4 +26,9 @@ protocol MoviesNetworkClientProtocol {
         completion: @escaping (Result<RecommendationsNetworkModel, NetworkError>) -> Void
     ) 
     
+    func getSearchMovies(
+        with query: String,
+        completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
+    )
+    
 }

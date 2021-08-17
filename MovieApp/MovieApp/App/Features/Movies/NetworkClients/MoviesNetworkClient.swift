@@ -76,4 +76,15 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         networkService.get(url: url, completion: completion)
     }
     
+    func getSearchMovies(
+        with query: String,
+        completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
+    ) {
+        var url: URL?
+        url = EndpointConstant.searchMovie(with: query).url
+        guard let url = url else { return }
+        
+        networkService.get(url: url, completion: completion)
+    }
+    
 }
