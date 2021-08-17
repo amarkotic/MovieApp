@@ -996,6 +996,7 @@
 				528DE5D626C159CA00498E23 /* RecommendationsView+Design.swift in Sources */,
 				525666B326A8494A00B5E0BE /* CustomTabBarController.swift in Sources */,
 				523C2EB0269DB2C800F2EDD6 /* MovieSearchCell+Design.swift in Sources */,
+				525C83EC26CAA39F003F82DF /* CastKeys.swift in Sources */,
 				52F64E7926B932B40046A8ED /* MovieCategoryDataSourceModel.swift in Sources */,
 				5203716726A1C49D00DE4AC7 /* AppRouter.swift in Sources */,
 				5293A7AE26AFEFA300F786E9 /* CategoryViewModel.swift in Sources */,

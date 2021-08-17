@@ -75,7 +75,7 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             }
         }
     }
-    
+
     func fetchReviews(
         with id: Int,
         completion: @escaping (Result<[ReviewDataSourceModel], Error>) -> Void
