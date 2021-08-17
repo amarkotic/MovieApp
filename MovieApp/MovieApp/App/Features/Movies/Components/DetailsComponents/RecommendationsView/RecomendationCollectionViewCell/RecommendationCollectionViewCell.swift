@@ -23,7 +23,7 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(with model: RecommendationsViewModel) {
-        imageView.image = UIImage(named: model.imageName)
+        imageView.kf.setImage(with: URL(string: model.imageName))
         title.text = model.title
     }
 

@@ -120,8 +120,27 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 }
                 guard let review = reviewModels.first else { return }
                 
-                completion(.success(review))
+                completion(.success(review))     
             }
         }
     }
+    
+    func fetchRecommendations(
+        with id: Int,
+        completion: @escaping (Result<[RecommendationModel], Error>) -> Void
+    ) {
+        
+        repository.fetchRecommendations(with: id) { (result: Result<[RecommendationRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let recommendationsModels = model.map {
+                    RecommendationModel(from: $0)
+                }
+                completion(.success(recommendationsModels))
+            }
+        }
+    }
+
 }
