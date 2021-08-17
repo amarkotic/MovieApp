@@ -43,6 +43,14 @@ class DetailsViewController: UIViewController {
         castView.setData(with: model)
     }
     
+    func setReviewData(model: SocialViewModel) {
+        socialView.setData(with: model)
+    }
+    
+    func setRecommendationsData(model: [RecommendationsViewModel]) {
+        recommendationView.setData(with: model)
+    }
+    
     private func setupNavigationBackButton() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(with: .backButton),

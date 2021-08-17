@@ -106,6 +106,41 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
+    func fetchReview(
+        with id: Int,
+        completion: @escaping (Result<ReviewModel, Error>) -> Void
+    ) {
+        repository.fetchReviews(with: id) { (result: Result<[ReviewRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let reviewModels = model.map {
+                    return ReviewModel(from: $0)
+                }
+                guard let review = reviewModels.first else { return }
+                
+                completion(.success(review))     
+            }
+        }
+    }
+    
+    func fetchRecommendations(
+        with id: Int,
+        completion: @escaping (Result<[RecommendationModel], Error>) -> Void
+    ) {
+        
+        repository.fetchRecommendations(with: id) { (result: Result<[RecommendationRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let recommendationsModels = model.map {
+                    RecommendationModel(from: $0)
+                }
+                completion(.success(recommendationsModels))
+            }
+        }
+    }
+
 }
-
-

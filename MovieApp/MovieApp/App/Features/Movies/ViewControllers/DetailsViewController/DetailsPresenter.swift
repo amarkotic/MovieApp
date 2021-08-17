@@ -27,7 +27,7 @@ class DetailsPresenter {
                     genres.append($0.name)
                     genres.append(" ")
                 }
-                
+
                 let viewModel = MovieDetailsViewModel(
                     info: MainInfoViewModel(
                         posterPath: value.posterPath,
@@ -57,6 +57,28 @@ class DetailsPresenter {
             }
         }
         
+        movieUseCase.fetchReview(with: id) { (result: Result<ReviewModel, Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                let viewModel = SocialViewModel(from: value)
+                self.delegate?.setReviewData(model: viewModel)
+            }
+        }
+
+        movieUseCase.fetchRecommendations(with: id) { (result: Result<[RecommendationModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                
+                let viewModels: [RecommendationsViewModel] = value.map {
+                    RecommendationsViewModel(imageName: $0.posterPath, title: $0.title)
+                }
+                self.delegate?.setRecommendationsData(model: viewModels)
+            }
+        }
     }
     
     func popToHomeScreen() {

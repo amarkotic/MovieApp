@@ -21,4 +21,14 @@ protocol MoviesUseCaseProtocol {
         completion: @escaping (Result<[ActorModel], Error>) -> Void
     )
     
+    func fetchReview(
+        with id: Int,
+        completion: @escaping (Result<ReviewModel, Error>) -> Void
+    )
+    
+    func fetchRecommendations(
+        with id: Int,
+        completion: @escaping (Result<[RecommendationModel], Error>) -> Void
+    )
+    
 }
