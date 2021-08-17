@@ -16,11 +16,13 @@ class DetailsViewController: UIViewController {
     var recommendationView: RecommendationsView!
     
     var presenter: DetailsPresenter!
-    
-    convenience init(presenter: DetailsPresenter) {
+    var identifier: Int!
+
+    convenience init(presenter: DetailsPresenter, identifier: Int) {
         self.init()
         
         self.presenter = presenter
+        self.identifier = identifier
     }
     
     override func viewDidLoad() {
@@ -29,15 +31,24 @@ class DetailsViewController: UIViewController {
         buildViews()
         setupNavigationBackButton()
         presenter.setDelegate(delegate: self)
-        presenter.fetchData()
+        presenter.fetchData(with: identifier)
     }
     
-    func setData(model: MovieDetailsViewModel) {
+    func setMainInfoData(model: MovieDetailsViewModel) {
         mainInfoView.setData(with: model.info)
         overviewView.setData(with: model.overview)
-        castView.setData(with: model.actors)
-        socialView.setData(with: model.review)
-        recommendationView.setData(with: model.recommendations)
+    }
+    
+    func setCastData(model: [ActorViewModel]) {
+        castView.setData(with: model)
+    }
+    
+    func setReviewData(model: SocialViewModel) {
+        socialView.setData(with: model)
+    }
+    
+    func setRecommendationsData(model: [RecommendationsViewModel]) {
+        recommendationView.setData(with: model)
     }
     
     private func setupNavigationBackButton() {

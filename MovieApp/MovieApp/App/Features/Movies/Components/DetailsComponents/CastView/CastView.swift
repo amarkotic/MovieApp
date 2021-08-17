@@ -32,6 +32,7 @@ class CastView: UIView {
     
     func setData(with actorModel: [ActorViewModel]) {
         actorsViewModel = actorModel
+        collectionView.reloadData()
     }
 }
 

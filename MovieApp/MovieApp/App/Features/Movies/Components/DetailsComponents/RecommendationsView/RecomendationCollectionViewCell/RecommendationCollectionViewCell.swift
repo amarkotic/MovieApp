@@ -8,7 +8,7 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
     let defaultOffset = 9
     let imageHeight = 85
     let cornerRadius: CGFloat = 10
-    
+
     var imageView: UIImageView!
     var title: UILabel!
     
@@ -23,8 +23,8 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(with model: RecommendationsViewModel) {
-        imageView.image = UIImage(named: model.imageName)
+        imageView.kf.setImage(with: URL(string: model.imageName))
         title.text = model.title
     }
-    
+
 }

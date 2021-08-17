@@ -43,4 +43,73 @@ class MoviesRepository: MoviesRepositoryProtocol {
         }
     }
     
+    func fetchMovie(
+        with id: Int,
+        completion: @escaping (Result<MovieDetailsRepositoryModel, Error>) -> Void
+    ) {
+        networkDataSource.fetchMovie(with: id) {
+            (result: Result<MovieDetailsDataSourceModel, Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                let movieDetailsRepositoryModels = MovieDetailsRepositoryModel(from: value)
+                completion(.success(movieDetailsRepositoryModels))
+            }
+        }
+    }
+
+    func fetchActors(
+        with id: Int,
+        completion: @escaping (Result<[ActorRepositoryModel], Error>) -> Void
+    ) {
+        networkDataSource.fetchActors(with: id) { (result: Result<[ActorDataSourceModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let actorsRepositoryModels = model.map {
+                    ActorRepositoryModel(from: $0)
+                }
+                completion(.success(actorsRepositoryModels))
+            }
+        }
+    }
+    
+    func fetchReviews(
+        with id: Int,
+        completion: @escaping (Result<[ReviewRepositoryModel], Error>) -> Void
+    ) {
+        networkDataSource.fetchReviews(with: id) { (result: Result<[ReviewDataSourceModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let reviewsRepositoryModels = model.map {
+                    ReviewRepositoryModel(from: $0)
+                }
+                completion(.success(reviewsRepositoryModels))
+            }
+        }
+    }
+    
+
+    func fetchRecommendations(
+        with id: Int,
+        completion: @escaping (Result<[RecommendationRepositoryModel], Error>) -> Void
+    ) {
+        
+        networkDataSource.fetchRecommendations(with: id) { (result: Result<[RecommendationDataSourceModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let recommendationsRepositoryModels = model.map {
+                    RecommendationRepositoryModel(from: $0)
+                }
+                completion(.success(recommendationsRepositoryModels))
+            }
+        }
+    }
+
 }

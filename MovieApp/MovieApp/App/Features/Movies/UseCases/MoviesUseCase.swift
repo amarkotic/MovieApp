@@ -70,6 +70,77 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
+    func fetchMovie(
+        with id: Int,
+        completion: @escaping (Result<MovieDetailsModel, Error>) -> Void
+    ) {
+        repository.fetchMovie(with: id) {
+            (result: Result<MovieDetailsRepositoryModel, Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                let movieDetailsModels: MovieDetailsModel = MovieDetailsModel(from: value)
+                completion(.success(movieDetailsModels))
+            }
+        }
+    }
+    
+    func fetchActors(
+        with id: Int,
+        completion: @escaping (Result<[ActorModel], Error>) -> Void
+    ) {
+        repository.fetchActors(with: id) { (result: Result<[ActorRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let actorsModels = model.map {
+                    ActorModel(from: $0)
+                }
+                let actors = actorsModels.filter { model in
+                    model.deparment.elementsEqual(CastKeys.acting.rawValue)
+                }
+                completion(.success(Array(actors.prefix(10))))
+            }
+        }
+    }
+    
+    func fetchReview(
+        with id: Int,
+        completion: @escaping (Result<ReviewModel, Error>) -> Void
+    ) {
+        repository.fetchReviews(with: id) { (result: Result<[ReviewRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let reviewModels = model.map {
+                    return ReviewModel(from: $0)
+                }
+                guard let review = reviewModels.first else { return }
+                
+                completion(.success(review))     
+            }
+        }
+    }
+    
+    func fetchRecommendations(
+        with id: Int,
+        completion: @escaping (Result<[RecommendationModel], Error>) -> Void
+    ) {
+        
+        repository.fetchRecommendations(with: id) { (result: Result<[RecommendationRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let recommendationsModels = model.map {
+                    RecommendationModel(from: $0)
+                }
+                completion(.success(recommendationsModels))
+            }
+        }
+    }
+
 }
-
-
