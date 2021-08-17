@@ -47,9 +47,9 @@ class FavoriteMoviesViewController: UIViewController {
 extension FavoriteMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.data.count
+        presenter.data.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(
@@ -58,7 +58,7 @@ extension FavoriteMoviesViewController: UICollectionViewDelegate, UICollectionVi
         else {
             return UICollectionViewCell()
         }
-
+        
         let data = presenter.data[indexPath.row]
         cell.setData(with: data)
         
@@ -69,5 +69,5 @@ extension FavoriteMoviesViewController: UICollectionViewDelegate, UICollectionVi
         let cellWidth = (view.frame.width - 60) / 3
         return CGSize(width: cellWidth, height: cellHeight)
     }
-
+    
 }

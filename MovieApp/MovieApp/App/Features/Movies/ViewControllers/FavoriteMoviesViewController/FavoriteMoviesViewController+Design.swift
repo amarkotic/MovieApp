@@ -39,7 +39,6 @@ extension FavoriteMoviesViewController: DesignProtocol {
             $0.leading.trailing.equalToSuperview().inset(defaultOffset)
             $0.bottom.equalToSuperview()
         }
-        
     }
 
 }
