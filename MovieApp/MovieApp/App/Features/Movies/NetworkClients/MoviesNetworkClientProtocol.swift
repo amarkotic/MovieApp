@@ -11,4 +11,19 @@ protocol MoviesNetworkClientProtocol {
         completion: @escaping (Result<MovieDetailsNetworkModel, NetworkError>) -> Void
     ) 
     
+    func getActors(
+        with id: Int,
+        completion: @escaping (Result<ActorsNetworkModel, NetworkError>) -> Void
+    )
+    
+    func getReviews(
+        with id: Int,
+        completion: @escaping (Result<ReviewsNetworkModel, NetworkError>) -> Void
+    )
+    
+    func getRecommendations(
+        with id: Int,
+        completion: @escaping (Result<RecommendationsNetworkModel, NetworkError>) -> Void
+    ) 
+    
 }

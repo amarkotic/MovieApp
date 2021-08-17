@@ -14,5 +14,6 @@ enum LocalizableStrings: String {
     case writtenBy = "Written by "
     case on = " on \n"
     case recommendations = "Recomendations"
+    case acting = "Acting"
     
 }
