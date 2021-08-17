@@ -35,4 +35,6 @@ protocol MoviesUseCaseProtocol {
     
     func updateFavorites(with id: Int)
     
+    func fetchFavoriteMovies(completion: @escaping (Result<[MovieModel], Error>) -> Void)
+    
 }

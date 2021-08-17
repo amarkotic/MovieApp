@@ -16,19 +16,19 @@ class FavoriteMoviesPresenter {
     }
     
     func fetchMovies() {
-        var temporaryArray = [MovieViewModel]()
-        moviesUseCase.favoriteItems.forEach { [weak self] id in
-            guard let self = self else { return }
-            
-            moviesUseCase.fetchMovie(with: id) { (result: Result<MovieDetailsModel, Error>) in
-                switch result {
-                case .failure(let error):
-                    print(error.localizedDescription)
-                case .success(let value):
-                    temporaryArray.append(MovieViewModel(id: id, imageUrl: value.posterPath, isFavorite: true))
-                    self.data = temporaryArray
-                    self.delegate?.reloadData()
-                }
+        moviesUseCase.fetchFavoriteMovies { (result: Result<[MovieModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                self.data = value.map {
+                    MovieViewModel(
+                        id: $0.id,
+                        imageUrl: $0.imageUrl,
+                        isFavorite: $0.isSelected
+                    )
+                } 
+                self.delegate?.reloadData()
             }
         }
     }
