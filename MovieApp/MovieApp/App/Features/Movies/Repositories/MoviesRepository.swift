@@ -1,5 +1,7 @@
 class MoviesRepository: MoviesRepositoryProtocol {
     
+    var favoriteMovies = [MovieRepositoryModel]()
+    
     private let networkDataSource: MoviesNetworkDataSourceProtocol
     
     init(networkDataSource: MoviesNetworkDataSourceProtocol) {
@@ -58,7 +60,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
             }
         }
     }
-
+    
     func fetchActors(
         with id: Int,
         completion: @escaping (Result<[ActorRepositoryModel], Error>) -> Void
@@ -93,7 +95,6 @@ class MoviesRepository: MoviesRepositoryProtocol {
         }
     }
     
-
     func fetchRecommendations(
         with id: Int,
         completion: @escaping (Result<[RecommendationRepositoryModel], Error>) -> Void

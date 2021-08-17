@@ -19,10 +19,13 @@ class MainInfoView: UIView {
     var elipseImageView: UIImageView!
     var favoriteImageView: UIImageView!
     
+    weak private var delegate: DetailsViewController?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         buildViews()
+        enableInteraction()
     }
     
     required init?(coder: NSCoder) {
@@ -30,6 +33,7 @@ class MainInfoView: UIView {
     }
 
     func setData(with model: MainInfoViewModel) {
+        favoriteImageView.image = model.isFavorite ? UIImage(with: .favoriteLogoSelected) : UIImage(with: .favoriteLogo)
         moviePoster.kf.setImage(with: URL(string: model.posterPath))
         progressView.setData(with: model.progressPercentage)
         nameLabel.attributedText = buildAttributed(name: model.movieName, date: model.releaseDate)
@@ -37,6 +41,19 @@ class MainInfoView: UIView {
         genresAndDurationLabel.attributedText = buildAttributed(genre: model.genres, duration: model.duration)
     }
     
+    func setDelegate(delegate: DetailsViewController) {
+        self.delegate = delegate
+    }
+    
+    private func enableInteraction() {
+        elipseImageView.isUserInteractionEnabled = true
+        elipseImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(favoriteTapped)))
+    }
+    
+    @objc private func favoriteTapped() {
+        delegate?.favoritePressed()
+    }
+
 }
 
 extension MainInfoView {

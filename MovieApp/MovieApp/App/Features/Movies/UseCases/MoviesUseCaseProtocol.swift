@@ -1,5 +1,7 @@
 protocol MoviesUseCaseProtocol {
     
+    var favoriteItems: [Int] { get }
+    
     func fetchSearchMovies(
         category: MovieCategoryViewModel,
         completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
@@ -30,5 +32,7 @@ protocol MoviesUseCaseProtocol {
         with id: Int,
         completion: @escaping (Result<[RecommendationModel], Error>) -> Void
     )
+    
+    func updateFavorites(with id: Int)
     
 }

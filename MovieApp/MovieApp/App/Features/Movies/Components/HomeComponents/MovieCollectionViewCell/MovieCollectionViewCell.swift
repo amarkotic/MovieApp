@@ -14,14 +14,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     var ellipseImageView: UIImageView!
     var heartImageView: UIImageView!
     
-    var viewModel: MovieViewModel! {
-        didSet {
-            let image = viewModel.isFavorite ? UIImage(with: .heartFilled) : UIImage(with: .heartEmpty)
-            let url = URL(string: viewModel.imageUrl)
-            movieImageView.kf.setImage(with: url)
-            heartImageView.image = image
-        }
-    }
+    var heartIsTapped: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,12 +27,19 @@ class MovieCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(with movieViewModel: MovieViewModel) {
-        viewModel = movieViewModel
+    func setData(with model: MovieViewModel) {
+        let url = URL(string: model.imageUrl)
+        movieImageView.kf.setImage(with: url)
+        heartImageView.image = model.isFavorite ? UIImage(with: .favoriteLogoSelected) : UIImage(with: .favoriteLogo)
     }
     
     private func enableInteraction() {
         ellipseImageView.isUserInteractionEnabled = true
+        ellipseImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(heartTapped)))
+    }
+    
+    @objc private func heartTapped() {
+        heartIsTapped?()
     }
     
 }

@@ -11,6 +11,8 @@ class HomeViewController: UIViewController {
     
     var presenter: HomePresenter!
     
+    var reloadModel: ReloadModel?
+    
     convenience init(presenter: HomePresenter) {
         self.init()
         
@@ -26,6 +28,7 @@ class HomeViewController: UIViewController {
     }
     
     func subcategoryPressed(category: MovieCategoryViewModel, subCategory: SubcategoryViewModel) {
+        reloadModel = ReloadModel(category: category, subCategory: subCategory)
         presenter.fetchMovies(category: category, subCategory: subCategory)
         tableView.reloadData()
     }
@@ -36,6 +39,22 @@ class HomeViewController: UIViewController {
     
     func showMovieDetails(with id: Int) {
         presenter.showMovieDetails(with: id)
+    }
+    
+    func reloadFavoriteMovie() {
+        guard
+            let model = reloadModel
+        else {
+            presenter.initialFetch()
+            return
+        }
+
+        presenter.fetchMovies(category: model.category, subCategory: model.subCategory)
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        reloadFavoriteMovie()
     }
     
 }
@@ -54,8 +73,13 @@ extension HomeViewController: UITableViewDataSource {
         }
         
         cell.set(delegate: self)
-        
         let data = presenter.data[indexPath.row]
+        cell.isMovieFavorited = { [weak self] id in
+            guard let self = self else { return }
+            
+            self.presenter.updateFavoriteMovie(with: id)
+            self.reloadFavoriteMovie()
+        }
         cell.populateCell(title: data.title, categories: data.categories, movies: data.movies)
         return cell
     }

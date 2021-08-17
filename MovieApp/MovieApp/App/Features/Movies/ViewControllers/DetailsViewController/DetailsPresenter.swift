@@ -5,19 +5,23 @@ class DetailsPresenter {
     private let appRouter: AppRouter
     private let movieUseCase: MoviesUseCaseProtocol
     weak private var delegate: DetailsViewController?
+    private let identifier: Int
     
-    init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter) {
+    init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter, identifier: Int) {
         self.movieUseCase = movieUseCase
-        appRouter = router
+        self.appRouter = router
+        self.identifier = identifier
     }
     
     func setDelegate(delegate: DetailsViewController?) {
         self.delegate = delegate
     }
     
-    func fetchData(with id: Int) {
-        movieUseCase.fetchMovie(with: id) {
+    func fetchData() {
+        movieUseCase.fetchMovie(with: identifier) { [weak self]
             (result: Result<MovieDetailsModel, Error>) in
+            guard let self = self else { return }
+            
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -27,7 +31,9 @@ class DetailsPresenter {
                     genres.append($0.name)
                     genres.append(" ")
                 }
-              
+                
+                let savedMovieIds = self.movieUseCase.favoriteItems
+                let isSaved = savedMovieIds.contains(self.identifier)
                 let viewModel = MovieDetailsViewModel(
                     info: MainInfoViewModel(
                         posterPath: value.posterPath,
@@ -36,7 +42,9 @@ class DetailsPresenter {
                         releaseDate: value.releaseDate,
                         language: value.language,
                         genres: genres,
-                        duration: value.runtime),
+                        duration: value.runtime,
+                        isFavorite: isSaved
+                        ),
                     overview: OverviewViewModel(
                         overview: value.overview),
                     actors: nil
@@ -45,7 +53,8 @@ class DetailsPresenter {
             }
         }
         
-        movieUseCase.fetchActors(with: id) { (result: Result<[ActorModel], Error>) in
+        movieUseCase.fetchActors(with: identifier) {
+            (result: Result<[ActorModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -57,7 +66,8 @@ class DetailsPresenter {
             }
         }
         
-        movieUseCase.fetchReview(with: id) { (result: Result<ReviewModel, Error>) in
+        movieUseCase.fetchReview(with: identifier) {
+            (result: Result<ReviewModel, Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -66,8 +76,9 @@ class DetailsPresenter {
                 self.delegate?.setReviewData(model: viewModel)
             }
         }
-
-        movieUseCase.fetchRecommendations(with: id) { (result: Result<[RecommendationModel], Error>) in
+        
+        movieUseCase.fetchRecommendations(with: identifier) {
+            (result: Result<[RecommendationModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -83,6 +94,11 @@ class DetailsPresenter {
     
     func popToHomeScreen() {
         appRouter.showHomeScreen()
+    }
+    
+    func updateFavoriteMovie() {
+        movieUseCase.updateFavorites(with: identifier)
+        fetchData()
     }
     
 }

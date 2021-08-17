@@ -75,7 +75,7 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             }
         }
     }
-
+    
     func fetchReviews(
         with id: Int,
         completion: @escaping (Result<[ReviewDataSourceModel], Error>) -> Void
@@ -93,7 +93,7 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             }
         }
     }
-
+    
     func fetchRecommendations(
         with id: Int,
         completion: @escaping (Result<[RecommendationDataSourceModel], Error>) -> Void
@@ -111,5 +111,5 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             }
         }
     }
-
+    
 }

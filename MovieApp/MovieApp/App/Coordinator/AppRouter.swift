@@ -8,7 +8,7 @@ class AppRouter {
     private lazy var tabBarController: UITabBarController = {
         let homeViewController = HomeViewController(
             presenter: HomePresenter(moviesUseCase: appDependencies.moviesUseCase, router: self))
-        let favoriteViewController = FavoriteMoviesViewController()
+        let favoriteViewController = FavoriteMoviesViewController(presenter: FavoriteMoviesPresenter(moviesUseCase: appDependencies.moviesUseCase))
         return CustomTabBarController(
             homeViewController: homeViewController,
             favoriteViewController: favoriteViewController)
@@ -33,8 +33,8 @@ class AppRouter {
             DetailsViewController(
                 presenter: DetailsPresenter(
                     movieUseCase: appDependencies.moviesUseCase,
-                    router: self),
-                identifier: identifier
+                    router: self,
+                    identifier: identifier)
             ), animated: true
         )
     }

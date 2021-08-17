@@ -7,5 +7,6 @@ struct MainInfoViewModel {
     let language: String
     let genres: String
     let duration: Int
+    let isFavorite: Bool
     
 }
