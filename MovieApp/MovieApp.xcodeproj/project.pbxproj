@@ -398,13 +398,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		521D045D26CBEC7F0044FE4F /* SearchBar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SearchBar;
-			sourceTree = "<group>";
-		};
 		521D045E26CBF1CE0044FE4F /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -842,7 +835,6 @@
 		52F64E8226B966A60046A8ED /* SearchComponents */ = {
 			isa = PBXGroup;
 			children = (
-				521D045D26CBEC7F0044FE4F /* SearchBar */,
 				525666B926A8635100B5E0BE /* MovieSearchCell */,
 				521D045E26CBF1CE0044FE4F /* SearchBar */,
 				525666BA26A8635A00B5E0BE /* SearchBarStackView */,
