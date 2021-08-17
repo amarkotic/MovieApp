@@ -1,6 +1,6 @@
 import UIKit
 
-extension SearchBarStackView: DesignProtocol {
+extension SearchBar: DesignProtocol {
     
     func buildViews() {
         createViews()
@@ -10,27 +10,19 @@ extension SearchBarStackView: DesignProtocol {
     
     
     func createViews() {
-        searchView = UIView()
-        addArrangedSubview(searchView)
-        
         magnifierImageView = UIImageView()
-        searchView.addSubview(magnifierImageView)
+        addSubview(magnifierImageView)
         
         searchTextField = UITextField()
-        searchView.addSubview(searchTextField)
+        addSubview(searchTextField)
         
         searchCancelButton = UIButton()
-        searchView.addSubview(searchCancelButton)
-        
-        cancelButton = UIButton()
-        addArrangedSubview(cancelButton)
+        addSubview(searchCancelButton)
     }
     
     func styleViews() {
-        distribution = .fillProportionally
-        
-        searchView.backgroundColor = .searchBarGray
-        searchView.layer.cornerRadius = 10
+        backgroundColor = .searchBarGray
+        layer.cornerRadius = 10
         
         magnifierImageView.image = UIImage(with: .searchImage)
         
@@ -42,10 +34,6 @@ extension SearchBarStackView: DesignProtocol {
 
         searchCancelButton.setImage(UIImage(with: .cancelImage), for: .normal)
         searchCancelButton.isHidden = true
-        
-        cancelButton.isHidden = true
-        cancelButton.setTitle(LocalizableStrings.cancelButtonTitle.rawValue, for: .normal)
-        cancelButton.setTitleColor(.appBlue, for: .normal)
     }
     
 

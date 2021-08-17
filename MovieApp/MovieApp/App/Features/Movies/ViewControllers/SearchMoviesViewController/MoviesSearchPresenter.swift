@@ -4,10 +4,12 @@ import Alamofire
 class MoviesSearchPresenter {
     
     private let moviesUseCase: MoviesUseCaseProtocol
+    private let appRouter: AppRouter
     weak private var moviesViewDelegate: MoviesSearchViewController?
     
-    init(moviesUseCase: MoviesUseCaseProtocol) {
+    init(moviesUseCase: MoviesUseCaseProtocol, appRouter: AppRouter) {
         self.moviesUseCase = moviesUseCase
+        self.appRouter = appRouter
     }
     
     func setMoviesViewDelegate(moviesViewDelegate: MoviesSearchViewController?) {
@@ -30,6 +32,10 @@ class MoviesSearchPresenter {
                 self?.moviesViewDelegate?.fetchSuccesful(movies: viewModels)
             }
         }
+    }
+    
+    func popViewController() {
+        appRouter.popWithoutAnimation()
     }
     
 }
