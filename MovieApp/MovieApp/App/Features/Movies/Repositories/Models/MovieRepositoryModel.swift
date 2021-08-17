@@ -1,6 +1,6 @@
 import UIKit
 
-struct MovieRepositoryModel: Equatable {
+struct MovieRepositoryModel {
     
     let id: Int
     let imageUrl: String

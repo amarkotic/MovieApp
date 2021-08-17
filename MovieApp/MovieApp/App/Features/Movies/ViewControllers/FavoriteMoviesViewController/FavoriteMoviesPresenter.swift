@@ -5,7 +5,6 @@ class FavoriteMoviesPresenter {
     private let moviesUseCase: MoviesUseCaseProtocol
     
     var data = [MovieViewModel]()
-    
     weak private var delegate: FavoriteMoviesViewController?
     
     init(moviesUseCase: MoviesUseCaseProtocol) {

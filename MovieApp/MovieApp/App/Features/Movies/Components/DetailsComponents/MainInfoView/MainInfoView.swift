@@ -50,7 +50,7 @@ class MainInfoView: UIView {
         elipseImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(favoriteTapped)))
     }
     
-    @objc func favoriteTapped() {
+    @objc private func favoriteTapped() {
         delegate?.favoritePressed()
     }
 
