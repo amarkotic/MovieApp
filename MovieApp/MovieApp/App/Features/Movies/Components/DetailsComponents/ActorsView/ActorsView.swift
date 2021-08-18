@@ -1,22 +1,24 @@
 import UIKit
 
-class RecommendationsView: UIView {
+class ActorsView: UIView {
     
     let defaultOffset = 18
-    let collectionViewHeight = 154
-
+    let secondaryOffset = 7
+    let collectionViewHeight = 249
+    
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 180, height: 114)
+        layout.itemSize = CGSize(width: 125, height: 209)
         layout.minimumInteritemSpacing = 12
         return layout
     }()
     
     var title: UILabel!
+    var fullCastButton: UIButton!
     var collectionView: UICollectionView!
     
-    var recommendations = [RecommendationsViewModel]()
+    var actorsViewModel = [ActorViewModel]()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,30 +30,29 @@ class RecommendationsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(with recommendationsModel: [RecommendationsViewModel]) {
-        recommendations = recommendationsModel
+    func setData(with actorModel: [ActorViewModel]) {
+        actorsViewModel = actorModel
         collectionView.reloadData()
     }
-    
 }
 
-extension RecommendationsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ActorsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recommendations.count
+        return actorsViewModel.count
     }
     
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: RecommendationCollectionViewCell.reuseIdentifier,
-                for: indexPath) as? RecommendationCollectionViewCell
+                withReuseIdentifier: ActorsCollectionViewCell.reuseIdentifier,
+                for: indexPath) as? ActorsCollectionViewCell
         else {
             return UICollectionViewCell()
         }
         
-        cell.setData(with: recommendations[indexPath.row])
+        cell.setData(model: actorsViewModel[indexPath.row])
         return cell
     }
     

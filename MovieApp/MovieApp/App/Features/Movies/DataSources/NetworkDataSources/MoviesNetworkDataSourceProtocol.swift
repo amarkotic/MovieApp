@@ -11,6 +11,11 @@ protocol MoviesNetworkDataSourceProtocol {
         completion: @escaping (Result<MovieDetailsDataSourceModel, Error>) -> Void
     )
     
+    func fetchCast(
+        with id: Int,
+        completion: @escaping (Result<[CastDataSourceModel], Error>) -> Void
+    )
+    
     func fetchActors(
         with id: Int,
         completion: @escaping (Result<[ActorDataSourceModel], Error>) -> Void
@@ -24,6 +29,11 @@ protocol MoviesNetworkDataSourceProtocol {
     func fetchRecommendations(
         with id: Int,
         completion: @escaping (Result<[RecommendationDataSourceModel], Error>) -> Void
+    )
+    
+    func fetchSearchMovies(
+        with query: String,
+        completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void
     )
     
 }

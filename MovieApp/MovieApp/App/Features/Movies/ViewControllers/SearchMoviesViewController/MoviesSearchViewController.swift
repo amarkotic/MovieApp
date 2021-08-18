@@ -1,9 +1,12 @@
 import UIKit
 
-class MoviesSearchViewController: UIViewController {
+class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
 
     let rowHeight: CGFloat = 142
+    let defaultInset = 20
+    let searchBarHeight = 43
 
+    var searchBarStackView: SearchBarStackView!
     var logoImageView: UIImageView!
     var tableView: UITableView!
     var movies = [MovieSearchViewModel]()
@@ -19,14 +22,52 @@ class MoviesSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter.setMoviesViewDelegate(moviesViewDelegate: self)
-        presenter.fetchMovies()
         buildViews()
+        styleNavigationController()
+        presenter.setDelegate(delegate: self)
+        setupSearchBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchBarStackView.activateKeyboard()
+    }
+
     func fetchSuccesful(movies: [MovieSearchViewModel]) {
         self.movies = movies
         tableView.reloadData()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        queryMovies()
+        self.view.endEditing(true)
+        return false
+    }
+    
+    private func styleNavigationController() {
+        navigationItem.hidesBackButton = true
+        let logo = UIImage(with: .appLogo)
+        let logoImageView = UIImageView()
+        logoImageView.image = logo
+        navigationItem.titleView = logoImageView
+    }
+    
+
+    @objc private func queryMovies() {
+        guard let text = searchBarStackView.searchBar.searchTextField.text else { return }
+        
+        presenter.fetchMovies(with: text)
+    }
+    private func setupSearchBar() {
+        searchBarStackView.setDelegate(delegate: self)
+        searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
+        searchBarStackView.searchBar.searchTextField.delegate = self
+        searchBarStackView.searchBar.searchTextField.addTarget(self, action: #selector(queryMovies), for: .editingChanged)
+    }
+    
+    @objc private func popViewController() {
+        presenter.popViewController()
     }
     
 }

@@ -7,4 +7,11 @@ struct MovieSearchModel {
     let title: String
     let description: String
     
+    init(from repositoryModel: MovieRepositoryModel) {
+        id = repositoryModel.id
+        imageUrl = repositoryModel.imageUrl
+        title = repositoryModel.title
+        description = repositoryModel.description
+    }
+    
 }

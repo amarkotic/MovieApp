@@ -43,6 +43,17 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         networkService.get(url: url, completion: completion)
     }
     
+    func getCast(
+        with id: Int,
+        completion: @escaping (Result<WholeCastNetworkModel, NetworkError>) -> Void
+    ) {
+        var url: URL?
+        url = EndpointConstant.actors(id: id).url
+        guard let url = url else { return }
+        
+        networkService.get(url: url, completion: completion)
+    }
+    
     func getActors(
         with id: Int,
         completion: @escaping (Result<ActorsNetworkModel, NetworkError>) -> Void
@@ -71,6 +82,17 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
     ) {
         var url: URL?
         url = EndpointConstant.recommendations(id: id).url
+        guard let url = url else { return }
+        
+        networkService.get(url: url, completion: completion)
+    }
+    
+    func getSearchMovies(
+        with query: String,
+        completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
+    ) {
+        var url: URL?
+        url = EndpointConstant.searchMovie(with: query).url
         guard let url = url else { return }
         
         networkService.get(url: url, completion: completion)

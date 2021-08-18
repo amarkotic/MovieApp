@@ -72,4 +72,8 @@ class HomePresenter {
             .updateFavorites(with: id)
     }
     
+    func goToSearch() {
+        appRouter.goToSearch()
+    }
+    
 }

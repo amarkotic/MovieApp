@@ -29,16 +29,8 @@ class MoviesRepository: MoviesRepositoryProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let repositoryModels: [MovieRepositoryModel] = value.map { model -> MovieRepositoryModel in
-                    let subcategories = model.subcategories.compactMap {
-                        SubcategoryRepositoryModel(from: $0)
-                    }
-                    return MovieRepositoryModel(
-                        id: model.id,
-                        imageUrl: model.imageUrl,
-                        title: model.title,
-                        description: model.description,
-                        subcategories: subcategories)
+                let repositoryModels: [MovieRepositoryModel] = value.map {
+                    MovieRepositoryModel(from: $0)
                 }
                 completion(.success(repositoryModels))
             }
@@ -57,6 +49,23 @@ class MoviesRepository: MoviesRepositoryProtocol {
             case .success(let value):
                 let movieDetailsRepositoryModels = MovieDetailsRepositoryModel(from: value)
                 completion(.success(movieDetailsRepositoryModels))
+            }
+        }
+    }
+    
+    func fetchCast(
+        with id: Int,
+        completion: @escaping (Result<[CastRepositoryModel], Error>) -> Void
+    ) {
+        networkDataSource.fetchCast(with: id) { (result: Result<[CastDataSourceModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let castRepositoryModels = model.map {
+                    CastRepositoryModel(from: $0)
+                }
+                completion(.success(castRepositoryModels))
             }
         }
     }
@@ -99,7 +108,6 @@ class MoviesRepository: MoviesRepositoryProtocol {
         with id: Int,
         completion: @escaping (Result<[RecommendationRepositoryModel], Error>) -> Void
     ) {
-        
         networkDataSource.fetchRecommendations(with: id) { (result: Result<[RecommendationDataSourceModel], Error>) in
             switch result {
             case .failure(let error):
@@ -112,5 +120,23 @@ class MoviesRepository: MoviesRepositoryProtocol {
             }
         }
     }
-
+    
+    func fetchSearchMovies(
+        with query: String,
+        completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
+    ) {
+        networkDataSource.fetchSearchMovies(with: query) { (result: Result<[MovieDataSourceModel], Error>) in
+            
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                let movieRepositoryModels = value.map {
+                    MovieRepositoryModel(from: $0)
+                }
+                completion(.success(movieRepositoryModels))
+            }
+        }
+    }
+    
 }

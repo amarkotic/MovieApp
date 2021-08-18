@@ -3,8 +3,10 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     let defaultOffset = 20
+    let defaultInset = 18
     let recommendationsCollectionViewHeight = 114
-    let castCollectionViewHeight = 259
+    let castCollectionViewHeight = 106
+    let actorsCollectionViewHeight = 259
     
     var scrollView: UIScrollView!
     var contentView: UIView!
@@ -12,6 +14,7 @@ class DetailsViewController: UIViewController {
     var mainInfoView: MainInfoView!
     var overviewView: OverviewView!
     var castView: CastView!
+    var actorsView: ActorsView!
     var socialView: SocialView!
     var recommendationView: RecommendationsView!
     
@@ -38,7 +41,11 @@ class DetailsViewController: UIViewController {
         overviewView.setData(with: model.overview)
     }
     
-    func setCastData(model: [ActorViewModel]) {
+    func setActorsData(model: [ActorViewModel]) {
+        actorsView.setData(with: model)
+    }
+    
+    func setCastData(model: [CastViewModel]) {
         castView.setData(with: model)
     }
     

@@ -6,11 +6,10 @@ class HomeViewController: UIViewController {
     let searchBarHeight = 43
     let rowHeight = CGFloat(311)
     
-    var searchBarStackView: SearchBarStackView!
+    var searchBar: SearchBar!
     var tableView: UITableView!
     
     var presenter: HomePresenter!
-    
     var reloadModel: ReloadModel?
     
     convenience init(presenter: HomePresenter) {
@@ -25,6 +24,8 @@ class HomeViewController: UIViewController {
         buildViews()
         presenter.setDelegate(delegate: self)
         presenter.initialFetch()
+        searchBar.setDelegate(delegate: self)
+        searchBar.searchTextField.addTarget(self, action: #selector(goToSearch), for: .touchDown)
     }
     
     func subcategoryPressed(category: MovieCategoryViewModel, subCategory: SubcategoryViewModel) {
@@ -51,6 +52,10 @@ class HomeViewController: UIViewController {
 
         presenter.fetchMovies(category: model.category, subCategory: model.subCategory)
         tableView.reloadData()
+    }
+    
+    @objc private func goToSearch() {
+        presenter.goToSearch()
     }
     
     override func viewWillAppear(_ animated: Bool) {

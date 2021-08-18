@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-extension CastCollectionViewCell: DesignProtocol {
+extension ActorsCollectionViewCell: DesignProtocol {
     
     func buildViews() {
         createViews()

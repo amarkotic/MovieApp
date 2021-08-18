@@ -4,32 +4,39 @@ import Alamofire
 class MoviesSearchPresenter {
     
     private let moviesUseCase: MoviesUseCaseProtocol
-    weak private var moviesViewDelegate: MoviesSearchViewController?
+    private let appRouter: AppRouter
+    weak private var delegate: MoviesSearchViewController?
     
-    init(moviesUseCase: MoviesUseCaseProtocol) {
+    init(moviesUseCase: MoviesUseCaseProtocol, appRouter: AppRouter) {
         self.moviesUseCase = moviesUseCase
+        self.appRouter = appRouter
     }
     
-    func setMoviesViewDelegate(moviesViewDelegate: MoviesSearchViewController?) {
-        self.moviesViewDelegate = moviesViewDelegate
+    func setDelegate(delegate: MoviesSearchViewController?) {
+        self.delegate = delegate
     }
     
-    func fetchMovies() {
-        moviesUseCase.fetchSearchMovies(category: .popular) { [weak self] (result: Result<[MovieSearchModel], Error>) in
+    func fetchMovies(with query: String) {
+        moviesUseCase.fetchSearchMovies(with: query) { [weak self]
+            (result: Result<[MovieSearchModel], Error>)  in
+            guard let self = self else { return }
+            
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let viewModels: [MovieSearchViewModel] = value.map { model -> MovieSearchViewModel in
-                    return MovieSearchViewModel(
-                        id: model.id,
-                        imageUrl: model.imageUrl,
-                        title: model.title,
-                        description: model.description)
+                let movieSearchViewModel = value.map {
+                    MovieSearchViewModel(from: $0)
                 }
-                self?.moviesViewDelegate?.fetchSuccesful(movies: viewModels)
+                guard let delegate = self.delegate else { return }
+                
+                delegate.fetchSuccesful(movies: movieSearchViewModel)
             }
         }
+    }
+    
+    func popViewController() {
+        appRouter.popWithoutAnimation()
     }
     
 }

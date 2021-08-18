@@ -9,8 +9,8 @@ extension HomeViewController: DesignProtocol {
     }
     
     func createViews() {
-        searchBarStackView = SearchBarStackView()
-        view.addSubview(searchBarStackView)
+        searchBar = SearchBar()
+        view.addSubview(searchBar)
         
         tableView = UITableView()
         view.addSubview(tableView)
@@ -30,14 +30,14 @@ extension HomeViewController: DesignProtocol {
     }
     
     func defineLayoutForViews() {
-        searchBarStackView.snp.makeConstraints {
+        searchBar.snp.makeConstraints {
             $0.height.equalTo(searchBarHeight)
             $0.leading.trailing.equalToSuperview().inset(defaultInset)
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(defaultInset)
         }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(searchBarStackView.snp.bottom).offset(defaultInset)
+            $0.top.equalTo(searchBar.snp.bottom).offset(defaultInset)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
