@@ -26,8 +26,6 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         styleNavigationController()
         presenter.setDelegate(delegate: self)
         setupSearchBar()
-        presenter.setMoviesViewDelegate(moviesViewDelegate: self)
-        presenter.fetchMovies()
     }
     
     override func viewWillAppear(_ animated: Bool) {
