@@ -13,6 +13,17 @@
 		5203717926A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */; };
 		5203717B26A5B3DB00DE4AC7 /* MovieNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */; };
 		5203718426A6AB3500DE4AC7 /* MoviesNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203718326A6AB3500DE4AC7 /* MoviesNetworkClient.swift */; };
+		5206C47426CD43D80011C635 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C47326CD43D80011C635 /* UIBarButtonItem+Extension.swift */; };
+		5206C48126CD442A0011C635 /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C47626CD442A0011C635 /* Publisher+Extensions.swift */; };
+		5206C48226CD442A0011C635 /* UIControlPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C47826CD442A0011C635 /* UIControlPublisher.swift */; };
+		5206C48326CD442A0011C635 /* UIControlSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C47926CD442A0011C635 /* UIControlSubscription.swift */; };
+		5206C48426CD442A0011C635 /* BarItemGestureSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C47C26CD442A0011C635 /* BarItemGestureSubscription.swift */; };
+		5206C48526CD442A0011C635 /* BarItemGesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C47D26CD442A0011C635 /* BarItemGesturePublisher.swift */; };
+		5206C48626CD442A0011C635 /* GestureSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C47E26CD442A0011C635 /* GestureSubscription.swift */; };
+		5206C48726CD442A0011C635 /* GestureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C47F26CD442A0011C635 /* GestureType.swift */; };
+		5206C48826CD442A0011C635 /* GesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C48026CD442A0011C635 /* GesturePublisher.swift */; };
+		5206C48B26CD44390011C635 /* UIView+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C48926CD44390011C635 /* UIView+Combine.swift */; };
+		5206C48C26CD44390011C635 /* UIControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C48A26CD44390011C635 /* UIControl+Combine.swift */; };
 		521D046026CBF1DD0044FE4F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D045F26CBF1DD0044FE4F /* SearchBar.swift */; };
 		521D046226CBF1E50044FE4F /* SearchBar+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D046126CBF1E50044FE4F /* SearchBar+Design.swift */; };
 		521D046426CCE4320044FE4F /* CastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D046326CCE4320044FE4F /* CastModel.swift */; };
@@ -149,6 +160,17 @@
 		5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetworkModel.swift; sourceTree = "<group>"; };
 		5203718326A6AB3500DE4AC7 /* MoviesNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNetworkClient.swift; sourceTree = "<group>"; };
+		5206C47326CD43D80011C635 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		5206C47626CD442A0011C635 /* Publisher+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
+		5206C47826CD442A0011C635 /* UIControlPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlPublisher.swift; sourceTree = "<group>"; };
+		5206C47926CD442A0011C635 /* UIControlSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlSubscription.swift; sourceTree = "<group>"; };
+		5206C47C26CD442A0011C635 /* BarItemGestureSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarItemGestureSubscription.swift; sourceTree = "<group>"; };
+		5206C47D26CD442A0011C635 /* BarItemGesturePublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarItemGesturePublisher.swift; sourceTree = "<group>"; };
+		5206C47E26CD442A0011C635 /* GestureSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureSubscription.swift; sourceTree = "<group>"; };
+		5206C47F26CD442A0011C635 /* GestureType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureType.swift; sourceTree = "<group>"; };
+		5206C48026CD442A0011C635 /* GesturePublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GesturePublisher.swift; sourceTree = "<group>"; };
+		5206C48926CD44390011C635 /* UIView+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Combine.swift"; sourceTree = "<group>"; };
+		5206C48A26CD44390011C635 /* UIControl+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Combine.swift"; sourceTree = "<group>"; };
 		521D045F26CBF1DD0044FE4F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		521D046126CBF1E50044FE4F /* SearchBar+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+Design.swift"; sourceTree = "<group>"; };
 		521D046326CCE4320044FE4F /* CastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastModel.swift; sourceTree = "<group>"; };
@@ -328,10 +350,13 @@
 		5203716E26A57CE200DE4AC7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5206C48A26CD44390011C635 /* UIControl+Combine.swift */,
+				5206C48926CD44390011C635 /* UIView+Combine.swift */,
 				523C2EBC269ED2B300F2EDD6 /* Font+Extensions.swift */,
 				523C2ECA269EE89B00F2EDD6 /* UIColor+Extensions.swift */,
 				523C2ED226A0559D00F2EDD6 /* UILabel+Extensions.swift */,
 				52F11AA026A705FE007DBE0A /* UIImage+Extensions.swift */,
+				5206C47326CD43D80011C635 /* UIBarButtonItem+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -339,6 +364,7 @@
 		5203716F26A57D3500DE4AC7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5206C47526CD442A0011C635 /* Combine */,
 				523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */,
 				52F11AA226A70637007DBE0A /* BundleImage.swift */,
 				525C83D926CA65ED003F82DF /* Array+Extensions.swift */,
@@ -417,6 +443,45 @@
 				521D047226CCF4750044FE4F /* CastNetworkModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5206C47526CD442A0011C635 /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				5206C47626CD442A0011C635 /* Publisher+Extensions.swift */,
+				5206C47726CD442A0011C635 /* UIControl */,
+				5206C47A26CD442A0011C635 /* Gesture */,
+			);
+			path = Combine;
+			sourceTree = "<group>";
+		};
+		5206C47726CD442A0011C635 /* UIControl */ = {
+			isa = PBXGroup;
+			children = (
+				5206C47826CD442A0011C635 /* UIControlPublisher.swift */,
+				5206C47926CD442A0011C635 /* UIControlSubscription.swift */,
+			);
+			path = UIControl;
+			sourceTree = "<group>";
+		};
+		5206C47A26CD442A0011C635 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				5206C48026CD442A0011C635 /* GesturePublisher.swift */,
+				5206C47E26CD442A0011C635 /* GestureSubscription.swift */,
+				5206C47F26CD442A0011C635 /* GestureType.swift */,
+				5206C47B26CD442A0011C635 /* BarItem */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
+		5206C47B26CD442A0011C635 /* BarItem */ = {
+			isa = PBXGroup;
+			children = (
+				5206C47C26CD442A0011C635 /* BarItemGestureSubscription.swift */,
+				5206C47D26CD442A0011C635 /* BarItemGesturePublisher.swift */,
+			);
+			path = BarItem;
 			sourceTree = "<group>";
 		};
 		521D045E26CBF1CE0044FE4F /* SearchBar */ = {
@@ -1019,7 +1084,9 @@
 				52B5C4E326B2D15400F5265A /* MovieModel.swift in Sources */,
 				522EE8E626A6C04100A456E2 /* MoviesRepositoryProtocol.swift in Sources */,
 				523C2EAE269DB1B500F2EDD6 /* MovieSearchCell.swift in Sources */,
+				5206C48C26CD44390011C635 /* UIControl+Combine.swift in Sources */,
 				521D046726CCE50B0044FE4F /* CastView.swift in Sources */,
+				5206C48426CD442A0011C635 /* BarItemGestureSubscription.swift in Sources */,
 				52D72E6F26C51AA800EEA021 /* MovieDetailsNetworkModel.swift in Sources */,
 				523C2EBF269EDC7A00F2EDD6 /* MoviesSearchPresenter.swift in Sources */,
 				52F11AA726A70680007DBE0A /* NetworkConstants.swift in Sources */,
@@ -1027,6 +1094,7 @@
 				52F64E6C26B822740046A8ED /* SubcategoryDataSourceModel.swift in Sources */,
 				52F64E8D26B96B4F0046A8ED /* ActorsCollectionViewCell+Design.swift in Sources */,
 				525C83EE26CAA708003F82DF /* CastKeys.swift in Sources */,
+				5206C47426CD43D80011C635 /* UIBarButtonItem+Extension.swift in Sources */,
 				526B5169269D6D370095F3E2 /* MoviesSearchViewController.swift in Sources */,
 				52F64E7726B932970046A8ED /* MovieCategoryRepositoryModel.swift in Sources */,
 				52F64E6A26B820E20046A8ED /* SubcategoryRepositoryModel.swift in Sources */,
@@ -1046,6 +1114,7 @@
 				522EE8E926A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift in Sources */,
 				5278E23D26C2967400F4A2CE /* DetailsPresenter.swift in Sources */,
 				52C3ABB826C654A9004A4061 /* ProgressView+Design.swift in Sources */,
+				5206C48526CD442A0011C635 /* BarItemGesturePublisher.swift in Sources */,
 				521D047526CCF5260044FE4F /* CastDataSourceModel.swift in Sources */,
 				5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */,
 				52F64E8826B969010046A8ED /* ActorsView+Design.swift in Sources */,
@@ -1060,6 +1129,7 @@
 				528DE5D126C122E200498E23 /* SocialView+Design.swift in Sources */,
 				5203716926A5672B00DE4AC7 /* NetworkError.swift in Sources */,
 				523C2ECB269EE89B00F2EDD6 /* UIColor+Extensions.swift in Sources */,
+				5206C48B26CD44390011C635 /* UIView+Combine.swift in Sources */,
 				52FDF45E26C41C21002CA0E4 /* SubcategoryViewModel.swift in Sources */,
 				52B5C4E126B2A83500F5265A /* MovieViewModel.swift in Sources */,
 				526B517C269DA8610095F3E2 /* MoviesSearchViewController+Design.swift in Sources */,
@@ -1071,6 +1141,7 @@
 				522EE8E426A6C00300A456E2 /* MoviesRepository.swift in Sources */,
 				5293A7B926B299A600F786E9 /* MovieCategoryViewModel.swift in Sources */,
 				523C2EB4269EBF0700F2EDD6 /* MovieSearchViewModel.swift in Sources */,
+				5206C48826CD442A0011C635 /* GesturePublisher.swift in Sources */,
 				522EE8E226A6BF8300A456E2 /* MoviesUseCaseProtocol.swift in Sources */,
 				522EE8EE26A6C35200A456E2 /* MoviesNetworkDataSourceProtocol.swift in Sources */,
 				527A3D1226C3D40400C6D63E /* OverviewViewModel.swift in Sources */,
@@ -1092,12 +1163,14 @@
 				5288080A26B7EE4100B72EDB /* DetailsViewController.swift in Sources */,
 				52F64E8626B968F70046A8ED /* ActorsView.swift in Sources */,
 				52F64E8B26B96B430046A8ED /* ActorsCollectionViewCell.swift in Sources */,
+				5206C48326CD442A0011C635 /* UIControlSubscription.swift in Sources */,
 				52764CA926CD41BD004E336C /* CustomError.swift in Sources */,
 				521D047326CCF4750044FE4F /* CastNetworkModel.swift in Sources */,
 				525666BE26A8646D00B5E0BE /* SearchBarStackView+Design.swift in Sources */,
 				525C83E326CA7476003F82DF /* UserDefaultsKeys.swift in Sources */,
 				5278E23F26C2C29B00F4A2CE /* FavoriteMoviesPresenter.swift in Sources */,
 				52F64E7126B82F420046A8ED /* MainInfoView.swift in Sources */,
+				5206C48726CD442A0011C635 /* GestureType.swift in Sources */,
 				527006AF26C6C3D4002111B4 /* RecommendationsNetworkModel.swift in Sources */,
 				523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */,
 				52F64E7526B932240046A8ED /* MovieCategoryModel.swift in Sources */,
@@ -1133,13 +1206,16 @@
 				5293A7B026AFF0A800F786E9 /* HomePresenter.swift in Sources */,
 				5293A7A926AEA92B00F786E9 /* SubcategoryScrollView.swift in Sources */,
 				52F64E6826B819530046A8ED /* SubcategoryModel.swift in Sources */,
+				5206C48626CD442A0011C635 /* GestureSubscription.swift in Sources */,
 				5293A7B426B13D0C00F786E9 /* SubcategoryItemView.swift in Sources */,
 				523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */,
 				52F11AA126A705FE007DBE0A /* UIImage+Extensions.swift in Sources */,
+				5206C48226CD442A0011C635 /* UIControlPublisher.swift in Sources */,
 				525C83DA26CA65ED003F82DF /* Array+Extensions.swift in Sources */,
 				52D72E7726C5419800EEA021 /* GradientView.swift in Sources */,
 				525666B026A847C900B5E0BE /* HomeViewController+Design.swift in Sources */,
 				5293A79F26A9A4C700F786E9 /* CategoryTableViewCell.swift in Sources */,
+				5206C48126CD442A0011C635 /* Publisher+Extensions.swift in Sources */,
 				527006A326C6994E002111B4 /* ActorRepositoryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
