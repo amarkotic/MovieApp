@@ -79,11 +79,14 @@ class DetailsPresenter {
             }
         }
         
-        movieUseCase.fetchReview(with: identifier) {
-            (result: Result<ReviewModel, Error>) in
+        movieUseCase.fetchReview(with: identifier) { [weak self]
+            (result: Result<ReviewModel, CustomError>) in
+            guard let self = self else { return }
+            
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
+                self.delegate?.hideReview()
             case .success(let value):
                 let viewModel = SocialViewModel(from: value)
                 self.delegate?.setReviewData(model: viewModel)

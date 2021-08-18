@@ -30,7 +30,7 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         buildViews()
-        setupNavigationBackButton()
+        styleNavigationBar()
         presenter.setDelegate(delegate: self)
         mainInfoView.setDelegate(delegate: self)
         presenter.fetchData()
@@ -61,7 +61,17 @@ class DetailsViewController: UIViewController {
         presenter.updateFavoriteMovie()
     }
     
-    private func setupNavigationBackButton() {
+    func hideReview() {
+        socialView.postTitle.text = LocalizableStrings.noReview.rawValue
+        socialView.postInfo.text = LocalizableStrings.tryAgain.rawValue
+        socialView.logoImage.image = UIImage(with: .noReview)
+    }
+    
+    private func styleNavigationBar() {
+        let logo = UIImage(with: .appLogo)
+        let logoImageView = UIImageView()
+        logoImageView.image = logo
+        navigationItem.titleView = logoImageView
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(with: .backButton),
             style: .plain,

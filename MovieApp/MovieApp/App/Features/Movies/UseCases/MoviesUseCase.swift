@@ -1,3 +1,5 @@
+import UIKit
+
 class MoviesUseCase: MoviesUseCaseProtocol {
     
     private let moviesRepository: MoviesRepositoryProtocol
@@ -113,7 +115,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     
     func fetchReview(
         with id: Int,
-        completion: @escaping (Result<ReviewModel, Error>) -> Void
+        completion: @escaping (Result<ReviewModel, CustomError>) -> Void
     ) {
         moviesRepository.fetchReviews(with: id) { (result: Result<[ReviewRepositoryModel], Error>) in
             switch result {
@@ -123,7 +125,12 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 let reviewModels = model.map {
                     return ReviewModel(from: $0)
                 }
-                guard let review = reviewModels.first else { return }
+                guard
+                    let review = reviewModels.first
+                else {
+                    completion(.failure(.noReview))
+                    return
+                }
                 
                 completion(.success(review))     
             }
@@ -199,4 +206,3 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
     
 }
-
