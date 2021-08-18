@@ -24,17 +24,15 @@ class MoviesSearchViewController: UIViewController {
         
         buildViews()
         styleNavigationController()
+        setupSearchBar()
         presenter.setMoviesViewDelegate(moviesViewDelegate: self)
         presenter.fetchMovies()
-        searchBarStackView.setDelegate(delegate: self)
-        searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         searchBarStackView.activateKeyboard()
-        
     }
     
     func fetchSuccesful(movies: [MovieSearchViewModel]) {
@@ -48,6 +46,11 @@ class MoviesSearchViewController: UIViewController {
         let logoImageView = UIImageView()
         logoImageView.image = logo
         navigationItem.titleView = logoImageView
+    }
+    
+    private func setupSearchBar() {
+        searchBarStackView.setDelegate(delegate: self)
+        searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
     }
     
     @objc private func popViewController() {
