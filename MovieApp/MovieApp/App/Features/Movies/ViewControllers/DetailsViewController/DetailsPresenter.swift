@@ -80,7 +80,7 @@ class DetailsPresenter {
         }
         
         movieUseCase.fetchReview(with: identifier) { [weak self]
-            (result: Result<ReviewModel, Error>) in
+            (result: Result<ReviewModel, CustomError>) in
             guard let self = self else { return }
             
             switch result {

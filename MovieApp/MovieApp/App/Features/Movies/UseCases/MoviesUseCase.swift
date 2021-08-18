@@ -115,7 +115,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     
     func fetchReview(
         with id: Int,
-        completion: @escaping (Result<ReviewModel, Error>) -> Void
+        completion: @escaping (Result<ReviewModel, CustomError>) -> Void
     ) {
         moviesRepository.fetchReviews(with: id) { (result: Result<[ReviewRepositoryModel], Error>) in
             switch result {
@@ -128,11 +128,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 guard
                     let review = reviewModels.first
                 else {
-                    completion(.failure(NSError(
-                        domain: "",
-                        code: 404,
-                        userInfo: [NSLocalizedDescriptionKey: "No Review found"])
-                    ))
+                    completion(.failure(.noReview))
                     return
                 }
                 
@@ -209,5 +205,9 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
+}
+
+enum CustomError: Error {
+    case noReview
 }
 

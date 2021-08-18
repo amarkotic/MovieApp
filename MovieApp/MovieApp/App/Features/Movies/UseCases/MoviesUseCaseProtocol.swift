@@ -20,7 +20,7 @@ protocol MoviesUseCaseProtocol {
     
     func fetchReview(
         with id: Int,
-        completion: @escaping (Result<ReviewModel, Error>) -> Void
+        completion: @escaping (Result<ReviewModel, CustomError>) -> Void
     )
     
     func fetchRecommendations(
