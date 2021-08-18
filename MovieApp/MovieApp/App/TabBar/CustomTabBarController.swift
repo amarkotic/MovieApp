@@ -23,7 +23,7 @@ class CustomTabBarController: UITabBarController {
         
         buildViews()
         setupChildViewControllers()
-        styleNavigationController()
+        styleNavigationBar()
     }
     
     private func setupChildViewControllers() {
@@ -39,7 +39,7 @@ class CustomTabBarController: UITabBarController {
         favoriteViewController.tabBarItem.title = LocalizableStrings.favorites.rawValue
     }
     
-    private func styleNavigationController() {
+    private func styleNavigationBar() {
         let logo = UIImage(with: .appLogo)
         let logoImageView = UIImageView()
         logoImageView.image = logo

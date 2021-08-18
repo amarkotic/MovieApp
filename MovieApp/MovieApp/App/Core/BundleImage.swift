@@ -13,6 +13,7 @@ enum BundleImage: String {
     case favoriteDetails = "Star"
     case reviewImage = "review"
     case backButton = "backButton"
+    case noReview = "notFound"
     
 }
 

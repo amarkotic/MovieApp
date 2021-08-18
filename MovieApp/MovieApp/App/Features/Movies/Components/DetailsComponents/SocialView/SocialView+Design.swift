@@ -16,7 +16,7 @@ extension SocialView: DesignProtocol {
         reviewsButton = UIButton()
         addSubview(reviewsButton)
         
-        logoImage = UIImageView(image: UIImage(with: .reviewImage))
+        logoImage = UIImageView()
         addSubview(logoImage)
         
         postTitle = UILabel(with: .bold(size: 18))

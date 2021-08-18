@@ -23,7 +23,7 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         buildViews()
-        styleNavigationController()
+        styleNavigationBar()
         presenter.setDelegate(delegate: self)
         searchBarStackView.setDelegate(delegate: self)
         searchBarStackView.searchBar.searchTextField.delegate = self
@@ -48,7 +48,7 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    private func styleNavigationController() {
+    private func styleNavigationBar() {
         navigationItem.hidesBackButton = true
         let logo = UIImage(with: .appLogo)
         let logoImageView = UIImageView()
