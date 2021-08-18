@@ -15,5 +15,7 @@ enum LocalizableStrings: String {
     case on = " on \n"
     case recommendations = "Recomendations"
     case acting = "Acting"
+    case noReview = "No reviews found"
+    case tryAgain = "\nPlease try again later"
     
 }

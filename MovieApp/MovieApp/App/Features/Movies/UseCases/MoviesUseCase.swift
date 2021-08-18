@@ -1,3 +1,5 @@
+import UIKit
+
 class MoviesUseCase: MoviesUseCaseProtocol {
     
     private let moviesRepository: MoviesRepositoryProtocol
@@ -123,7 +125,16 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 let reviewModels = model.map {
                     return ReviewModel(from: $0)
                 }
-                guard let review = reviewModels.first else { return }
+                guard
+                    let review = reviewModels.first
+                else {
+                    completion(.failure(NSError(
+                        domain: "",
+                        code: 404,
+                        userInfo: [NSLocalizedDescriptionKey: "No Review found"])
+                    ))
+                    return
+                }
                 
                 completion(.success(review))     
             }
