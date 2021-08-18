@@ -11,6 +11,11 @@ protocol MoviesRepositoryProtocol {
         completion: @escaping (Result<MovieDetailsRepositoryModel, Error>) -> Void
     )
     
+    func fetchCast(
+        with id: Int,
+        completion: @escaping (Result<[CastRepositoryModel], Error>) -> Void
+    )
+    
     func fetchActors(
         with id: Int,
         completion: @escaping (Result<[ActorRepositoryModel], Error>) -> Void

@@ -51,6 +51,23 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         }
     }
     
+    func fetchCast(
+        with id: Int,
+        completion: @escaping (Result<[CastDataSourceModel], Error>) -> Void
+    ) {
+        networkClient.getCast(with: id) { (result: Result<WholeCastNetworkModel, NetworkError>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let castDataSourceModels = model.crew.map {
+                    CastDataSourceModel(from: $0)
+                }
+                completion(.success(castDataSourceModels))
+            }
+        }
+    }
+    
     func fetchActors(
         with id: Int,
         completion: @escaping (Result<[ActorDataSourceModel], Error>) -> Void

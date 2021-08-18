@@ -74,6 +74,23 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
+    func fetchCast(
+        with id: Int,
+        completion: @escaping (Result<[CastModel], Error>) -> Void
+    ) {
+        moviesRepository.fetchCast(with: id) { (result: Result<[CastRepositoryModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let castModel = model.map {
+                    CastModel(from: $0)
+                }
+                completion(.success(Array(castModel.prefix(6))))
+            }
+        }
+    }
+    
     func fetchActors(
         with id: Int,
         completion: @escaping (Result<[ActorModel], Error>) -> Void

@@ -53,6 +53,23 @@ class MoviesRepository: MoviesRepositoryProtocol {
         }
     }
     
+    func fetchCast(
+        with id: Int,
+        completion: @escaping (Result<[CastRepositoryModel], Error>) -> Void
+    ) {
+        networkDataSource.fetchCast(with: id) { (result: Result<[CastDataSourceModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let castRepositoryModels = model.map {
+                    CastRepositoryModel(from: $0)
+                }
+                completion(.success(castRepositoryModels))
+            }
+        }
+    }
+    
     func fetchActors(
         with id: Int,
         completion: @escaping (Result<[ActorRepositoryModel], Error>) -> Void
@@ -91,7 +108,6 @@ class MoviesRepository: MoviesRepositoryProtocol {
         with id: Int,
         completion: @escaping (Result<[RecommendationRepositoryModel], Error>) -> Void
     ) {
-        
         networkDataSource.fetchRecommendations(with: id) { (result: Result<[RecommendationDataSourceModel], Error>) in
             switch result {
             case .failure(let error):
@@ -110,7 +126,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
         completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
     ) {
         networkDataSource.fetchSearchMovies(with: query) { (result: Result<[MovieDataSourceModel], Error>) in
-       
+            
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -122,5 +138,5 @@ class MoviesRepository: MoviesRepositoryProtocol {
             }
         }
     }
-
+    
 }
