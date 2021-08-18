@@ -206,8 +206,3 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
     
 }
-
-enum CustomError: Error {
-    case noReview
-}
-
