@@ -25,6 +25,9 @@ extension DetailsViewController: DesignProtocol {
         castView = CastView()
         contentView.addSubview(castView)
         
+        actorsView = ActorsView()
+        contentView.addSubview(actorsView)
+        
         socialView = SocialView()
         contentView.addSubview(socialView)
         
@@ -57,13 +60,19 @@ extension DetailsViewController: DesignProtocol {
         }
         
         castView.snp.makeConstraints {
-            $0.top.equalTo(overviewView.snp.bottom).offset(2 * defaultOffset)
+            $0.top.equalTo(overviewView.snp.bottom).offset(defaultOffset)
+            $0.leading.trailing.equalToSuperview().inset(defaultInset)
+            $0.height.greaterThanOrEqualTo(castCollectionViewHeight)
+        }
+        
+        actorsView.snp.makeConstraints {
+            $0.top.equalTo(castView.snp.bottom).offset(2 * defaultOffset)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(castCollectionViewHeight)
+            $0.height.equalTo(actorsCollectionViewHeight)
         }
         
         socialView.snp.makeConstraints {
-            $0.top.equalTo(castView.snp.bottom).offset(2 * defaultOffset)
+            $0.top.equalTo(actorsView.snp.bottom).offset(2 * defaultOffset)
             $0.leading.trailing.equalToSuperview()
         }
         

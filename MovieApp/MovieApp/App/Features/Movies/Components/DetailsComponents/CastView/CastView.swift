@@ -2,24 +2,16 @@ import UIKit
 
 class CastView: UIView {
     
-    let defaultOffset = 18
-    let secondaryOffset = 7
-    let collectionViewHeight = 249
-    
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 125, height: 209)
-        layout.minimumInteritemSpacing = 12
+        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 26
         return layout
     }()
     
-    var title: UILabel!
-    var fullCastButton: UIButton!
+    var castViewModel = [CastViewModel]()
     var collectionView: UICollectionView!
     
-    var actorsViewModel = [ActorViewModel]()
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -30,30 +22,33 @@ class CastView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(with actorModel: [ActorViewModel]) {
-        actorsViewModel = actorModel
+    func setData(with model: [CastViewModel]) {
+        castViewModel = model
         collectionView.reloadData()
     }
+    
 }
 
-extension CastView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension CastView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return actorsViewModel.count
+        castViewModel.count
     }
     
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: CastCollectionViewCell.reuseIdentifier,
-                for: indexPath) as? CastCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCollectionViewCell.reuseIdentifier, for: indexPath) as? CastCollectionViewCell
         else {
             return UICollectionViewCell()
         }
         
-        cell.setData(model: actorsViewModel[indexPath.row])
+        cell.setData(with: castViewModel[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = (frame.width - 35) / 3
+        return CGSize(width: cellWidth, height: 40)
     }
     
 }

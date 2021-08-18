@@ -27,16 +27,8 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let value):
-                let movieDataSourceModels: [MovieDataSourceModel] = value.results.map { model -> MovieDataSourceModel in
-                    let subcategoryDataSourceModels = model.genreIds.compactMap {
-                        SubcategoryDataSourceModel(rawValue: $0)
-                    }
-                    return MovieDataSourceModel(
-                        id: model.id,
-                        imageUrl: model.imageUrl,
-                        title: model.title,
-                        description: model.description,
-                        subcategories: subcategoryDataSourceModels)
+                let movieDataSourceModels: [MovieDataSourceModel] = value.results.map {
+                    return MovieDataSourceModel(from: $0)
                 }
                 completion(.success(movieDataSourceModels))
             }
@@ -55,6 +47,23 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             case .success(let value):
                 let movieDataSourceModels = MovieDetailsDataSourceModel(from: value)
                 completion(.success(movieDataSourceModels))
+            }
+        }
+    }
+    
+    func fetchCast(
+        with id: Int,
+        completion: @escaping (Result<[CastDataSourceModel], Error>) -> Void
+    ) {
+        networkClient.getCast(with: id) { (result: Result<WholeCastNetworkModel, NetworkError>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let model):
+                let castDataSourceModels = model.crew.map {
+                    CastDataSourceModel(from: $0)
+                }
+                completion(.success(castDataSourceModels))
             }
         }
     }
@@ -108,6 +117,24 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
                     RecommendationDataSourceModel(from: $0)
                 }
                 completion(.success(recommendationsDataSourceModels))
+            }
+        }
+    }
+    
+    func fetchSearchMovies(
+        with query: String,
+        completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void
+    ) 	{
+        networkClient.getSearchMovies(with: query) {
+            (result: Result<MoviesNetworkModel, NetworkError>) in
+            switch result {
+            case .failure(_):
+                print("Invalid query")
+            case .success(let value):
+                let movieDataSourceModels = value.results.map {
+                    return MovieDataSourceModel(from: $0)
+                }
+                completion(.success(movieDataSourceModels))
             }
         }
     }

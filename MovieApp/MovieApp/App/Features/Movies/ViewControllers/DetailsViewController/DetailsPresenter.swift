@@ -62,6 +62,19 @@ class DetailsPresenter {
                 let viewModels: [ActorViewModel] = value.map {
                     ActorViewModel(from: $0)
                 }
+                self.delegate?.setActorsData(model: viewModels)
+            }
+        }
+        
+        movieUseCase.fetchCast(with: identifier) {
+            (result: Result<[CastModel], Error>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let value):
+                let viewModels = value.map {
+                    CastViewModel(from: $0)
+                }
                 self.delegate?.setCastData(model: viewModels)
             }
         }

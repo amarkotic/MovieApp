@@ -1,9 +1,9 @@
 import UIKit
 import Kingfisher
 
-class CastCollectionViewCell: UICollectionViewCell {
+class ActorsCollectionViewCell: UICollectionViewCell {
     
-    static let reuseIdentifier = String(describing: CastCollectionViewCell.self)
+    static let reuseIdentifier = String(describing: ActorsCollectionViewCell.self)
     
     let defaultOffset = 5
     let actorImageHeight = 130

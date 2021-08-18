@@ -74,6 +74,16 @@ extension EndpointConstant {
                          ]
         )
     }
+    
+    static func searchMovie(with query: String) -> EndpointConstant {
+        EndpointConstant(path: "/3/search/movie",
+                         queryItems: [
+                            URLQueryItem(name: "api_key", value: NetworkConstants.apiKey),
+                            URLQueryItem(name: "language", value: NetworkConstants.language),
+                            URLQueryItem(name: "query", value: query)
+                         ]
+        )
+    }
 
 }
 

@@ -10,7 +10,7 @@ class SearchBarStackView: UIStackView {
     var searchBar: SearchBar!
     var cancelButton: UIButton!
     
-    var delegate: MoviesSearchViewController?
+    weak private var delegate: MoviesSearchViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
