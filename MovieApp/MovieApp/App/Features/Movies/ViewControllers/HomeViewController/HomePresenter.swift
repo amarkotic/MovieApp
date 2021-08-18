@@ -72,8 +72,8 @@ class HomePresenter {
             .updateFavorites(with: id)
     }
     
-    func presentSearchViewController() {
-        appRouter.presentSearchViewController()
+    func goToSearch() {
+        appRouter.goToSearch()
     }
     
 }

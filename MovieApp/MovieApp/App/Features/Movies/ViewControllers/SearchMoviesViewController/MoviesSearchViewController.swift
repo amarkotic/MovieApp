@@ -25,10 +25,9 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         buildViews()
         styleNavigationController()
         presenter.setDelegate(delegate: self)
-        searchBarStackView.setDelegate(delegate: self)
-        searchBarStackView.searchBar.searchTextField.delegate = self
-        searchBarStackView.searchBar.searchTextField.addTarget(self, action: #selector(queryMovies), for: .editingChanged)
-        searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
+        setupSearchBar()
+        presenter.setMoviesViewDelegate(moviesViewDelegate: self)
+        presenter.fetchMovies()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,10 +55,17 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         navigationItem.titleView = logoImageView
     }
     
+
     @objc private func queryMovies() {
         guard let text = searchBarStackView.searchBar.searchTextField.text else { return }
         
         presenter.fetchMovies(with: text)
+    }
+    private func setupSearchBar() {
+        searchBarStackView.setDelegate(delegate: self)
+        searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
+        searchBarStackView.searchBar.searchTextField.delegate = self
+        searchBarStackView.searchBar.searchTextField.addTarget(self, action: #selector(queryMovies), for: .editingChanged)
     }
     
     @objc private func popViewController() {

@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
         presenter.setDelegate(delegate: self)
         presenter.initialFetch()
         searchBar.setDelegate(delegate: self)
-        searchBar.searchTextField.addTarget(self, action: #selector(presentSearchViewController), for: .touchDown)
+        searchBar.searchTextField.addTarget(self, action: #selector(goToSearch), for: .touchDown)
     }
     
     func subcategoryPressed(category: MovieCategoryViewModel, subCategory: SubcategoryViewModel) {
@@ -54,8 +54,8 @@ class HomeViewController: UIViewController {
         tableView.reloadData()
     }
     
-    @objc private func presentSearchViewController() {
-        presenter.presentSearchViewController()
+    @objc private func goToSearch() {
+        presenter.goToSearch()
     }
     
     override func viewWillAppear(_ animated: Bool) {

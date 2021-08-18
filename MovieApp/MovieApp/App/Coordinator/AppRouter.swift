@@ -43,10 +43,9 @@ class AppRouter {
         navigationController.popViewController(animated: true)
     }
     
-    func presentSearchViewController() {
+    func goToSearch() {
         let searchViewController = MoviesSearchViewController(
-            presenter: MoviesSearchPresenter(moviesUseCase: appDependencies.moviesUseCase, appRouter: self)
-        )
+            presenter: MoviesSearchPresenter(moviesUseCase: appDependencies.moviesUseCase, appRouter: self))
         navigationController.pushViewController(searchViewController, animated: false)
     }
     
