@@ -35,5 +35,11 @@ protocol MoviesUseCaseProtocol {
     func fetchSearchMovies(
         with query: String,
         completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
+    )
+    
+    func fetchCast(
+        with id: Int,
+        completion: @escaping (Result<[CastModel], Error>) -> Void
     ) 
+    
 }

@@ -36,7 +36,5 @@ extension RecommendationCollectionViewCell: DesignProtocol {
             $0.leading.trailing.equalToSuperview()
         }
     }
-    
-    
-    
+
 }
