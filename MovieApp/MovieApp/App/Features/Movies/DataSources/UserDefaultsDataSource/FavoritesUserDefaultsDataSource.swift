@@ -1,8 +1,10 @@
 import Foundation
+import Combine
 
 class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
     
-    var items: [Int] {
+    
+    var oldItems: [Int] {
         guard
             let items = UserDefaults.standard.array(forKey: UserDefaultsKeys.favorites.rawValue) as? [Int]
         else {
@@ -10,6 +12,13 @@ class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
         }
 
         return items
+    }
+
+    
+    var items: AnyPublisher<[Int], Never> {
+        UserDefaults.standard
+            .publisher(for: \.favorites)
+            .eraseToAnyPublisher()
     }
     
     init() {

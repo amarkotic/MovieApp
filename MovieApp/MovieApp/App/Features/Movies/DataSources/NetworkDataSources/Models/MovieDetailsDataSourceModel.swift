@@ -1,5 +1,6 @@
 struct MovieDetailsDataSourceModel {
-    
+
+    let id: Int
     let posterPath: String
     let voteAverage: Float
     let title: String
@@ -10,7 +11,8 @@ struct MovieDetailsDataSourceModel {
     let overview: String
     
     init(from networkModel: MovieDetailsNetworkModel) {
-        posterPath = networkModel.posterPath
+        id = networkModel.id
+        posterPath = NetworkConstants.imagePath + networkModel.posterPath
         voteAverage = networkModel.voteAverage
         title = networkModel.title
         releaseDate = networkModel.releaseDate

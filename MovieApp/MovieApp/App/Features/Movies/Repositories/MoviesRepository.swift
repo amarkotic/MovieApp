@@ -1,3 +1,5 @@
+import Combine
+
 class MoviesRepository: MoviesRepositoryProtocol {
     
     var favoriteMovies = [MovieRepositoryModel]()
@@ -51,6 +53,13 @@ class MoviesRepository: MoviesRepositoryProtocol {
                 completion(.success(movieDetailsRepositoryModels))
             }
         }
+    }
+    
+    func fetchfavoriteMovie(with id: Int) -> AnyPublisher<MovieDetailsRepositoryModel, Error> {
+        networkDataSource
+            .fetchMovie(with: id)
+            .map { MovieDetailsRepositoryModel(from: $0) }
+            .eraseToAnyPublisher()
     }
     
     func fetchCast(

@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class FavoriteMoviesViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class FavoriteMoviesViewController: UIViewController {
     
     var movies = [MovieViewModel]()
     var presenter: FavoriteMoviesPresenter!
+    var disposables = Set<AnyCancellable>()
     
     convenience init(presenter: FavoriteMoviesPresenter) {
         self.init()
@@ -35,11 +37,19 @@ class FavoriteMoviesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter.fetchMovies()
+        presenter
+            .favoriteMovies
+            .receive(on: RunLoop.main)
+            .sink { [weak self] movies in
+                guard let self = self else { return }
+                
+                self.reloadData(with: movies)
+            }.store(in: &disposables)
     }
     
-    func reloadData() {
-        collectionView.reloadData()
+    func reloadData(with movies: [MovieViewModel]) {
+        self.presenter.data = movies
+        self.collectionView.reloadData()
     }
     
 }

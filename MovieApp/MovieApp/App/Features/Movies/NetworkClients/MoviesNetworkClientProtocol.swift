@@ -1,3 +1,5 @@
+import Combine
+
 protocol MoviesNetworkClientProtocol {
     
     func getMovies(
@@ -35,5 +37,7 @@ protocol MoviesNetworkClientProtocol {
         with query: String,
         completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
     )
+    
+    func getMovie(with id: Int) -> AnyPublisher<MovieDetailsNetworkModel, Error>
     
 }

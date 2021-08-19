@@ -1,3 +1,5 @@
+import Combine
+
 class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
     
     private let networkClient: MoviesNetworkClientProtocol
@@ -49,6 +51,13 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
                 completion(.success(movieDataSourceModels))
             }
         }
+    }
+    
+    func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsDataSourceModel, Error> {
+        networkClient
+            .getMovie(with: id)
+            .map { MovieDetailsDataSourceModel(from: $0) }
+            .eraseToAnyPublisher()
     }
     
     func fetchCast(

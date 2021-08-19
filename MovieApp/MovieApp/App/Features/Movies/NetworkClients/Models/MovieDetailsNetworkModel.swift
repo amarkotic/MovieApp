@@ -2,6 +2,7 @@ import UIKit
 
 struct MovieDetailsNetworkModel: Codable {
     
+    let id: Int
     let posterPath: String
     let voteAverage: Float
     let title: String
@@ -12,6 +13,7 @@ struct MovieDetailsNetworkModel: Codable {
     let overview: String
 
     enum CodingKeys: String, CodingKey {
+        case id = "id"
         case posterPath = "poster_path"
         case voteAverage = "vote_average"
         case title = "original_title"
