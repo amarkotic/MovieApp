@@ -13,6 +13,17 @@
 		5203717926A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */; };
 		5203717B26A5B3DB00DE4AC7 /* MovieNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */; };
 		5203718426A6AB3500DE4AC7 /* MoviesNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203718326A6AB3500DE4AC7 /* MoviesNetworkClient.swift */; };
+		5206C49926CD46340011C635 /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C48E26CD46340011C635 /* Publisher+Extensions.swift */; };
+		5206C49A26CD46340011C635 /* UIControlPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C49026CD46340011C635 /* UIControlPublisher.swift */; };
+		5206C49B26CD46340011C635 /* UIControlSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C49126CD46340011C635 /* UIControlSubscription.swift */; };
+		5206C49C26CD46340011C635 /* BarItemGestureSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C49426CD46340011C635 /* BarItemGestureSubscription.swift */; };
+		5206C49D26CD46340011C635 /* BarItemGesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C49526CD46340011C635 /* BarItemGesturePublisher.swift */; };
+		5206C49E26CD46340011C635 /* GestureSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C49626CD46340011C635 /* GestureSubscription.swift */; };
+		5206C49F26CD46340011C635 /* GestureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C49726CD46340011C635 /* GestureType.swift */; };
+		5206C4A026CD46340011C635 /* GesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C49826CD46340011C635 /* GesturePublisher.swift */; };
+		5206C4A326CD46410011C635 /* UIControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C4A126CD46410011C635 /* UIControl+Combine.swift */; };
+		5206C4A426CD46410011C635 /* UIView+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C4A226CD46410011C635 /* UIView+Combine.swift */; };
+		5206C4A626CD465E0011C635 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206C4A526CD465E0011C635 /* UIBarButtonItem.swift */; };
 		521D046026CBF1DD0044FE4F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D045F26CBF1DD0044FE4F /* SearchBar.swift */; };
 		521D046226CBF1E50044FE4F /* SearchBar+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D046126CBF1E50044FE4F /* SearchBar+Design.swift */; };
 		521D046426CCE4320044FE4F /* CastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D046326CCE4320044FE4F /* CastModel.swift */; };
@@ -149,6 +160,17 @@
 		5203717826A5AEEF00DE4AC7 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		5203717A26A5B3DB00DE4AC7 /* MovieNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetworkModel.swift; sourceTree = "<group>"; };
 		5203718326A6AB3500DE4AC7 /* MoviesNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNetworkClient.swift; sourceTree = "<group>"; };
+		5206C48E26CD46340011C635 /* Publisher+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
+		5206C49026CD46340011C635 /* UIControlPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlPublisher.swift; sourceTree = "<group>"; };
+		5206C49126CD46340011C635 /* UIControlSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlSubscription.swift; sourceTree = "<group>"; };
+		5206C49426CD46340011C635 /* BarItemGestureSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarItemGestureSubscription.swift; sourceTree = "<group>"; };
+		5206C49526CD46340011C635 /* BarItemGesturePublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarItemGesturePublisher.swift; sourceTree = "<group>"; };
+		5206C49626CD46340011C635 /* GestureSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureSubscription.swift; sourceTree = "<group>"; };
+		5206C49726CD46340011C635 /* GestureType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureType.swift; sourceTree = "<group>"; };
+		5206C49826CD46340011C635 /* GesturePublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GesturePublisher.swift; sourceTree = "<group>"; };
+		5206C4A126CD46410011C635 /* UIControl+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Combine.swift"; sourceTree = "<group>"; };
+		5206C4A226CD46410011C635 /* UIView+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Combine.swift"; sourceTree = "<group>"; };
+		5206C4A526CD465E0011C635 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		521D045F26CBF1DD0044FE4F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		521D046126CBF1E50044FE4F /* SearchBar+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+Design.swift"; sourceTree = "<group>"; };
 		521D046326CCE4320044FE4F /* CastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastModel.swift; sourceTree = "<group>"; };
@@ -331,7 +353,10 @@
 				523C2EBC269ED2B300F2EDD6 /* Font+Extensions.swift */,
 				523C2ECA269EE89B00F2EDD6 /* UIColor+Extensions.swift */,
 				523C2ED226A0559D00F2EDD6 /* UILabel+Extensions.swift */,
+				5206C4A126CD46410011C635 /* UIControl+Combine.swift */,
+				5206C4A226CD46410011C635 /* UIView+Combine.swift */,
 				52F11AA026A705FE007DBE0A /* UIImage+Extensions.swift */,
+				5206C4A526CD465E0011C635 /* UIBarButtonItem.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -339,6 +364,7 @@
 		5203716F26A57D3500DE4AC7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5206C48D26CD46340011C635 /* Combine */,
 				523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */,
 				52F11AA226A70637007DBE0A /* BundleImage.swift */,
 				525C83D926CA65ED003F82DF /* Array+Extensions.swift */,
@@ -417,6 +443,46 @@
 				521D047226CCF4750044FE4F /* CastNetworkModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5206C48D26CD46340011C635 /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				5206C48E26CD46340011C635 /* Publisher+Extensions.swift */,
+				5206C48F26CD46340011C635 /* UIControl */,
+				5206C49226CD46340011C635 /* Gesture */,
+			);
+			name = Combine;
+			path = ../../../../../../../Downloads/CombineFolder/Combine;
+			sourceTree = "<group>";
+		};
+		5206C48F26CD46340011C635 /* UIControl */ = {
+			isa = PBXGroup;
+			children = (
+				5206C49026CD46340011C635 /* UIControlPublisher.swift */,
+				5206C49126CD46340011C635 /* UIControlSubscription.swift */,
+			);
+			path = UIControl;
+			sourceTree = "<group>";
+		};
+		5206C49226CD46340011C635 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				5206C49326CD46340011C635 /* BarItem */,
+				5206C49626CD46340011C635 /* GestureSubscription.swift */,
+				5206C49726CD46340011C635 /* GestureType.swift */,
+				5206C49826CD46340011C635 /* GesturePublisher.swift */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
+		5206C49326CD46340011C635 /* BarItem */ = {
+			isa = PBXGroup;
+			children = (
+				5206C49426CD46340011C635 /* BarItemGestureSubscription.swift */,
+				5206C49526CD46340011C635 /* BarItemGesturePublisher.swift */,
+			);
+			path = BarItem;
 			sourceTree = "<group>";
 		};
 		521D045E26CBF1CE0044FE4F /* SearchBar */ = {
@@ -1019,6 +1085,8 @@
 				52B5C4E326B2D15400F5265A /* MovieModel.swift in Sources */,
 				522EE8E626A6C04100A456E2 /* MoviesRepositoryProtocol.swift in Sources */,
 				523C2EAE269DB1B500F2EDD6 /* MovieSearchCell.swift in Sources */,
+				5206C4A626CD465E0011C635 /* UIBarButtonItem.swift in Sources */,
+				5206C49926CD46340011C635 /* Publisher+Extensions.swift in Sources */,
 				521D046726CCE50B0044FE4F /* CastView.swift in Sources */,
 				52D72E6F26C51AA800EEA021 /* MovieDetailsNetworkModel.swift in Sources */,
 				523C2EBF269EDC7A00F2EDD6 /* MoviesSearchPresenter.swift in Sources */,
@@ -1033,6 +1101,7 @@
 				525F9BB726CBA5F300F8CF6A /* ReloadModel.swift in Sources */,
 				527006B526C6C4E3002111B4 /* RecommendationModel.swift in Sources */,
 				525666A726A840BE00B5E0BE /* HomeViewController.swift in Sources */,
+				5206C49F26CD46340011C635 /* GestureType.swift in Sources */,
 				528DE5D426C159BF00498E23 /* RecommendationsView.swift in Sources */,
 				5293A7A126A9A4CF00F786E9 /* CategoryTableViewCell+Design.swift in Sources */,
 				5270069F26C68BC9002111B4 /* ActorsNetworkModel.swift in Sources */,
@@ -1046,10 +1115,14 @@
 				522EE8E926A6C1CC00A456E2 /* MoviesNetworkClientProtocol.swift in Sources */,
 				5278E23D26C2967400F4A2CE /* DetailsPresenter.swift in Sources */,
 				52C3ABB826C654A9004A4061 /* ProgressView+Design.swift in Sources */,
+				5206C49A26CD46340011C635 /* UIControlPublisher.swift in Sources */,
 				521D047526CCF5260044FE4F /* CastDataSourceModel.swift in Sources */,
 				5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */,
 				52F64E8826B969010046A8ED /* ActorsView+Design.swift in Sources */,
+				5206C49E26CD46340011C635 /* GestureSubscription.swift in Sources */,
+				5206C49D26CD46340011C635 /* BarItemGesturePublisher.swift in Sources */,
 				521D047126CCEA9B0044FE4F /* CastCollectionViewCell+Design.swift in Sources */,
+				5206C49B26CD46340011C635 /* UIControlSubscription.swift in Sources */,
 				52E14A1026C3F2930031A7A8 /* ActorViewModel.swift in Sources */,
 				52D72E7126C51BAA00EEA021 /* MovieDetailsRepositoryModel.swift in Sources */,
 				522EE8EC26A6C2B100A456E2 /* MoviesNetworkDataSource.swift in Sources */,
@@ -1057,6 +1130,7 @@
 				521D046C26CCE5580044FE4F /* CastViewModel.swift in Sources */,
 				52F11AAC26A71487007DBE0A /* AppDependecies.swift in Sources */,
 				522EE8DC26A6BAED00A456E2 /* MoviesUseCase.swift in Sources */,
+				5206C4A426CD46410011C635 /* UIView+Combine.swift in Sources */,
 				528DE5D126C122E200498E23 /* SocialView+Design.swift in Sources */,
 				5203716926A5672B00DE4AC7 /* NetworkError.swift in Sources */,
 				523C2ECB269EE89B00F2EDD6 /* UIColor+Extensions.swift in Sources */,
@@ -1081,6 +1155,8 @@
 				5293A7A426AE973000F786E9 /* MovieCollectionViewCell.swift in Sources */,
 				52FDF45B26C41A0C002CA0E4 /* RecommendationsViewModel.swift in Sources */,
 				5203718426A6AB3500DE4AC7 /* MoviesNetworkClient.swift in Sources */,
+				5206C4A026CD46340011C635 /* GesturePublisher.swift in Sources */,
+				5206C4A326CD46410011C635 /* UIControl+Combine.swift in Sources */,
 				5293A7AB26AEA93A00F786E9 /* SubcategoryScrollView+Design.swift in Sources */,
 				52D72E7526C51F7700EEA021 /* MovieDetailsModel.swift in Sources */,
 				521D046026CBF1DD0044FE4F /* SearchBar.swift in Sources */,
@@ -1140,6 +1216,7 @@
 				52D72E7726C5419800EEA021 /* GradientView.swift in Sources */,
 				525666B026A847C900B5E0BE /* HomeViewController+Design.swift in Sources */,
 				5293A79F26A9A4C700F786E9 /* CategoryTableViewCell.swift in Sources */,
+				5206C49C26CD46340011C635 /* BarItemGestureSubscription.swift in Sources */,
 				527006A326C6994E002111B4 /* ActorRepositoryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
