@@ -3,7 +3,6 @@ import Combine
 
 class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
     
-    
     var oldItems: [Int] {
         guard
             let items = UserDefaults.standard.array(forKey: UserDefaultsKeys.favorites.rawValue) as? [Int]
@@ -14,7 +13,6 @@ class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
         return items
     }
 
-    
     var items: AnyPublisher<[Int], Never> {
         UserDefaults.standard
             .publisher(for: \.favorites)
@@ -29,7 +27,6 @@ class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
             return
         }
     }
-    
     
     func toggle(with id: Int) {
         guard
