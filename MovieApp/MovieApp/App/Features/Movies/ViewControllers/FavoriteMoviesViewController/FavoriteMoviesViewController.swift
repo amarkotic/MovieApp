@@ -3,23 +3,34 @@ import Combine
 
 class FavoriteMoviesViewController: UIViewController {
     
-    let defaultOffset = 18
-    let cellHeight = CGFloat(154)
+    typealias Snapshot = NSDiffableDataSourceSnapshot<SectionEnum, MovieViewModel>
+    typealias DataSource = UICollectionViewDiffableDataSource<SectionEnum, MovieViewModel>
     
-    let layout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 7
-        layout.minimumLineSpacing = 35
-        return layout
-    }()
+    let defaultOffset = 18
+    let cellGroupHeightDifference = CGFloat(35)
+    let cellHeight = CGFloat(154)
+    var cellWidth: CGFloat {
+        (view.safeAreaLayoutGuide.layoutFrame.width - CGFloat(2 * defaultOffset)) / 3
+    }
     
     var titleLabel: UILabel!
     var collectionView: UICollectionView!
     
-    var movies = [MovieViewModel]()
-    var presenter: FavoriteMoviesPresenter!
-    var disposables = Set<AnyCancellable>()
+    var layout: UICollectionViewLayout {
+        let size = NSCollectionLayoutSize(widthDimension: .absolute(cellWidth), heightDimension: .absolute(cellHeight))
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(cellHeight + cellGroupHeightDifference))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+    
+    private var presenter: FavoriteMoviesPresenter!
+    private var disposables = Set<AnyCancellable>()
+    private var dataSource: DataSource!
     
     convenience init(presenter: FavoriteMoviesPresenter) {
         self.init()
@@ -31,53 +42,44 @@ class FavoriteMoviesViewController: UIViewController {
         super.viewDidLoad()
         
         buildViews()
-        presenter.setDelegate(delegate: self)
+        makeDataSource()
+        bindViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    
+    private func bindViews() {
         presenter
             .favoriteMovies
-            .receive(on: RunLoop.main)
             .sink { [weak self] movies in
                 guard let self = self else { return }
                 
-                self.reloadData(with: movies)
+                self.updateSnapshot(with: movies)
             }.store(in: &disposables)
     }
     
-    func reloadData(with movies: [MovieViewModel]) {
-        self.presenter.data = movies
-        self.collectionView.reloadData()
+    private func makeDataSource() {
+        dataSource = UICollectionViewDiffableDataSource(
+            collectionView: collectionView,
+            cellProvider: {collectionView, indexPath, model in
+                guard
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: MovieCollectionViewCell.reuseIdentifier,
+                        for: indexPath) as? MovieCollectionViewCell
+                else {
+                    return nil
+                }
+                
+                cell.setData(with: model)
+                return cell
+            }
+        )
     }
     
-}
-
-extension FavoriteMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.data.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MovieCollectionViewCell.reuseIdentifier,
-                for: indexPath) as? MovieCollectionViewCell
-        else {
-            return UICollectionViewCell()
-        }
-        
-        let data = presenter.data[indexPath.row]
-        cell.setData(with: data)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (view.frame.width - 60) / 3
-        return CGSize(width: cellWidth, height: cellHeight)
+    private func updateSnapshot(with movies: [MovieViewModel]) {
+        var snapshot = dataSource.snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(movies)
+        dataSource.apply(snapshot)
     }
     
 }

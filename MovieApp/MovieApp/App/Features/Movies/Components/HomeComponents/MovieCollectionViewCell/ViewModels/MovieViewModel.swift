@@ -1,4 +1,4 @@
-struct MovieViewModel {
+struct MovieViewModel: Hashable{
     
     let id: Int
     let imageUrl: String

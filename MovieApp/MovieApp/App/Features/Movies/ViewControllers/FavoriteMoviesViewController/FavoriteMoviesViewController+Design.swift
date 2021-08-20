@@ -22,8 +22,6 @@ extension FavoriteMoviesViewController: DesignProtocol {
         titleLabel.textColor = .appBlue
         titleLabel.text = LocalizableStrings.favorites.rawValue
         
-        collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.reuseIdentifier)
         collectionView.backgroundColor = .none
     }
