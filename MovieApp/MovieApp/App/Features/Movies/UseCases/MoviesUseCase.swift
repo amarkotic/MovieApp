@@ -22,7 +22,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             }
             .assertNoFailure()
             .map { $0.map { FavoriteMovieModel(id: $0.id, imageUrl: $0.posterPath, isSelected: true) } }
-            .receiveOnBackground()
+            .receiveOnMain()
     }
     
     var oldFavoriteItems: [Int] {
