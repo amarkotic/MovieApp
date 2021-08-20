@@ -34,9 +34,28 @@ extension FavoriteMoviesViewController: DesignProtocol {
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(defaultOffset)
-            $0.leading.trailing.equalToSuperview().inset(defaultOffset)
-            $0.bottom.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
 
+}
+
+extension FavoriteMoviesViewController {
+    
+    var layout: UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(120),
+            heightDimension: .absolute(154))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(154))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 14)
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 35
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+    
 }

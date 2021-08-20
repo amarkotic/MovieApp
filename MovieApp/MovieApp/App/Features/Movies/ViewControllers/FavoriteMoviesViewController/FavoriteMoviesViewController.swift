@@ -7,28 +7,9 @@ class FavoriteMoviesViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<SectionEnum, MovieViewModel>
     
     let defaultOffset = 18
-    let cellGroupHeightDifference = CGFloat(35)
-    let cellHeight = CGFloat(154)
-    var cellWidth: CGFloat {
-        (view.safeAreaLayoutGuide.layoutFrame.width - CGFloat(2 * defaultOffset)) / 3
-    }
     
     var titleLabel: UILabel!
     var collectionView: UICollectionView!
-    
-    var layout: UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(cellWidth),
-            heightDimension: .absolute(cellHeight))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4)
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(cellHeight + cellGroupHeightDifference))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        return UICollectionViewCompositionalLayout(section: section)
-    }
     
     private var presenter: FavoriteMoviesPresenter!
     private var disposables = Set<AnyCancellable>()
