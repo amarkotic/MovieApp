@@ -17,8 +17,10 @@ class FavoriteMoviesViewController: UIViewController {
     var collectionView: UICollectionView!
     
     var layout: UICollectionViewLayout {
-        let size = NSCollectionLayoutSize(widthDimension: .absolute(cellWidth), heightDimension: .absolute(cellHeight))
-        let item = NSCollectionLayoutItem(layoutSize: size)
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(cellWidth),
+            heightDimension: .absolute(cellHeight))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4)
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -45,7 +47,6 @@ class FavoriteMoviesViewController: UIViewController {
         makeDataSource()
         bindViews()
     }
-    
     
     private func bindViews() {
         presenter
@@ -74,7 +75,7 @@ class FavoriteMoviesViewController: UIViewController {
     }
     
     private func updateSnapshot(with movies: [MovieViewModel]) {
-        var snapshot = dataSource.snapshot()
+        var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(movies)
         dataSource.apply(snapshot)
