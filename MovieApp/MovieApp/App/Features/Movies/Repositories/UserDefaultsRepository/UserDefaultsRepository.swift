@@ -13,7 +13,7 @@ class UserDefaultsRepository: UserDefaultsRepositoryProtocol {
     var favoriteItems: AnyPublisher<[Int], Never> {
         favoritesDataSource
             .items
-            .eraseToAnyPublisher()
+            .receiveOnBackground()
     }
     
     init(favoritesDataSource: FavoritesUserDefaultsDataSourceProtocol) {

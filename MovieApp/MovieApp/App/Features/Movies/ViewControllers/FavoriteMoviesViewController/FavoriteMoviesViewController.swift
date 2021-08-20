@@ -51,9 +51,7 @@ class FavoriteMoviesViewController: UIViewController {
         presenter
             .favoriteMovies
             .sink { [weak self] movies in
-                guard let self = self else { return }
-                
-                self.updateSnapshot(with: movies)
+                self?.updateSnapshot(with: movies)
             }.store(in: &disposables)
     }
     
