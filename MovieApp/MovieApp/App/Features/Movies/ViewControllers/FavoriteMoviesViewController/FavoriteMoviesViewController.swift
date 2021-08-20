@@ -39,11 +39,8 @@ class FavoriteMoviesViewController: UIViewController {
         
         presenter
             .favoriteMovies
-            .receive(on: RunLoop.main)
             .sink { [weak self] movies in
-                guard let self = self else { return }
-                
-                self.reloadData(with: movies)
+                self?.reloadData(with: movies)
             }.store(in: &disposables)
     }
     

@@ -11,7 +11,7 @@ class FavoriteMoviesPresenter {
         moviesUseCase
             .favoriteMovies
             .map { $0.map { MovieViewModel(from: $0) } }
-            .eraseToAnyPublisher()
+            .receiveOnMain()
     }
     
     weak private var delegate: FavoriteMoviesViewController?
