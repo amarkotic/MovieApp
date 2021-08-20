@@ -1,10 +1,6 @@
 import Foundation
 
-struct MovieViewModel: Hashable{
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
+struct MovieViewModel: Hashable {
     
     let id: Int
     let imageUrl: String
