@@ -40,6 +40,7 @@ class DetailsViewController: UIViewController {
     
     func favoritePressed() {
         presenter.updateFavoriteMovie()
+        bindViews()
     }
     
     func hideReview() {
@@ -59,10 +60,17 @@ class DetailsViewController: UIViewController {
     }
     
     private func setData(with model: MovieDetailsViewModel) {
-        self.mainInfoView.setData(with: model.info.mainInfoModel)
-        self.overviewView.setData(with: model.info.overviewModel)
-        self.actorsView.setData(with: Array(model.credits.actors.prefix(10)))
-        self.castView.setData(with: Array(model.credits.cast.prefix(6)))
+        mainInfoView.setData(with: model.info.mainInfoModel)
+        overviewView.setData(with: model.info.overviewModel)
+        actorsView.setData(with: Array(model.credits.actors.prefix(10)))
+        castView.setData(with: Array(model.credits.cast.prefix(6)))
+        recommendationView.setData(with: model.recommendations)
+        guard let review = model.reviews.first
+        else {
+            hideReview()
+            return
+        }
+        socialView.setData(with: review)
     }
     
     private func styleNavigationBar() {

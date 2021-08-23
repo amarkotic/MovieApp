@@ -9,9 +9,11 @@ class DetailsPresenter {
     private let identifier: Int
     
     var info: AnyPublisher<InfoViewModel, Error> {
-        movieUseCase
+        let isSaved = movieUseCase.oldFavoriteItems.contains(identifier)
+      
+        return movieUseCase
             .fetchMovie(with: identifier)
-            .map { InfoViewModel(from: $0) }
+            .map { InfoViewModel(from: $0, isSaved: isSaved) }
             .receiveOnMain()
     }
     
@@ -22,13 +24,29 @@ class DetailsPresenter {
             .receiveOnMain()
     }
     
+    var reviews: AnyPublisher<[SocialViewModel], Error> {
+        movieUseCase
+            .fetchReviews(with: identifier)
+            .map { $0.map {SocialViewModel(from: $0) } }
+            .receiveOnMain()
+    }
+    
+    var recommendations: AnyPublisher<[RecommendationsViewModel], Error> {
+        movieUseCase
+            .fetchRecommendations(with: identifier)
+            .map { $0.map { RecommendationsViewModel(from: $0) } }
+            .receiveOnMain()
+    }
+    
     var detailsData: AnyPublisher<MovieDetailsViewModel, Error> {
         Publishers
-            .CombineLatest(info, credits)
-            .map { info, credits in
-                MovieDetailsViewModel(
-                    info: info,
-                    credits: credits
+            .CombineLatest4(info, credits, reviews, recommendations)
+            .map {
+                 return MovieDetailsViewModel(
+                    info: $0.0,
+                    credits: $0.1,
+                    reviews: $0.2,
+                    recommendations: $0.3
                 )
             }
             .receiveOnMain()

@@ -51,26 +51,22 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
             .eraseToAnyPublisher()
     }
     
-    func getReviews(
-        with id: Int,
-        completion: @escaping (Result<ReviewsNetworkModel, NetworkError>) -> Void
-    ) {
-        var url: URL?
-        url = EndpointConstant.reviews(id: id).url
-        guard let url = url else { return }
+    func getReviews(with id: Int) -> AnyPublisher<ReviewsNetworkModel, Error> {
+        guard let url = EndpointConstant.reviews(id: id).url else { return .empty() }
         
-        networkService.get(url: url, completion: completion)
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map { $0.data }
+            .decode(type: ReviewsNetworkModel.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
     }
-    
-    func getRecommendations(
-        with id: Int,
-        completion: @escaping (Result<RecommendationsNetworkModel, NetworkError>) -> Void
-    ) {
-        var url: URL?
-        url = EndpointConstant.recommendations(id: id).url
-        guard let url = url else { return }
+
+    func getRecommendations(with id: Int) -> AnyPublisher<RecommendationsNetworkModel, Error> {
+        guard let url = EndpointConstant.recommendations(id: id).url else { return .empty() }
         
-        networkService.get(url: url, completion: completion)
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map { $0.data }
+            .decode(type: RecommendationsNetworkModel.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
     }
     
     func getSearchMovies(

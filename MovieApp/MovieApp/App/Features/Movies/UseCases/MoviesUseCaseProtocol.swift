@@ -16,15 +16,9 @@ protocol MoviesUseCaseProtocol {
     
     func fetchCredits(with id: Int) -> AnyPublisher<CreditsModel, Error>
     
-    func fetchReview(
-        with id: Int,
-        completion: @escaping (Result<ReviewModel, CustomError>) -> Void
-    )
+    func fetchReviews(with id: Int) -> AnyPublisher<[ReviewModel], Error>
     
-    func fetchRecommendations(
-        with id: Int,
-        completion: @escaping (Result<[RecommendationModel], Error>) -> Void
-    )
+    func fetchRecommendations(with id: Int) -> AnyPublisher<[RecommendationModel], Error> 
     
     func updateFavorites(with id: Int)
    

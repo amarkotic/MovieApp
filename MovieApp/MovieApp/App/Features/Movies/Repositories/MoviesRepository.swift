@@ -53,40 +53,20 @@ class MoviesRepository: MoviesRepositoryProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchReviews(
-        with id: Int,
-        completion: @escaping (Result<[ReviewRepositoryModel], Error>) -> Void
-    ) {
-        networkDataSource.fetchReviews(with: id) { (result: Result<[ReviewDataSourceModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let reviewsRepositoryModels = model.map {
-                    ReviewRepositoryModel(from: $0)
-                }
-                completion(.success(reviewsRepositoryModels))
-            }
-        }
+    func fetchReviews(with id: Int) -> AnyPublisher<[ReviewRepositoryModel], Error> {
+        networkDataSource
+            .fetchReviews(with: id)
+            .map { $0.map { ReviewRepositoryModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
     
-    func fetchRecommendations(
-        with id: Int,
-        completion: @escaping (Result<[RecommendationRepositoryModel], Error>) -> Void
-    ) {
-        networkDataSource.fetchRecommendations(with: id) { (result: Result<[RecommendationDataSourceModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let recommendationsRepositoryModels = model.map {
-                    RecommendationRepositoryModel(from: $0)
-                }
-                completion(.success(recommendationsRepositoryModels))
-            }
-        }
+    func fetchRecommendations(with id: Int) -> AnyPublisher<[RecommendationRepositoryModel], Error> {
+        networkDataSource
+            .fetchRecommendations(with: id)
+            .map { $0.map { RecommendationRepositoryModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
-    
+
     func fetchSearchMovies(
         with query: String,
         completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
