@@ -8,11 +8,6 @@ protocol MoviesNetworkClientProtocol {
         completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
     )
     
-    func getMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsNetworkModel, NetworkError>) -> Void
-    )
-    
     func getCast(
         with id: Int,
         completion: @escaping (Result<WholeCastNetworkModel, NetworkError>) -> Void

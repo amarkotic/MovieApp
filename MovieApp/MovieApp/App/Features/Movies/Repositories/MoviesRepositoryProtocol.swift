@@ -8,12 +8,7 @@ protocol MoviesRepositoryProtocol {
         completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
     )
     
-    func fetchMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsRepositoryModel, Error>) -> Void
-    )
-    
-    func fetchfavoriteMovie(with id: Int) -> AnyPublisher<MovieDetailsRepositoryModel, Error> 
+    func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsRepositoryModel, Error> 
     
     func fetchCast(
         with id: Int,

@@ -97,7 +97,7 @@ extension MainInfoView {
         
         let attribute: [NSAttributedString.Key: Any] = [.font: UIFont.bold(size: 14)]
         let genres = NSMutableAttributedString(string: genre)
-        let runtime = NSMutableAttributedString(string: "\(runtimeHours)h \(runtimeMinutes)m", attributes: attribute)
+        let runtime = NSMutableAttributedString(string: " \(runtimeHours)h \(runtimeMinutes)m", attributes: attribute)
         genres.append(runtime)
         return genres
     }

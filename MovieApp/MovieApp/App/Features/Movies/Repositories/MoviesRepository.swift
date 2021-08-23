@@ -38,24 +38,8 @@ class MoviesRepository: MoviesRepositoryProtocol {
             }
         }
     }
-    
-    func fetchMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsRepositoryModel, Error>) -> Void
-    ) {
-        networkDataSource.fetchMovie(with: id) {
-            (result: Result<MovieDetailsDataSourceModel, Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let movieDetailsRepositoryModels = MovieDetailsRepositoryModel(from: value)
-                completion(.success(movieDetailsRepositoryModels))
-            }
-        }
-    }
-    
-    func fetchfavoriteMovie(with id: Int) -> AnyPublisher<MovieDetailsRepositoryModel, Error> {
+
+    func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsRepositoryModel, Error> {
         networkDataSource
             .fetchMovie(with: id)
             .map { MovieDetailsRepositoryModel(from: $0) }

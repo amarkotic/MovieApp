@@ -33,17 +33,6 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         networkService.get(url: url, completion: completion)
     }
     
-    func getMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsNetworkModel, NetworkError>) -> Void
-    ) {
-        var url: URL?
-        url = EndpointConstant.movie(id: id).url
-        guard let url = url else { return }
-        
-        networkService.get(url: url, completion: completion)
-    }
-    
     func getMovie(with id: Int) -> AnyPublisher<MovieDetailsNetworkModel, Error> {
         guard let url = EndpointConstant.movie(id: id).url else { return .empty() }
 

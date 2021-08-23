@@ -14,7 +14,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 guard let self = self else { return .never() }
                 
                 let movieStreams = ids.map {
-                    self.moviesRepository.fetchfavoriteMovie(with: $0)
+                    self.moviesRepository.fetchMovie(with: $0)
                 }
                 return Publishers.MergeMany(movieStreams)
                     .collect()
@@ -80,20 +80,11 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
-    func fetchMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsModel, Error>) -> Void
-    ) {
-        moviesRepository.fetchMovie(with: id) {
-            (result: Result<MovieDetailsRepositoryModel, Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let movieDetailsModels: MovieDetailsModel = MovieDetailsModel(from: value)
-                completion(.success(movieDetailsModels))
-            }
-        }
+    func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error> {
+        moviesRepository
+            .fetchMovie(with: id)
+            .map { MovieDetailsModel(from: $0) }
+            .eraseToAnyPublisher()
     }
     
     func fetchCast(

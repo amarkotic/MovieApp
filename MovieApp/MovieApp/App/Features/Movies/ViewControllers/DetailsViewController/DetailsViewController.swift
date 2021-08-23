@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class DetailsViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class DetailsViewController: UIViewController {
     var recommendationView: RecommendationsView!
     
     var presenter: DetailsPresenter!
+    private var disposables = Set<AnyCancellable>()
 
     convenience init(presenter: DetailsPresenter) {
         self.init()
@@ -33,12 +35,7 @@ class DetailsViewController: UIViewController {
         styleNavigationBar()
         presenter.setDelegate(delegate: self)
         mainInfoView.setDelegate(delegate: self)
-        presenter.fetchData()
-    }
-    
-    func setMainInfoData(model: MovieDetailsViewModel) {
-        mainInfoView.setData(with: model.info)
-        overviewView.setData(with: model.overview)
+        bindViews()
     }
     
     func setActorsData(model: [ActorViewModel]) {
@@ -65,6 +62,16 @@ class DetailsViewController: UIViewController {
         socialView.postTitle.text = LocalizableStrings.noReview.rawValue
         socialView.postInfo.text = LocalizableStrings.tryAgain.rawValue
         socialView.logoImage.image = UIImage(with: .noReview)
+    }
+    
+    private func bindViews() {
+        presenter
+            .detailsData
+            .sink {_ in }
+                receiveValue: { self.mainInfoView.setData(with: $0.info)
+                    self.overviewView.setData(with: $0.overview)
+                }
+            .store(in: &disposables)
     }
     
     private func styleNavigationBar() {

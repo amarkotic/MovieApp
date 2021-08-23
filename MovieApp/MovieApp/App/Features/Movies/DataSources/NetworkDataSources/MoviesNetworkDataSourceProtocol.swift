@@ -8,11 +8,6 @@ protocol MoviesNetworkDataSourceProtocol {
         completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void
     ) 
 
-    func fetchMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsDataSourceModel, Error>) -> Void
-    )
-    
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsDataSourceModel, Error>
     
     func fetchCast(

@@ -487,7 +487,6 @@
 				522EE8DB26A6BAED00A456E2 /* MoviesUseCase.swift */,
 				522EE8E126A6BF8300A456E2 /* MoviesUseCaseProtocol.swift */,
 				52F11AB126A802DB007DBE0A /* Models */,
-				525C83ED26CAA708003F82DF /* CastKeys.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -914,6 +913,7 @@
 				521D046326CCE4320044FE4F /* CastModel.swift */,
 				52764CA826CD41BD004E336C /* CustomError.swift */,
 				5206C4A926CE7C050011C635 /* FavoriteMovieModel.swift */,
+				525C83ED26CAA708003F82DF /* CastKeys.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -37,22 +37,6 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         }
     }
     
-    func fetchMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsDataSourceModel, Error>) -> Void
-    ) {
-        networkClient.getMovie(with: id) {
-            (result: Result<MovieDetailsNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let movieDataSourceModels = MovieDetailsDataSourceModel(from: value)
-                completion(.success(movieDataSourceModels))
-            }
-        }
-    }
-    
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsDataSourceModel, Error> {
         networkClient
             .getMovie(with: id)
