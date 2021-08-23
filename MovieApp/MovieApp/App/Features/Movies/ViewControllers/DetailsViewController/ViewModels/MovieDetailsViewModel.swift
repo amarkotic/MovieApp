@@ -1,6 +1,5 @@
 struct MovieDetailsViewModel {
     
-    let info: MainInfoViewModel
-    let overview: OverviewViewModel
-
+    let info: InfoViewModel
+    let credits: CreditsViewModel
 }

@@ -8,29 +8,30 @@ class DetailsPresenter {
     weak private var delegate: DetailsViewController?
     private let identifier: Int
     
-    var mainInfo: AnyPublisher<MainInfoViewModel, Error> {
+    var info: AnyPublisher<InfoViewModel, Error> {
         movieUseCase
             .fetchMovie(with: identifier)
-            .map { MainInfoViewModel(from: $0, isSaved: true) }
+            .map { InfoViewModel(from: $0) }
             .receiveOnMain()
     }
     
-    var overview: AnyPublisher<OverviewViewModel, Error> {
-        movieUseCase.fetchMovie(with: identifier)
-            .map { OverviewViewModel(from: $0) }
+    var credits: AnyPublisher<CreditsViewModel, Error> {
+        movieUseCase
+            .fetchCredits(with: identifier)
+            .map { CreditsViewModel(from: $0) }
             .receiveOnMain()
     }
     
     var detailsData: AnyPublisher<MovieDetailsViewModel, Error> {
         Publishers
-            .CombineLatest(mainInfo, overview)
-            .map { info, overview in
+            .CombineLatest(info, credits)
+            .map { info, credits in
                 MovieDetailsViewModel(
                     info: info,
-                    overview: overview
+                    credits: credits
                 )
             }
-            .eraseToAnyPublisher()
+            .receiveOnMain()
     }
     
     init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter, identifier: Int) {

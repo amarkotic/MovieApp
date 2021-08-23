@@ -42,26 +42,13 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
             .eraseToAnyPublisher()
     }
     
-    func getCast(
-        with id: Int,
-        completion: @escaping (Result<WholeCastNetworkModel, NetworkError>) -> Void
-    ) {
-        var url: URL?
-        url = EndpointConstant.actors(id: id).url
-        guard let url = url else { return }
+    func getCredits(with id: Int) -> AnyPublisher<CreditsNetworkModel, Error> {
+        guard let url = EndpointConstant.credits(id: id).url else { return .empty() }
         
-        networkService.get(url: url, completion: completion)
-    }
-    
-    func getActors(
-        with id: Int,
-        completion: @escaping (Result<ActorsNetworkModel, NetworkError>) -> Void
-    ) {
-        var url: URL?
-        url = EndpointConstant.actors(id: id).url
-        guard let url = url else { return }
-        
-        networkService.get(url: url, completion: completion)
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map { $0.data }
+            .decode(type: CreditsNetworkModel.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
     }
     
     func getReviews(

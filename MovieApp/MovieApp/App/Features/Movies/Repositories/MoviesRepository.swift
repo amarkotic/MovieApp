@@ -46,38 +46,11 @@ class MoviesRepository: MoviesRepositoryProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchCast(
-        with id: Int,
-        completion: @escaping (Result<[CastRepositoryModel], Error>) -> Void
-    ) {
-        networkDataSource.fetchCast(with: id) { (result: Result<[CastDataSourceModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let castRepositoryModels = model.map {
-                    CastRepositoryModel(from: $0)
-                }
-                completion(.success(castRepositoryModels))
-            }
-        }
-    }
-    
-    func fetchActors(
-        with id: Int,
-        completion: @escaping (Result<[ActorRepositoryModel], Error>) -> Void
-    ) {
-        networkDataSource.fetchActors(with: id) { (result: Result<[ActorDataSourceModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let actorsRepositoryModels = model.map {
-                    ActorRepositoryModel(from: $0)
-                }
-                completion(.success(actorsRepositoryModels))
-            }
-        }
+    func fetchCredits(with id: Int) -> AnyPublisher<CreditsRepositoryModel, Error> {
+        networkDataSource
+            .fetchCredits(with: id)
+            .map { CreditsRepositoryModel(from: $0) }
+            .eraseToAnyPublisher()
     }
     
     func fetchReviews(

@@ -10,15 +10,7 @@ protocol MoviesRepositoryProtocol {
     
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsRepositoryModel, Error> 
     
-    func fetchCast(
-        with id: Int,
-        completion: @escaping (Result<[CastRepositoryModel], Error>) -> Void
-    )
-    
-    func fetchActors(
-        with id: Int,
-        completion: @escaping (Result<[ActorRepositoryModel], Error>) -> Void
-    )
+    func fetchCredits(with id: Int) -> AnyPublisher<CreditsRepositoryModel, Error> 
     
     func fetchReviews(
         with id: Int,

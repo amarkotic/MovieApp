@@ -38,22 +38,6 @@ class DetailsViewController: UIViewController {
         bindViews()
     }
     
-    func setActorsData(model: [ActorViewModel]) {
-        actorsView.setData(with: model)
-    }
-    
-    func setCastData(model: [CastViewModel]) {
-        castView.setData(with: model)
-    }
-    
-    func setReviewData(model: SocialViewModel) {
-        socialView.setData(with: model)
-    }
-    
-    func setRecommendationsData(model: [RecommendationsViewModel]) {
-        recommendationView.setData(with: model)
-    }
-    
     func favoritePressed() {
         presenter.updateFavoriteMovie()
     }
@@ -68,10 +52,17 @@ class DetailsViewController: UIViewController {
         presenter
             .detailsData
             .sink {_ in }
-                receiveValue: { self.mainInfoView.setData(with: $0.info)
-                    self.overviewView.setData(with: $0.overview)
+                receiveValue: { [weak self] in
+                    self?.setData(with: $0)
                 }
             .store(in: &disposables)
+    }
+    
+    private func setData(with model: MovieDetailsViewModel) {
+        self.mainInfoView.setData(with: model.info.mainInfoModel)
+        self.overviewView.setData(with: model.info.overviewModel)
+        self.actorsView.setData(with: Array(model.credits.actors.prefix(10)))
+        self.castView.setData(with: Array(model.credits.cast.prefix(6)))
     }
     
     private func styleNavigationBar() {

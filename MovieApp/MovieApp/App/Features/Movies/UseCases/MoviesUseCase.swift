@@ -87,43 +87,30 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchCast(
-        with id: Int,
-        completion: @escaping (Result<[CastModel], Error>) -> Void
-    ) {
-        moviesRepository.fetchCast(with: id) { (result: Result<[CastRepositoryModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let castModel = model.map {
-                    CastModel(from: $0)
-                }
-                completion(.success(Array(castModel.prefix(6))))
-            }
-        }
+    func fetchCredits(with id: Int) -> AnyPublisher<CreditsModel, Error> {
+        moviesRepository
+            .fetchCredits(with: id)
+            .map { CreditsModel(from: $0) }
+            .eraseToAnyPublisher()
     }
     
-    func fetchActors(
-        with id: Int,
-        completion: @escaping (Result<[ActorModel], Error>) -> Void
-    ) {
-        moviesRepository.fetchActors(with: id) { (result: Result<[ActorRepositoryModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let actorsModels = model.map {
-                    ActorModel(from: $0)
-                }
-                let actors = actorsModels.filter { model in
-                    model.deparment.elementsEqual(CastKeys.acting.rawValue)
-                }
-                completion(.success(Array(actors.prefix(10))))
+    func fetchActors(with id: Int) -> AnyPublisher<[ActorModel], Error> {
+        moviesRepository
+            .fetchCredits(with: id)
+            .map { model in
+                model.actors.map {ActorModel(from: $0) }
             }
-        }
+            .eraseToAnyPublisher()
     }
     
+    func fetchCast(with id: Int) -> AnyPublisher<[CastModel], Error> {
+        moviesRepository.fetchCredits(with: id)
+            .map { model in
+                model.cast.map { CastModel(from: $0) }
+            }
+            .eraseToAnyPublisher()
+    }
+
     func fetchReview(
         with id: Int,
         completion: @escaping (Result<ReviewModel, CustomError>) -> Void
@@ -143,7 +130,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     return
                 }
                 
-                completion(.success(review))     
+                completion(.success(review))
             }
         }
     }

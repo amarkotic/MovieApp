@@ -7,16 +7,10 @@ protocol MoviesNetworkClientProtocol {
         subcategoryDataSourceModel: SubcategoryDataSourceModel,
         completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
     )
-    
-    func getCast(
-        with id: Int,
-        completion: @escaping (Result<WholeCastNetworkModel, NetworkError>) -> Void
-    )
-    
-    func getActors(
-        with id: Int,
-        completion: @escaping (Result<ActorsNetworkModel, NetworkError>) -> Void
-    )
+
+    func getMovie(with id: Int) -> AnyPublisher<MovieDetailsNetworkModel, Error>
+
+    func getCredits(with id: Int) -> AnyPublisher<CreditsNetworkModel, Error>
     
     func getReviews(
         with id: Int,
@@ -32,7 +26,5 @@ protocol MoviesNetworkClientProtocol {
         with query: String,
         completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
     )
-    
-    func getMovie(with id: Int) -> AnyPublisher<MovieDetailsNetworkModel, Error>
     
 }

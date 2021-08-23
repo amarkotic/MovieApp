@@ -14,10 +14,7 @@ protocol MoviesUseCaseProtocol {
     
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error>
     
-    func fetchActors(
-        with id: Int,
-        completion: @escaping (Result<[ActorModel], Error>) -> Void
-    )
+    func fetchCredits(with id: Int) -> AnyPublisher<CreditsModel, Error>
     
     func fetchReview(
         with id: Int,
@@ -35,10 +32,5 @@ protocol MoviesUseCaseProtocol {
         with query: String,
         completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
     )
-    
-    func fetchCast(
-        with id: Int,
-        completion: @escaping (Result<[CastModel], Error>) -> Void
-    ) 
     
 }

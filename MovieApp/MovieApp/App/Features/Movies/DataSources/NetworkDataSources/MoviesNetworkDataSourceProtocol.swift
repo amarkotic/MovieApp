@@ -10,15 +10,7 @@ protocol MoviesNetworkDataSourceProtocol {
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsDataSourceModel, Error>
     
-    func fetchCast(
-        with id: Int,
-        completion: @escaping (Result<[CastDataSourceModel], Error>) -> Void
-    )
-    
-    func fetchActors(
-        with id: Int,
-        completion: @escaping (Result<[ActorDataSourceModel], Error>) -> Void
-    )
+    func fetchCredits(with id: Int) -> AnyPublisher<CreditsDataSourceModel, Error>
     
     func fetchReviews(
         with id: Int,

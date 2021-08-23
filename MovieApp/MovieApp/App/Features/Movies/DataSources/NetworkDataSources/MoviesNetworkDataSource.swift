@@ -44,40 +44,13 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchCast(
-        with id: Int,
-        completion: @escaping (Result<[CastDataSourceModel], Error>) -> Void
-    ) {
-        networkClient.getCast(with: id) { (result: Result<WholeCastNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let castDataSourceModels = model.crew.map {
-                    CastDataSourceModel(from: $0)
-                }
-                completion(.success(castDataSourceModels))
-            }
-        }
+    func fetchCredits(with id: Int) -> AnyPublisher<CreditsDataSourceModel, Error> {
+        networkClient
+            .getCredits(with: id)
+            .map { CreditsDataSourceModel(from: $0) }
+            .eraseToAnyPublisher()
     }
-    
-    func fetchActors(
-        with id: Int,
-        completion: @escaping (Result<[ActorDataSourceModel], Error>) -> Void
-    ) {
-        networkClient.getActors(with: id) { (result: Result<ActorsNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let actorsDataSourceModels = model.cast.map {
-                    ActorDataSourceModel(from: $0)
-                }
-                completion(.success(actorsDataSourceModels))
-            }
-        }
-    }
-    
+
     func fetchReviews(
         with id: Int,
         completion: @escaping (Result<[ReviewDataSourceModel], Error>) -> Void
