@@ -42,7 +42,7 @@ extension Publisher {
     // For testing purposes
     func printThread(_ tag: String = "") -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { _ in
-            Swift.print("\(tag) \(Thread.current) (isMain: \(Thread.current.isMainThread))")
+            Swift.print("\(tag) \(Thread.current) (isMain: \(Thread.current.isMainThread)) \(Thread.current.qualityOfService.rawValue)")
         })
         .eraseToAnyPublisher()
     }

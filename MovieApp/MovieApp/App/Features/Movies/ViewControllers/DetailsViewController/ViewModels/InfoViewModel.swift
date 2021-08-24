@@ -3,8 +3,8 @@ struct InfoViewModel {
     var mainInfoModel: MainInfoViewModel
     var overviewModel: OverviewViewModel
     
-    init(from model: MovieDetailsModel, isSaved: Bool) {
-        mainInfoModel = MainInfoViewModel(from: model, isSaved: isSaved)
+    init(from model: MovieDetailsModel) {
+        mainInfoModel = MainInfoViewModel(from: model)
         overviewModel = OverviewViewModel(from: model)
     }
     

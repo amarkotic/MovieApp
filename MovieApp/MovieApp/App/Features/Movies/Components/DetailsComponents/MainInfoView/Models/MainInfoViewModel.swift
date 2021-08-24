@@ -9,7 +9,7 @@ struct MainInfoViewModel {
     let duration: Int
     let isFavorite: Bool
     
-    init(from model: MovieDetailsModel, isSaved: Bool) {
+    init(from model: MovieDetailsModel) {
         posterPath = model.posterPath
         progressPercentage = model.voteAverage
         movieName = model.title
@@ -17,7 +17,7 @@ struct MainInfoViewModel {
         language = model.language
         genres = model.genres.map { "\($0.name)" }.joined(separator: ", ")
         duration = model.runtime
-        isFavorite = isSaved
+        isFavorite = model.isFavorited
     }
     
 }

@@ -81,9 +81,18 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
     
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error> {
-        moviesRepository
+        let favoriteIdsPublisher = userDefaultsRepository
+            .favoriteItems
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        
+        return moviesRepository
             .fetchMovie(with: id)
-            .map { MovieDetailsModel(from: $0) }
+            .combineLatest(favoriteIdsPublisher)
+            .map {
+                let isSelected = $0.1.contains(id)
+                return  MovieDetailsModel(from: $0.0, isSelected: isSelected)
+            }
             .eraseToAnyPublisher()
     }
     
@@ -93,7 +102,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .map { CreditsModel(from: $0) }
             .eraseToAnyPublisher()
     }
-
+    
     func fetchReviews(with id: Int) -> AnyPublisher<[ReviewModel], Error> {
         moviesRepository
             .fetchReviews(with: id)

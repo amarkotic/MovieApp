@@ -16,7 +16,7 @@ class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
     var items: AnyPublisher<[Int], Never> {
         UserDefaults.standard
             .publisher(for: \.favorites)
-            .subscribeOnBackground()
+            .receiveOnBackground()
     }
     
     init() {

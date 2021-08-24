@@ -9,11 +9,9 @@ class DetailsPresenter {
     private let identifier: Int
     
     var info: AnyPublisher<InfoViewModel, Error> {
-        let isSaved = movieUseCase.oldFavoriteItems.contains(identifier)
-      
-        return movieUseCase
+        movieUseCase
             .fetchMovie(with: identifier)
-            .map { InfoViewModel(from: $0, isSaved: isSaved) }
+            .map { InfoViewModel(from: $0) }
             .receiveOnMain()
     }
     

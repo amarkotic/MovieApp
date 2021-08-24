@@ -8,8 +8,9 @@ struct MovieDetailsModel {
     let language: String
     let genres: [GenresModel]
     let overview: String
+    let isFavorited: Bool
     
-    init(from repositoryModel: MovieDetailsRepositoryModel) {
+    init(from repositoryModel: MovieDetailsRepositoryModel, isSelected: Bool) {
         posterPath = NetworkConstants.imagePath + repositoryModel.posterPath
         voteAverage = repositoryModel.voteAverage * 10
         title = repositoryModel.title
@@ -18,6 +19,7 @@ struct MovieDetailsModel {
         language = repositoryModel.language
         self.genres = repositoryModel.genres.map { GenresModel(from: $0) }
         overview = repositoryModel.overview
+        isFavorited = isSelected
     }
 }
 

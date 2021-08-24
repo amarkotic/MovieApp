@@ -64,7 +64,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
         networkDataSource
             .fetchRecommendations(with: id)
             .map { $0.map { RecommendationRepositoryModel(from: $0) } }
-            .eraseToAnyPublisher()
+            .eraseToAnyPublisher() 
     }
 
     func fetchSearchMovies(
