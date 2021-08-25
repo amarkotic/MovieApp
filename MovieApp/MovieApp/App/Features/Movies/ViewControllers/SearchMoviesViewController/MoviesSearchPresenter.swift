@@ -10,7 +10,7 @@ class MoviesSearchPresenter {
     func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieSearchViewModel], Error> {
         moviesUseCase
             .fetchSearchMovies(with: query)
-            .compactMap { $0.compactMap { MovieSearchViewModel(from: $0) } }
+            .map { $0.map { MovieSearchViewModel(from: $0) } }
             .receiveOnMain()
     }
     

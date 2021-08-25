@@ -34,6 +34,12 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         setupSearchListener()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchBarStackView.activateKeyboard()
+    }
+    
     private func setupSearchListener() {
         searchBarStackView.searchBar.searchTextField
             .textPublisher()
@@ -77,15 +83,12 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func setupSearchBar() {
-        searchBarStackView.setDelegate(delegate: self)
-        searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
         searchBarStackView.searchBar.searchTextField.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        searchBarStackView.activateKeyboard()
+        searchBarStackView.cancelButton
+            .publisher(for: .touchUpInside)
+            .sink { [weak self] _ in
+                self?.popViewController()
+            }.store(in: &disposables)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
