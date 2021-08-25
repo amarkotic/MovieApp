@@ -30,6 +30,7 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         buildViews()
         styleNavigationBar()
         setupSearchBar()
+        makeDataSource()
         setupSearchListener()
     }
     
@@ -61,7 +62,6 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
                     return nil
                 }
                 
-                cell.layer.masksToBounds = true
                 cell.populateCell(with: model)
                 return cell
                 
@@ -73,7 +73,7 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         var snapshot = Snapshot()
         snapshot.appendSections([.second])
         snapshot.appendItems(movies)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func setupSearchBar() {
