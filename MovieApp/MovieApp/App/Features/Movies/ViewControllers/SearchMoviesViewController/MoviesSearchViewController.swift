@@ -1,31 +1,85 @@
 import UIKit
+import Combine
 
 class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
-
+    
+    typealias Snapshot = NSDiffableDataSourceSnapshot<SectionEnum, MovieSearchViewModel>
+    typealias DataSource = UITableViewDiffableDataSource<SectionEnum, MovieSearchViewModel>
+    
     let rowHeight: CGFloat = 142
     let defaultInset = 20
     let searchBarHeight = 43
-
+    
     var searchBarStackView: SearchBarStackView!
     var logoImageView: UIImageView!
     var tableView: UITableView!
-    var movies = [MovieSearchViewModel]()
-
+    
     private var presenter: MoviesSearchPresenter!
-
+    private var disposables = Set<AnyCancellable>()
+    private var dataSource: DataSource!
+    
     convenience init(presenter: MoviesSearchPresenter) {
         self.init()
         
         self.presenter = presenter
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         buildViews()
         styleNavigationBar()
-        presenter.setDelegate(delegate: self)
         setupSearchBar()
+        setupSearchListener()
+    }
+    
+    private func setupSearchListener() {
+        searchBarStackView.searchBar.searchTextField
+            .textPublisher()
+            .receiveOnMain()
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .sink { [weak self] in
+                guard let self = self else { return }
+                
+                self.presenter.fetchSearchMovies(with: $0)
+                    .sink { _ in }
+                        receiveValue: { [weak self] in
+                            self?.updateSnapshot(with: $0)
+                        }
+                    .store(in: &self.disposables)
+            }
+            .store(in: &disposables)
+    }
+    
+    private func makeDataSource() {
+        dataSource = UITableViewDiffableDataSource(
+            tableView: tableView,
+            cellProvider: { tableView, indexPath, model in
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: MovieSearchCell.reuseIdentifier, for: indexPath) as? MovieSearchCell
+                else {
+                    return nil
+                }
+                
+                cell.layer.masksToBounds = true
+                cell.populateCell(with: model)
+                return cell
+                
+            }
+        )
+    }
+    
+    private func updateSnapshot(with movies: [MovieSearchViewModel]) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.second])
+        snapshot.appendItems(movies)
+        dataSource.apply(snapshot)
+    }
+    
+    private func setupSearchBar() {
+        searchBarStackView.setDelegate(delegate: self)
+        searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
+        searchBarStackView.searchBar.searchTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,14 +87,8 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         
         searchBarStackView.activateKeyboard()
     }
-
-    func fetchSuccesful(movies: [MovieSearchViewModel]) {
-        self.movies = movies
-        tableView.reloadData()
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        queryMovies()
         self.view.endEditing(true)
         return false
     }
@@ -53,52 +101,8 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         navigationItem.titleView = logoImageView
     }
     
-
-    @objc private func queryMovies() {
-        guard let text = searchBarStackView.searchBar.searchTextField.text else { return }
-        
-        presenter.fetchMovies(with: text)
-    }
-    private func setupSearchBar() {
-        searchBarStackView.setDelegate(delegate: self)
-        searchBarStackView.cancelButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
-        searchBarStackView.searchBar.searchTextField.delegate = self
-        searchBarStackView.searchBar.searchTextField.addTarget(self, action: #selector(queryMovies), for: .editingChanged)
-    }
-    
     @objc private func popViewController() {
         presenter.popViewController()
-    }
-    
-}
-
-extension MoviesSearchViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.contentView.layer.masksToBounds = true
-    }
-    
-}
-
-extension MoviesSearchViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: MovieSearchCell.reuseIdentifier) as? MovieSearchCell
-        else {
-            return UITableViewCell()
-        }
-        
-        cell.populateCell(with: movies[indexPath.row])
-        return cell
     }
     
 }

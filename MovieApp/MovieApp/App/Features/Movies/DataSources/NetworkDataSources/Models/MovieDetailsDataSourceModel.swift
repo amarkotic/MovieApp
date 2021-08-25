@@ -18,7 +18,7 @@ struct MovieDetailsDataSourceModel {
         releaseDate = networkModel.releaseDate
         runtime = networkModel.runtime
         language = networkModel.language
-        self.genres = networkModel.genres.map { GenresDataSourceModel(from: $0) }
+        genres = networkModel.genres.map { GenresDataSourceModel(from: $0) }
         overview = networkModel.overview
     }
     

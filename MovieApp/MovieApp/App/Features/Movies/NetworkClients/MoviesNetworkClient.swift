@@ -69,15 +69,13 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
             .eraseToAnyPublisher()
     }
     
-    func getSearchMovies(
-        with query: String,
-        completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
-    ) {
-        var url: URL?
-        url = EndpointConstant.searchMovie(with: query).url
-        guard let url = url else { return }
+    func getSearchMovies(with query: String) -> AnyPublisher<MoviesNetworkModel, Error> {
+        guard let url = EndpointConstant.searchMovie(with: query).url else { return .empty() }
         
-        networkService.get(url: url, completion: completion)
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map { $0.data }
+            .decode(type: MoviesNetworkModel.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
     }
     
 }

@@ -22,9 +22,6 @@ protocol MoviesUseCaseProtocol {
     
     func updateFavorites(with id: Int)
    
-    func fetchSearchMovies(
-        with query: String,
-        completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
-    )
+    func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieSearchModel], Error>
     
 }

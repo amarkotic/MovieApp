@@ -1,6 +1,6 @@
 import UIKit
 
-struct MovieSearchViewModel {
+struct MovieSearchViewModel: Hashable {
     
     let id: Int
     let imageUrl: String

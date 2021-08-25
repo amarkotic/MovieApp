@@ -122,21 +122,11 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .updateFavorites(with: id)
     }
     
-    func fetchSearchMovies(
-        with query: String,
-        completion: @escaping (Result<[MovieSearchModel], Error>) -> Void
-    ) {
-        moviesRepository.fetchSearchMovies(with: query) { (result: Result<[MovieRepositoryModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let movieModels = value.map {
-                    MovieSearchModel(from: $0)
-                }
-                completion(.success(movieModels))
-            }
-        }
+    func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieSearchModel], Error> {
+        moviesRepository
+            .fetchSearchMovies(with: query)
+            .map { $0.map { MovieSearchModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
-    
+
 }

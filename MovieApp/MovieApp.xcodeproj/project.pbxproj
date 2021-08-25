@@ -66,6 +66,7 @@
 		525C83EA26CA8300003F82DF /* UserDefaultsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C83E926CA8300003F82DF /* UserDefaultsRepositoryProtocol.swift */; };
 		525C83EE26CAA708003F82DF /* CastKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C83ED26CAA708003F82DF /* CastKeys.swift */; };
 		525F9BB726CBA5F300F8CF6A /* ReloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F9BB626CBA5F300F8CF6A /* ReloadModel.swift */; };
+		526827A426D51D750017BFC1 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526827A326D51D750017BFC1 /* UITextField+Extensions.swift */; };
 		526B5165269D6D370095F3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5164269D6D370095F3E2 /* AppDelegate.swift */; };
 		526B5167269D6D370095F3E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5166269D6D370095F3E2 /* SceneDelegate.swift */; };
 		526B5169269D6D370095F3E2 /* MoviesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B5168269D6D370095F3E2 /* MoviesSearchViewController.swift */; };
@@ -217,6 +218,7 @@
 		525C83E926CA8300003F82DF /* UserDefaultsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		525C83ED26CAA708003F82DF /* CastKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastKeys.swift; sourceTree = "<group>"; };
 		525F9BB626CBA5F300F8CF6A /* ReloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadModel.swift; sourceTree = "<group>"; };
+		526827A326D51D750017BFC1 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		526B5161269D6D370095F3E2 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526B5164269D6D370095F3E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		526B5166269D6D370095F3E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 			children = (
 				52AABDD126CFE6AB00D1C114 /* Combine */,
 				523C2EA8269DAA9800F2EDD6 /* DesignProtocol.swift */,
+				526827A326D51D750017BFC1 /* UITextField+Extensions.swift */,
 				52F11AA226A70637007DBE0A /* BundleImage.swift */,
 				525C83D926CA65ED003F82DF /* Array+Extensions.swift */,
 			);
@@ -1149,6 +1152,7 @@
 				5203716526A1C37800DE4AC7 /* NetworkService.swift in Sources */,
 				52F64E8826B969010046A8ED /* ActorsView+Design.swift in Sources */,
 				52E14A1026C3F2930031A7A8 /* ActorViewModel.swift in Sources */,
+				526827A426D51D750017BFC1 /* UITextField+Extensions.swift in Sources */,
 				52D72E7126C51BAA00EEA021 /* MovieDetailsRepositoryModel.swift in Sources */,
 				52AABDCC26CFBF2000D1C114 /* SectionEnum.swift in Sources */,
 				52AABDE926CFE72800D1C114 /* CastCollectionViewCell+Design.swift in Sources */,

@@ -15,10 +15,7 @@ protocol MoviesNetworkClientProtocol {
     func getReviews(with id: Int) -> AnyPublisher<ReviewsNetworkModel, Error>
 
     func getRecommendations(with id: Int) -> AnyPublisher<RecommendationsNetworkModel, Error>
-    
-    func getSearchMovies(
-        with query: String,
-        completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
-    )
+
+    func getSearchMovies(with query: String) -> AnyPublisher<MoviesNetworkModel, Error>
     
 }
