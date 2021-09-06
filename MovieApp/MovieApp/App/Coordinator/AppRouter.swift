@@ -27,7 +27,7 @@ class AppRouter {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
-    
+
     func showMovieDetails(with identifier: Int) {
         navigationController.pushViewController(
             DetailsViewController(
@@ -48,7 +48,7 @@ class AppRouter {
             presenter: MoviesSearchPresenter(moviesUseCase: appDependencies.moviesUseCase, appRouter: self))
         navigationController.pushViewController(searchViewController, animated: false)
     }
-    
+
     func popWithoutAnimation() {
         navigationController.popViewController(animated: false)
     }

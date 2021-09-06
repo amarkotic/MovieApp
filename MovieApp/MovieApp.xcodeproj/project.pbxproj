@@ -540,6 +540,13 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		522F60FF26E60E4A004A8A8F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		523C2EB5269ED23D00F2EDD6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +658,7 @@
 				526B5163269D6D370095F3E2 /* MovieApp */,
 				526B5162269D6D370095F3E2 /* Products */,
 				5203716326A1C33900DE4AC7 /* Recovered References */,
+				522F60FF26E60E4A004A8A8F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1038,10 +1046,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 526B5178269D6D390095F3E2 /* Build configuration list for PBXNativeTarget "MovieApp" */;
 			buildPhases = (
+				522F60FB26E60859004A8A8F /* Run SwiftLint */,
 				526B515D269D6D370095F3E2 /* Sources */,
 				526B515E269D6D370095F3E2 /* Frameworks */,
 				526B515F269D6D370095F3E2 /* Resources */,
-				522F60FB26E60859004A8A8F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1110,7 +1118,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		522F60FB26E60859004A8A8F /* ShellScript */ = {
+		522F60FB26E60859004A8A8F /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
@@ -1119,13 +1127,14 @@
 			);
 			inputPaths = (
 			);
+			name = "Run SwiftLint";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
