@@ -1,10 +1,10 @@
 enum MovieCategoryDataSourceModel {
-    
+
     case popular
     case topRated
     case trending
-    
-    init?(from model: MovieCategoryRepositoryModel) {
+
+    init(from model: MovieCategoryRepositoryModel) {
         switch model {
         case .popular:
             self = .popular
@@ -14,5 +14,5 @@ enum MovieCategoryDataSourceModel {
             self = .trending
         }
     }
-    
+
 }

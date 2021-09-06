@@ -2,17 +2,17 @@ import UIKit
 import Combine
 
 class MoviesUseCase: MoviesUseCaseProtocol {
-    
+
     private let moviesRepository: MoviesRepositoryProtocol
     private let userDefaultsRepository: UserDefaultsRepositoryProtocol
-    
+
     var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> {
         userDefaultsRepository
             .favoriteItems
             .setFailureType(to: Error.self)
             .flatMap { [weak self] ids -> AnyPublisher<[MovieDetailsRepositoryModel], Error> in
                 guard let self = self else { return .never() }
-                
+
                 let movieStreams = ids.map {
                     self.moviesRepository.fetchMovie(with: $0)
                 }
@@ -24,12 +24,12 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .map { $0.map { FavoriteMovieModel(id: $0.id, imageUrl: $0.posterPath, isSelected: true) } }
             .eraseToAnyPublisher()
     }
-    
+
     var oldFavoriteItems: [Int] {
         userDefaultsRepository
             .oldFavoriteItems
     }
-    
+
     init(
         moviesRepository: MoviesRepositoryProtocol,
         userDefaultsRepository: UserDefaultsRepositoryProtocol
@@ -37,7 +37,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         self.moviesRepository = moviesRepository
         self.userDefaultsRepository = userDefaultsRepository
     }
-    
+
     func fetchMovies(
         categoryViewModel: MovieCategoryViewModel,
         subcategoryViewModel: SubcategoryViewModel,
@@ -49,9 +49,11 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         else {
             return
         }
-        
-        moviesRepository.fetchMovies(categoryModel: categoryModel, subcategoryModel: subcategoryModel) {
-            (result: Result<[MovieRepositoryModel], Error>)  in
+
+        moviesRepository.fetchMovies(
+            categoryModel: categoryModel,
+            subcategoryModel: subcategoryModel
+        ) { (result: Result<[MovieRepositoryModel], Error>)  in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -79,13 +81,13 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             }
         }
     }
-    
+
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error> {
         let favoriteIdsPublisher = userDefaultsRepository
             .favoriteItems
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
-        
+
         return moviesRepository
             .fetchMovie(with: id)
             .combineLatest(favoriteIdsPublisher)
@@ -95,33 +97,33 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             }
             .eraseToAnyPublisher()
     }
-    
+
     func fetchCredits(with id: Int) -> AnyPublisher<CreditsModel, Error> {
         moviesRepository
             .fetchCredits(with: id)
             .map { CreditsModel(from: $0) }
             .eraseToAnyPublisher()
     }
-    
+
     func fetchReviews(with id: Int) -> AnyPublisher<[ReviewModel], Error> {
         moviesRepository
             .fetchReviews(with: id)
             .map { $0.map { ReviewModel(from: $0) } }
             .eraseToAnyPublisher()
     }
-    
+
     func fetchRecommendations(with id: Int) -> AnyPublisher<[RecommendationModel], Error> {
         moviesRepository
             .fetchRecommendations(with: id)
             .map { $0.map { RecommendationModel(from: $0) } }
             .eraseToAnyPublisher()
     }
-    
+
     func updateFavorites(with id: Int) {
         userDefaultsRepository
             .updateFavorites(with: id)
     }
-    
+
     func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieSearchModel], Error> {
         moviesRepository
             .fetchSearchMovies(with: query)

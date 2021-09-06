@@ -1,5 +1,5 @@
 enum BundleImage: String {
-    
+
     case appLogo = "TMDBLogo"
     case homeLogo = "Home"
     case homeLogoSelected = "Home+fill"
@@ -16,4 +16,3 @@ enum BundleImage: String {
     case noReview = "notFound"
 
 }
-

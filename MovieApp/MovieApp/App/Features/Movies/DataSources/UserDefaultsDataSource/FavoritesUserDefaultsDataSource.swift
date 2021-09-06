@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
-    
+
     var oldItems: [Int] {
         guard
             let items = UserDefaults.standard.array(forKey: UserDefaultsKeys.favorites.rawValue) as? [Int]
@@ -18,7 +18,7 @@ class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
             .publisher(for: \.favorites)
             .receiveOnBackground()
     }
-    
+
     init() {
         guard
             UserDefaults.standard.array(forKey: UserDefaultsKeys.favorites.rawValue) is [Int]
@@ -27,16 +27,16 @@ class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
             return
         }
     }
-    
+
     func toggle(with id: Int) {
         guard
             var favoriteIds = UserDefaults.standard.array(forKey: UserDefaultsKeys.favorites.rawValue) as? [Int]
         else {
             return
         }
-        
+
         favoriteIds.contains(id) ? favoriteIds.remove(object: id) : favoriteIds.append(id)
         UserDefaults.standard.set(favoriteIds, forKey: UserDefaultsKeys.favorites.rawValue)
     }
-    
+
 }

@@ -2,53 +2,53 @@ import UIKit
 import Combine
 
 class DetailsViewController: UIViewController {
-    
+
     let defaultOffset = 20
     let defaultInset = 18
     let recommendationsCollectionViewHeight = 114
     let castCollectionViewHeight = 106
     let actorsCollectionViewHeight = 259
-    
+
     var scrollView: UIScrollView!
     var contentView: UIView!
-    
+
     var mainInfoView: MainInfoView!
     var overviewView: OverviewView!
     var castView: CastView!
     var actorsView: ActorsView!
     var socialView: SocialView!
     var recommendationView: RecommendationsView!
-    
+
     var presenter: DetailsPresenter!
     private var disposables = Set<AnyCancellable>()
 
     convenience init(presenter: DetailsPresenter) {
         self.init()
-        
+
         self.presenter = presenter
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         buildViews()
         styleNavigationBar()
         presenter.setDelegate(delegate: self)
         mainInfoView.setDelegate(delegate: self)
         bindViews()
     }
-    
+
     func favoritePressed() {
         presenter.updateFavoriteMovie()
         bindViews()
     }
-    
+
     func hideReview() {
         socialView.postTitle.text = LocalizableStrings.noReview.rawValue
         socialView.postInfo.text = LocalizableStrings.tryAgain.rawValue
         socialView.logoImage.image = UIImage(with: .noReview)
     }
-    
+
     private func bindViews() {
         presenter
             .detailsData
@@ -58,7 +58,7 @@ class DetailsViewController: UIViewController {
                 }
             .store(in: &disposables)
     }
-    
+
     private func setData(with model: MovieDetailsViewModel) {
         mainInfoView.setData(with: model.info.mainInfoModel)
         overviewView.setData(with: model.info.overviewModel)
@@ -72,7 +72,7 @@ class DetailsViewController: UIViewController {
         }
         socialView.setData(with: review)
     }
-    
+
     private func styleNavigationBar() {
         let logo = UIImage(with: .appLogo)
         let logoImageView = UIImageView()
@@ -86,8 +86,8 @@ class DetailsViewController: UIViewController {
         )
         navigationController?.navigationBar.tintColor = .white
     }
-    
-    @objc func backButtonPressed(){
+
+    @objc func backButtonPressed() {
         presenter.popToHomeScreen()
     }
 

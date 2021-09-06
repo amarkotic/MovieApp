@@ -1,18 +1,17 @@
 enum SubcategoryRepositoryModel: Int {
-    
+
     case action
     case adventure
     case comedy
     case drama
     case family
     case horror
-    case romance
     case thriller
     case scienceFiction
     case today
     case thisWeek
-    
-    init?(from model: SubcategoryModel) {
+
+    init(from model: SubcategoryModel) {
         switch model {
         case .action:
             self = .action
@@ -26,8 +25,6 @@ enum SubcategoryRepositoryModel: Int {
             self = .family
         case .horror:
             self = .horror
-        case .romance:
-            self = .romance
         case .thriller:
             self = .thriller
         case .scienceFiction:
@@ -39,7 +36,7 @@ enum SubcategoryRepositoryModel: Int {
         }
     }
 
-    init?(from model: SubcategoryDataSourceModel) {
+    init(from model: SubcategoryDataSourceModel) {
         switch model {
         case .action:
             self = .action
@@ -53,8 +50,6 @@ enum SubcategoryRepositoryModel: Int {
             self = .family
         case .horror:
             self = .horror
-        case .romance:
-            self = .romance
         case .thriller:
             self = .thriller
         case .scienceFiction:
@@ -65,5 +60,5 @@ enum SubcategoryRepositoryModel: Int {
             self = .thisWeek
         }
     }
-    
+
 }

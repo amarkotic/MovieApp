@@ -1,5 +1,5 @@
 enum LocalizableStrings: String {
-    
+
     case tabBarHomeTitle = "Home"
     case favorites = "Favorites"
     case searchBarPlaceholder = "Search"
@@ -17,5 +17,5 @@ enum LocalizableStrings: String {
     case acting = "Acting"
     case noReview = "No reviews found"
     case tryAgain = "\nPlease try again later"
-    
+
 }

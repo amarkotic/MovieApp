@@ -1,5 +1,5 @@
 struct MovieDetailsRepositoryModel {
-    
+
     let id: Int
     let posterPath: String
     let voteAverage: Float
@@ -25,13 +25,13 @@ struct MovieDetailsRepositoryModel {
 }
 
 struct GenresRepositoryModel {
-    
+
     let id: Int
     let name: String
-    
+
     init(from dataSourceModel: GenresDataSourceModel) {
         id = dataSourceModel.id
         name = dataSourceModel.name
     }
-    
+
 }
