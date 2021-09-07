@@ -32,7 +32,7 @@ class DetailsPresenter {
                     genres.append(" ")
                 }
                 
-                let savedMovieIds = self.movieUseCase.favoriteItems
+                let savedMovieIds = self.movieUseCase.oldFavoriteItems
                 let isSaved = savedMovieIds.contains(self.identifier)
                 let viewModel = MovieDetailsViewModel(
                     info: MainInfoViewModel(
@@ -113,7 +113,8 @@ class DetailsPresenter {
     }
     
     func updateFavoriteMovie() {
-        movieUseCase.updateFavorites(with: identifier)
+        movieUseCase
+            .updateFavorites(with: identifier)
         fetchData()
     }
     

@@ -1,13 +1,33 @@
 import UIKit
+import Combine
 
 class MoviesUseCase: MoviesUseCaseProtocol {
     
     private let moviesRepository: MoviesRepositoryProtocol
     private let userDefaultsRepository: UserDefaultsRepositoryProtocol
     
-    var favoriteItems: [Int] {
+    var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> {
         userDefaultsRepository
             .favoriteItems
+            .setFailureType(to: Error.self)
+            .flatMap { [weak self] ids -> AnyPublisher<[MovieDetailsRepositoryModel], Error> in
+                guard let self = self else { return .never() }
+                
+                let movieStreams = ids.map {
+                    self.moviesRepository.fetchfavoriteMovie(with: $0)
+                }
+                return Publishers.MergeMany(movieStreams)
+                    .collect()
+                    .eraseToAnyPublisher()
+            }
+            .replaceError(with: [])
+            .map { $0.map { FavoriteMovieModel(id: $0.id, imageUrl: $0.posterPath, isSelected: true) } }
+            .eraseToAnyPublisher()
+    }
+    
+    var oldFavoriteItems: [Int] {
+        userDefaultsRepository
+            .oldFavoriteItems
     }
     
     init(
@@ -30,16 +50,18 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             return
         }
         
-        moviesRepository.fetchMovies(categoryModel: categoryModel, subcategoryModel: subcategoryModel) {
-            (result: Result<[MovieRepositoryModel], Error>)  in
+        moviesRepository.fetchMovies(
+            categoryModel: categoryModel,
+            subcategoryModel: subcategoryModel
+        ) { [weak self] (result: Result<[MovieRepositoryModel], Error>)  in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let repoModels):
-                let useCaseModels: [MovieModel] = repoModels.map { [weak self] model -> MovieModel in
+                let useCaseModels: [MovieModel] = repoModels.map { model -> MovieModel in
                     let subcategoryModels = model.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) }
-                    let savedMovieIds = self?.userDefaultsRepository.favoriteItems
-                    let isSaved = savedMovieIds!.contains(model.id)
+                    let savedMovieIds = self?.userDefaultsRepository.oldFavoriteItems
+                    let isSaved = savedMovieIds?.contains(model.id) ?? false
                     return MovieModel(
                         id: model.id,
                         imageUrl: model.imageUrl,
@@ -150,35 +172,6 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     RecommendationModel(from: $0)
                 }
                 completion(.success(recommendationsModels))
-            }
-        }
-    }
-    
-    func fetchFavoriteMovies(completion: @escaping (Result<[MovieModel], Error>) -> Void) {
-        var temporaryArray = [MovieModel]()
-        var flag = 0
-        favoriteItems.forEach { [weak self] id in
-            guard let self = self else { return }
-            
-            moviesRepository.fetchMovie(with: id) {
-                (result: Result<MovieDetailsRepositoryModel, Error>) in
-                switch result {
-                case .failure(let error):
-                    print(error.localizedDescription)
-                case .success(let value):
-                    temporaryArray.append(
-                        MovieModel(
-                            id: id,
-                            imageUrl: NetworkConstants.imagePath + value.posterPath,
-                            isSelected: true,
-                            subcategories: []
-                        )
-                    )
-                    flag += 1
-                }
-                if flag == self.favoriteItems.count {
-                    completion(.success(temporaryArray))
-                }
             }
         }
     }

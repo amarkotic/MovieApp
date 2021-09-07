@@ -1,3 +1,5 @@
+import Combine
+
 protocol MoviesRepositoryProtocol {
     
     func fetchMovies(
@@ -10,6 +12,8 @@ protocol MoviesRepositoryProtocol {
         with id: Int,
         completion: @escaping (Result<MovieDetailsRepositoryModel, Error>) -> Void
     )
+    
+    func fetchfavoriteMovie(with id: Int) -> AnyPublisher<MovieDetailsRepositoryModel, Error> 
     
     func fetchCast(
         with id: Int,

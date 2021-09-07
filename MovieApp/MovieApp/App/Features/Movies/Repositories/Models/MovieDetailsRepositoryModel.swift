@@ -1,5 +1,6 @@
 struct MovieDetailsRepositoryModel {
     
+    let id: Int
     let posterPath: String
     let voteAverage: Float
     let title: String
@@ -10,6 +11,7 @@ struct MovieDetailsRepositoryModel {
     let overview: String
 
     init(from dataSourceModel: MovieDetailsDataSourceModel) {
+        id = dataSourceModel.id
         posterPath = dataSourceModel.posterPath
         voteAverage = dataSourceModel.voteAverage
         title = dataSourceModel.title

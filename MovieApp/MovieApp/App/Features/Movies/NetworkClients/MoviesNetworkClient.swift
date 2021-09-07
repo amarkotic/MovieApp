@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 
 class MoviesNetworkClient: MoviesNetworkClientProtocol {
     
@@ -41,6 +42,15 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         guard let url = url else { return }
         
         networkService.get(url: url, completion: completion)
+    }
+    
+    func getMovie(with id: Int) -> AnyPublisher<MovieDetailsNetworkModel, Error> {
+        guard let url = EndpointConstant.movie(id: id).url else { return .empty() }
+
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map { $0.data }
+            .decode(type: MovieDetailsNetworkModel.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
     }
     
     func getCast(

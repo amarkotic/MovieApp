@@ -1,6 +1,10 @@
+import Combine
+
 protocol MoviesUseCaseProtocol {
     
-    var favoriteItems: [Int] { get }
+    var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> { get }
+    
+    var oldFavoriteItems: [Int] { get }
     
     func fetchMovies(
         categoryViewModel: MovieCategoryViewModel,
@@ -29,9 +33,7 @@ protocol MoviesUseCaseProtocol {
     )
     
     func updateFavorites(with id: Int)
-    
-    func fetchFavoriteMovies(completion: @escaping (Result<[MovieModel], Error>) -> Void)
-    
+   
     func fetchSearchMovies(
         with query: String,
         completion: @escaping (Result<[MovieSearchModel], Error>) -> Void

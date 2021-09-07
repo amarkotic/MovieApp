@@ -1,23 +1,19 @@
 import UIKit
+import Combine
 
 class FavoriteMoviesViewController: UIViewController {
     
-    let defaultOffset = 18
-    let cellHeight = CGFloat(154)
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<SectionEnum, MovieViewModel>
+    private typealias DataSource = UICollectionViewDiffableDataSource<SectionEnum, MovieViewModel>
     
-    let layout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 7
-        layout.minimumLineSpacing = 35
-        return layout
-    }()
+    let defaultOffset = 18
     
     var titleLabel: UILabel!
     var collectionView: UICollectionView!
     
-    var movies = [MovieViewModel]()
-    var presenter: FavoriteMoviesPresenter!
+    private var presenter: FavoriteMoviesPresenter!
+    private var disposables = Set<AnyCancellable>()
+    private var dataSource: DataSource!
     
     convenience init(presenter: FavoriteMoviesPresenter) {
         self.init()
@@ -29,45 +25,42 @@ class FavoriteMoviesViewController: UIViewController {
         super.viewDidLoad()
         
         buildViews()
-        presenter.setDelegate(delegate: self)
+        makeDataSource()
+        bindViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        presenter.fetchMovies()
+    private func bindViews() {
+        presenter
+            .favoriteMovies
+            .sink { [weak self] in
+                self?.updateSnapshot(with: $0)
+            }
+            .store(in: &disposables)
     }
     
-    func reloadData() {
-        collectionView.reloadData()
+    private func makeDataSource() {
+        dataSource = UICollectionViewDiffableDataSource(
+            collectionView: collectionView,
+            cellProvider: {collectionView, indexPath, model in
+                guard
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: MovieCollectionViewCell.reuseIdentifier,
+                        for: indexPath) as? MovieCollectionViewCell
+                else {
+                    return nil
+                }
+                
+                cell.setData(with: model)
+                return cell
+            }
+        )
     }
     
-}
-
-extension FavoriteMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.data.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MovieCollectionViewCell.reuseIdentifier,
-                for: indexPath) as? MovieCollectionViewCell
-        else {
-            return UICollectionViewCell()
-        }
-        
-        let data = presenter.data[indexPath.row]
-        cell.setData(with: data)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (view.frame.width - 60) / 3
-        return CGSize(width: cellWidth, height: cellHeight)
+    private func updateSnapshot(with movies: [MovieViewModel]) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(movies)
+        dataSource.apply(snapshot)
     }
     
 }

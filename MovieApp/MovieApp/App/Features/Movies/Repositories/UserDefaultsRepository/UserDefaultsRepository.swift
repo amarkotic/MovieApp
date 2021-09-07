@@ -1,12 +1,19 @@
 import Foundation
+import Combine
 
 class UserDefaultsRepository: UserDefaultsRepositoryProtocol {
     
     private let favoritesDataSource: FavoritesUserDefaultsDataSourceProtocol
     
-    var favoriteItems: [Int] {
+    var oldFavoriteItems: [Int] {
+        favoritesDataSource
+            .oldItems
+    }
+    
+    var favoriteItems: AnyPublisher<[Int], Never> {
         favoritesDataSource
             .items
+            .eraseToAnyPublisher()
     }
     
     init(favoritesDataSource: FavoritesUserDefaultsDataSourceProtocol) {

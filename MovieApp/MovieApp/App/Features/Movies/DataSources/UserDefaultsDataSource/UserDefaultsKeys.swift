@@ -1,5 +1,5 @@
 enum UserDefaultsKeys: String {
     
-    case favorites = "favorite_movies"
+    case favorites = "favorites"
     
 }
