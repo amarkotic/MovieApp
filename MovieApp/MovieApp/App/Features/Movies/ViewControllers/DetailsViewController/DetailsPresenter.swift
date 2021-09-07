@@ -40,7 +40,7 @@ class DetailsPresenter {
         Publishers
             .CombineLatest4(info, credits, reviews, recommendations)
             .map {
-                 return MovieDetailsViewModel(
+                 MovieDetailsViewModel(
                     info: $0.0,
                     credits: $0.1,
                     reviews: $0.2,
