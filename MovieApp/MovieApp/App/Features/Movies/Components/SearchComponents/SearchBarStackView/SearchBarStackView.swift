@@ -10,8 +10,6 @@ class SearchBarStackView: UIStackView {
     var searchBar: SearchBar!
     var cancelButton: UIButton!
     
-    weak private var delegate: MoviesSearchViewController?
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -21,10 +19,6 @@ class SearchBarStackView: UIStackView {
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setDelegate(delegate: MoviesSearchViewController) {
-        self.delegate = delegate
     }
     
     func activateKeyboard() {
@@ -53,7 +47,6 @@ class SearchBarStackView: UIStackView {
     @objc private func didTapCancelButton() {
         setView(view: cancelButton, hidden: true)
         setView(view: searchBar.searchCancelButton, hidden: true)
-        delegate?.dismiss(animated: true, completion: nil)
         endEditing(true)
     }
     

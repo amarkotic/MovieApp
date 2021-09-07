@@ -19,9 +19,7 @@ extension MoviesSearchViewController: DesignProtocol {
     
     func styleViews() {
         view.backgroundColor = .white
-        
-        tableView.delegate = self
-        tableView.dataSource = self
+
         tableView.backgroundColor = .white
         tableView.register(MovieSearchCell.self, forCellReuseIdentifier: MovieSearchCell.reuseIdentifier)
         tableView.rowHeight = rowHeight

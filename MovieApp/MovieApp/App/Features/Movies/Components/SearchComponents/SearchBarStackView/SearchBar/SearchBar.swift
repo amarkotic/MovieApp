@@ -10,8 +10,6 @@ class SearchBar: UIView {
     var magnifierImageView: UIImageView!
     var searchTextField: UITextField!
     var searchCancelButton: UIButton!
-    
-    weak private var delegate: HomeViewController?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,8 +21,4 @@ class SearchBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setDelegate(delegate: HomeViewController) {
-        self.delegate = delegate
-    }
-
 }

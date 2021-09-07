@@ -64,23 +64,12 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             .map { $0.results.map { RecommendationDataSourceModel(from: $0) } }
             .eraseToAnyPublisher()
     }
-
-    func fetchSearchMovies(
-        with query: String,
-        completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void
-    ) 	{
-        networkClient.getSearchMovies(with: query) {
-            (result: Result<MoviesNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(_):
-                print("Invalid query")
-            case .success(let value):
-                let movieDataSourceModels = value.results.map {
-                    return MovieDataSourceModel(from: $0)
-                }
-                completion(.success(movieDataSourceModels))
-            }
-        }
+    
+    func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieDataSourceModel], Error> {
+        networkClient
+            .getSearchMovies(with: query)
+            .map { $0.results.map { MovieDataSourceModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
     
 }

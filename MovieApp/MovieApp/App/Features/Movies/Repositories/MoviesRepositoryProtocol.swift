@@ -16,9 +16,6 @@ protocol MoviesRepositoryProtocol {
     
     func fetchRecommendations(with id: Int) -> AnyPublisher<[RecommendationRepositoryModel], Error>
     
-    func fetchSearchMovies(
-        with query: String,
-        completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
-    )
+    func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieRepositoryModel], Error>
     
 }

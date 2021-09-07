@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
         buildViews()
         presenter.setDelegate(delegate: self)
         presenter.initialFetch()
-        searchBar.setDelegate(delegate: self)
         searchBar.searchTextField.addTarget(self, action: #selector(goToSearch), for: .touchDown)
     }
     

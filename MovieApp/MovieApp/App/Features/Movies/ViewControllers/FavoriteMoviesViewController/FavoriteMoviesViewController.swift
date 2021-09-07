@@ -2,9 +2,10 @@ import UIKit
 import Combine
 
 class FavoriteMoviesViewController: UIViewController {
-    
+
     private typealias Snapshot = NSDiffableDataSourceSnapshot<SectionEnum, MovieViewModel>
     private typealias DataSource = UICollectionViewDiffableDataSource<SectionEnum, MovieViewModel>
+
     
     let defaultOffset = 18
     

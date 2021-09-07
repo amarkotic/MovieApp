@@ -67,22 +67,11 @@ class MoviesRepository: MoviesRepositoryProtocol {
             .eraseToAnyPublisher() 
     }
 
-    func fetchSearchMovies(
-        with query: String,
-        completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
-    ) {
-        networkDataSource.fetchSearchMovies(with: query) { (result: Result<[MovieDataSourceModel], Error>) in
-            
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let movieRepositoryModels = value.map {
-                    MovieRepositoryModel(from: $0)
-                }
-                completion(.success(movieRepositoryModels))
-            }
-        }
+    func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieRepositoryModel], Error> {
+        networkDataSource
+            .fetchSearchMovies(with: query)
+            .map { $0.map { MovieRepositoryModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
-    
+
 }
