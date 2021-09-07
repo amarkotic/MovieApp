@@ -42,8 +42,7 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
     
     private func setupSearchListener() {
         searchBarStackView.searchBar.searchTextField
-            .textPublisher()
-            .receiveOnMain()
+            .rxText
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .sink { [weak self] in
                 guard let self = self else { return }
@@ -88,7 +87,8 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
             .publisher(for: .touchUpInside)
             .sink { [weak self] _ in
                 self?.popViewController()
-            }.store(in: &disposables)
+            }
+            .store(in: &disposables)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
