@@ -3,8 +3,8 @@ import Combine
 
 class FavoriteMoviesViewController: UIViewController {
 
-    typealias Snapshot = NSDiffableDataSourceSnapshot<SectionEnum, MovieViewModel>
-    typealias DataSource = UICollectionViewDiffableDataSource<SectionEnum, MovieViewModel>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<SectionEnum, MovieViewModel>
+    private typealias DataSource = UICollectionViewDiffableDataSource<SectionEnum, MovieViewModel>
 
     let defaultOffset = 18
 
@@ -34,7 +34,8 @@ class FavoriteMoviesViewController: UIViewController {
             .favoriteMovies
             .sink { [weak self] movies in
                 self?.updateSnapshot(with: movies)
-            }.store(in: &disposables)
+            }
+            .store(in: &disposables)
     }
 
     private func makeDataSource() {

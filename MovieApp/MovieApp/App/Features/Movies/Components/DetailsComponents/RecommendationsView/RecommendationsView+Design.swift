@@ -26,10 +26,11 @@ extension RecommendationsView: DesignProtocol {
             RecommendationCollectionViewCell.self,
             forCellWithReuseIdentifier: RecommendationCollectionViewCell.reuseIdentifier
         )
-        collectionView.contentInset = UIEdgeInsets(top: 0,
-                                                   left: CGFloat(defaultOffset),
-                                                   bottom: 0,
-                                                   right: CGFloat(defaultOffset))
+        collectionView.contentInset = UIEdgeInsets(
+            top: 0,
+            left: CGFloat(defaultOffset),
+            bottom: 0,
+            right: CGFloat(defaultOffset))
         collectionView.backgroundColor = .none
     }
 

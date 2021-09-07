@@ -35,11 +35,14 @@ extension CastView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         castViewModel.count
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCollectionViewCell.reuseIdentifier,
-                                                          for: indexPath) as? CastCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: CastCollectionViewCell.reuseIdentifier,
+                        for: indexPath) as? CastCollectionViewCell
         else {
             return UICollectionViewCell()
         }
@@ -48,8 +51,11 @@ extension CastView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         let cellWidth = (frame.width - 35) / 3
         return CGSize(width: cellWidth, height: 40)
     }

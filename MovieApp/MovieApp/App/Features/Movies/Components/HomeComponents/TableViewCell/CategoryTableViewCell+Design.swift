@@ -25,20 +25,22 @@ extension CategoryTableViewCell: DesignProtocol {
 
         titleLabel.textColor = .appBlue
 
-        scrollView.contentInset = UIEdgeInsets(top: 0,
-                                               left: CGFloat(defaultOffset),
-                                               bottom: 0,
-                                               right: CGFloat(defaultOffset))
+        scrollView.contentInset = UIEdgeInsets(
+            top: 0,
+            left: CGFloat(defaultOffset),
+            bottom: 0,
+            right: CGFloat(defaultOffset))
         scrollView.setDelegate(delegate: self)
 
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(MovieCollectionViewCell.self,
                                 forCellWithReuseIdentifier: MovieCollectionViewCell.reuseIdentifier)
-        collectionView.contentInset = UIEdgeInsets(top: 0,
-                                                   left: CGFloat(defaultOffset),
-                                                   bottom: 0,
-                                                   right: CGFloat(defaultOffset))
+        collectionView.contentInset = UIEdgeInsets(
+            top: 0,
+            left: CGFloat(defaultOffset),
+            bottom: 0,
+            right: CGFloat(defaultOffset))
         collectionView.backgroundColor = .none
     }
 

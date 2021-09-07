@@ -32,12 +32,14 @@ extension ActorsView: DesignProtocol {
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(ActorsCollectionViewCell.self,
-                                forCellWithReuseIdentifier: ActorsCollectionViewCell.reuseIdentifier)
-        collectionView.contentInset = UIEdgeInsets(top: 0,
-                                                   left: CGFloat(defaultOffset),
-                                                   bottom: 0,
-                                                   right: CGFloat(defaultOffset))
+        collectionView.register(
+            ActorsCollectionViewCell.self,
+            forCellWithReuseIdentifier: ActorsCollectionViewCell.reuseIdentifier)
+        collectionView.contentInset = UIEdgeInsets(
+            top: 0,
+            left: CGFloat(defaultOffset),
+            bottom: 0,
+            right: CGFloat(defaultOffset))
         collectionView.backgroundColor = .none
     }
 

@@ -62,8 +62,9 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
             tableView: tableView,
             cellProvider: { tableView, indexPath, model in
                 guard
-                    let cell = tableView.dequeueReusableCell(withIdentifier: MovieSearchCell.reuseIdentifier,
-                                                            for: indexPath) as? MovieSearchCell
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: MovieSearchCell.reuseIdentifier,
+                        for: indexPath) as? MovieSearchCell
                 else {
                     return nil
                 }
@@ -88,7 +89,8 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
             .publisher(for: .touchUpInside)
             .sink { [weak self] _ in
                 self?.popViewController()
-            }.store(in: &disposables)
+            }
+            .store(in: &disposables)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

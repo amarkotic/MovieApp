@@ -41,8 +41,10 @@ extension RecommendationsView: UICollectionViewDataSource, UICollectionViewDeleg
         return recommendations.count
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RecommendationCollectionViewCell.reuseIdentifier,
