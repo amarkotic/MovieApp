@@ -37,22 +37,6 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         }
     }
     
-    func fetchMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsDataSourceModel, Error>) -> Void
-    ) {
-        networkClient.getMovie(with: id) {
-            (result: Result<MovieDetailsNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let movieDataSourceModels = MovieDetailsDataSourceModel(from: value)
-                completion(.success(movieDataSourceModels))
-            }
-        }
-    }
-    
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsDataSourceModel, Error> {
         networkClient
             .getMovie(with: id)
@@ -60,76 +44,27 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchCast(
-        with id: Int,
-        completion: @escaping (Result<[CastDataSourceModel], Error>) -> Void
-    ) {
-        networkClient.getCast(with: id) { (result: Result<WholeCastNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let castDataSourceModels = model.crew.map {
-                    CastDataSourceModel(from: $0)
-                }
-                completion(.success(castDataSourceModels))
-            }
-        }
+    func fetchCredits(with id: Int) -> AnyPublisher<CreditsDataSourceModel, Error> {
+        networkClient
+            .getCredits(with: id)
+            .map { CreditsDataSourceModel(from: $0) }
+            .eraseToAnyPublisher()
     }
     
-    func fetchActors(
-        with id: Int,
-        completion: @escaping (Result<[ActorDataSourceModel], Error>) -> Void
-    ) {
-        networkClient.getActors(with: id) { (result: Result<ActorsNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let actorsDataSourceModels = model.cast.map {
-                    ActorDataSourceModel(from: $0)
-                }
-                completion(.success(actorsDataSourceModels))
-            }
-        }
+    func fetchReviews(with id: Int) -> AnyPublisher<[ReviewDataSourceModel], Error> {
+        networkClient
+            .getReviews(with: id)
+            .map { $0.results.map { ReviewDataSourceModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
     
-    func fetchReviews(
-        with id: Int,
-        completion: @escaping (Result<[ReviewDataSourceModel], Error>) -> Void
-    ) {
-        
-        networkClient.getReviews(with: id) { (result: Result<ReviewsNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let reviewDataSourceModels = model.results.map {
-                    ReviewDataSourceModel(from: $0)
-                }
-                completion(.success(reviewDataSourceModels))
-            }
-        }
+    func fetchRecommendations(with id: Int) -> AnyPublisher<[RecommendationDataSourceModel], Error> {
+        networkClient
+            .getRecommendations(with: id)
+            .map { $0.results.map { RecommendationDataSourceModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
-    
-    func fetchRecommendations(
-        with id: Int,
-        completion: @escaping (Result<[RecommendationDataSourceModel], Error>) -> Void
-    ) {
-        
-        networkClient.getRecommendations(with: id) { (result: Result<RecommendationsNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let recommendationsDataSourceModels = model.results.map {
-                    RecommendationDataSourceModel(from: $0)
-                }
-                completion(.success(recommendationsDataSourceModels))
-            }
-        }
-    }
-    
+
     func fetchSearchMovies(
         with query: String,
         completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void

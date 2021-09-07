@@ -14,7 +14,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 guard let self = self else { return .never() }
                 
                 let movieStreams = ids.map {
-                    self.moviesRepository.fetchfavoriteMovie(with: $0)
+                    self.moviesRepository.fetchMovie(with: $0)
                 }
                 return Publishers.MergeMany(movieStreams)
                     .collect()
@@ -82,98 +82,41 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         }
     }
     
-    func fetchMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsModel, Error>) -> Void
-    ) {
-        moviesRepository.fetchMovie(with: id) {
-            (result: Result<MovieDetailsRepositoryModel, Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let movieDetailsModels: MovieDetailsModel = MovieDetailsModel(from: value)
-                completion(.success(movieDetailsModels))
+    func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error> {
+        let favoriteIdsPublisher = userDefaultsRepository
+            .favoriteItems
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        
+        return moviesRepository
+            .fetchMovie(with: id)
+            .combineLatest(favoriteIdsPublisher)
+            .map {
+                let isSelected = $0.1.contains(id)
+                return  MovieDetailsModel(from: $0.0, isSelected: isSelected)
             }
-        }
+            .eraseToAnyPublisher()
     }
     
-    func fetchCast(
-        with id: Int,
-        completion: @escaping (Result<[CastModel], Error>) -> Void
-    ) {
-        moviesRepository.fetchCast(with: id) { (result: Result<[CastRepositoryModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let castModel = model.map {
-                    CastModel(from: $0)
-                }
-                completion(.success(Array(castModel.prefix(6))))
-            }
-        }
+    func fetchCredits(with id: Int) -> AnyPublisher<CreditsModel, Error> {
+        moviesRepository
+            .fetchCredits(with: id)
+            .map { CreditsModel(from: $0) }
+            .eraseToAnyPublisher()
     }
     
-    func fetchActors(
-        with id: Int,
-        completion: @escaping (Result<[ActorModel], Error>) -> Void
-    ) {
-        moviesRepository.fetchActors(with: id) { (result: Result<[ActorRepositoryModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let actorsModels = model.map {
-                    ActorModel(from: $0)
-                }
-                let actors = actorsModels.filter { model in
-                    model.deparment.elementsEqual(CastKeys.acting.rawValue)
-                }
-                completion(.success(Array(actors.prefix(10))))
-            }
-        }
+    func fetchReviews(with id: Int) -> AnyPublisher<[ReviewModel], Error> {
+        moviesRepository
+            .fetchReviews(with: id)
+            .map { $0.map { ReviewModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
-    
-    func fetchReview(
-        with id: Int,
-        completion: @escaping (Result<ReviewModel, CustomError>) -> Void
-    ) {
-        moviesRepository.fetchReviews(with: id) { (result: Result<[ReviewRepositoryModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let reviewModels = model.map {
-                    return ReviewModel(from: $0)
-                }
-                guard
-                    let review = reviewModels.first
-                else {
-                    completion(.failure(.noReview))
-                    return
-                }
-                
-                completion(.success(review))     
-            }
-        }
-    }
-    
-    func fetchRecommendations(
-        with id: Int,
-        completion: @escaping (Result<[RecommendationModel], Error>) -> Void
-    ) {
-        moviesRepository.fetchRecommendations(with: id) { (result: Result<[RecommendationRepositoryModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let model):
-                let recommendationsModels = model.map {
-                    RecommendationModel(from: $0)
-                }
-                completion(.success(recommendationsModels))
-            }
-        }
+
+    func fetchRecommendations(with id: Int) -> AnyPublisher<[RecommendationModel], Error> {
+        moviesRepository
+            .fetchRecommendations(with: id)
+            .map { $0.map { RecommendationModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
     
     func updateFavorites(with id: Int) {

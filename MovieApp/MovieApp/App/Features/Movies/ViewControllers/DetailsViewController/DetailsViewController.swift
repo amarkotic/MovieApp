@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class DetailsViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class DetailsViewController: UIViewController {
     var recommendationView: RecommendationsView!
     
     var presenter: DetailsPresenter!
+    private var disposables = Set<AnyCancellable>()
 
     convenience init(presenter: DetailsPresenter) {
         self.init()
@@ -33,38 +35,43 @@ class DetailsViewController: UIViewController {
         styleNavigationBar()
         presenter.setDelegate(delegate: self)
         mainInfoView.setDelegate(delegate: self)
-        presenter.fetchData()
-    }
-    
-    func setMainInfoData(model: MovieDetailsViewModel) {
-        mainInfoView.setData(with: model.info)
-        overviewView.setData(with: model.overview)
-    }
-    
-    func setActorsData(model: [ActorViewModel]) {
-        actorsView.setData(with: model)
-    }
-    
-    func setCastData(model: [CastViewModel]) {
-        castView.setData(with: model)
-    }
-    
-    func setReviewData(model: SocialViewModel) {
-        socialView.setData(with: model)
-    }
-    
-    func setRecommendationsData(model: [RecommendationsViewModel]) {
-        recommendationView.setData(with: model)
+        bindViews()
     }
     
     func favoritePressed() {
         presenter.updateFavoriteMovie()
+        bindViews()
     }
     
     func hideReview() {
         socialView.postTitle.text = LocalizableStrings.noReview.rawValue
         socialView.postInfo.text = LocalizableStrings.tryAgain.rawValue
         socialView.logoImage.image = UIImage(with: .noReview)
+    }
+    
+    private func bindViews() {
+        presenter
+            .detailsData
+            .sink { _ in }
+                receiveValue: { [weak self] in
+                    self?.setData(with: $0)
+                }
+            .store(in: &disposables)
+    }
+    
+    private func setData(with model: MovieDetailsViewModel) {
+        mainInfoView.setData(with: model.info.mainInfoModel)
+        overviewView.setData(with: model.info.overviewModel)
+        actorsView.setData(with: Array(model.credits.actors.prefix(10)))
+        castView.setData(with: Array(model.credits.cast.prefix(6)))
+        recommendationView.setData(with: model.recommendations)
+        guard
+            let review = model.reviews.first
+        else {
+            hideReview()
+            return
+        }
+        socialView.setData(with: review)
     }
     
     private func styleNavigationBar() {

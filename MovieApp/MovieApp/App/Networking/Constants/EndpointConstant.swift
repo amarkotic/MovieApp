@@ -51,7 +51,7 @@ extension EndpointConstant {
         )
     }
     
-    static func actors(id: Int) -> EndpointConstant {
+    static func credits(id: Int) -> EndpointConstant {
         EndpointConstant(path: "/3/movie/\(id)/credits",
                          queryItems: [
                             URLQueryItem(name: "api_key", value: NetworkConstants.apiKey)

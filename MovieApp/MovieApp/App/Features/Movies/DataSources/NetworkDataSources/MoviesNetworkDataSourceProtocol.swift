@@ -7,33 +7,14 @@ protocol MoviesNetworkDataSourceProtocol {
         subcategoryRepositoryModel: SubcategoryRepositoryModel,
         completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void
     ) 
-
-    func fetchMovie(
-        with id: Int,
-        completion: @escaping (Result<MovieDetailsDataSourceModel, Error>) -> Void
-    )
     
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsDataSourceModel, Error>
     
-    func fetchCast(
-        with id: Int,
-        completion: @escaping (Result<[CastDataSourceModel], Error>) -> Void
-    )
+    func fetchCredits(with id: Int) -> AnyPublisher<CreditsDataSourceModel, Error>
     
-    func fetchActors(
-        with id: Int,
-        completion: @escaping (Result<[ActorDataSourceModel], Error>) -> Void
-    )
+    func fetchReviews(with id: Int) -> AnyPublisher<[ReviewDataSourceModel], Error> 
     
-    func fetchReviews(
-        with id: Int,
-        completion: @escaping (Result<[ReviewDataSourceModel], Error>) -> Void
-    )
-    
-    func fetchRecommendations(
-        with id: Int,
-        completion: @escaping (Result<[RecommendationDataSourceModel], Error>) -> Void
-    )
+    func fetchRecommendations(with id: Int) -> AnyPublisher<[RecommendationDataSourceModel], Error>
     
     func fetchSearchMovies(
         with query: String,
