@@ -41,10 +41,10 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
             .decode(type: MovieDetailsNetworkModel.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
-    
+
     func getCredits(with id: Int) -> AnyPublisher<CreditsNetworkModel, Error> {
         guard let url = EndpointConstant.credits(id: id).url else { return .empty() }
-        
+
         return URLSession.shared.dataTaskPublisher(for: url)
             .map { $0.data }
             .decode(type: CreditsNetworkModel.self, decoder: JSONDecoder())
