@@ -27,7 +27,6 @@ extension CastCollectionViewCell: DesignProtocol {
         name.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview()
         }
-
         role.snp.makeConstraints {
             $0.top.equalTo(name.snp.bottom).offset(defaultOffset)
             $0.leading.bottom.trailing.equalToSuperview()

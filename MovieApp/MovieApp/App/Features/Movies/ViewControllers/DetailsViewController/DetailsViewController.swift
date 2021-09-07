@@ -52,7 +52,7 @@ class DetailsViewController: UIViewController {
     private func bindViews() {
         presenter
             .detailsData
-            .sink {_ in }
+            .sink { _ in }
                 receiveValue: { [weak self] in
                     self?.setData(with: $0)
                 }
@@ -65,7 +65,8 @@ class DetailsViewController: UIViewController {
         actorsView.setData(with: Array(model.credits.actors.prefix(10)))
         castView.setData(with: Array(model.credits.cast.prefix(6)))
         recommendationView.setData(with: model.recommendations)
-        guard let review = model.reviews.first
+        guard
+            let review = model.reviews.first
         else {
             hideReview()
             return

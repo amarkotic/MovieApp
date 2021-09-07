@@ -20,7 +20,8 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     .collect()
                     .eraseToAnyPublisher()
             }
-            .assertNoFailure()
+
+            .replaceError(with: [])
             .map { $0.map { FavoriteMovieModel(id: $0.id, imageUrl: $0.posterPath, isSelected: true) } }
             .eraseToAnyPublisher()
     }
@@ -49,19 +50,18 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         else {
             return
         }
-
         moviesRepository.fetchMovies(
             categoryModel: categoryModel,
             subcategoryModel: subcategoryModel
-        ) { (result: Result<[MovieRepositoryModel], Error>)  in
+        ) { [weak self] (result: Result<[MovieRepositoryModel], Error>)  in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let repoModels):
-                let useCaseModels: [MovieModel] = repoModels.map { [weak self] model -> MovieModel in
+                let useCaseModels: [MovieModel] = repoModels.map { model -> MovieModel in
                     let subcategoryModels = model.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) }
                     let savedMovieIds = self?.userDefaultsRepository.oldFavoriteItems
-                    let isSaved = savedMovieIds!.contains(model.id)
+                    let isSaved = savedMovieIds?.contains(model.id) ?? false
                     return MovieModel(
                         id: model.id,
                         imageUrl: model.imageUrl,

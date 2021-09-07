@@ -3,8 +3,8 @@ import Combine
 
 class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
 
-    typealias Snapshot = NSDiffableDataSourceSnapshot<SectionEnum, MovieSearchViewModel>
-    typealias DataSource = UITableViewDiffableDataSource<SectionEnum, MovieSearchViewModel>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<SectionEnum, MovieSearchViewModel>
+    private typealias DataSource = UITableViewDiffableDataSource<SectionEnum, MovieSearchViewModel>
 
     let rowHeight: CGFloat = 142
     let defaultInset = 20
@@ -42,8 +42,7 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
 
     private func setupSearchListener() {
         searchBarStackView.searchBar.searchTextField
-            .textPublisher()
-            .receiveOnMain()
+            .rxText
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .sink { [weak self] in
                 guard let self = self else { return }
@@ -64,7 +63,7 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
             cellProvider: { tableView, indexPath, model in
                 guard
                     let cell = tableView.dequeueReusableCell(withIdentifier: MovieSearchCell.reuseIdentifier,
-                                                             for: indexPath) as? MovieSearchCell
+                                                            for: indexPath) as? MovieSearchCell
                 else {
                     return nil
                 }
@@ -78,7 +77,7 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
 
     private func updateSnapshot(with movies: [MovieSearchViewModel]) {
         var snapshot = Snapshot()
-        snapshot.appendSections([.second])
+        snapshot.appendSections([.main])
         snapshot.appendItems(movies)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
