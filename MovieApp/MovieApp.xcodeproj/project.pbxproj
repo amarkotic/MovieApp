@@ -586,7 +586,7 @@
 				5278E23E26C2C29B00F4A2CE /* FavoriteMoviesPresenter.swift */,
 				525666A926A8418300B5E0BE /* FavoriteMoviesViewController.swift */,
 				525666AD26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift */,
-				52AABDCA26CFBF1100D1C114 /* New Group */,
+				52AABDCA26CFBF1100D1C114 /* SectionEnum */,
 			);
 			path = FavoriteMoviesViewController;
 			sourceTree = "<group>";
@@ -796,12 +796,12 @@
 			path = SubcategoryItem;
 			sourceTree = "<group>";
 		};
-		52AABDCA26CFBF1100D1C114 /* New Group */ = {
+		52AABDCA26CFBF1100D1C114 /* SectionEnum */ = {
 			isa = PBXGroup;
 			children = (
 				52AABDCB26CFBF2000D1C114 /* SectionEnum.swift */,
 			);
-			path = "New Group";
+			path = SectionEnum;
 			sourceTree = "<group>";
 		};
 		52AABDD126CFE6AB00D1C114 /* Combine */ = {

@@ -74,10 +74,10 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
             }
         )
     }
-    
+
     private func updateSnapshot(with movies: [MovieSearchViewModel]) {
         var snapshot = Snapshot()
-        snapshot.appendSections([.second])
+        snapshot.appendSections([.main])
         snapshot.appendItems(movies)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
