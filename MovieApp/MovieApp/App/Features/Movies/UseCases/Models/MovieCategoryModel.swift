@@ -4,7 +4,7 @@ enum MovieCategoryModel {
     case topRated
     case trending
 
-    init?(from model: MovieCategoryViewModel) {
+    init(from model: MovieCategoryViewModel) {
         switch model {
         case .popular:
             self = .popular

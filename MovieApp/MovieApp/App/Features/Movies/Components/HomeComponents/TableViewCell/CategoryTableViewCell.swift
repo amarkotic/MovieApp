@@ -40,12 +40,12 @@ class CategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func populateCell(title: MovieCategoryViewModel, categories: [SubcategoryViewModel], movies: [MovieViewModel]) {
+    func populateCell(title: MovieCategoryViewModel, categories: [SubcategoryViewModel]) {
         category = title
         titleLabel.text = title.rawValue
         scrollView.setData(categories: categories)
-        self.movies = movies
-        collectionView.reloadData()
+//        self.movies = movies
+//        collectionView.reloadData()
     }
 
     func subcategoryPressed(subCategory: SubcategoryViewModel) {

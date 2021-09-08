@@ -8,28 +8,42 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         self.networkClient = networkClient
     }
 
+//    func fetchMovies(
+//        categoryRepositoryModel: MovieCategoryRepositoryModel,
+//        subcategoryRepositoryModel: SubcategoryRepositoryModel,
+//        completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void
+//    ) {
+//        let subcategoryDataSourceModel = SubcategoryDataSourceModel(from: subcategoryRepositoryModel)
+//        let categoryDataSourceModel = MovieCategoryDataSourceModel(from: categoryRepositoryModel)
+//
+//        networkClient.getMovies(
+//            categoryDataSourceModel: categoryDataSourceModel,
+//            subcategoryDataSourceModel: subcategoryDataSourceModel
+//        ) { (result: Result<MoviesNetworkModel, NetworkError>) in
+//            switch result {
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            case .success(let value):
+//                let movieDataSourceModels: [MovieDataSourceModel] = value.results.map {
+//                    return MovieDataSourceModel(from: $0)
+//                }
+//                completion(.success(movieDataSourceModels))
+//            }
+//        }
+//    }
+
     func fetchMovies(
         categoryRepositoryModel: MovieCategoryRepositoryModel,
-        subcategoryRepositoryModel: SubcategoryRepositoryModel,
-        completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void
-    ) {
+        subcategoryRepositoryModel: SubcategoryRepositoryModel
+    ) -> AnyPublisher<[MovieDataSourceModel], Error> {
+
         let subcategoryDataSourceModel = SubcategoryDataSourceModel(from: subcategoryRepositoryModel)
         let categoryDataSourceModel = MovieCategoryDataSourceModel(from: categoryRepositoryModel)
 
-        networkClient.getMovies(
-            categoryDataSourceModel: categoryDataSourceModel,
-            subcategoryDataSourceModel: subcategoryDataSourceModel
-        ) { (result: Result<MoviesNetworkModel, NetworkError>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let movieDataSourceModels: [MovieDataSourceModel] = value.results.map {
-                    return MovieDataSourceModel(from: $0)
-                }
-                completion(.success(movieDataSourceModels))
-            }
-        }
+        return networkClient
+            .getMovies(category: categoryDataSourceModel, subcategory: subcategoryDataSourceModel)
+            .map { $0.results.map { MovieDataSourceModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsDataSourceModel, Error> {

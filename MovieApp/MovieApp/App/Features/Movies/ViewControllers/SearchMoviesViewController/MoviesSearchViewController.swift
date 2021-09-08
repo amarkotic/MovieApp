@@ -68,10 +68,8 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
                 else {
                     return nil
                 }
-
                 cell.populateCell(with: model)
                 return cell
-
             }
         )
     }
