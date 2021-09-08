@@ -1,5 +1,5 @@
 struct MovieDetailsModel {
-    
+
     let posterPath: String
     let voteAverage: Float
     let title: String
@@ -9,7 +9,7 @@ struct MovieDetailsModel {
     let genres: [GenresModel]
     let overview: String
     let isFavorited: Bool
-    
+
     init(from repositoryModel: MovieDetailsRepositoryModel, isSelected: Bool) {
         posterPath = NetworkConstants.imagePath + repositoryModel.posterPath
         voteAverage = repositoryModel.voteAverage * 10
@@ -24,13 +24,13 @@ struct MovieDetailsModel {
 }
 
 struct GenresModel {
-    
+
     let id: Int
     let name: String
-    
+
     init(from genresRepositoryModel: GenresRepositoryModel) {
         id = genresRepositoryModel.id
         name = genresRepositoryModel.name
     }
-    
+
 }

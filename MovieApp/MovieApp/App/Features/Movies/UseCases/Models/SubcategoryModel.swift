@@ -1,12 +1,11 @@
 enum SubcategoryModel: Int {
-    
+
     case action
     case adventure
     case comedy
     case drama
     case family
     case horror
-    case romance
     case thriller
     case scienceFiction
     case today
@@ -26,8 +25,6 @@ enum SubcategoryModel: Int {
             self = .family
         case .horror:
             self = .horror
-        case .romance:
-            self = .romance
         case .thriller:
             self = .thriller
         case .scienceFiction:
@@ -38,5 +35,5 @@ enum SubcategoryModel: Int {
             self = .thisWeek
         }
     }
-    
+
 }

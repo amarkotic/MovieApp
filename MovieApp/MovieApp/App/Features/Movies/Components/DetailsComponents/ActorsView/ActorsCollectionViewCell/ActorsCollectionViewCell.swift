@@ -2,30 +2,30 @@ import UIKit
 import Kingfisher
 
 class ActorsCollectionViewCell: UICollectionViewCell {
-    
+
     static let reuseIdentifier = String(describing: ActorsCollectionViewCell.self)
-    
+
     let defaultOffset = 5
     let actorImageHeight = 130
     let cornerRadius = CGFloat(10)
-    
+
     var actorImageView: UIImageView!
     var nameLabel: UILabel!
     var roleLabel: UILabel!
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         buildViews()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         backgroundColor = .clear
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
@@ -33,10 +33,10 @@ class ActorsCollectionViewCell: UICollectionViewCell {
         layer.shadowOffset = .zero
         layer.shadowRadius = 10
         layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        
+
         contentView.backgroundColor = .white
     }
-    
+
     func setData(model: ActorViewModel) {
         guard let posterPath = model.posterPath else { return }
 
@@ -44,6 +44,5 @@ class ActorsCollectionViewCell: UICollectionViewCell {
         roleLabel.text = model.roleLabel
         actorImageView.kf.setImage(with: URL(string: posterPath))
     }
-    
+
 }
- 

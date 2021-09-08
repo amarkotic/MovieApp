@@ -1,14 +1,14 @@
 import Foundation
 
 struct EndpointConstant {
-    
+
     let path: String
     let queryItems: [URLQueryItem]
-    
+
 }
 
 extension EndpointConstant {
-    
+
     static var popularMovies: EndpointConstant {
         EndpointConstant(path: "/3/movie/popular",
                          queryItems: [
@@ -17,7 +17,7 @@ extension EndpointConstant {
                          ]
         )
     }
-    
+
     static var topRatedMovies: EndpointConstant {
         EndpointConstant(path: "/3/movie/top_rated",
                          queryItems: [
@@ -26,7 +26,7 @@ extension EndpointConstant {
                          ]
         )
     }
-    
+
     static var trendingMoviesToday: EndpointConstant {
         EndpointConstant(path: "/3/trending/movie/day",
                          queryItems: [
@@ -34,7 +34,7 @@ extension EndpointConstant {
                          ]
         )
     }
-    
+
     static var trendingMoviesThisWeek: EndpointConstant {
         EndpointConstant(path: "/3/trending/movie/week",
                          queryItems: [
@@ -42,7 +42,7 @@ extension EndpointConstant {
                          ]
         )
     }
-    
+
     static func movie(id: Int) -> EndpointConstant {
         EndpointConstant(path: "/3/movie/\(id)",
                          queryItems: [
@@ -50,7 +50,7 @@ extension EndpointConstant {
                          ]
         )
     }
-    
+
     static func credits(id: Int) -> EndpointConstant {
         EndpointConstant(path: "/3/movie/\(id)/credits",
                          queryItems: [
@@ -58,7 +58,7 @@ extension EndpointConstant {
                          ]
         )
     }
-    
+
     static func reviews(id: Int) -> EndpointConstant {
         EndpointConstant(path: "/3/movie/\(id)/reviews",
                          queryItems: [
@@ -66,7 +66,7 @@ extension EndpointConstant {
                          ]
         )
     }
-    
+
     static func recommendations(id: Int) -> EndpointConstant {
         EndpointConstant(path: "/3/movie/\(id)/recommendations",
                          queryItems: [
@@ -74,7 +74,7 @@ extension EndpointConstant {
                          ]
         )
     }
-    
+
     static func searchMovie(with query: String) -> EndpointConstant {
         EndpointConstant(path: "/3/search/movie",
                          queryItems: [
@@ -88,7 +88,7 @@ extension EndpointConstant {
 }
 
 extension EndpointConstant {
-    
+
     var url: URL? {
         var components = URLComponents()
         components.scheme = "https"
@@ -97,5 +97,5 @@ extension EndpointConstant {
         components.queryItems = queryItems
         return components.url
     }
-    
+
 }

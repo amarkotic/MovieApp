@@ -1,18 +1,17 @@
 enum SubcategoryDataSourceModel: Int {
-    
+
     case action = 28
     case adventure = 12
     case comedy = 35
     case drama = 18
     case family = 10751
     case horror = 27
-    case romance = 10749
     case thriller = 53
     case scienceFiction = 878
     case today
     case thisWeek
-    
-    init?(from model: SubcategoryRepositoryModel) {
+
+    init(from model: SubcategoryRepositoryModel) {
         switch model {
         case .action:
             self = .action
@@ -26,8 +25,6 @@ enum SubcategoryDataSourceModel: Int {
             self = .family
         case .horror:
             self = .horror
-        case .romance:
-            self = .romance
         case .thriller:
             self = .thriller
         case .scienceFiction:

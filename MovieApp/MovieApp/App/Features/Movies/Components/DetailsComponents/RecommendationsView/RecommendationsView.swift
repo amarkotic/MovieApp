@@ -1,7 +1,7 @@
 import UIKit
 
 class RecommendationsView: UIView {
-    
+
     let defaultOffset = 18
     let collectionViewHeight = 154
 
@@ -12,37 +12,39 @@ class RecommendationsView: UIView {
         layout.minimumInteritemSpacing = 12
         return layout
     }()
-    
+
     var title: UILabel!
     var collectionView: UICollectionView!
-    
+
     var recommendations = [RecommendationsViewModel]()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         buildViews()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setData(with recommendationsModel: [RecommendationsViewModel]) {
         recommendations = recommendationsModel
         collectionView.reloadData()
     }
-    
+
 }
 
-extension RecommendationsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+extension RecommendationsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recommendations.count
     }
-    
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RecommendationCollectionViewCell.reuseIdentifier,
@@ -50,9 +52,9 @@ extension RecommendationsView: UICollectionViewDelegate, UICollectionViewDataSou
         else {
             return UICollectionViewCell()
         }
-        
+
         cell.setData(with: recommendations[indexPath.row])
         return cell
     }
-    
+
 }

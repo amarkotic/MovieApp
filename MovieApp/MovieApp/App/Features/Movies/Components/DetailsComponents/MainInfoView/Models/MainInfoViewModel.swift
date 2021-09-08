@@ -1,5 +1,5 @@
 struct MainInfoViewModel {
-    
+
     let posterPath: String
     let progressPercentage: Float
     let movieName: String
@@ -8,7 +8,7 @@ struct MainInfoViewModel {
     let genres: String
     let duration: Int
     let isFavorite: Bool
-    
+
     init(from model: MovieDetailsModel) {
         posterPath = model.posterPath
         progressPercentage = model.voteAverage
@@ -19,5 +19,5 @@ struct MainInfoViewModel {
         duration = model.runtime
         isFavorite = model.isFavorited
     }
-    
+
 }

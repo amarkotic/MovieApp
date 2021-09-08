@@ -2,13 +2,13 @@ import UIKit
 import SnapKit
 
 extension ProgressView {
-    
+
     func buildViews() {
         createViews()
         styleViews()
         defineLayoutForViews()
     }
-    
+
     func createViews() {
         backgroundProgressPath = CAShapeLayer()
         layer.addSublayer(backgroundProgressPath)
@@ -19,7 +19,7 @@ extension ProgressView {
         progressLabel = UILabel(with: .medium(size: 15))
         addSubview(progressLabel)
     }
-    
+
     func styleViews() {
         backgroundProgressPath.path = circularPath.cgPath
         backgroundProgressPath.fillColor = .none
@@ -35,11 +35,11 @@ extension ProgressView {
 
         progressLabel.textColor = .appWhite
     }
-    
+
     func defineLayoutForViews() {
         progressLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
-    
+
 }

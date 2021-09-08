@@ -1,16 +1,16 @@
 import UIKit
 
 extension CustomTabBarController: DesignProtocol {
-    
+
     func buildViews() {
         createViews()
         styleViews()
         defineLayoutForViews()
     }
-    
+
     func createViews() {
     }
-    
+
     func styleViews() {
         tabBar.barTintColor = .white
         tabBar.tintColor = .appBlue
@@ -19,8 +19,7 @@ extension CustomTabBarController: DesignProtocol {
         tabBar.layer.shadowColor = UIColor.appBlack.cgColor
         tabBar.layer.shadowOpacity = 0.05
     }
-    
+
     func defineLayoutForViews() {
     }
 }
-

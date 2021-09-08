@@ -540,6 +540,13 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		522F60FF26E60E4A004A8A8F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		523C2EB5269ED23D00F2EDD6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +658,7 @@
 				526B5163269D6D370095F3E2 /* MovieApp */,
 				526B5162269D6D370095F3E2 /* Products */,
 				5203716326A1C33900DE4AC7 /* Recovered References */,
+				522F60FF26E60E4A004A8A8F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1038,6 +1046,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 526B5178269D6D390095F3E2 /* Build configuration list for PBXNativeTarget "MovieApp" */;
 			buildPhases = (
+				522F60FB26E60859004A8A8F /* Run SwiftLint */,
 				526B515D269D6D370095F3E2 /* Sources */,
 				526B515E269D6D370095F3E2 /* Frameworks */,
 				526B515F269D6D370095F3E2 /* Resources */,
@@ -1083,6 +1092,7 @@
 				523C2EAA269DAAD500F2EDD6 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				523C2ED726A1655C00F2EDD6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				523C2EDD26A1B4B300F2EDD6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				522F60FA26E606CB004A8A8F /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 526B5162269D6D370095F3E2 /* Products */;
 			projectDirPath = "";
@@ -1106,6 +1116,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		522F60FB26E60859004A8A8F /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		526B515D269D6D370095F3E2 /* Sources */ = {
@@ -1441,6 +1472,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		522F60FA26E606CB004A8A8F /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.43.1;
+			};
+		};
 		523C2EAA269DAAD500F2EDD6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";

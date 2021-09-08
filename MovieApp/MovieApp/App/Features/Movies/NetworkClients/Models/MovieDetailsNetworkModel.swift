@@ -1,7 +1,7 @@
 import UIKit
 
 struct MovieDetailsNetworkModel: Codable {
-    
+
     let id: Int
     let posterPath: String
     let voteAverage: Float
@@ -23,12 +23,12 @@ struct MovieDetailsNetworkModel: Codable {
         case genres = "genres"
         case overview = "overview"
     }
-    
+
 }
 
 struct GenresNetworkModel: Codable {
-    
+
     let id: Int
     let name: String
-    
+
 }

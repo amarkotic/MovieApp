@@ -1,5 +1,5 @@
 enum SectionEnum {
-    
+
     case main
-    
+
 }

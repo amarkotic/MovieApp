@@ -1,13 +1,13 @@
 import UIKit
 
 struct MoviesNetworkModel: Codable {
-    
+
     let results: [MovieNetworkModel]
-    
+
 }
 
 struct MovieNetworkModel: Codable {
-    
+
     let id: Int
     let imageUrl: String
     let title: String
@@ -21,5 +21,5 @@ struct MovieNetworkModel: Codable {
         case description = "overview"
         case genreIds = "genre_ids"
     }
-    
+
 }

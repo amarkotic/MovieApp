@@ -1,32 +1,27 @@
 import Combine
 
 class MoviesRepository: MoviesRepositoryProtocol {
-    
+
     var favoriteMovies = [MovieRepositoryModel]()
-    
+
     private let networkDataSource: MoviesNetworkDataSourceProtocol
-    
+
     init(networkDataSource: MoviesNetworkDataSourceProtocol) {
         self.networkDataSource = networkDataSource
     }
-    
+
     func fetchMovies(
         categoryModel: MovieCategoryModel,
         subcategoryModel: SubcategoryModel,
         completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
     ) {
-        guard
-            let categoryRepoModel = MovieCategoryRepositoryModel(from: categoryModel),
-            let subcategoryRepoModel = SubcategoryRepositoryModel(from: subcategoryModel)
-        else {
-            return
-        }
-        
+        let categoryRepoModel = MovieCategoryRepositoryModel(from: categoryModel)
+        let subcategoryRepoModel = SubcategoryRepositoryModel(from: subcategoryModel)
+
         networkDataSource.fetchMovies(
             categoryRepositoryModel: categoryRepoModel,
             subcategoryRepositoryModel: subcategoryRepoModel
-        ) {
-            (result: Result<[MovieDataSourceModel], Error>) in
+        ) { (result: Result<[MovieDataSourceModel], Error>) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -45,26 +40,26 @@ class MoviesRepository: MoviesRepositoryProtocol {
             .map { MovieDetailsRepositoryModel(from: $0) }
             .eraseToAnyPublisher()
     }
-    
+
     func fetchCredits(with id: Int) -> AnyPublisher<CreditsRepositoryModel, Error> {
         networkDataSource
             .fetchCredits(with: id)
             .map { CreditsRepositoryModel(from: $0) }
             .eraseToAnyPublisher()
     }
-    
+
     func fetchReviews(with id: Int) -> AnyPublisher<[ReviewRepositoryModel], Error> {
         networkDataSource
             .fetchReviews(with: id)
             .map { $0.map { ReviewRepositoryModel(from: $0) } }
             .eraseToAnyPublisher()
     }
-    
+
     func fetchRecommendations(with id: Int) -> AnyPublisher<[RecommendationRepositoryModel], Error> {
         networkDataSource
             .fetchRecommendations(with: id)
             .map { $0.map { RecommendationRepositoryModel(from: $0) } }
-            .eraseToAnyPublisher() 
+            .eraseToAnyPublisher()
     }
 
     func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieRepositoryModel], Error> {
