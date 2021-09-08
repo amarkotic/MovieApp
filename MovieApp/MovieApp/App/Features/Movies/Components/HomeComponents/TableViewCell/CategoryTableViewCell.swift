@@ -71,8 +71,10 @@ extension CategoryTableViewCell: UICollectionViewDelegate,
         delegate?.showMovieDetails(with: movies[indexPath.row].id)
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: MovieCollectionViewCell.reuseIdentifier,

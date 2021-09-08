@@ -42,8 +42,10 @@ extension ActorsView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         return actorsViewModel.count
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ActorsCollectionViewCell.reuseIdentifier,
