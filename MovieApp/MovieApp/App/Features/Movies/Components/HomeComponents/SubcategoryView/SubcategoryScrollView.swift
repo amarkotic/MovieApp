@@ -7,8 +7,7 @@ class SubcategoryScrollView: UIScrollView {
     var indexSelected: Int!
     var stackView: UIStackView!
 
-    var flag = 0
-
+    private var firstLoad = true
     private weak var scrollViewDelegate: CategoryTableViewCell?
 
     override init(frame: CGRect) {
@@ -39,7 +38,7 @@ class SubcategoryScrollView: UIScrollView {
 
     private func initialSelection() {
         guard
-            flag == 0,
+            firstLoad,
             let delegate = scrollViewDelegate,
             let items = stackView.subviews as? [SubcategoryItemView]
         else {
@@ -53,7 +52,7 @@ class SubcategoryScrollView: UIScrollView {
             }
         }
         delegate.subcategoryPressed(subCategory: delegate.category == .trending ? .thisWeek : .action)
-        flag = 1
+        firstLoad = false
     }
 
     private func createCategoryViews(with categories: [SubcategoryViewModel]) {

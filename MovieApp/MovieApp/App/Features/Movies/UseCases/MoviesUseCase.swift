@@ -40,11 +40,9 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
 
     func fetchMovies(
-        categoryModel: MovieCategoryViewModel,
-        subcategoryModel: SubcategoryViewModel
+        categoryModel: MovieCategoryModel,
+        subcategoryModel: SubcategoryModel
     ) -> AnyPublisher<[MovieModel], Error> {
-        let categoryModel = MovieCategoryModel(from: categoryModel)
-        let subcategoryModel = SubcategoryModel(from: subcategoryModel)
         let favoriteIdsPublisher = userDefaultsRepository
             .favoriteItems
             .setFailureType(to: Error.self)

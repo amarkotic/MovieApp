@@ -7,8 +7,8 @@ protocol MoviesUseCaseProtocol {
     var oldFavoriteItems: [Int] { get }
 
     func fetchMovies(
-        categoryModel: MovieCategoryViewModel,
-        subcategoryModel: SubcategoryViewModel
+        categoryModel: MovieCategoryModel,
+        subcategoryModel: SubcategoryModel
     ) -> AnyPublisher<[MovieModel], Error>
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error>

@@ -44,13 +44,13 @@ class HomeViewController: UIViewController {
         dataSource = UITableViewDiffableDataSource(
             tableView: tableView,
             cellProvider: { tableView, indexPath, model -> UITableViewCell? in
-            guard
-                let cell = tableView.dequeueReusableCell(
-                    withIdentifier: CategoryTableViewCell.reuseIdentifier,
-                    for: indexPath) as? CategoryTableViewCell
-            else {
-                return nil
-            }
+                guard
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: CategoryTableViewCell.reuseIdentifier,
+                        for: indexPath) as? CategoryTableViewCell
+                else {
+                    return nil
+                }
 
                 cell.getMoviesInSubcategory = { [weak self] category, subcategory in
                     guard let self = self else { return .empty() }
@@ -60,14 +60,14 @@ class HomeViewController: UIViewController {
                 cell.set(delegate: self)
                 cell.populateCell(title: model, categories: self.presenter.getSubcategories(for: model))
                 return cell
-        })
+            })
         updateSnapshot(with: [.popular, .topRated, .trending])
     }
 
-    private func updateSnapshot(with movies: [MovieCategoryViewModel]) {
+    private func updateSnapshot(with categories: [MovieCategoryViewModel]) {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
-        snapshot.appendItems(movies)
+        snapshot.appendItems(categories)
         dataSource.apply(snapshot)
     }
 

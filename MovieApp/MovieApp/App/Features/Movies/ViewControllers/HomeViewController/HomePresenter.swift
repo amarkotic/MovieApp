@@ -25,9 +25,12 @@ class HomePresenter {
         category: MovieCategoryViewModel,
         subCategory: SubcategoryViewModel
     ) -> AnyPublisher<[MovieViewModel], Error> {
-        moviesUseCase.fetchMovies(
-            categoryModel: category,
-            subcategoryModel: subCategory)
+        let categoryModel = MovieCategoryModel(from: category)
+        let subCategoryModel = SubcategoryModel(from: subCategory)
+
+        return moviesUseCase.fetchMovies(
+            categoryModel: categoryModel,
+            subcategoryModel: subCategoryModel)
             .map { $0.map { MovieViewModel(from: $0)} }
             .receiveOnMain()
     }

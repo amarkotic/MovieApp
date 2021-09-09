@@ -86,9 +86,7 @@ class CategoryTableViewCell: UITableViewCell {
                     .contentView
                     .throttledTapGesture()
                     .sink { [weak self] _ in
-                        guard let delegate = self?.delegate else { return }
-
-                        delegate.showMovieDetails(with: model.id)
+                        self?.delegate?.showMovieDetails(with: model.id)
                     }
                     .store(in: &cell.disposables)
 
@@ -96,9 +94,7 @@ class CategoryTableViewCell: UITableViewCell {
                     .ellipseImageView
                     .throttledTapGesture()
                     .sink { [weak self] _ in
-                        guard let delegate = self?.delegate else { return }
-
-                        delegate.updateFavoriteMovie(with: model.id)
+                        self?.delegate?.updateFavoriteMovie(with: model.id)
                     }
                     .store(in: &cell.disposables)
 
