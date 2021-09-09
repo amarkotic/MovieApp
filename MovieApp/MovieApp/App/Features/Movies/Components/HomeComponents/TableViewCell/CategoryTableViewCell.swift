@@ -66,6 +66,10 @@ class CategoryTableViewCell: UITableViewCell {
             .store(in: &disposables)
     }
 
+    func set(delegate: HomeViewController) {
+        self.delegate = delegate
+    }
+
     private func makeDataSource() {
         dataSource = UICollectionViewDiffableDataSource(
             collectionView: collectionView,
@@ -108,10 +112,6 @@ class CategoryTableViewCell: UITableViewCell {
         snapshot.appendSections([.main])
         snapshot.appendItems(movies)
         dataSource.apply(snapshot, animatingDifferences: false)
-    }
-
-    func set(delegate: HomeViewController) {
-        self.delegate = delegate
     }
 
 }

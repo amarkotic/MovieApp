@@ -5,7 +5,6 @@ class DetailsPresenter {
 
     private let appRouter: AppRouter
     private let movieUseCase: MoviesUseCaseProtocol
-    weak private var delegate: DetailsViewController?
     private let identifier: Int
 
     var info: AnyPublisher<InfoViewModel, Error> {
@@ -54,10 +53,6 @@ class DetailsPresenter {
         self.movieUseCase = movieUseCase
         self.appRouter = router
         self.identifier = identifier
-    }
-
-    func setDelegate(delegate: DetailsViewController?) {
-        self.delegate = delegate
     }
 
     func popToHomeScreen() {

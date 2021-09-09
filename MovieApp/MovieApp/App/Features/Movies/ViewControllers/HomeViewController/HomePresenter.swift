@@ -6,17 +6,10 @@ class HomePresenter {
     private let moviesUseCase: MoviesUseCaseProtocol
 
     var appRouter: AppRouter!
-    var categories: [MovieCategoryViewModel] = [.popular, .topRated, .trending]
-
-    weak private var delegate: HomeViewController?
 
     init(moviesUseCase: MoviesUseCaseProtocol, router: AppRouter) {
         self.moviesUseCase = moviesUseCase
         self.appRouter = router
-    }
-
-    func setDelegate(delegate: HomeViewController?) {
-        self.delegate = delegate
     }
 
     func getSubcategories(for category: MovieCategoryViewModel) -> [SubcategoryViewModel] {

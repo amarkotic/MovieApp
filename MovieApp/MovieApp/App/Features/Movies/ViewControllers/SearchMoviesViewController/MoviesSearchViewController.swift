@@ -40,6 +40,11 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
         searchBarStackView.activateKeyboard()
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+
     private func setupSearchListener() {
         searchBarStackView.searchBar.searchTextField
             .rxText
@@ -90,11 +95,6 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
                 self?.popViewController()
             }
             .store(in: &disposables)
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
     }
 
     private func styleNavigationBar() {

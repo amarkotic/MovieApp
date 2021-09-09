@@ -27,10 +27,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         buildViews()
-        presenter.setDelegate(delegate: self)
-        searchBar.searchTextField.addTarget(self, action: #selector(goToSearch), for: .touchDown)
+        setupSearchBar()
         makeDataSource()
-        updateSnapshot(with: [.popular, .topRated, .trending])
     }
 
     func showMovieDetails(with id: Int) {
@@ -63,6 +61,7 @@ class HomeViewController: UIViewController {
                 cell.populateCell(title: model, categories: self.presenter.getSubcategories(for: model))
                 return cell
         })
+        updateSnapshot(with: [.popular, .topRated, .trending])
     }
 
     private func updateSnapshot(with movies: [MovieCategoryViewModel]) {
@@ -70,6 +69,10 @@ class HomeViewController: UIViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(movies)
         dataSource.apply(snapshot)
+    }
+
+    private func setupSearchBar() {
+        searchBar.searchTextField.addTarget(self, action: #selector(goToSearch), for: .touchDown)
     }
 
     @objc private func goToSearch() {

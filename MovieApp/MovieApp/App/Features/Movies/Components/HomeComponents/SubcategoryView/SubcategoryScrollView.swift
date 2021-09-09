@@ -28,10 +28,7 @@ class SubcategoryScrollView: UIScrollView {
     func setData(categories: [SubcategoryViewModel]) {
         updateLayout()
         createCategoryViews(with: categories)
-        if flag == 0 {
-            initialFetch()
-            flag = 1
-        }
+        initialSelection()
     }
 
     private func updateLayout() {
@@ -40,8 +37,9 @@ class SubcategoryScrollView: UIScrollView {
         }
     }
 
-    private func initialFetch() {
+    private func initialSelection() {
         guard
+            flag == 0,
             let delegate = scrollViewDelegate,
             let items = stackView.subviews as? [SubcategoryItemView]
         else {
@@ -55,6 +53,7 @@ class SubcategoryScrollView: UIScrollView {
             }
         }
         delegate.subcategoryPressed(subCategory: delegate.category == .trending ? .thisWeek : .action)
+        flag = 1
     }
 
     private func createCategoryViews(with categories: [SubcategoryViewModel]) {
