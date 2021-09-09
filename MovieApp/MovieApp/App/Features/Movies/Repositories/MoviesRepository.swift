@@ -12,26 +12,15 @@ class MoviesRepository: MoviesRepositoryProtocol {
 
     func fetchMovies(
         categoryModel: MovieCategoryModel,
-        subcategoryModel: SubcategoryModel,
-        completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
-    ) {
+        subcategoryModel: SubcategoryModel
+    ) -> AnyPublisher<[MovieRepositoryModel], Error> {
         let categoryRepoModel = MovieCategoryRepositoryModel(from: categoryModel)
         let subcategoryRepoModel = SubcategoryRepositoryModel(from: subcategoryModel)
 
-        networkDataSource.fetchMovies(
-            categoryRepositoryModel: categoryRepoModel,
-            subcategoryRepositoryModel: subcategoryRepoModel
-        ) { (result: Result<[MovieDataSourceModel], Error>) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let value):
-                let repositoryModels: [MovieRepositoryModel] = value.map {
-                    MovieRepositoryModel(from: $0)
-                }
-                completion(.success(repositoryModels))
-            }
-        }
+        return networkDataSource
+            .fetchMovies(categoryRepositoryModel: categoryRepoModel, subcategoryRepositoryModel: subcategoryRepoModel)
+            .map { $0.map { MovieRepositoryModel(from: $0) } }
+            .eraseToAnyPublisher()
     }
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsRepositoryModel, Error> {

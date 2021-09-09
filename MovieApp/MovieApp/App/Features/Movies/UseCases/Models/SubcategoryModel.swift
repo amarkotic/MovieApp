@@ -11,7 +11,7 @@ enum SubcategoryModel: Int {
     case today
     case thisWeek
 
-    init?(from model: SubcategoryViewModel) {
+    init(from model: SubcategoryViewModel) {
         switch model {
         case .action:
             self = .action

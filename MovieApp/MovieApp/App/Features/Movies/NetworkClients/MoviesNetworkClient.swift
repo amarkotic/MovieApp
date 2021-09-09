@@ -11,9 +11,8 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
 
     func getMovies(
         categoryDataSourceModel: MovieCategoryDataSourceModel,
-        subcategoryDataSourceModel: SubcategoryDataSourceModel,
-        completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
-    ) {
+        subcategoryDataSourceModel: SubcategoryDataSourceModel
+    ) -> AnyPublisher<MoviesNetworkModel, Error> {
         var url: URL?
         switch categoryDataSourceModel {
         case .popular:
@@ -28,9 +27,12 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
                 url = EndpointConstant.trendingMoviesToday.url
             }
         }
-        guard let url = url else { return }
+        guard let url = url else { return .empty() }
 
-        networkService.get(url: url, completion: completion)
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map { $0.data }
+            .decode(type: MoviesNetworkModel.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
     }
 
     func getMovie(with id: Int) -> AnyPublisher<MovieDetailsNetworkModel, Error> {

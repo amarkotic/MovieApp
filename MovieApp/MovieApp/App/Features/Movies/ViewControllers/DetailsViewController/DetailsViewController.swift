@@ -33,7 +33,6 @@ class DetailsViewController: UIViewController {
 
         buildViews()
         styleNavigationBar()
-        presenter.setDelegate(delegate: self)
         mainInfoView.setDelegate(delegate: self)
         bindViews()
     }

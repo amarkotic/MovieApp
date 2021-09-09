@@ -7,10 +7,9 @@ protocol MoviesUseCaseProtocol {
     var oldFavoriteItems: [Int] { get }
 
     func fetchMovies(
-        categoryViewModel: MovieCategoryViewModel,
-        subcategoryViewModel: SubcategoryViewModel,
-        completion: @escaping (Result<[MovieModel], Error>) -> Void
-    )
+        categoryModel: MovieCategoryModel,
+        subcategoryModel: SubcategoryModel
+    ) -> AnyPublisher<[MovieModel], Error>
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error>
 

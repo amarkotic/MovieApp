@@ -4,8 +4,8 @@ protocol MoviesNetworkDataSourceProtocol {
 
     func fetchMovies(
         categoryRepositoryModel: MovieCategoryRepositoryModel,
-        subcategoryRepositoryModel: SubcategoryRepositoryModel,
-        completion: @escaping (Result<[MovieDataSourceModel], Error>) -> Void)
+        subcategoryRepositoryModel: SubcategoryRepositoryModel
+    ) -> AnyPublisher<[MovieDataSourceModel], Error>
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsDataSourceModel, Error>
 

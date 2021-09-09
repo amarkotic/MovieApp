@@ -4,9 +4,8 @@ protocol MoviesNetworkClientProtocol {
 
     func getMovies(
         categoryDataSourceModel: MovieCategoryDataSourceModel,
-        subcategoryDataSourceModel: SubcategoryDataSourceModel,
-        completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
-    )
+        subcategoryDataSourceModel: SubcategoryDataSourceModel
+    ) -> AnyPublisher<MoviesNetworkModel, Error>
 
     func getMovie(with id: Int) -> AnyPublisher<MovieDetailsNetworkModel, Error>
 

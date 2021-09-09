@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import Combine
 
 class MovieCollectionViewCell: UICollectionViewCell {
 
@@ -15,6 +16,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     var heartImageView: UIImageView!
 
     var heartIsTapped: (() -> Void)?
+    var disposables = Set<AnyCancellable>()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

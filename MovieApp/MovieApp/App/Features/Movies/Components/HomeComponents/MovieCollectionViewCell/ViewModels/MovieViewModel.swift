@@ -16,4 +16,9 @@ extension MovieViewModel {
         isFavorite = model.isSelected
     }
 
+    init(from model: MovieModel) {
+        id = model.id
+        imageUrl = model.imageUrl
+        isFavorite = model.isSelected
+    }
 }

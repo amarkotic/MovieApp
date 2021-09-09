@@ -40,46 +40,28 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
 
     func fetchMovies(
-        categoryViewModel: MovieCategoryViewModel,
-        subcategoryViewModel: SubcategoryViewModel,
-        completion: @escaping (Result<[MovieModel], Error>) -> Void
-    ) {
-        guard
-            let subcategoryModel = SubcategoryModel(from: subcategoryViewModel),
-            let categoryModel = MovieCategoryModel(from: categoryViewModel)
-        else {
-            return
-        }
-        moviesRepository.fetchMovies(
-            categoryModel: categoryModel,
-            subcategoryModel: subcategoryModel
-        ) { [weak self] (result: Result<[MovieRepositoryModel], Error>)  in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let repoModels):
-                let useCaseModels: [MovieModel] = repoModels.map { model -> MovieModel in
-                    let subcategoryModels = model.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) }
-                    let savedMovieIds = self?.userDefaultsRepository.oldFavoriteItems
-                    let isSaved = savedMovieIds?.contains(model.id) ?? false
-                    return MovieModel(
-                        id: model.id,
-                        imageUrl: model.imageUrl,
-                        isSelected: isSaved,
-                        subcategories: subcategoryModels)
+        categoryModel: MovieCategoryModel,
+        subcategoryModel: SubcategoryModel
+    ) -> AnyPublisher<[MovieModel], Error> {
+        let favoriteIdsPublisher = userDefaultsRepository
+            .favoriteItems
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+
+        return moviesRepository
+            .fetchMovies(categoryModel: categoryModel, subcategoryModel: subcategoryModel)
+            .combineLatest(favoriteIdsPublisher)
+            .map {
+                let favoriteIds = $0.1
+                return $0.0.map {
+                    let isFavorite = favoriteIds.contains($0.id)
+                    return MovieModel(from: $0, isFavorite: isFavorite)
                 }
-                var filteredValue = [MovieModel]()
-                switch categoryViewModel {
-                case .popular, .topRated:
-                    filteredValue = useCaseModels.filter({
-                        $0.subcategories.contains(subcategoryModel)
-                    })
-                default:
-                    filteredValue = useCaseModels
+                .filter {
+                    return categoryModel == .trending ? true : $0.subcategories.contains(subcategoryModel)
                 }
-                completion(.success(filteredValue))
             }
-        }
+            .eraseToAnyPublisher()
     }
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error> {
@@ -93,7 +75,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .combineLatest(favoriteIdsPublisher)
             .map {
                 let isSelected = $0.1.contains(id)
-                return  MovieDetailsModel(from: $0.0, isSelected: isSelected)
+                return MovieDetailsModel(from: $0.0, isSelected: isSelected)
             }
             .eraseToAnyPublisher()
     }
