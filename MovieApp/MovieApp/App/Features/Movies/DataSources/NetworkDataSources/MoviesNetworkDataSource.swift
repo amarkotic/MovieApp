@@ -17,7 +17,9 @@ class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
         let categoryDataSourceModel = MovieCategoryDataSourceModel(from: categoryRepositoryModel)
 
         return networkClient
-            .getMovies(category: categoryDataSourceModel, subcategory: subcategoryDataSourceModel)
+            .getMovies(
+                categoryDataSourceModel: categoryDataSourceModel,
+                subcategoryDataSourceModel: subcategoryDataSourceModel)
             .map { $0.results.map { MovieDataSourceModel(from: $0) } }
             .eraseToAnyPublisher()
     }

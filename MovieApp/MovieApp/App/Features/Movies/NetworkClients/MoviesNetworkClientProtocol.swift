@@ -3,8 +3,8 @@ import Combine
 protocol MoviesNetworkClientProtocol {
 
     func getMovies(
-        category: MovieCategoryDataSourceModel,
-        subcategory: SubcategoryDataSourceModel
+        categoryDataSourceModel: MovieCategoryDataSourceModel,
+        subcategoryDataSourceModel: SubcategoryDataSourceModel
     ) -> AnyPublisher<MoviesNetworkModel, Error>
 
     func getMovie(with id: Int) -> AnyPublisher<MovieDetailsNetworkModel, Error>
