@@ -1,6 +1,6 @@
 import UIKit
 
-struct CategoryViewModel {
+struct CategoryViewModel: Hashable {
 
     let title: MovieCategoryViewModel
     let categories: [SubcategoryViewModel]

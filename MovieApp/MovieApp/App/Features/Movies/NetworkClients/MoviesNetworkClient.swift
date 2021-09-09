@@ -9,29 +9,6 @@ class MoviesNetworkClient: MoviesNetworkClientProtocol {
         self.networkService = networkService
     }
 
-//    func getMovies(
-//        categoryDataSourceModel: MovieCategoryDataSourceModel,
-//        subcategoryDataSourceModel: SubcategoryDataSourceModel,
-//        completion: @escaping (Result<MoviesNetworkModel, NetworkError>) -> Void
-//    ) {
-//        var url: URL?
-//        switch categoryDataSourceModel {
-//        case .popular:
-//            url = EndpointConstant.popularMovies.url
-//        case .topRated:
-//            url = EndpointConstant.topRatedMovies.url
-//        case .trending:
-//            switch subcategoryDataSourceModel {
-//            case .thisWeek:
-//                url = EndpointConstant.trendingMoviesThisWeek.url
-//            default:
-//                url = EndpointConstant.trendingMoviesToday.url
-//            }
-//        }
-//        guard let url = url else { return }
-//
-//        networkService.get(url: url, completion: completion)
-//    }
     func getMovies(
         category: MovieCategoryDataSourceModel,
         subcategory: SubcategoryDataSourceModel

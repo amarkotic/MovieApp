@@ -10,30 +10,6 @@ class MoviesRepository: MoviesRepositoryProtocol {
         self.networkDataSource = networkDataSource
     }
 
-//    func fetchMovies(
-//        categoryModel: MovieCategoryModel,
-//        subcategoryModel: SubcategoryModel,
-//        completion: @escaping (Result<[MovieRepositoryModel], Error>) -> Void
-//    ) {
-//        let categoryRepoModel = MovieCategoryRepositoryModel(from: categoryModel)
-//        let subcategoryRepoModel = SubcategoryRepositoryModel(from: subcategoryModel)
-//
-//        networkDataSource.fetchMovies(
-//            categoryRepositoryModel: categoryRepoModel,
-//            subcategoryRepositoryModel: subcategoryRepoModel
-//        ) { (result: Result<[MovieDataSourceModel], Error>) in
-//            switch result {
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            case .success(let value):
-//                let repositoryModels: [MovieRepositoryModel] = value.map {
-//                    MovieRepositoryModel(from: $0)
-//                }
-//                completion(.success(repositoryModels))
-//            }
-//        }
-//    }
-
     func fetchMovies(
         categoryModel: MovieCategoryModel,
         subcategoryModel: SubcategoryModel

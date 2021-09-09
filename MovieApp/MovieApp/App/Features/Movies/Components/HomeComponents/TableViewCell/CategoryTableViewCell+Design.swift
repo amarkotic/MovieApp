@@ -32,10 +32,9 @@ extension CategoryTableViewCell: DesignProtocol {
             right: CGFloat(defaultOffset))
         scrollView.setDelegate(delegate: self)
 
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(MovieCollectionViewCell.self,
-                                forCellWithReuseIdentifier: MovieCollectionViewCell.reuseIdentifier)
+        collectionView.register(
+            MovieCollectionViewCell.self,
+            forCellWithReuseIdentifier: MovieCollectionViewCell.reuseIdentifier)
         collectionView.contentInset = UIEdgeInsets(
             top: 0,
             left: CGFloat(defaultOffset),

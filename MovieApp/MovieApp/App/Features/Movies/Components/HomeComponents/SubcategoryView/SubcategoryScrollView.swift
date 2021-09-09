@@ -4,8 +4,10 @@ class SubcategoryScrollView: UIScrollView {
 
     let stackViewSpacing = CGFloat(23)
 
-    var indexSelected = 0
+    var indexSelected: Int!
     var stackView: UIStackView!
+
+    var flag = 0
 
     private weak var scrollViewDelegate: CategoryTableViewCell?
 
@@ -26,12 +28,33 @@ class SubcategoryScrollView: UIScrollView {
     func setData(categories: [SubcategoryViewModel]) {
         updateLayout()
         createCategoryViews(with: categories)
+        if flag == 0 {
+            initialFetch()
+            flag = 1
+        }
     }
 
     private func updateLayout() {
         stackView.subviews.forEach {
             $0.removeFromSuperview()
         }
+    }
+
+    private func initialFetch() {
+        guard
+            let delegate = scrollViewDelegate,
+            let items = stackView.subviews as? [SubcategoryItemView]
+        else {
+            return
+        }
+
+        items.enumerated().forEach { index, item in
+            if index == 0 {
+                item.styleSelect()
+                indexSelected = index
+            }
+        }
+        delegate.subcategoryPressed(subCategory: delegate.category == .trending ? .thisWeek : .action)
     }
 
     private func createCategoryViews(with categories: [SubcategoryViewModel]) {

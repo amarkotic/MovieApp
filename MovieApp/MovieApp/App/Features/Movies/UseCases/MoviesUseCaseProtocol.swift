@@ -6,11 +6,6 @@ protocol MoviesUseCaseProtocol {
 
     var oldFavoriteItems: [Int] { get }
 
-//    func fetchMovies(
-//        categoryViewModel: MovieCategoryViewModel,
-//        subcategoryViewModel: SubcategoryViewModel,
-//        completion: @escaping (Result<[MovieModel], Error>) -> Void
-//    )
     func fetchMovies(
         categoryModel: MovieCategoryViewModel,
         subcategoryModel: SubcategoryViewModel

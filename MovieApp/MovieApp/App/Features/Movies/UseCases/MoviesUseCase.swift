@@ -39,62 +39,29 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         self.userDefaultsRepository = userDefaultsRepository
     }
 
-    //    func fetchMovies(
-    //        categoryViewModel: MovieCategoryViewModel,
-    //        subcategoryViewModel: SubcategoryViewModel,
-    //        completion: @escaping (Result<[MovieModel], Error>) -> Void
-    //    ) {
-    //        let subcategoryModel = SubcategoryModel(from: subcategoryViewModel)
-    //        let categoryModel = MovieCategoryModel(from: categoryViewModel)
-    //
-    //        moviesRepository.fetchMovies(
-    //            categoryModel: categoryModel,
-    //            subcategoryModel: subcategoryModel
-    //        ) { [weak self] (result: Result<[MovieRepositoryModel], Error>)  in
-    //            switch result {
-    //            case .failure(let error):
-    //                print(error.localizedDescription)
-    //            case .success(let repoModels):
-    //                let useCaseModels: [MovieModel] = repoModels.map { model -> MovieModel in
-    //                    let subcategoryModels = model.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) }
-    //                    let savedMovieIds = self?.userDefaultsRepository.oldFavoriteItems
-    //                    let isSaved = savedMovieIds?.contains(model.id) ?? false
-    //                    return MovieModel(
-    //                        id: model.id,
-    //                        imageUrl: model.imageUrl,
-    //                        isSelected: isSaved,
-    //                        subcategories: subcategoryModels)
-    //                }
-    //                var filteredValue = [MovieModel]()
-    //                switch categoryViewModel {
-    //                case .popular, .topRated:
-    //                    filteredValue = useCaseModels.filter({
-    //                        $0.subcategories.contains(subcategoryModel)
-    //                    })
-    //                default:
-    //                    filteredValue = useCaseModels
-    //                }
-    //                completion(.success(filteredValue))
-    //            }
-    //        }
-    //    }
-
     func fetchMovies(
         categoryModel: MovieCategoryViewModel,
         subcategoryModel: SubcategoryViewModel
     ) -> AnyPublisher<[MovieModel], Error> {
-
         let categoryModel = MovieCategoryModel(from: categoryModel)
         let subcategoryModel = SubcategoryModel(from: subcategoryModel)
+        let favoriteIdsPublisher = userDefaultsRepository
+            .favoriteItems
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
 
         return moviesRepository
             .fetchMovies(categoryModel: categoryModel, subcategoryModel: subcategoryModel)
-            .map { $0.map { MovieModel(
-                id: $0.id,
-                imageUrl: $0.imageUrl,
-                isSelected: false,
-                subcategories: $0.subcategories.compactMap { SubcategoryModel(rawValue: $0.rawValue) })
-            }
+            .combineLatest(favoriteIdsPublisher)
+            .map {
+                let favoriteIds = $0.1
+                return $0.0.map {
+                    let isFavorite = favoriteIds.contains($0.id)
+                    return MovieModel(from: $0, isFavorite: isFavorite)
+                }
+                .filter {
+                    return categoryModel == .trending ? true : $0.subcategories.contains(subcategoryModel)
+                }
             }
             .eraseToAnyPublisher()
     }
