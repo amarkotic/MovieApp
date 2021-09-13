@@ -20,8 +20,15 @@ class AppDependencies {
         UserDefaultsRepository(favoritesDataSource: FavoritesUserDefaultsDataSource())
     }()
 
+    lazy var realmRepository: RealmRepositoryProtocol = {
+        RealmRepository()
+    }()
+
     lazy var moviesUseCase: MoviesUseCaseProtocol = {
-        MoviesUseCase(moviesRepository: moviesRepository, userDefaultsRepository: userDefaultsRepository)
+        MoviesUseCase(
+            moviesRepository: moviesRepository,
+            userDefaultsRepository: userDefaultsRepository,
+            realmRepository: realmRepository)
     }()
 
 }

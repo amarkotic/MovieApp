@@ -19,4 +19,14 @@ class RealmDataSource: RealmDataSourceProtocol {
         })
     }
 
+    func saveFavoriteMovies(model: [RealmFavoritesRepositoryModel]) {
+        guard let realm = try? Realm() else { return }
+
+        let favorites = model.map { RealmFavoritesDataSourceModel(from: $0) }
+        try? realm.write({
+            realm.delete(realm.objects(RealmFavoritesDataSourceModel.self))
+            realm.add(favorites)
+        })
+    }
+
 }

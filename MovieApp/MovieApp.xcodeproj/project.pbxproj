@@ -92,6 +92,10 @@
 		5288080A26B7EE4100B72EDB /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288080926B7EE4100B72EDB /* DetailsViewController.swift */; };
 		5288080C26B7EE4C00B72EDB /* DetailsViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288080B26B7EE4C00B72EDB /* DetailsViewController+Design.swift */; };
 		528B16DD26EEBBC0008F2B40 /* RealmCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B16DC26EEBBC0008F2B40 /* RealmCategory.swift */; };
+		528B16E026EF353E008F2B40 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B16DF26EF353E008F2B40 /* RealmRepository.swift */; };
+		528B16E226EF3547008F2B40 /* RealmRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B16E126EF3547008F2B40 /* RealmRepositoryProtocol.swift */; };
+		528B16E426EF3B47008F2B40 /* RealmFavoritesDataSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B16E326EF3B46008F2B40 /* RealmFavoritesDataSourceModel.swift */; };
+		528B16E726EF3BC2008F2B40 /* RealmFavoritesRepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B16E626EF3BC2008F2B40 /* RealmFavoritesRepositoryModel.swift */; };
 		528DE5CF26C122DA00498E23 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5CE26C122DA00498E23 /* SocialView.swift */; };
 		528DE5D126C122E200498E23 /* SocialView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5D026C122E200498E23 /* SocialView+Design.swift */; };
 		528DE5D426C159BF00498E23 /* RecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5D326C159BF00498E23 /* RecommendationsView.swift */; };
@@ -251,6 +255,10 @@
 		5288080926B7EE4100B72EDB /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		5288080B26B7EE4C00B72EDB /* DetailsViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsViewController+Design.swift"; sourceTree = "<group>"; };
 		528B16DC26EEBBC0008F2B40 /* RealmCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategory.swift; sourceTree = "<group>"; };
+		528B16DF26EF353E008F2B40 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		528B16E126EF3547008F2B40 /* RealmRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryProtocol.swift; sourceTree = "<group>"; };
+		528B16E326EF3B46008F2B40 /* RealmFavoritesDataSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFavoritesDataSourceModel.swift; sourceTree = "<group>"; };
+		528B16E626EF3BC2008F2B40 /* RealmFavoritesRepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFavoritesRepositoryModel.swift; sourceTree = "<group>"; };
 		528DE5CE26C122DA00498E23 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		528DE5D026C122E200498E23 /* SocialView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocialView+Design.swift"; sourceTree = "<group>"; };
 		528DE5D326C159BF00498E23 /* RecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
@@ -514,10 +522,11 @@
 		522EE8DE26A6BEDE00A456E2 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				525C83E626CA764C003F82DF /* UserDefaultsRepository */,
 				522EE8E326A6C00300A456E2 /* MoviesRepository.swift */,
 				522EE8E526A6C04100A456E2 /* MoviesRepositoryProtocol.swift */,
 				52F11AB426A80367007DBE0A /* Models */,
+				528B16DE26EF3510008F2B40 /* RealmRepository */,
+				525C83E626CA764C003F82DF /* UserDefaultsRepository */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -736,6 +745,24 @@
 			path = DetailsViewController;
 			sourceTree = "<group>";
 		};
+		528B16DE26EF3510008F2B40 /* RealmRepository */ = {
+			isa = PBXGroup;
+			children = (
+				528B16DF26EF353E008F2B40 /* RealmRepository.swift */,
+				528B16E126EF3547008F2B40 /* RealmRepositoryProtocol.swift */,
+				528B16E526EF3BB2008F2B40 /* Models */,
+			);
+			path = RealmRepository;
+			sourceTree = "<group>";
+		};
+		528B16E526EF3BB2008F2B40 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				528B16E626EF3BC2008F2B40 /* RealmFavoritesRepositoryModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		528DE5CD26C122D000498E23 /* SocialView */ = {
 			isa = PBXGroup;
 			children = (
@@ -829,6 +856,7 @@
 			children = (
 				52A25FCF26EB4ACE0049EC68 /* RealmDataSourceModel.swift */,
 				528B16DC26EEBBC0008F2B40 /* RealmCategory.swift */,
+				528B16E326EF3B46008F2B40 /* RealmFavoritesDataSourceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1182,6 +1210,7 @@
 				5206C4A626CD465E0011C635 /* UIBarButtonItem.swift in Sources */,
 				52E4013226D3D6FF009C796E /* CreditsModel.swift in Sources */,
 				52A25FCD26EB44A90049EC68 /* RealmDataSourceProtocol.swift in Sources */,
+				528B16E426EF3B47008F2B40 /* RealmFavoritesDataSourceModel.swift in Sources */,
 				521D046726CCE50B0044FE4F /* CastView.swift in Sources */,
 				52D72E6F26C51AA800EEA021 /* MovieDetailsNetworkModel.swift in Sources */,
 				52AABDE826CFE72800D1C114 /* CastCollectionViewCell.swift in Sources */,
@@ -1222,6 +1251,7 @@
 				52AABDCC26CFBF2000D1C114 /* SectionEnum.swift in Sources */,
 				52AABDE926CFE72800D1C114 /* CastCollectionViewCell+Design.swift in Sources */,
 				522EE8EC26A6C2B100A456E2 /* MoviesNetworkDataSource.swift in Sources */,
+				528B16E226EF3547008F2B40 /* RealmRepositoryProtocol.swift in Sources */,
 				525666AE26A8475400B5E0BE /* FavoriteMoviesViewController+Design.swift in Sources */,
 				521D046C26CCE5580044FE4F /* CastViewModel.swift in Sources */,
 				52F11AAC26A71487007DBE0A /* AppDependecies.swift in Sources */,
@@ -1280,6 +1310,7 @@
 				523C2EBD269ED2B300F2EDD6 /* Font+Extensions.swift in Sources */,
 				52F64E7526B932240046A8ED /* MovieCategoryModel.swift in Sources */,
 				523C2EDB26A174C600F2EDD6 /* (null) in Sources */,
+				528B16E726EF3BC2008F2B40 /* RealmFavoritesRepositoryModel.swift in Sources */,
 				527006A726C6B172002111B4 /* ReviewNetworkModel.swift in Sources */,
 				527006A526C6995C002111B4 /* ActorModel.swift in Sources */,
 				527006B326C6C4B1002111B4 /* RecommendationRepositoryModel.swift in Sources */,
@@ -1314,6 +1345,7 @@
 				5293A7B026AFF0A800F786E9 /* HomePresenter.swift in Sources */,
 				5293A7A926AEA92B00F786E9 /* SubcategoryScrollView.swift in Sources */,
 				52F64E6826B819530046A8ED /* SubcategoryModel.swift in Sources */,
+				528B16E026EF353E008F2B40 /* RealmRepository.swift in Sources */,
 				5293A7B426B13D0C00F786E9 /* SubcategoryItemView.swift in Sources */,
 				523C2EA9269DAA9800F2EDD6 /* DesignProtocol.swift in Sources */,
 				52F11AA126A705FE007DBE0A /* UIImage+Extensions.swift in Sources */,

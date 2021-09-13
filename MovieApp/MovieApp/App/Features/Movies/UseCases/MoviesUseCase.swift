@@ -1,10 +1,12 @@
 import UIKit
 import Combine
+import RealmSwift
 
 class MoviesUseCase: MoviesUseCaseProtocol {
 
     private let moviesRepository: MoviesRepositoryProtocol
     private let userDefaultsRepository: UserDefaultsRepositoryProtocol
+    private let realmRepository: RealmRepositoryProtocol
 
     var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> {
         userDefaultsRepository
@@ -20,18 +22,32 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     .collect()
                     .eraseToAnyPublisher()
             }
-
+            .handleEvents(receiveOutput: { [weak self] model in
+                self?.realmRepository.saveFavorites(with: model)
+            })
             .replaceError(with: [])
-            .map { $0.map { FavoriteMovieModel(id: $0.id, imageUrl: $0.posterPath, isSelected: true) } }
+            .flatMap { _ -> AnyPublisher<[FavoriteMovieModel], Never> in
+                guard let realm = try? Realm() else { return .empty() }
+
+                let favoriteMovies = realm
+                    .objects(RealmFavoritesDataSourceModel.self)
+                    .map {
+                        FavoriteMovieModel(from: RealmFavoritesRepositoryModel(from: $0))
+                    }
+                return Just(Array(favoriteMovies))
+                    .eraseToAnyPublisher()
+            }
             .eraseToAnyPublisher()
     }
 
     init(
         moviesRepository: MoviesRepositoryProtocol,
-        userDefaultsRepository: UserDefaultsRepositoryProtocol
+        userDefaultsRepository: UserDefaultsRepositoryProtocol,
+        realmRepository: RealmRepositoryProtocol
     ) {
         self.moviesRepository = moviesRepository
         self.userDefaultsRepository = userDefaultsRepository
+        self.realmRepository = realmRepository
     }
 
     func fetchMovies(

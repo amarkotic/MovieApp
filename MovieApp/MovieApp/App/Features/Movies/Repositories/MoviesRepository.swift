@@ -3,7 +3,7 @@ import RealmSwift
 
 class MoviesRepository: MoviesRepositoryProtocol {
 
-    private let realmDataSource: RealmDataSource
+    private let realmDataSource: RealmDataSourceProtocol
     private let networkDataSource: MoviesNetworkDataSourceProtocol
 
     init(networkDataSource: MoviesNetworkDataSourceProtocol) {
