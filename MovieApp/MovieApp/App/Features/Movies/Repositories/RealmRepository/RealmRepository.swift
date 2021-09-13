@@ -1,5 +1,6 @@
 import Foundation
 import Realm
+import Combine
 
 class RealmRepository: RealmRepositoryProtocol {
 
@@ -7,6 +8,10 @@ class RealmRepository: RealmRepositoryProtocol {
 
     func saveFavorites(with model: [MovieDetailsRepositoryModel]) {
         realmDataSource.saveFavoriteMovies(model: model.map { RealmFavoritesRepositoryModel(from: $0)})
+    }
+
+    func getFavoriteMovies() -> AnyPublisher<[FavoriteMovieModel], Never> {
+        realmDataSource.getFavoriteMovies()
     }
 
 }

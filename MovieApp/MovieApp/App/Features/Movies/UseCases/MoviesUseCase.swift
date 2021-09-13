@@ -26,16 +26,10 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 self?.realmRepository.saveFavorites(with: model)
             })
             .replaceError(with: [])
-            .flatMap { _ -> AnyPublisher<[FavoriteMovieModel], Never> in
-                guard let realm = try? Realm() else { return .empty() }
+            .flatMap { [weak self] _ -> AnyPublisher<[FavoriteMovieModel], Never> in
+                guard let self = self else { return .empty() }
 
-                let favoriteMovies = realm
-                    .objects(RealmFavoritesDataSourceModel.self)
-                    .map {
-                        FavoriteMovieModel(from: RealmFavoritesRepositoryModel(from: $0))
-                    }
-                return Just(Array(favoriteMovies))
-                    .eraseToAnyPublisher()
+                return self.realmRepository.getFavoriteMovies()
             }
             .eraseToAnyPublisher()
     }

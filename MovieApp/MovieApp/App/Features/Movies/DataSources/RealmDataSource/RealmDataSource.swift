@@ -29,4 +29,13 @@ class RealmDataSource: RealmDataSourceProtocol {
         })
     }
 
+    func getFavoriteMovies() -> AnyPublisher<[FavoriteMovieModel], Never> {
+        guard let realm = try? Realm() else { return .empty() }
+
+        let favoriteMovies = realm
+            .objects(RealmFavoritesDataSourceModel.self)
+            .map { FavoriteMovieModel(from: RealmFavoritesRepositoryModel(from: $0))}
+        return Just(Array(favoriteMovies))
+            .eraseToAnyPublisher()
+    }
 }
