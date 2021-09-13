@@ -53,7 +53,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     return MovieModel(from: $0, isFavorite: isFavorite)
                 }
                 .filter {
-                    categoryModel == .trending ? true : $0.subcategories.contains(subcategoryModel)
+                    categoryModel == .trending || $0.subcategories.contains(subcategoryModel)
                 }
             }
             .eraseToAnyPublisher()

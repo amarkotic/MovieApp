@@ -22,20 +22,14 @@ class MoviesRepository: MoviesRepositoryProtocol {
         return networkDataSource
             .fetchMovies(categoryRepositoryModel: categoryRepoModel, subcategoryRepositoryModel: subcategoryRepoModel)
             .handleEvents(receiveOutput: { [weak self] in
-                self?.realmDataSource.saveData(model: $0, category: realmCategory)
-            })
-            .flatMap { _ -> AnyPublisher<[MovieRepositoryModel], Error> in
-                guard let realm = try? Realm() else { return .empty()}
+                let realmDataSourceModel = $0.map { RealmDataSourceModel(from: $0, realmCategory: realmCategory) }
 
-                let moviesInCurrentCategory = realm
-                    .objects(RealmDataSourceModel.self)
-                    .filter("category = %@", realmCategory.rawValue)
-                    .map {
-                        MovieRepositoryModel(from: $0)
-                    }
-                return Just(Array(moviesInCurrentCategory))
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
+                self?.realmDataSource.saveData(model: realmDataSourceModel, category: realmCategory)
+            })
+            .flatMap { [weak self] _ -> AnyPublisher<[MovieRepositoryModel], Error> in
+                guard let self = self else { return .empty()}
+
+                return self.realmDataSource.getPublisher(for: realmCategory)
             }
             .eraseToAnyPublisher()
     }
