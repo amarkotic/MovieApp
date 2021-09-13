@@ -26,11 +26,6 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .eraseToAnyPublisher()
     }
 
-    var oldFavoriteItems: [Int] {
-        userDefaultsRepository
-            .oldFavoriteItems
-    }
-
     init(
         moviesRepository: MoviesRepositoryProtocol,
         userDefaultsRepository: UserDefaultsRepositoryProtocol
@@ -58,7 +53,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     return MovieModel(from: $0, isFavorite: isFavorite)
                 }
                 .filter {
-                    return categoryModel == .trending ? true : $0.subcategories.contains(subcategoryModel)
+                    categoryModel == .trending ? true : $0.subcategories.contains(subcategoryModel)
                 }
             }
             .eraseToAnyPublisher()

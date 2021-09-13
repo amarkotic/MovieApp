@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 struct MovieRepositoryModel {
 
@@ -7,6 +7,10 @@ struct MovieRepositoryModel {
     let title: String
     let description: String
     let subcategories: [SubcategoryRepositoryModel]
+
+}
+
+extension MovieRepositoryModel {
 
     init(from dataSourceModel: MovieDataSourceModel) {
         id = dataSourceModel.id
@@ -18,4 +22,16 @@ struct MovieRepositoryModel {
         }
     }
 
+    init(from realmDataSourceModel: RealmDataSourceModel) {
+        id = realmDataSourceModel.id
+        imageUrl = realmDataSourceModel.imageUrl
+        title = realmDataSourceModel.title
+        description = realmDataSourceModel.description
+        subcategories = realmDataSourceModel.subcategories.map {
+            guard let dataSourceSubcategory = SubcategoryDataSourceModel(rawValue: $0) else { return .none }
+
+            return SubcategoryRepositoryModel(from: dataSourceSubcategory)
+        }
+
+    }
 }

@@ -4,8 +4,6 @@ protocol MoviesUseCaseProtocol {
 
     var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> { get }
 
-    var oldFavoriteItems: [Int] { get }
-
     func fetchMovies(
         categoryModel: MovieCategoryModel,
         subcategoryModel: SubcategoryModel
