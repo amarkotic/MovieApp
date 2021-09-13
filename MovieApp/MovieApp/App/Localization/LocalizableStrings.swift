@@ -17,5 +17,5 @@ enum LocalizableStrings: String {
     case acting = "Acting"
     case noReview = "No reviews found"
     case tryAgain = "\nPlease try again later"
-
+    case noInternet = "No internet connection, please try again later"
 }
