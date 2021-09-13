@@ -28,7 +28,12 @@ class MoviesRepository: MoviesRepositoryProtocol {
             .flatMap { [weak self] _ -> AnyPublisher<[MovieRepositoryModel], Error> in
                 guard let self = self else { return .empty()}
 
-                return self.realmDataSource.getMovies(for: realmCategory)
+                let repoMovies = self.realmDataSource
+                    .getMovies(for: realmCategory)
+                    .map { MovieRepositoryModel(from: $0)}
+                return Just(repoMovies)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
