@@ -6,9 +6,9 @@ class MoviesRepository: MoviesRepositoryProtocol {
     private let realmDataSource: RealmDataSourceProtocol
     private let networkDataSource: MoviesNetworkDataSourceProtocol
 
-    init(networkDataSource: MoviesNetworkDataSourceProtocol) {
+    init(networkDataSource: MoviesNetworkDataSourceProtocol, realmDataSource: RealmDataSourceProtocol) {
         self.networkDataSource = networkDataSource
-        self.realmDataSource = RealmDataSource()
+        self.realmDataSource = realmDataSource
     }
 
     func fetchMovies(
@@ -28,7 +28,7 @@ class MoviesRepository: MoviesRepositoryProtocol {
             .flatMap { [weak self] _ -> AnyPublisher<[MovieRepositoryModel], Error> in
                 guard let self = self else { return .empty()}
 
-                return self.realmDataSource.getPublisher(for: realmCategory)
+                return self.realmDataSource.getMovies(for: realmCategory)
             }
             .eraseToAnyPublisher()
     }

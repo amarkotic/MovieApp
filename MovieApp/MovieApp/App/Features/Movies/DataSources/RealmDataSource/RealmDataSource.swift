@@ -17,15 +17,13 @@ class RealmDataSource: RealmDataSourceProtocol {
         })
     }
 
-    func getPublisher(for category: RealmCategory) -> AnyPublisher<[MovieRepositoryModel], Error> {
+    func getMovies(for category: RealmCategory) -> AnyPublisher<[MovieRepositoryModel], Error> {
         guard let realm = try? Realm() else { return .empty()}
 
         let moviesInCurrentCategory = realm
             .objects(RealmDataSourceModel.self)
             .filter("category = %@", category.rawValue)
-            .map {
-                MovieRepositoryModel(from: $0)
-            }
+            .map { MovieRepositoryModel(from: $0) }
         return Just(Array(moviesInCurrentCategory))
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
