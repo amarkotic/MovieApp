@@ -17,12 +17,16 @@ class RealmDataSource: RealmDataSourceProtocol {
         })
     }
 
-    func getMovies(for category: RealmCategory) -> [RealmDataSourceModel] {
-        guard let realm = try? Realm() else { return [] }
+    func getMovies(for category: RealmCategory) -> AnyPublisher<[RealmDataSourceModel], Error> {
+        guard let realm = try? Realm() else { return .empty()}
 
-        return Array(realm
-                        .objects(RealmDataSourceModel.self)
-                        .filter("category = %@", category.rawValue))
+        let moviesInCurrentCategory = realm
+            .objects(RealmDataSourceModel.self)
+            .filter("category = %@", category.rawValue)
+
+        return Just(Array(moviesInCurrentCategory))
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 
 }
