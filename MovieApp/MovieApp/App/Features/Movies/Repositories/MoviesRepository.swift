@@ -23,7 +23,6 @@ class MoviesRepository: MoviesRepositoryProtocol {
             .fetchMovies(categoryRepositoryModel: categoryRepoModel, subcategoryRepositoryModel: subcategoryRepoModel)
             .handleEvents(receiveOutput: { [weak self] in
                 let realmDataSourceModel = $0.map { RealmDataSourceModel(from: $0, realmCategory: realmCategory) }
-
                 self?.realmDataSource.saveData(model: realmDataSourceModel, category: realmCategory)
             })
             .flatMap { [weak self] _ -> AnyPublisher<[MovieRepositoryModel], Error> in
