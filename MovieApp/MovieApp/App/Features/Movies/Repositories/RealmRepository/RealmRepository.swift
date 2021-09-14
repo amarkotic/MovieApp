@@ -6,12 +6,15 @@ class RealmRepository: RealmRepositoryProtocol {
 
     private let realmDataSource = RealmDataSource()
 
-    func saveFavorites(with model: [MovieDetailsRepositoryModel]) {
-        realmDataSource.saveFavoriteMovies(model: model.map { RealmFavoritesRepositoryModel(from: $0)})
+    func saveFavorites(with model: [RealmFavoritesRepositoryModel]) {
+        realmDataSource.saveFavoriteMovies(model: model.map { RealmFavoritesDataSourceModel(from: $0)})
     }
 
-    func getFavoriteMovies() -> AnyPublisher<[FavoriteMovieModel], Never> {
-        realmDataSource.getFavoriteMovies()
+    func getFavoriteMovies() -> AnyPublisher<[RealmFavoritesRepositoryModel], Never> {
+        realmDataSource
+            .favoriteMovies
+            .map { $0.map { RealmFavoritesRepositoryModel(from: $0) }}
+            .eraseToAnyPublisher()
     }
 
 }

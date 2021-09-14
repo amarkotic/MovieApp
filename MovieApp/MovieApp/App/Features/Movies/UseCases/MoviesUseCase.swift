@@ -22,14 +22,17 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     .collect()
                     .eraseToAnyPublisher()
             }
-            .handleEvents(receiveOutput: { [weak self] model in
-                self?.realmRepository.saveFavorites(with: model)
+            .handleEvents(receiveOutput: { [weak self] in
+                self?.realmRepository.saveFavorites(with: $0.map {RealmFavoritesRepositoryModel(from: $0) })
             })
             .replaceError(with: [])
             .flatMap { [weak self] _ -> AnyPublisher<[FavoriteMovieModel], Never> in
                 guard let self = self else { return .empty() }
 
-                return self.realmRepository.getFavoriteMovies()
+                return self.realmRepository
+                    .getFavoriteMovies()
+                    .map { $0.map { FavoriteMovieModel(from: $0) } }
+                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
