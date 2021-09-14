@@ -62,9 +62,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     let isFavorite = favoriteIds.contains($0.id)
                     return MovieModel(from: $0, isFavorite: isFavorite)
                 }
-                .filter {
-                    categoryModel == .trending ? true : $0.subcategories.contains(subcategoryModel)
-                }
+                .filter { categoryModel == .trending || $0.subcategories.contains(subcategoryModel) }
             }
             .eraseToAnyPublisher()
     }

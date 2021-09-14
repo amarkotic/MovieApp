@@ -6,9 +6,9 @@ class MoviesRepository: MoviesRepositoryProtocol {
     private let realmDataSource: RealmDataSourceProtocol
     private let networkDataSource: MoviesNetworkDataSourceProtocol
 
-    init(networkDataSource: MoviesNetworkDataSourceProtocol) {
+    init(networkDataSource: MoviesNetworkDataSourceProtocol, realmDataSource: RealmDataSourceProtocol) {
         self.networkDataSource = networkDataSource
-        self.realmDataSource = RealmDataSource()
+        self.realmDataSource = realmDataSource
     }
 
     func fetchMovies(
@@ -22,19 +22,15 @@ class MoviesRepository: MoviesRepositoryProtocol {
         return networkDataSource
             .fetchMovies(categoryRepositoryModel: categoryRepoModel, subcategoryRepositoryModel: subcategoryRepoModel)
             .handleEvents(receiveOutput: { [weak self] in
-                self?.realmDataSource.saveData(model: $0, category: realmCategory)
+                let realmDataSourceModel = $0.map { RealmDataSourceModel(from: $0, realmCategory: realmCategory) }
+                self?.realmDataSource.saveData(model: realmDataSourceModel, category: realmCategory)
             })
-            .flatMap { _ -> AnyPublisher<[MovieRepositoryModel], Error> in
-                guard let realm = try? Realm() else { return .empty()}
+            .flatMap { [weak self] _ -> AnyPublisher<[MovieRepositoryModel], Error> in
+                guard let self = self else { return .never() }
 
-                let moviesInCurrentCategory = realm
-                    .objects(RealmDataSourceModel.self)
-                    .filter("category = %@", realmCategory.rawValue)
-                    .map {
-                        MovieRepositoryModel(from: $0)
-                    }
-                return Just(Array(moviesInCurrentCategory))
-                    .setFailureType(to: Error.self)
+                return self.realmDataSource
+                    .getMovies(for: realmCategory)
+                    .map { $0.map { MovieRepositoryModel(from: $0) } }
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()

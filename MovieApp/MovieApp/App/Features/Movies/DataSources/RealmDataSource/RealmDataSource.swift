@@ -4,22 +4,32 @@ import Combine
 
 class RealmDataSource: RealmDataSourceProtocol {
 
-    func saveData(model: [MovieDataSourceModel], category: RealmCategory) {
+    func saveData(model: [RealmDataSourceModel], category: RealmCategory) {
         guard let realm = try? Realm() else { return }
 
         let oldMoviesInCurrentCategory = realm
             .objects(RealmDataSourceModel.self)
             .filter("category == %@", category.rawValue)
-        let newMoviesInCurrentCategory = model
-            .map { RealmDataSourceModel(from: $0, realmCategory: category) }
 
         try? realm.write({
             realm.delete(oldMoviesInCurrentCategory)
-            realm.add(newMoviesInCurrentCategory)
+            realm.add(model)
         })
     }
 
-    func saveFavoriteMovies(model: [RealmFavoritesRepositoryModel]) {
+    func getMovies(for category: RealmCategory) -> AnyPublisher<[RealmDataSourceModel], Error> {
+        guard let realm = try? Realm() else { return .empty()}
+
+        let moviesInCurrentCategory = realm
+            .objects(RealmDataSourceModel.self)
+            .filter("category = %@", category.rawValue)
+
+        return Just(Array(moviesInCurrentCategory))
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+  func saveFavoriteMovies(model: [RealmFavoritesRepositoryModel]) {
         guard let realm = try? Realm() else { return }
 
         let favorites = model.map { RealmFavoritesDataSourceModel(from: $0) }

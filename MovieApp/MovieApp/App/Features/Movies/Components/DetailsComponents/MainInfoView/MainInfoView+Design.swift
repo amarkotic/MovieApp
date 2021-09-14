@@ -53,8 +53,6 @@ extension MainInfoView: DesignProtocol {
         genresAndDurationLabel.textColor = .appWhite
 
         elipseImageView.image = UIImage(with: .ellipseImage)
-
-        favoriteImageView.image = UIImage(with: .favoriteDetails)
     }
 
     func defineLayoutForViews() {
