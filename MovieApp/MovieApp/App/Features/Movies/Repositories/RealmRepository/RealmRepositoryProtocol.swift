@@ -2,8 +2,8 @@ import Combine
 
 protocol RealmRepositoryProtocol {
 
-    func saveFavorites(with model: [RealmFavoritesRepositoryModel])
+    var favoriteMovies: AnyPublisher<[RealmFavoritesRepositoryModel], Never> { get }
 
-    func getFavoriteMovies() -> AnyPublisher<[RealmFavoritesRepositoryModel], Never>
+    func saveFavorites(with model: [RealmFavoritesRepositoryModel])
 
 }

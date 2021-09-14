@@ -25,7 +25,7 @@ class AppDependencies {
     }()
 
     lazy var realmRepository: RealmRepositoryProtocol = {
-        RealmRepository()
+        RealmRepository(realmDataSource: realmDataSource)
     }()
 
     lazy var moviesUseCase: MoviesUseCaseProtocol = {

@@ -30,7 +30,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                 guard let self = self else { return .empty() }
 
                 return self.realmRepository
-                    .getFavoriteMovies()
+                    .favoriteMovies
                     .map { $0.map { FavoriteMovieModel(from: $0) } }
                     .eraseToAnyPublisher()
             }

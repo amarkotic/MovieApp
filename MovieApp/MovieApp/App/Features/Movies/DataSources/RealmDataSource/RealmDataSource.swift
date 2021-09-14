@@ -11,7 +11,7 @@ class RealmDataSource: RealmDataSourceProtocol {
             .eraseToAnyPublisher()
     }
 
-    func saveData(model: [RealmDataSourceModel], category: RealmCategory) {
+    func saveData(models: [RealmDataSourceModel], category: RealmCategory) {
         guard let realm = try? Realm() else { return }
 
         let oldMoviesInCurrentCategory = realm
@@ -20,7 +20,7 @@ class RealmDataSource: RealmDataSourceProtocol {
 
         try? realm.write({
             realm.delete(oldMoviesInCurrentCategory)
-            realm.add(model)
+            realm.add(models)
         })
     }
 
@@ -36,12 +36,12 @@ class RealmDataSource: RealmDataSourceProtocol {
             .eraseToAnyPublisher()
     }
 
-  func saveFavoriteMovies(model: [RealmFavoritesDataSourceModel]) {
+  func saveFavoriteMovies(models: [RealmFavoritesDataSourceModel]) {
         guard let realm = try? Realm() else { return }
 
         try? realm.write({
             realm.delete(realm.objects(RealmFavoritesDataSourceModel.self))
-            realm.add(model)
+            realm.add(models)
         })
     }
 
