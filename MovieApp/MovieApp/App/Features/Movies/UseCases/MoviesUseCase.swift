@@ -15,15 +15,13 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .flatMap { [weak self] ids -> AnyPublisher<[MovieDetailsRepositoryModel], Error> in
                 guard let self = self else { return .never() }
 
-                let movieStreams = ids.map {
-                    self.moviesRepository.fetchMovie(with: $0)
-                }
+                let movieStreams = ids.map { self.moviesRepository.fetchMovie(with: $0) }
                 return Publishers.MergeMany(movieStreams)
                     .collect()
                     .eraseToAnyPublisher()
             }
             .handleEvents(receiveOutput: { [weak self] in
-                self?.realmRepository.saveFavorites(with: $0.map {RealmFavoritesRepositoryModel(from: $0) })
+                self?.realmRepository.saveFavorites(with: $0.map { RealmFavoritesRepositoryModel(from: $0) })
             })
             .replaceError(with: [])
             .flatMap { [weak self] _ -> AnyPublisher<[FavoriteMovieModel], Never> in

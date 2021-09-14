@@ -18,7 +18,7 @@ class RealmRepository: RealmRepositoryProtocol {
     }
 
     func saveFavorites(with model: [RealmFavoritesRepositoryModel]) {
-        realmDataSource.saveFavoriteMovies(models: model.map { RealmFavoritesDataSourceModel(from: $0)})
+        realmDataSource.saveFavoriteMovies(models: model.map { RealmFavoritesDataSourceModel(from: $0) })
     }
 
 }
