@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
+class UserDefaultsDataSource: UserDefaultsDataSourceProtocol {
 
     var items: AnyPublisher<[Int], Never> {
         UserDefaults.standard

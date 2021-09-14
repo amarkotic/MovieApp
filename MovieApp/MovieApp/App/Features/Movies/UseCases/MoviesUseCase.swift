@@ -5,12 +5,11 @@ import RealmSwift
 class MoviesUseCase: MoviesUseCaseProtocol {
 
     private let moviesRepository: MoviesRepositoryProtocol
-    private let userDefaultsRepository: UserDefaultsRepositoryProtocol
-    private let realmRepository: RealmRepositoryProtocol
+    private let favoritesRepository: FavoritesRepositoryProtocol
 
     var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> {
-        userDefaultsRepository
-            .favoriteItems
+        favoritesRepository
+            .favoriteMovieIds
             .setFailureType(to: Error.self)
             .flatMap { [weak self] ids -> AnyPublisher<[MovieDetailsRepositoryModel], Error> in
                 guard let self = self else { return .never() }
@@ -21,13 +20,13 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     .eraseToAnyPublisher()
             }
             .handleEvents(receiveOutput: { [weak self] in
-                self?.realmRepository.saveFavorites(with: $0.map { RealmFavoritesRepositoryModel(from: $0) })
+                self?.favoritesRepository.saveFavorites(with: $0.map { RealmFavoritesRepositoryModel(from: $0) })
             })
             .replaceError(with: [])
             .flatMap { [weak self] _ -> AnyPublisher<[FavoriteMovieModel], Never> in
                 guard let self = self else { return .empty() }
 
-                return self.realmRepository
+                return self.favoritesRepository
                     .favoriteMovies
                     .map { $0.map { FavoriteMovieModel(from: $0) } }
                     .eraseToAnyPublisher()
@@ -37,20 +36,18 @@ class MoviesUseCase: MoviesUseCaseProtocol {
 
     init(
         moviesRepository: MoviesRepositoryProtocol,
-        userDefaultsRepository: UserDefaultsRepositoryProtocol,
-        realmRepository: RealmRepositoryProtocol
+        favoritesRepository: FavoritesRepositoryProtocol
     ) {
         self.moviesRepository = moviesRepository
-        self.userDefaultsRepository = userDefaultsRepository
-        self.realmRepository = realmRepository
+        self.favoritesRepository = favoritesRepository
     }
 
     func fetchMovies(
         categoryModel: MovieCategoryModel,
         subcategoryModel: SubcategoryModel
     ) -> AnyPublisher<[MovieModel], Error> {
-        let favoriteIdsPublisher = userDefaultsRepository
-            .favoriteItems
+        let favoriteIdsPublisher = favoritesRepository
+            .favoriteMovieIds
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
 
@@ -69,8 +66,8 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error> {
-        let favoriteIdsPublisher = userDefaultsRepository
-            .favoriteItems
+        let favoriteIdsPublisher = favoritesRepository
+            .favoriteMovieIds
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
 
@@ -106,7 +103,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     }
 
     func updateFavorites(with id: Int) {
-        userDefaultsRepository
+        favoritesRepository
             .updateFavorites(with: id)
     }
 

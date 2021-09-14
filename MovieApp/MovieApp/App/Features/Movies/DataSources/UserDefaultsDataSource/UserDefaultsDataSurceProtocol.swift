@@ -1,6 +1,6 @@
 import Combine
 
-protocol FavoritesUserDefaultsDataSourceProtocol {
+protocol UserDefaultsDataSourceProtocol {
 
     var items: AnyPublisher<[Int], Never> { get }
 
