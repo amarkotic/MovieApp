@@ -10,6 +10,7 @@ enum SubcategoryDataSourceModel: Int {
     case scienceFiction = 878
     case today
     case thisWeek
+    case none
 
     init(from model: SubcategoryRepositoryModel) {
         switch model {
@@ -33,6 +34,8 @@ enum SubcategoryDataSourceModel: Int {
             self = .today
         case .thisWeek:
             self = .thisWeek
+        case .none:
+            self = .none
         }
     }
 

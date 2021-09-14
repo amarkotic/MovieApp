@@ -1,13 +1,14 @@
 import Combine
+import RealmSwift
 
 class MoviesRepository: MoviesRepositoryProtocol {
 
-    var favoriteMovies = [MovieRepositoryModel]()
-
+    private let realmDataSource: RealmDataSourceProtocol
     private let networkDataSource: MoviesNetworkDataSourceProtocol
 
-    init(networkDataSource: MoviesNetworkDataSourceProtocol) {
+    init(networkDataSource: MoviesNetworkDataSourceProtocol, realmDataSource: RealmDataSourceProtocol) {
         self.networkDataSource = networkDataSource
+        self.realmDataSource = realmDataSource
     }
 
     func fetchMovies(
@@ -16,10 +17,22 @@ class MoviesRepository: MoviesRepositoryProtocol {
     ) -> AnyPublisher<[MovieRepositoryModel], Error> {
         let categoryRepoModel = MovieCategoryRepositoryModel(from: categoryModel)
         let subcategoryRepoModel = SubcategoryRepositoryModel(from: subcategoryModel)
+        let realmCategory = RealmCategory(from: categoryRepoModel)
 
         return networkDataSource
             .fetchMovies(categoryRepositoryModel: categoryRepoModel, subcategoryRepositoryModel: subcategoryRepoModel)
-            .map { $0.map { MovieRepositoryModel(from: $0) } }
+            .handleEvents(receiveOutput: { [weak self] in
+                let realmDataSourceModel = $0.map { RealmDataSourceModel(from: $0, realmCategory: realmCategory) }
+                self?.realmDataSource.saveData(model: realmDataSourceModel, category: realmCategory)
+            })
+            .flatMap { [weak self] _ -> AnyPublisher<[MovieRepositoryModel], Error> in
+                guard let self = self else { return .never() }
+
+                return self.realmDataSource
+                    .getMovies(for: realmCategory)
+                    .map { $0.map { MovieRepositoryModel(from: $0) } }
+                    .eraseToAnyPublisher()
+            }
             .eraseToAnyPublisher()
     }
 

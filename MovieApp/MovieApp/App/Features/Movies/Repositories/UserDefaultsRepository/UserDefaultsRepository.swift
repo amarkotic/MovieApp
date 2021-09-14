@@ -5,11 +5,6 @@ class UserDefaultsRepository: UserDefaultsRepositoryProtocol {
 
     private let favoritesDataSource: FavoritesUserDefaultsDataSourceProtocol
 
-    var oldFavoriteItems: [Int] {
-        favoritesDataSource
-            .oldItems
-    }
-
     var favoriteItems: AnyPublisher<[Int], Never> {
         favoritesDataSource
             .items

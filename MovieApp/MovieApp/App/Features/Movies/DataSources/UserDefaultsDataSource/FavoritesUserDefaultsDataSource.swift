@@ -3,16 +3,6 @@ import Combine
 
 class FavoritesUserDefaultsDataSource: FavoritesUserDefaultsDataSourceProtocol {
 
-    var oldItems: [Int] {
-        guard
-            let items = UserDefaults.standard.array(forKey: UserDefaultsKeys.favorites.rawValue) as? [Int]
-        else {
-            return []
-        }
-
-        return items
-    }
-
     var items: AnyPublisher<[Int], Never> {
         UserDefaults.standard
             .publisher(for: \.favorites)
