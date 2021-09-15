@@ -94,7 +94,7 @@ class CategoryTableViewCell: UITableViewCell {
                     .ellipseImageView
                     .throttledTapGesture()
                     .sink { [weak self] _ in
-                        self?.delegate?.updateFavoriteMovie(with: model.id)
+                        self?.delegate?.updateFavoriteMovie(with: model)
                     }
                     .store(in: &cell.disposables)
 

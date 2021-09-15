@@ -59,9 +59,9 @@ class DetailsPresenter {
         appRouter.showHomeScreen()
     }
 
-    func updateFavoriteMovie() {
+    func updateFavoriteMovie(with url: String) {
         movieUseCase
-            .updateFavorites(with: identifier)
+            .updateFavorites(id: identifier, with: url)
     }
 
 }

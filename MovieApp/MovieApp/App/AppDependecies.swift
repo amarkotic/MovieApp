@@ -12,20 +12,22 @@ class AppDependencies {
         MoviesNetworkDataSource(networkClient: moviesNetworkClient)
     }()
 
-    lazy var realmDataSource: RealmDataSourceProtocol = {
-        RealmDataSource()
+    lazy var localDataSource: LocalDataSourceProtocol = {
+        LocalDataSource()
     }()
 
     lazy var moviesRepository: MoviesRepositoryProtocol = {
-        MoviesRepository(networkDataSource: moviesNetworkDataSource, realmDataSource: realmDataSource)
+        MoviesRepository(networkDataSource: moviesNetworkDataSource, localDataSource: localDataSource)
     }()
 
-    lazy var userDefaultsRepository: UserDefaultsRepository = {
-        UserDefaultsRepository(favoritesDataSource: FavoritesUserDefaultsDataSource())
+    lazy var favoritesRepository: FavoritesRepositoryProtocol = {
+        FavoritesRepository(localDataSource: localDataSource)
     }()
 
     lazy var moviesUseCase: MoviesUseCaseProtocol = {
-        MoviesUseCase(moviesRepository: moviesRepository, userDefaultsRepository: userDefaultsRepository)
+        MoviesUseCase(
+            moviesRepository: moviesRepository,
+            favoritesRepository: favoritesRepository)
     }()
 
 }

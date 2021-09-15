@@ -17,7 +17,9 @@ protocol MoviesUseCaseProtocol {
 
     func fetchRecommendations(with id: Int) -> AnyPublisher<[RecommendationModel], Error>
 
-    func updateFavorites(with id: Int)
+    func updateFavorites(with model: MovieModel)
+
+    func updateFavorites(id: Int, with url: String)
 
     func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieSearchModel], Error>
 

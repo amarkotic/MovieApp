@@ -1,26 +1,26 @@
 import Foundation
 import RealmSwift
 
-class RealmDataSourceModel: Object {
+class LocalMovieDataSourceModel: Object {
 
     @Persisted var id: Int
     @Persisted var imageUrl: String
     @Persisted var title: String
     @Persisted var category: String
-    @Persisted var realmDescription: String
+    @Persisted var localDescription: String
     @Persisted var subcategories = List<Int>()
 
 }
 
-extension RealmDataSourceModel {
+extension LocalMovieDataSourceModel {
 
-    convenience init(from model: MovieDataSourceModel, realmCategory: RealmCategory) {
+    convenience init(from model: MovieDataSourceModel, localCategory: LocalCategory) {
         self.init()
         id = model.id
         imageUrl = model.imageUrl
         title = model.title
-        category = realmCategory.rawValue
-        realmDescription = model.description
+        category = localCategory.rawValue
+        localDescription = model.description
         subcategories.append(objectsIn: model.subcategories.map { $0.rawValue })
     }
 

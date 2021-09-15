@@ -4,42 +4,36 @@ import Combine
 class MoviesUseCase: MoviesUseCaseProtocol {
 
     private let moviesRepository: MoviesRepositoryProtocol
-    private let userDefaultsRepository: UserDefaultsRepositoryProtocol
+    private let favoritesRepository: FavoritesRepositoryProtocol
 
     var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> {
-        userDefaultsRepository
-            .favoriteItems
-            .setFailureType(to: Error.self)
-            .flatMap { [weak self] ids -> AnyPublisher<[MovieDetailsRepositoryModel], Error> in
-                guard let self = self else { return .never() }
+        favoritesRepository
+            .favoriteMovies
+            .flatMap { [weak self] _ -> AnyPublisher<[FavoriteMovieModel], Never> in
+                guard let self = self else { return .empty() }
 
-                let movieStreams = ids.map {
-                    self.moviesRepository.fetchMovie(with: $0)
-                }
-                return Publishers.MergeMany(movieStreams)
-                    .collect()
+                return self.favoritesRepository
+                    .favoriteMovies
+                    .map { $0.map { FavoriteMovieModel(from: $0) } }
                     .eraseToAnyPublisher()
             }
-
-            .replaceError(with: [])
-            .map { $0.map { FavoriteMovieModel(id: $0.id, imageUrl: $0.posterPath, isSelected: true) } }
             .eraseToAnyPublisher()
     }
 
     init(
         moviesRepository: MoviesRepositoryProtocol,
-        userDefaultsRepository: UserDefaultsRepositoryProtocol
+        favoritesRepository: FavoritesRepositoryProtocol
     ) {
         self.moviesRepository = moviesRepository
-        self.userDefaultsRepository = userDefaultsRepository
+        self.favoritesRepository = favoritesRepository
     }
 
     func fetchMovies(
         categoryModel: MovieCategoryModel,
         subcategoryModel: SubcategoryModel
     ) -> AnyPublisher<[MovieModel], Error> {
-        let favoriteIdsPublisher = userDefaultsRepository
-            .favoriteItems
+        let favoriteIdsPublisher = favoritesRepository
+            .favoriteMovies
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
 
@@ -47,21 +41,19 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .fetchMovies(categoryModel: categoryModel, subcategoryModel: subcategoryModel)
             .combineLatest(favoriteIdsPublisher)
             .map {
-                let favoriteIds = $0.1
+                let favoriteIds = $0.1.map { $0.id }
                 return $0.0.map {
                     let isFavorite = favoriteIds.contains($0.id)
                     return MovieModel(from: $0, isFavorite: isFavorite)
                 }
-                .filter {
-                    categoryModel == .trending || $0.subcategories.contains(subcategoryModel)
-                }
+                .filter { categoryModel == .trending || $0.subcategories.contains(subcategoryModel) }
             }
             .eraseToAnyPublisher()
     }
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error> {
-        let favoriteIdsPublisher = userDefaultsRepository
-            .favoriteItems
+        let favoriteIdsPublisher = favoritesRepository
+            .favoriteMovies
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
 
@@ -69,7 +61,8 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .fetchMovie(with: id)
             .combineLatest(favoriteIdsPublisher)
             .map {
-                let isSelected = $0.1.contains(id)
+                let favoriteIds = $0.1.map { $0.id }
+                let isSelected = favoriteIds.contains(id)
                 return MovieDetailsModel(from: $0.0, isSelected: isSelected)
             }
             .eraseToAnyPublisher()
@@ -96,9 +89,14 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .eraseToAnyPublisher()
     }
 
-    func updateFavorites(with id: Int) {
-        userDefaultsRepository
-            .updateFavorites(with: id)
+    func updateFavorites(with model: MovieModel) {
+        favoritesRepository
+            .updateFavorites(with: LocalFavoritesRepositoryModel(from: model))
+    }
+
+    func updateFavorites(id: Int, with url: String) {
+        favoritesRepository
+            .updateFavorites(with: LocalFavoritesRepositoryModel(id: id, imageUrl: url))
     }
 
     func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieSearchModel], Error> {

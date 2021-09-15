@@ -39,9 +39,10 @@ class HomePresenter {
         appRouter.showMovieDetails(with: id)
     }
 
-    func updateFavoriteMovie(with id: Int) {
+    func updateFavoriteMovie(with model: MovieViewModel) {
         moviesUseCase
-            .updateFavorites(with: id)
+            .updateFavorites(with: MovieModel(from: model))
+            
     }
 
     func goToSearch() {

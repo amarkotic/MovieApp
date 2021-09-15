@@ -1,14 +1,13 @@
 import Combine
-import RealmSwift
 
 class MoviesRepository: MoviesRepositoryProtocol {
 
-    private let realmDataSource: RealmDataSourceProtocol
+    private let localDataSource: LocalDataSourceProtocol
     private let networkDataSource: MoviesNetworkDataSourceProtocol
 
-    init(networkDataSource: MoviesNetworkDataSourceProtocol, realmDataSource: RealmDataSourceProtocol) {
+    init(networkDataSource: MoviesNetworkDataSourceProtocol, localDataSource: LocalDataSourceProtocol) {
         self.networkDataSource = networkDataSource
-        self.realmDataSource = realmDataSource
+        self.localDataSource = localDataSource
     }
 
     func fetchMovies(
@@ -17,19 +16,21 @@ class MoviesRepository: MoviesRepositoryProtocol {
     ) -> AnyPublisher<[MovieRepositoryModel], Error> {
         let categoryRepoModel = MovieCategoryRepositoryModel(from: categoryModel)
         let subcategoryRepoModel = SubcategoryRepositoryModel(from: subcategoryModel)
-        let realmCategory = RealmCategory(from: categoryRepoModel)
+        let localCategory = LocalCategory(from: categoryRepoModel)
 
         return networkDataSource
             .fetchMovies(categoryRepositoryModel: categoryRepoModel, subcategoryRepositoryModel: subcategoryRepoModel)
             .handleEvents(receiveOutput: { [weak self] in
-                let realmDataSourceModel = $0.map { RealmDataSourceModel(from: $0, realmCategory: realmCategory) }
-                self?.realmDataSource.saveData(model: realmDataSourceModel, category: realmCategory)
+                let localMovieDataSourceModel = $0.map {
+                    LocalMovieDataSourceModel(from: $0, localCategory: localCategory)
+                }
+                self?.localDataSource.saveMovies(models: localMovieDataSourceModel, category: localCategory)
             })
             .flatMap { [weak self] _ -> AnyPublisher<[MovieRepositoryModel], Error> in
                 guard let self = self else { return .never() }
 
-                return self.realmDataSource
-                    .getMovies(for: realmCategory)
+                return self.localDataSource
+                    .getMovies(for: localCategory)
                     .map { $0.map { MovieRepositoryModel(from: $0) } }
                     .eraseToAnyPublisher()
             }
