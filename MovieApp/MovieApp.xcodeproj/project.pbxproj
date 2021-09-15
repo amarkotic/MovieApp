@@ -91,6 +91,7 @@
 		528B16E226EF3547008F2B40 /* FavoritesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B16E126EF3547008F2B40 /* FavoritesRepositoryProtocol.swift */; };
 		528B16E426EF3B47008F2B40 /* LocalFavoritesDataSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B16E326EF3B46008F2B40 /* LocalFavoritesDataSourceModel.swift */; };
 		528B16E726EF3BC2008F2B40 /* LocalFavoritesRepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B16E626EF3BC2008F2B40 /* LocalFavoritesRepositoryModel.swift */; };
+		528B16ED26EF4C5D008F2B40 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 528B16EC26EF4C5D008F2B40 /* Reachability */; };
 		528DE5CF26C122DA00498E23 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5CE26C122DA00498E23 /* SocialView.swift */; };
 		528DE5D126C122E200498E23 /* SocialView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5D026C122E200498E23 /* SocialView+Design.swift */; };
 		528DE5D426C159BF00498E23 /* RecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DE5D326C159BF00498E23 /* RecommendationsView.swift */; };
@@ -327,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				523C2EDF26A1B4B300F2EDD6 /* Kingfisher in Frameworks */,
+				528B16ED26EF4C5D008F2B40 /* Reachability in Frameworks */,
 				523C2EAC269DAAD500F2EDD6 /* SnapKit in Frameworks */,
 				5292082626EA29EC00BE0629 /* Realm in Frameworks */,
 				5292082826EA29EC00BE0629 /* RealmSwift in Frameworks */,
@@ -1096,6 +1098,7 @@
 				523C2EDE26A1B4B300F2EDD6 /* Kingfisher */,
 				5292082526EA29EC00BE0629 /* Realm */,
 				5292082726EA29EC00BE0629 /* RealmSwift */,
+				528B16EC26EF4C5D008F2B40 /* Reachability */,
 			);
 			productName = MovieApp;
 			productReference = 526B5161269D6D370095F3E2 /* MovieApp.app */;
@@ -1130,6 +1133,7 @@
 				523C2EDD26A1B4B300F2EDD6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				522F60FA26E606CB004A8A8F /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				5292082426EA29EC00BE0629 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				528B16EB26EF4C5D008F2B40 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 526B5162269D6D370095F3E2 /* Products */;
 			projectDirPath = "";
@@ -1543,6 +1547,14 @@
 				minimumVersion = 6.3.0;
 			};
 		};
+		528B16EB26EF4C5D008F2B40 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		5292082426EA29EC00BE0629 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
@@ -1568,6 +1580,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 523C2EDD26A1B4B300F2EDD6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		528B16EC26EF4C5D008F2B40 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 528B16EB26EF4C5D008F2B40 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
 		};
 		5292082526EA29EC00BE0629 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
