@@ -33,10 +33,18 @@ extension DetailsViewController: DesignProtocol {
 
         recommendationView = RecommendationsView()
         contentView.addSubview(recommendationView)
+
+        noInternetLabel = UILabel(with: .proximaMedium)
+        view.addSubview(noInternetLabel)
     }
 
     func styleViews() {
         view.backgroundColor = .white
+
+        noInternetLabel.text = LocalizableStrings.noInternet.rawValue
+        noInternetLabel.backgroundColor = .gray
+        noInternetLabel.textAlignment = .center
+        noInternetLabel.isHidden = true
     }
 
     func defineLayoutForViews() {
@@ -81,6 +89,11 @@ extension DetailsViewController: DesignProtocol {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(recommendationsCollectionViewHeight)
             $0.bottom.equalToSuperview().inset(3 * defaultOffset)
+        }
+
+        noInternetLabel.snp.makeConstraints {
+            $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(noInternetLabelHeight)
         }
     }
 

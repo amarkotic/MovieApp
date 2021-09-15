@@ -1,5 +1,6 @@
 import UIKit
 import Combine
+import Reachability
 
 class DetailsViewController: UIViewController {
 
@@ -8,6 +9,8 @@ class DetailsViewController: UIViewController {
     let recommendationsCollectionViewHeight = 114
     let castCollectionViewHeight = 106
     let actorsCollectionViewHeight = 259
+    let noInternetLabelHeight = 50
+    let reachability = try? Reachability()
 
     var scrollView: UIScrollView!
     var contentView: UIView!
@@ -18,6 +21,7 @@ class DetailsViewController: UIViewController {
     var actorsView: ActorsView!
     var socialView: SocialView!
     var recommendationView: RecommendationsView!
+    var noInternetLabel: UILabel!
 
     var presenter: DetailsPresenter!
     private var disposables = Set<AnyCancellable>()
@@ -35,6 +39,7 @@ class DetailsViewController: UIViewController {
         styleNavigationBar()
         mainInfoView.setDelegate(delegate: self)
         bindViews()
+        checkReachability()
     }
 
     func favoritePressed(with url: String) {
@@ -42,10 +47,41 @@ class DetailsViewController: UIViewController {
         bindViews()
     }
 
-    func hideReview() {
+    private func hideReview() {
         socialView.postTitle.text = LocalizableStrings.noReview.rawValue
         socialView.postInfo.text = LocalizableStrings.tryAgain.rawValue
         socialView.logoImage.image = UIImage(with: .noReview)
+    }
+
+    private func checkReachability() {
+        guard let reachability = reachability else { return }
+
+        reachability.whenReachable = { [weak self] _ in
+            self?.connectionReachable()
+        }
+        reachability.whenUnreachable = { [weak self] _ in
+            self?.connectionUnreachable()
+        }
+
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+    }
+
+    private func connectionReachable() {
+        noInternetLabel.isHidden = true
+    }
+
+    private func connectionUnreachable() {
+        mainInfoView.isHidden = true
+        overviewView.isHidden = true
+        castView.isHidden = true
+        actorsView.isHidden = true
+        socialView.isHidden = true
+        recommendationView.isHidden = true
+        noInternetLabel.isHidden = false
     }
 
     private func bindViews() {
