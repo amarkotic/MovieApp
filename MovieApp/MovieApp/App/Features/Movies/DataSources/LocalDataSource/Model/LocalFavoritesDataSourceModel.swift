@@ -1,16 +1,16 @@
 import Foundation
 import RealmSwift
 
-class RealmFavoritesDataSourceModel: Object {
+class LocalFavoritesDataSourceModel: Object {
 
     @Persisted var id: Int
     @Persisted var imageUrl: String
 
 }
 
-extension RealmFavoritesDataSourceModel {
+extension LocalFavoritesDataSourceModel {
 
-    convenience init(from model: RealmFavoritesRepositoryModel) {
+    convenience init(from model: LocalFavoritesRepositoryModel) {
         self.init()
         id = model.id
         imageUrl = model.imageUrl

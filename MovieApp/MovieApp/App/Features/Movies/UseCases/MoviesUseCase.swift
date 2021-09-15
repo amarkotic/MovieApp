@@ -1,6 +1,5 @@
 import UIKit
 import Combine
-import RealmSwift
 
 class MoviesUseCase: MoviesUseCaseProtocol {
 
@@ -9,20 +8,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
 
     var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> {
         favoritesRepository
-            .favoriteMovieIds
-            .setFailureType(to: Error.self)
-            .flatMap { [weak self] ids -> AnyPublisher<[MovieDetailsRepositoryModel], Error> in
-                guard let self = self else { return .never() }
-
-                let movieStreams = ids.map { self.moviesRepository.fetchMovie(with: $0) }
-                return Publishers.MergeMany(movieStreams)
-                    .collect()
-                    .eraseToAnyPublisher()
-            }
-            .handleEvents(receiveOutput: { [weak self] in
-                self?.favoritesRepository.saveFavorites(with: $0.map { RealmFavoritesRepositoryModel(from: $0) })
-            })
-            .replaceError(with: [])
+            .favoriteMovies
             .flatMap { [weak self] _ -> AnyPublisher<[FavoriteMovieModel], Never> in
                 guard let self = self else { return .empty() }
 
@@ -47,7 +33,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
         subcategoryModel: SubcategoryModel
     ) -> AnyPublisher<[MovieModel], Error> {
         let favoriteIdsPublisher = favoritesRepository
-            .favoriteMovieIds
+            .favoriteMovies
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
 
@@ -55,7 +41,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .fetchMovies(categoryModel: categoryModel, subcategoryModel: subcategoryModel)
             .combineLatest(favoriteIdsPublisher)
             .map {
-                let favoriteIds = $0.1
+                let favoriteIds = $0.1.map { $0.id }
                 return $0.0.map {
                     let isFavorite = favoriteIds.contains($0.id)
                     return MovieModel(from: $0, isFavorite: isFavorite)
@@ -67,7 +53,7 @@ class MoviesUseCase: MoviesUseCaseProtocol {
 
     func fetchMovie(with id: Int) -> AnyPublisher<MovieDetailsModel, Error> {
         let favoriteIdsPublisher = favoritesRepository
-            .favoriteMovieIds
+            .favoriteMovies
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
 
@@ -75,7 +61,8 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .fetchMovie(with: id)
             .combineLatest(favoriteIdsPublisher)
             .map {
-                let isSelected = $0.1.contains(id)
+                let favoriteIds = $0.1.map { $0.id }
+                let isSelected = favoriteIds.contains(id)
                 return MovieDetailsModel(from: $0.0, isSelected: isSelected)
             }
             .eraseToAnyPublisher()
@@ -102,9 +89,14 @@ class MoviesUseCase: MoviesUseCaseProtocol {
             .eraseToAnyPublisher()
     }
 
-    func updateFavorites(with id: Int) {
+    func updateFavorites(with model: MovieModel) {
         favoritesRepository
-            .updateFavorites(with: id)
+            .updateFavorites(with: LocalFavoritesRepositoryModel(from: model))
+    }
+
+    func updateFavorites(id: Int, with url: String) {
+        favoritesRepository
+            .updateFavorites(with: LocalFavoritesRepositoryModel(id: id, imageUrl: url))
     }
 
     func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieSearchModel], Error> {

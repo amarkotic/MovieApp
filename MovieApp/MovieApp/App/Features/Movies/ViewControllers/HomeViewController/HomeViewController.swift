@@ -35,9 +35,9 @@ class HomeViewController: UIViewController {
         presenter.showMovieDetails(with: id)
     }
 
-    func updateFavoriteMovie(with id: Int) {
+    func updateFavoriteMovie(with model: MovieViewModel) {
         presenter
-            .updateFavoriteMovie(with: id)
+            .updateFavoriteMovie(with: model)
     }
 
     private func makeDataSource() {

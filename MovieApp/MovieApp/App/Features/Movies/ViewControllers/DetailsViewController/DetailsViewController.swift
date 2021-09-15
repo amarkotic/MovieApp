@@ -37,8 +37,8 @@ class DetailsViewController: UIViewController {
         bindViews()
     }
 
-    func favoritePressed() {
-        presenter.updateFavoriteMovie()
+    func favoritePressed(with url: String) {
+        presenter.updateFavoriteMovie(with: url)
         bindViews()
     }
 

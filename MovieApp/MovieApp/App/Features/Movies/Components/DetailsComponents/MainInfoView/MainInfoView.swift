@@ -18,6 +18,7 @@ class MainInfoView: UIView {
     var genresAndDurationLabel: UILabel!
     var elipseImageView: UIImageView!
     var favoriteImageView: UIImageView!
+    var url: String!
 
     weak private var delegate: DetailsViewController?
 
@@ -33,6 +34,7 @@ class MainInfoView: UIView {
     }
 
     func setData(with model: MainInfoViewModel) {
+        url = model.posterPath
         favoriteImageView.image = model.isFavorite ? UIImage(with: .favoriteLogoSelected) : UIImage(with: .favoriteLogo)
         moviePoster.kf.setImage(with: URL(string: model.posterPath))
         progressView.setData(with: model.progressPercentage)
@@ -51,7 +53,7 @@ class MainInfoView: UIView {
     }
 
     @objc private func favoriteTapped() {
-        delegate?.favoritePressed()
+        delegate?.favoritePressed(with: url)
     }
 
 }

@@ -8,7 +8,7 @@ struct FavoriteMovieModel {
 
 extension FavoriteMovieModel {
 
-    init(from model: RealmFavoritesRepositoryModel) {
+    init(from model: LocalFavoritesRepositoryModel) {
         id = model.id
         imageUrl = model.imageUrl
         isSelected = true

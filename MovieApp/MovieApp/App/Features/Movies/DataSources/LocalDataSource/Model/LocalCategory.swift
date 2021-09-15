@@ -1,4 +1,4 @@
-enum RealmCategory: String {
+enum LocalCategory: String {
 
     case popular
     case topRated
