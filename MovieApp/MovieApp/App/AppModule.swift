@@ -5,8 +5,8 @@ class AppModule {
 
     private let container: Resolver
 
-    init(container: Resolver) {
-        self.container = container
+    init() {
+        self.container = Resolver.main
         registerAllServices(in: container)
     }
 

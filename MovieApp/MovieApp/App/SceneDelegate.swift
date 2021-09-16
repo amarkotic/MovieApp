@@ -1,5 +1,4 @@
 import UIKit
-import Resolver
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -14,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
 
         if let window = window {
-            let appModule = AppModule(container: Resolver.main)
+            let appModule = AppModule()
             appModule.startRouter(with: window)
         }
     }
