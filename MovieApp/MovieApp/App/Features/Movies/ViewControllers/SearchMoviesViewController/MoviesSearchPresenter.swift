@@ -3,8 +3,8 @@ import Combine
 
 class MoviesSearchPresenter {
 
-    private let moviesUseCase: MoviesUseCaseProtocol!
-    private let appRouter: AppRouter!
+    private let moviesUseCase: MoviesUseCaseProtocol
+    private let appRouter: AppRouter
 
     init(moviesUseCase: MoviesUseCaseProtocol, appRouter: AppRouter) {
         self.moviesUseCase = moviesUseCase

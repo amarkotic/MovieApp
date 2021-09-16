@@ -3,7 +3,7 @@ import Resolver
 
 class AppModule {
 
-    private let container: Resolver!
+    private let container: Resolver
 
     init(container: Resolver) {
         self.container = container

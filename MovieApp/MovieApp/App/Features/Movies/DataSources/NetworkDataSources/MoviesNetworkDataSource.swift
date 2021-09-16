@@ -2,7 +2,7 @@ import Combine
 
 class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
 
-    private let networkClient: MoviesNetworkClientProtocol!
+    private let networkClient: MoviesNetworkClientProtocol
 
     init(networkClient: MoviesNetworkClientProtocol) {
         self.networkClient = networkClient

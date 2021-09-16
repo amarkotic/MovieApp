@@ -3,7 +3,7 @@ import Combine
 
 class FavoriteMoviesPresenter {
 
-    private let moviesUseCase: MoviesUseCaseProtocol!
+    private let moviesUseCase: MoviesUseCaseProtocol
 
     init(moviesUseCase: MoviesUseCaseProtocol) {
         self.moviesUseCase = moviesUseCase

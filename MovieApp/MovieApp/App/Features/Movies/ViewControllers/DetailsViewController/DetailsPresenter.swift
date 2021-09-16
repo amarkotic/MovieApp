@@ -4,8 +4,8 @@ import Combine
 class DetailsPresenter {
 
     private let identifier: Int
-    private let appRouter: AppRouter!
-    private let movieUseCase: MoviesUseCaseProtocol!
+    private let appRouter: AppRouter
+    private let movieUseCase: MoviesUseCaseProtocol
 
     init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter, identifier: Int) {
         self.movieUseCase = movieUseCase

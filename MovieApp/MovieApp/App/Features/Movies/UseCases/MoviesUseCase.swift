@@ -3,8 +3,8 @@ import Combine
 
 class MoviesUseCase: MoviesUseCaseProtocol {
 
-    private let moviesRepository: MoviesRepositoryProtocol!
-    private let favoritesRepository: FavoritesRepositoryProtocol!
+    private let moviesRepository: MoviesRepositoryProtocol
+    private let favoritesRepository: FavoritesRepositoryProtocol
 
     init(moviesRepository: MoviesRepositoryProtocol, favoritesRepository: FavoritesRepositoryProtocol) {
         self.moviesRepository = moviesRepository

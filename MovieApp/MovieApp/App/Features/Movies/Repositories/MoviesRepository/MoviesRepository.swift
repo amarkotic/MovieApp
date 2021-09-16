@@ -2,8 +2,8 @@ import Combine
 
 class MoviesRepository: MoviesRepositoryProtocol {
 
-   private let localDataSource: LocalDataSourceProtocol!
-   private let networkDataSource: MoviesNetworkDataSourceProtocol!
+   private let localDataSource: LocalDataSourceProtocol
+   private let networkDataSource: MoviesNetworkDataSourceProtocol
 
     init(localDataSource: LocalDataSourceProtocol, networkDataSource: MoviesNetworkDataSourceProtocol) {
         self.localDataSource = localDataSource

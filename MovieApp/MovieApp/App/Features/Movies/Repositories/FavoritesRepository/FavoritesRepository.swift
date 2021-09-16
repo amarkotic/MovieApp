@@ -3,7 +3,7 @@ import Combine
 
 class FavoritesRepository: FavoritesRepositoryProtocol {
 
-    private let localDataSource: LocalDataSourceProtocol!
+    private let localDataSource: LocalDataSourceProtocol
 
     init(localDataSource: LocalDataSourceProtocol) {
         self.localDataSource = localDataSource

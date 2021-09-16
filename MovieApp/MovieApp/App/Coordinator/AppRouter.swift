@@ -1,4 +1,5 @@
 import UIKit
+import Resolver
 
 class AppRouter {
 

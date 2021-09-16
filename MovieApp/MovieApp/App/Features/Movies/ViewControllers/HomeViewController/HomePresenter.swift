@@ -3,8 +3,8 @@ import Combine
 
 class HomePresenter {
 
-    private let moviesUseCase: MoviesUseCaseProtocol!
-    private let appRouter: AppRouter!
+    private let moviesUseCase: MoviesUseCaseProtocol
+    private let appRouter: AppRouter
 
     init(moviesUseCase: MoviesUseCaseProtocol, appRouter: AppRouter) {
         self.moviesUseCase = moviesUseCase
