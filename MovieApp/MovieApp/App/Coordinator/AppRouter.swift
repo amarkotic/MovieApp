@@ -1,10 +1,9 @@
 import UIKit
-import Resolver
 
 class AppRouter {
 
     private let navigationController = UINavigationController()
-    private let container: Resolver!
+    private let container: Resolver
 
     private lazy var tabBarController: UITabBarController = {
         let tabBarController: CustomTabBarController = container.resolve()
@@ -24,8 +23,7 @@ class AppRouter {
     }
 
     func showMovieDetails(with identifier: Int) {
-        let detailsViewController: DetailsViewController = container.resolve()
-        detailsViewController.presenter.setIdentifier(with: identifier)
+        let detailsViewController: DetailsViewController = container.resolve(args: identifier)
         navigationController.pushViewController(detailsViewController, animated: true)
     }
 

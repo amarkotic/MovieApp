@@ -37,7 +37,7 @@ class AppModule {
 
     private func registerDataSources(in container: Resolver) {
         container
-            .register { MoviesNetworkDataSource() }
+            .register { MoviesNetworkDataSource(networkClient: container.resolve()) }
             .implements(MoviesNetworkDataSourceProtocol.self)
             .scope(.application)
 
@@ -49,19 +49,19 @@ class AppModule {
 
     private func registerRepository(in container: Resolver) {
         container
-            .register { MoviesRepository() }
+            .register { MoviesRepository(localDataSource: container.resolve(), networkDataSource: container.resolve()) }
             .implements(MoviesRepositoryProtocol.self)
             .scope(.application)
 
         container
-            .register { FavoritesRepository() }
+            .register { FavoritesRepository(localDataSource: container.resolve()) }
             .implements(FavoritesRepositoryProtocol.self)
             .scope(.application)
     }
 
     private func registerUseCase(in container: Resolver) {
         container
-            .register { MoviesUseCase() }
+            .register { MoviesUseCase(moviesRepository: container.resolve(), favoritesRepository: container.resolve()) }
             .implements(MoviesUseCaseProtocol.self)
             .scope(.application)
     }
@@ -74,47 +74,55 @@ class AppModule {
 
     private func registerHomeViewController(in container: Resolver) {
         container
-            .register { HomeViewController() }
+            .register { HomeViewController(presenter: container.resolve()) }
             .scope(.unique)
 
         container
-            .register { HomePresenter() }
+            .register { HomePresenter(moviesUseCase: container.resolve(), appRouter: container.resolve()) }
             .scope(.unique)
     }
 
     private func registerFavoritesViewController(in container: Resolver) {
         container
-            .register { FavoriteMoviesViewController() }
+            .register { FavoriteMoviesViewController(presenter: container.resolve()) }
             .scope(.unique)
 
         container
-            .register { FavoriteMoviesPresenter() }
+            .register { FavoriteMoviesPresenter(moviesUseCase: container.resolve()) }
             .scope(.unique)
     }
 
     private func registerCustomTabBar(in container: Resolver) {
         container
-            .register { CustomTabBarController() }
+            .register {
+                CustomTabBarController(
+                homeViewController: container.resolve(),
+                favoriteViewController: container.resolve())
+            }
             .scope(.unique)
     }
 
     private func registerDetailsViewController(in container: Resolver) {
         container
-            .register { DetailsViewController() }
+            .register { _, args in
+                DetailsViewController(presenter: container.resolve(args: args()))
+            }
             .scope(.unique)
 
         container
-            .register { DetailsPresenter() }
+            .register { _, args in
+                DetailsPresenter(movieUseCase: container.resolve(), router: container.resolve(), identifier: args())
+            }
             .scope(.unique)
     }
 
     private func registerSearchViewController(in container: Resolver) {
         container
-            .register { MoviesSearchViewController() }
+            .register { MoviesSearchViewController(presenter: container.resolve()) }
             .scope(.unique)
 
         container
-            .register { MoviesSearchPresenter() }
+            .register { MoviesSearchPresenter(moviesUseCase: container.resolve(), appRouter: container.resolve()) }
             .scope(.unique)
     }
 

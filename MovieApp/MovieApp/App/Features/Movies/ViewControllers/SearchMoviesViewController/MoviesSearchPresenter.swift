@@ -1,11 +1,15 @@
 import UIKit
 import Combine
-import Resolver
 
 class MoviesSearchPresenter {
 
-    @Injected private var moviesUseCase: MoviesUseCaseProtocol
-    @Injected private var appRouter: AppRouter
+    private let moviesUseCase: MoviesUseCaseProtocol!
+    private let appRouter: AppRouter!
+
+    init(moviesUseCase: MoviesUseCaseProtocol, appRouter: AppRouter) {
+        self.moviesUseCase = moviesUseCase
+        self.appRouter = appRouter
+    }
 
     func fetchSearchMovies(with query: String) -> AnyPublisher<[MovieSearchViewModel], Error> {
         moviesUseCase

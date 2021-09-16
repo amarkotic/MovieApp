@@ -1,12 +1,17 @@
 import UIKit
 import Combine
-import Resolver
 
 class DetailsPresenter {
 
-    private var identifier: Int!
-    @Injected private var appRouter: AppRouter
-    @Injected private var movieUseCase: MoviesUseCaseProtocol
+    private let identifier: Int
+    private let appRouter: AppRouter!
+    private let movieUseCase: MoviesUseCaseProtocol!
+
+    init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter, identifier: Int) {
+        self.movieUseCase = movieUseCase
+        self.appRouter = router
+        self.identifier = identifier
+    }
 
     var info: AnyPublisher<InfoViewModel, Error> {
         movieUseCase
@@ -57,10 +62,6 @@ class DetailsPresenter {
     func updateFavoriteMovie(with url: String) {
         movieUseCase
             .updateFavorites(id: identifier, with: url)
-    }
-
-    func setIdentifier(with identifier: Int) {
-        self.identifier = identifier
     }
 
 }

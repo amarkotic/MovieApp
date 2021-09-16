@@ -1,11 +1,15 @@
 import UIKit
 import Combine
-import Resolver
 
 class MoviesUseCase: MoviesUseCaseProtocol {
 
-    @Injected private var moviesRepository: MoviesRepositoryProtocol
-    @Injected private var favoritesRepository: FavoritesRepositoryProtocol
+    private let moviesRepository: MoviesRepositoryProtocol!
+    private let favoritesRepository: FavoritesRepositoryProtocol!
+
+    init(moviesRepository: MoviesRepositoryProtocol, favoritesRepository: FavoritesRepositoryProtocol) {
+        self.moviesRepository = moviesRepository
+        self.favoritesRepository = favoritesRepository
+    }
 
     var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> {
         favoritesRepository

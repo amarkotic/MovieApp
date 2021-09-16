@@ -1,10 +1,13 @@
 import UIKit
 import Combine
-import Resolver
 
 class FavoriteMoviesPresenter {
 
-    @Injected private var moviesUseCase: MoviesUseCaseProtocol
+    private let moviesUseCase: MoviesUseCaseProtocol!
+
+    init(moviesUseCase: MoviesUseCaseProtocol) {
+        self.moviesUseCase = moviesUseCase
+    }
 
     var favoriteMovies: AnyPublisher<[MovieViewModel], Never> {
         moviesUseCase

@@ -1,6 +1,5 @@
 import UIKit
 import Combine
-import Resolver
 
 class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
 
@@ -17,7 +16,13 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
 
     private var disposables = Set<AnyCancellable>()
     private var dataSource: DataSource!
-    @Injected private var presenter: MoviesSearchPresenter
+    private var presenter: MoviesSearchPresenter!
+
+    convenience init(presenter: MoviesSearchPresenter) {
+        self.init()
+
+        self.presenter = presenter
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

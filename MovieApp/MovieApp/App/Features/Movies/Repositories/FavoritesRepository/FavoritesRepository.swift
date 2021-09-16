@@ -1,10 +1,13 @@
 import Foundation
 import Combine
-import Resolver
 
 class FavoritesRepository: FavoritesRepositoryProtocol {
 
-    @Injected private var localDataSource: LocalDataSourceProtocol
+    private let localDataSource: LocalDataSourceProtocol!
+
+    init(localDataSource: LocalDataSourceProtocol) {
+        self.localDataSource = localDataSource
+    }
 
     var favoriteMovies: AnyPublisher<[LocalFavoritesRepositoryModel], Never> {
         localDataSource

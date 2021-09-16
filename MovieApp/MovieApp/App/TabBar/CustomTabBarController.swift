@@ -1,11 +1,19 @@
 import UIKit
-import Resolver
 
 class CustomTabBarController: UITabBarController {
 
-    @Injected private var homeViewController: HomeViewController
-    @Injected private var favoriteViewController: FavoriteMoviesViewController
+    private let homeViewController: HomeViewController!
+    private let favoriteViewController: FavoriteMoviesViewController!
 
+    init(homeViewController: HomeViewController, favoriteViewController: FavoriteMoviesViewController) {
+        self.homeViewController = homeViewController
+        self.favoriteViewController = favoriteViewController
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

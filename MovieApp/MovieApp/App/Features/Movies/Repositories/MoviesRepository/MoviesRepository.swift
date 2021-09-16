@@ -1,10 +1,14 @@
 import Combine
-import Resolver
 
 class MoviesRepository: MoviesRepositoryProtocol {
 
-    @Injected private var localDataSource: LocalDataSourceProtocol
-    @Injected private var networkDataSource: MoviesNetworkDataSourceProtocol
+   private let localDataSource: LocalDataSourceProtocol!
+   private let networkDataSource: MoviesNetworkDataSourceProtocol!
+
+    init(localDataSource: LocalDataSourceProtocol, networkDataSource: MoviesNetworkDataSourceProtocol) {
+        self.localDataSource = localDataSource
+        self.networkDataSource = networkDataSource
+    }
 
     func fetchMovies(
         categoryModel: MovieCategoryModel,
