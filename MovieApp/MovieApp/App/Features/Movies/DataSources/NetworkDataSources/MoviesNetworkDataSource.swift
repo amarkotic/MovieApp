@@ -1,12 +1,9 @@
 import Combine
+import Resolver
 
 class MoviesNetworkDataSource: MoviesNetworkDataSourceProtocol {
 
-    private let networkClient: MoviesNetworkClientProtocol
-
-    init(networkClient: MoviesNetworkClientProtocol) {
-        self.networkClient = networkClient
-    }
+    @Injected private var networkClient: MoviesNetworkClientProtocol
 
     func fetchMovies(
         categoryRepositoryModel: MovieCategoryRepositoryModel,

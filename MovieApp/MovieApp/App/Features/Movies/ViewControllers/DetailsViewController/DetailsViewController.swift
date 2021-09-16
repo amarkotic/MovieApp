@@ -1,6 +1,7 @@
 import UIKit
 import Combine
 import Reachability
+import Resolver
 
 class DetailsViewController: UIViewController {
 
@@ -23,14 +24,8 @@ class DetailsViewController: UIViewController {
     var recommendationView: RecommendationsView!
     var noInternetLabel: UILabel!
 
-    var presenter: DetailsPresenter!
+    @Injected var presenter: DetailsPresenter
     private var disposables = Set<AnyCancellable>()
-
-    convenience init(presenter: DetailsPresenter) {
-        self.init()
-
-        self.presenter = presenter
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

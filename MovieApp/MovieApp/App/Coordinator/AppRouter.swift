@@ -1,24 +1,18 @@
 import UIKit
+import Resolver
 
 class AppRouter {
 
-    private let appDependencies: AppDependencies
-    private let navigationController: UINavigationController
+    private let navigationController = UINavigationController()
+    private let container: Resolver!
 
     private lazy var tabBarController: UITabBarController = {
-        let homeViewController = HomeViewController(
-            presenter: HomePresenter(moviesUseCase: appDependencies.moviesUseCase, router: self))
-        let favoriteViewController = FavoriteMoviesViewController(
-            presenter: FavoriteMoviesPresenter(moviesUseCase: appDependencies.moviesUseCase))
-        return CustomTabBarController(
-            homeViewController: homeViewController,
-            favoriteViewController: favoriteViewController)
+        let tabBarController: CustomTabBarController = container.resolve()
+        return tabBarController
     }()
 
-    init(navigationController: UINavigationController) {
-        self.appDependencies = AppDependencies()
-        self.navigationController = navigationController
-
+    init(container: Resolver) {
+        self.container = container
         styleNavigationBar()
     }
 
@@ -30,14 +24,9 @@ class AppRouter {
     }
 
     func showMovieDetails(with identifier: Int) {
-        navigationController.pushViewController(
-            DetailsViewController(
-                presenter: DetailsPresenter(
-                    movieUseCase: appDependencies.moviesUseCase,
-                    router: self,
-                    identifier: identifier)
-            ), animated: true
-        )
+        let detailsViewController: DetailsViewController = container.resolve()
+        detailsViewController.presenter.setIdentifier(with: identifier)
+        navigationController.pushViewController(detailsViewController, animated: true)
     }
 
     func showHomeScreen() {
@@ -45,8 +34,7 @@ class AppRouter {
     }
 
     func goToSearch() {
-        let searchViewController = MoviesSearchViewController(
-            presenter: MoviesSearchPresenter(moviesUseCase: appDependencies.moviesUseCase, appRouter: self))
+        let searchViewController: MoviesSearchViewController = container.resolve()
         navigationController.pushViewController(searchViewController, animated: false)
     }
 

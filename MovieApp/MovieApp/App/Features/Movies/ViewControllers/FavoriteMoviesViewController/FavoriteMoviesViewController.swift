@@ -1,5 +1,6 @@
 import UIKit
 import Combine
+import Resolver
 
 class FavoriteMoviesViewController: UIViewController {
 
@@ -11,15 +12,9 @@ class FavoriteMoviesViewController: UIViewController {
     var titleLabel: UILabel!
     var collectionView: UICollectionView!
 
-    private var presenter: FavoriteMoviesPresenter!
     private var disposables = Set<AnyCancellable>()
     private var dataSource: DataSource!
-
-    convenience init(presenter: FavoriteMoviesPresenter) {
-        self.init()
-
-        self.presenter = presenter
-    }
+    @Injected private var presenter: FavoriteMoviesPresenter
 
     override func viewDidLoad() {
         super.viewDidLoad()

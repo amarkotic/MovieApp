@@ -1,10 +1,11 @@
 import UIKit
 import Combine
+import Resolver
 
 class MoviesUseCase: MoviesUseCaseProtocol {
 
-    private let moviesRepository: MoviesRepositoryProtocol
-    private let favoritesRepository: FavoritesRepositoryProtocol
+    @Injected private var moviesRepository: MoviesRepositoryProtocol
+    @Injected private var favoritesRepository: FavoritesRepositoryProtocol
 
     var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> {
         favoritesRepository
@@ -18,14 +19,6 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
-    }
-
-    init(
-        moviesRepository: MoviesRepositoryProtocol,
-        favoritesRepository: FavoritesRepositoryProtocol
-    ) {
-        self.moviesRepository = moviesRepository
-        self.favoritesRepository = favoritesRepository
     }
 
     func fetchMovies(

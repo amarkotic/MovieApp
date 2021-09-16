@@ -1,11 +1,12 @@
 import UIKit
 import Combine
+import Resolver
 
 class DetailsPresenter {
 
-    private let appRouter: AppRouter
-    private let movieUseCase: MoviesUseCaseProtocol
-    private let identifier: Int
+    private var identifier: Int!
+    @Injected private var appRouter: AppRouter
+    @Injected private var movieUseCase: MoviesUseCaseProtocol
 
     var info: AnyPublisher<InfoViewModel, Error> {
         movieUseCase
@@ -49,12 +50,6 @@ class DetailsPresenter {
             .receiveOnMain()
     }
 
-    init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter, identifier: Int) {
-        self.movieUseCase = movieUseCase
-        self.appRouter = router
-        self.identifier = identifier
-    }
-
     func popToHomeScreen() {
         appRouter.showHomeScreen()
     }
@@ -62,6 +57,10 @@ class DetailsPresenter {
     func updateFavoriteMovie(with url: String) {
         movieUseCase
             .updateFavorites(id: identifier, with: url)
+    }
+
+    func setIdentifier(with identifier: Int) {
+        self.identifier = identifier
     }
 
 }

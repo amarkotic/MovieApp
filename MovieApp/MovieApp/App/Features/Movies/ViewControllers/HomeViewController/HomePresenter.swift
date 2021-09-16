@@ -1,16 +1,11 @@
 import UIKit
 import Combine
+import Resolver
 
 class HomePresenter {
 
-    private let moviesUseCase: MoviesUseCaseProtocol
-
-    var appRouter: AppRouter!
-
-    init(moviesUseCase: MoviesUseCaseProtocol, router: AppRouter) {
-        self.moviesUseCase = moviesUseCase
-        self.appRouter = router
-    }
+    @Injected private var moviesUseCase: MoviesUseCaseProtocol
+    @Injected private var appRouter: AppRouter
 
     func getSubcategories(for category: MovieCategoryViewModel) -> [SubcategoryViewModel] {
         switch category {
@@ -42,7 +37,6 @@ class HomePresenter {
     func updateFavoriteMovie(with model: MovieViewModel) {
         moviesUseCase
             .updateFavorites(with: MovieModel(from: model))
-            
     }
 
     func goToSearch() {

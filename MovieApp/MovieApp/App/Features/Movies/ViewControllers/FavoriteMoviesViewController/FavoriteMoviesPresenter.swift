@@ -1,19 +1,16 @@
 import UIKit
 import Combine
+import Resolver
 
 class FavoriteMoviesPresenter {
 
-    private let moviesUseCase: MoviesUseCaseProtocol
+    @Injected private var moviesUseCase: MoviesUseCaseProtocol
 
     var favoriteMovies: AnyPublisher<[MovieViewModel], Never> {
         moviesUseCase
             .favoriteMovies
             .map { $0.map { MovieViewModel(from: $0) } }
             .receiveOnMain()
-    }
-
-    init(moviesUseCase: MoviesUseCaseProtocol) {
-        self.moviesUseCase = moviesUseCase
     }
 
 }

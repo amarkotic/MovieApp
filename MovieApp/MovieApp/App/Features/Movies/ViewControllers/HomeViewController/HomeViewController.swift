@@ -1,5 +1,6 @@
 import UIKit
 import Combine
+import Resolver
 
 class HomeViewController: UIViewController {
 
@@ -12,16 +13,10 @@ class HomeViewController: UIViewController {
 
     var searchBar: SearchBar!
     var tableView: UITableView!
-    var presenter: HomePresenter!
 
+    @Injected private var presenter: HomePresenter
     private var disposables = Set<AnyCancellable>()
     private var dataSource: DataSource!
-
-    convenience init(presenter: HomePresenter) {
-        self.init()
-
-        self.presenter = presenter
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

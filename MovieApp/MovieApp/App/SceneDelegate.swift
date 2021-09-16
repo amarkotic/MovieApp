@@ -1,8 +1,8 @@
 import UIKit
+import Resolver
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    let navigationController = UINavigationController()
     var window: UIWindow?
 
     func scene(
@@ -13,8 +13,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(windowScene: windowScene)
 
-        let appRouter = AppRouter(navigationController: navigationController)
-        appRouter.setStartScreen(in: window)
+        if let window = window {
+            let appModule = AppModule(container: Resolver.main)
+            appModule.startRouter(with: window)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

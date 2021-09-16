@@ -16,6 +16,7 @@ class LocalDataSource: LocalDataSourceProtocol {
 
     func updateFavoriteMovies(with model: LocalFavoritesDataSourceModel) {
         guard let realm = try? Realm() else { return }
+
         let favoriteIds = realm
             .objects(LocalFavoritesDataSourceModel.self)
             .map { $0.id }
