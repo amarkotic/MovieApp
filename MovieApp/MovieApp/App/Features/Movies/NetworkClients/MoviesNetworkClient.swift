@@ -3,12 +3,6 @@ import Combine
 
 class MoviesNetworkClient: MoviesNetworkClientProtocol {
 
-    private let networkService: NetworkServiceProtocol
-
-    init(networkService: NetworkServiceProtocol) {
-        self.networkService = networkService
-    }
-
     func getMovies(
         categoryDataSourceModel: MovieCategoryDataSourceModel,
         subcategoryDataSourceModel: SubcategoryDataSourceModel

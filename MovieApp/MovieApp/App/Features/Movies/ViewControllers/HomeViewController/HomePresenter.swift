@@ -4,12 +4,11 @@ import Combine
 class HomePresenter {
 
     private let moviesUseCase: MoviesUseCaseProtocol
+    private let appRouter: AppRouter
 
-    var appRouter: AppRouter!
-
-    init(moviesUseCase: MoviesUseCaseProtocol, router: AppRouter) {
+    init(moviesUseCase: MoviesUseCaseProtocol, appRouter: AppRouter) {
         self.moviesUseCase = moviesUseCase
-        self.appRouter = router
+        self.appRouter = appRouter
     }
 
     func getSubcategories(for category: MovieCategoryViewModel) -> [SubcategoryViewModel] {
@@ -42,7 +41,6 @@ class HomePresenter {
     func updateFavoriteMovie(with model: MovieViewModel) {
         moviesUseCase
             .updateFavorites(with: MovieModel(from: model))
-            
     }
 
     func goToSearch() {

@@ -2,13 +2,10 @@ import UIKit
 
 class CustomTabBarController: UITabBarController {
 
-    var homeViewController: UIViewController!
-    var favoriteViewController: UIViewController!
+    private let homeViewController: HomeViewController
+    private let favoriteViewController: FavoriteMoviesViewController
 
-    init(
-        homeViewController: UIViewController,
-        favoriteViewController: UIViewController
-    ) {
+    init(homeViewController: HomeViewController, favoriteViewController: FavoriteMoviesViewController) {
         self.homeViewController = homeViewController
         self.favoriteViewController = favoriteViewController
         super.init(nibName: nil, bundle: nil)
@@ -17,7 +14,6 @@ class CustomTabBarController: UITabBarController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -23,7 +23,7 @@ class DetailsViewController: UIViewController {
     var recommendationView: RecommendationsView!
     var noInternetLabel: UILabel!
 
-    var presenter: DetailsPresenter!
+    private var presenter: DetailsPresenter!
     private var disposables = Set<AnyCancellable>()
 
     convenience init(presenter: DetailsPresenter) {

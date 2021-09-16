@@ -12,8 +12,8 @@ class HomeViewController: UIViewController {
 
     var searchBar: SearchBar!
     var tableView: UITableView!
-    var presenter: HomePresenter!
 
+    private var presenter: HomePresenter!
     private var disposables = Set<AnyCancellable>()
     private var dataSource: DataSource!
 

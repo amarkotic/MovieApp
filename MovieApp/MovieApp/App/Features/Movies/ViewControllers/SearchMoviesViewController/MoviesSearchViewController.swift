@@ -14,9 +14,9 @@ class MoviesSearchViewController: UIViewController, UITextFieldDelegate {
     var logoImageView: UIImageView!
     var tableView: UITableView!
 
-    private var presenter: MoviesSearchPresenter!
     private var disposables = Set<AnyCancellable>()
     private var dataSource: DataSource!
+    private var presenter: MoviesSearchPresenter!
 
     convenience init(presenter: MoviesSearchPresenter) {
         self.init()

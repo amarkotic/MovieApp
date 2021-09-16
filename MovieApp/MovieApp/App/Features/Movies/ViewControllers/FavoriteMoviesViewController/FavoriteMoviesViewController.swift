@@ -11,9 +11,9 @@ class FavoriteMoviesViewController: UIViewController {
     var titleLabel: UILabel!
     var collectionView: UICollectionView!
 
-    private var presenter: FavoriteMoviesPresenter!
     private var disposables = Set<AnyCancellable>()
     private var dataSource: DataSource!
+    private var presenter: FavoriteMoviesPresenter!
 
     convenience init(presenter: FavoriteMoviesPresenter) {
         self.init()

@@ -2,12 +2,12 @@ import Combine
 
 class MoviesRepository: MoviesRepositoryProtocol {
 
-    private let localDataSource: LocalDataSourceProtocol
-    private let networkDataSource: MoviesNetworkDataSourceProtocol
+   private let localDataSource: LocalDataSourceProtocol
+   private let networkDataSource: MoviesNetworkDataSourceProtocol
 
-    init(networkDataSource: MoviesNetworkDataSourceProtocol, localDataSource: LocalDataSourceProtocol) {
-        self.networkDataSource = networkDataSource
+    init(localDataSource: LocalDataSourceProtocol, networkDataSource: MoviesNetworkDataSourceProtocol) {
         self.localDataSource = localDataSource
+        self.networkDataSource = networkDataSource
     }
 
     func fetchMovies(

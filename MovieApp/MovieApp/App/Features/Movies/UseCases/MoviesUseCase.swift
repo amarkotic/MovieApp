@@ -6,6 +6,11 @@ class MoviesUseCase: MoviesUseCaseProtocol {
     private let moviesRepository: MoviesRepositoryProtocol
     private let favoritesRepository: FavoritesRepositoryProtocol
 
+    init(moviesRepository: MoviesRepositoryProtocol, favoritesRepository: FavoritesRepositoryProtocol) {
+        self.moviesRepository = moviesRepository
+        self.favoritesRepository = favoritesRepository
+    }
+
     var favoriteMovies: AnyPublisher<[FavoriteMovieModel], Never> {
         favoritesRepository
             .favoriteMovies
@@ -18,14 +23,6 @@ class MoviesUseCase: MoviesUseCaseProtocol {
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
-    }
-
-    init(
-        moviesRepository: MoviesRepositoryProtocol,
-        favoritesRepository: FavoritesRepositoryProtocol
-    ) {
-        self.moviesRepository = moviesRepository
-        self.favoritesRepository = favoritesRepository
     }
 
     func fetchMovies(

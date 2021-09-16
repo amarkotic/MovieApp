@@ -3,9 +3,15 @@ import Combine
 
 class DetailsPresenter {
 
+    private let identifier: Int
     private let appRouter: AppRouter
     private let movieUseCase: MoviesUseCaseProtocol
-    private let identifier: Int
+
+    init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter, identifier: Int) {
+        self.movieUseCase = movieUseCase
+        self.appRouter = router
+        self.identifier = identifier
+    }
 
     var info: AnyPublisher<InfoViewModel, Error> {
         movieUseCase
@@ -47,12 +53,6 @@ class DetailsPresenter {
                 )
             }
             .receiveOnMain()
-    }
-
-    init(movieUseCase: MoviesUseCaseProtocol, router: AppRouter, identifier: Int) {
-        self.movieUseCase = movieUseCase
-        self.appRouter = router
-        self.identifier = identifier
     }
 
     func popToHomeScreen() {
