@@ -38,6 +38,7 @@ class DetailsViewController: UIViewController {
         buildViews()
         styleNavigationBar()
         mainInfoView.setDelegate(delegate: self)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         bindViews()
         checkReachability()
     }
@@ -125,6 +126,17 @@ class DetailsViewController: UIViewController {
 
     @objc func backButtonPressed() {
         presenter.popToHomeScreen()
+    }
+
+}
+
+extension DetailsViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer
+    ) -> Bool {
+        true
     }
 
 }
