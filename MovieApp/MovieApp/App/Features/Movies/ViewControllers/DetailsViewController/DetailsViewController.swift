@@ -38,7 +38,7 @@ class DetailsViewController: UIViewController {
         buildViews()
         styleNavigationBar()
         mainInfoView.setDelegate(delegate: self)
-        setGestureRecognizerDelegate()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         bindViews()
         checkReachability()
     }
@@ -136,11 +136,7 @@ extension DetailsViewController: UIGestureRecognizerDelegate {
         _ gestureRecognizer: UIGestureRecognizer,
         shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer
     ) -> Bool {
-        return true
-    }
-
-    private func setGestureRecognizerDelegate() {
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        true
     }
 
 }
