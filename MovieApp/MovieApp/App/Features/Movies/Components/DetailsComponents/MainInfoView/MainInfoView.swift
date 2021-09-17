@@ -19,6 +19,7 @@ class MainInfoView: UIView {
     var elipseImageView: UIImageView!
     var favoriteImageView: UIImageView!
     var url: String!
+    var firstLoad = true
 
     weak private var delegate: DetailsViewController?
 
@@ -37,7 +38,10 @@ class MainInfoView: UIView {
         url = model.posterPath
         favoriteImageView.image = model.isFavorite ? UIImage(with: .favoriteLogoSelected) : UIImage(with: .favoriteLogo)
         moviePoster.kf.setImage(with: URL(string: model.posterPath))
-        progressView.setData(with: model.progressPercentage)
+        if firstLoad {
+            progressView.setData(with: model.progressPercentage)
+            firstLoad = false
+        }
         nameLabel.attributedText = buildAttributed(name: model.movieName, date: model.releaseDate)
         releaseDateLabel.text = buildAttributed(date: model.releaseDate, language: model.language)
         genresAndDurationLabel.attributedText = buildAttributed(genre: model.genres, duration: model.duration)

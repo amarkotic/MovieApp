@@ -26,18 +26,21 @@ class SocialView: UIView {
     }
 
     func setData(with reviewModel: SocialViewModel) {
-        guard
-            let date = reviewModel.date,
-            let avatarPath = reviewModel.author.avatarPath
-        else {
-            return
+        let parsedDate: String
+        if let date = reviewModel.date {
+            parsedDate = parse(date: date)
+        } else {
+            parsedDate = LocalizableStrings.unknownDate.rawValue
         }
 
-        let parsedDate = parse(date: date)
         postTitle.text?.append(reviewModel.author.username)
         postInfo.attributedText = createAttributed(author: reviewModel.author.username, date: parsedDate)
         postContent.text = reviewModel.review
-        logoImage.kf.setImage(with: URL(string: avatarPath))
+        if let avatarPath = reviewModel.author.avatarPath {
+            logoImage.kf.setImage(with: URL(string: String(avatarPath.dropFirst())))
+        } else {
+            logoImage.image = UIImage(with: .noReview)
+        }
     }
 
 }

@@ -19,11 +19,7 @@ struct AuthorModel {
 
     init(from repositoryModel: AuthorRepositoryModel) {
         username = repositoryModel.username
-        if let path = repositoryModel.avatarPath?.dropFirst() {
-            avatarPath = String(path)
-        } else {
-            avatarPath = ""
-        }
+        avatarPath = repositoryModel.avatarPath
     }
 
 }
