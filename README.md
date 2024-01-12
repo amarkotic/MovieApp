@@ -1,4 +1,4 @@
-# MovieApp
+# MovieApp - built in 2021
  MovieApp provides comprehensive movies and shows overview. 
 
  ## Technologies used
